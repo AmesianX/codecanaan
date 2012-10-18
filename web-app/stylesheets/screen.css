@@ -1,0 +1,32 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 8, ../sass/screen.scss */
+body {
+  font-size: 11pt;
+}
+
+/* line 12, ../sass/screen.scss */
+.logo-font {
+  font-family: Allura, sans-serif;
+  cursor: pointer;
+}
+
+/* line 17, ../sass/screen.scss */
+.code-font {
+  font-family: 'Droid Sans Mono', monospace;
+  font-size: 11pt;
+}
+
+/* line 22, ../sass/screen.scss */
+.CodeMirror {
+  font-family: 'Droid Sans Mono', monospace;
+  font-size: 11pt;
+}
+
+/* line 27, ../sass/screen.scss */
+.CodeMirror-lines, .CodeMirror-gutter {
+  font-family: 'Droid Sans Mono', monospace;
+  line-height: 1.5em;
+}
