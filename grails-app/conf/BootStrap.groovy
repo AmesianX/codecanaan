@@ -4,11 +4,12 @@ class BootStrap {
 
     def init = { servletContext ->
         //基本權限
-        new Role(authority: 'ROLE_USER').save(failOnError: true, flush: true)
-        new Role(authority: 'ROLE_FACEBOOK').save(failOnError: true, flush: true)
 
         environments {
             development {                
+                new Role(authority: 'ROLE_USER').save(failOnError: true, flush: true)
+                new Role(authority: 'ROLE_FACEBOOK').save(failOnError: true, flush: true)
+
                 def content1 = new Content(
                     type: ContentType.TUTORIAL,
                     title: '講義內容範例',

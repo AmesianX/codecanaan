@@ -105,11 +105,14 @@ SimpleGroovyServlet.run(jettyPort) { ->
     def stdout = new StringBuffer()
     def dump = new StringBuffer()
 
+    //get class name for Java files
+    def sourceBase = sourcePath.name.split('\\.')[0]
+
     try {
         def batchFile = new File(cwd, 'execute.bat')
         batchFile << """@echo off
 REM java -version
-javac -encoding utf-8 Main.java && ..\\execdump.exe stdout.dump "java Main"
+javac -encoding utf-8 ${sourcePath} && ..\\execdump.exe stdout.dump "java ${sourceBase}"
 pause
 exit
 """
