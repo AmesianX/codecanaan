@@ -45,7 +45,8 @@
         </div>
     </g:if>
     <h1>${lesson.title}</h1>
-    ${lesson.description}
+    <div class="markdown-source">${lesson.description}</div>
+    
     <!--目錄-->
     <g:if test="${lesson.contents?.size() > 0}">
         <hr class="soften" />
