@@ -40,7 +40,18 @@
             </a>
             <ul class="dropdown-menu">
                 <li><g:link controller="lesson" action="delete" id="${lesson.id}" onclick="confirm('Are you sure???');"><i class="icon icon-remove"></i> 刪除單元</g:link></li>
-                <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id]"><i class="icon icon-pencil"></i> 新增內容</g:link></li>
+                <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'TUTORIAL']">
+                    <i class="icon icon-pencil"></i>
+                    <g:message code="default.add.label" default="Add {0}" args="[message(code: 'content.contentType.TUTORIAL', default: 'Tutorial')]" />
+                </g:link></li>
+                <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'CODE']">
+                    <i class="icon icon-pencil"></i>
+                    <g:message code="default.add.label" default="Add {0}" args="[message(code: 'content.contentType.CODE', default: 'Code')]" />
+                </g:link></li>
+                <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'QUIZ']">
+                    <i class="icon icon-pencil"></i>
+                    <g:message code="default.add.label" default="Add {0}" args="[message(code: 'content.contentType.QUIZ', default: 'Quiz')]" />
+                </g:link></li>
             </ul>
         </div>
     </g:if>
