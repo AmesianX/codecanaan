@@ -7,6 +7,12 @@
 //                             "file:${userHome}/.grails/${appName}-config.properties",
 //                             "file:${userHome}/.grails/${appName}-config.groovy"]
 
+// Secure Passwords in private config file
+grails.config.locations = [
+	//"file:${userHome}/.grails/${appName}-config.properties",
+	"file:${userHome}/.grails/${appName}-config.groovy"
+]
+
 // if (System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
