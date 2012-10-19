@@ -4,6 +4,8 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class ContentController {
 
+    def springSecurityService
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -19,6 +21,7 @@ class ContentController {
      * 直接建立內容後回到瀏覽頁面
      */
     def create() {
+        def user = springSecurityService.currentUser
         def content = new Content(params)
 
         //套用預設值
@@ -26,12 +29,26 @@ class ContentController {
             content.type = ContentType.TUTORIAL
         }
 
-        content.title = "${content.type} ${content.lesson?.contents?.size()+1}"
+        //計算流水號
+        def seq = 0
+        def lesson = Lesson.get(params.lesson.id)
+        if (lesson && lesson.contents) {
+            seq = lesson.contents?.size()
+        }
+
+        //println lesson
+        //println seq
+
+        content.title = "${content.type} ${seq+1}"
         content.description = '''Write contents here using **Markdown** syntax.'''
-        content.output = ''
-        content.question = ''
-        content.answer = ''
-        content.partial = ''
+
+        content.sourceCode = "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello World\");\n    }\n}\n"
+        content.sourceType = SourceType.JAVA
+        content.sourcePath = 'Main.java'
+        content.partialCode = "public class Main {\n    public static void main(String[] args) {\n        //write here\n    }\n}\n"
+        content.answer = 'Hello World'
+        content.priority = seq
+        content.creator = user
 
         content.save(flush: true)
 
@@ -76,9 +93,27 @@ class ContentController {
             content.save(flush: true)
         }
 
-        render(contentType: 'text/json') {
+        render(contentType: 'application/json') {
             [url: createLink(controller: 'course', action: 'show', id: content.lesson?.course?.id, params: [lessonId: content.lesson?.id, contentId: content.id])]
         }
+    }
+
+    /**
+     * Ajax 更新作答資料
+     */
+    def ajaxSaveRecord(Long id) {
+        def user = springSecurityService.currentUser
+
+        def content = Content.get(id)
+
+        def record = Record.findOrCreateByUserAndContent(user, content)
+
+        if (record) {
+            record.properties = params
+            record.save(flush: true)
+        }
+
+        [record: record]
     }
 
     def show(Long id) {
@@ -132,22 +167,46 @@ class ContentController {
         redirect(action: "show", id: content.id)
     }
 
+    /**
+     * 刪除內容
+     */
     def delete(Long id) {
         def content = Content.get(id)
         if (!content) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'content.label', default: 'Content'), id])
-            redirect(action: "list")
+            redirect(controller: 'course')
             return
         }
+
+        def courseId = content.lesson?.course?.id
+        def lessonId = content.lesson?.id
 
         try {
             content.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'content.label', default: 'Content'), id])
-            redirect(action: "list")
+            redirect(controller: 'course', action: 'show', id: courseId, params: [lessonId: lessonId])
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'content.label', default: 'Content'), id])
-            redirect(action: "show", id: id)
+            redirect(controller: 'course', action: 'show', id: courseId, params: [lessonId: lessonId, contentId: content.id])
         }
+    }
+
+    /**
+     * 下載原始碼
+     */
+    def downloadSource(Long id) {
+        def content = Content.get(id)
+        if (!content) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'content.label', default: 'Content'), id])
+            redirect(url: '/')
+            return
+        }
+
+        //fixme: 資料夾斜線處理
+        def filename = content.sourcePath?content.sourcePath:'untitled.txt'
+        response.addHeader('Content-disposition', "attachment; filename=${filename}")
+
+        render(text: content.sourceCode, contentType:"text/plain", encoding:"UTF-8")
     }
 }

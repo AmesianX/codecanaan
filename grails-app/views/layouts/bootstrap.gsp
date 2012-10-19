@@ -46,10 +46,10 @@ FB.Event.subscribe('auth.login', function() {
       <g:link controller="home" action="index" class="brand logo-font">CodeCanaan</g:link>
       <div class="nav-collapse collapse">
         <ul class="nav">
-          <li class="${controllerName=='home'?'active':''}"><g:link controller="home">首頁</g:link></li>
+          <li class="${controllerName=='home'?'active':''}"><g:link controller="home"><g:message code="default.home.label" default="Home" /></g:link></li>
           <!--已登入才顯示功能表-->
           <sec:ifLoggedIn>
-            <li class="${controllerName=='course'?'active':''}"><g:link controller="course">課程</g:link></li>
+            <li class="${controllerName=='course'?'active':''}"><g:link controller="course"><g:message code="course.label" default="Course" /></g:link></li>
           </sec:ifLoggedIn>
         </ul>
         <!--<form class="navbar-form pull-right">
@@ -118,6 +118,10 @@ FB.Event.subscribe('auth.login', function() {
     <div class="container">
         <hr class="soften" />
         <div class="copyright">Copyright &copy; CodeCanaan Consulting Group</div>
+        <div class="links">
+            <g:link url="/?lang=zh_TW">中文版</g:link> |
+            <g:link url="/?lang=en">English</g:link>
+        </div>
         <div class="footer" role="contentinfo"></div>
         <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
     </div>

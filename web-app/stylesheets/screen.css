@@ -30,3 +30,21 @@ body {
   font-family: 'Droid Sans Mono', monospace;
   line-height: 1.5em;
 }
+
+/* line 33, ../sass/screen.scss */
+.test-report pre {
+  font-family: 'Droid Sans Mono', monospace;
+  border: 0;
+  font-size: 10pt;
+  padding: 0;
+  margin: 0;
+  background: none;
+}
+/* line 43, ../sass/screen.scss */
+.test-report .test-error {
+  background-color: #FF7777;
+}
+/* line 46, ../sass/screen.scss */
+.test-report .test-hint {
+  background-color: #77FF77;
+}

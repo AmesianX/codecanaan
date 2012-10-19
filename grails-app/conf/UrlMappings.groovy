@@ -11,7 +11,7 @@ class UrlMappings {
 		//"/"(view:"/index")
 		"500"(view:'/error')
 
-		"/show/$id/$lessonId?/$contentId?" {
+		"/show/$id?/$lessonId?/$contentId?" {
 			controller = "course"
 			action = "show"
 			constraints {

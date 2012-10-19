@@ -4,7 +4,9 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class LessonController {
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    def springSecurityService
+
+    static allowedMethods = [save: "POST", update: "POST", delete: "GET"]
 
     def index() {
         redirect(action: "list", params: params)
@@ -19,12 +21,14 @@ class LessonController {
      * 建立新單元（建立後直接回到單元顯示頁面）
      */
     def create() {
+        def user = springSecurityService.currentUser
         def lesson = new Lesson(params)
         
         //套用預設值
         lesson.name = "lesson-${Lesson.count()+1}"
         lesson.title = "Lesson ${Lesson.count()+1}"
         lesson.description = "Write lesson description here."
+        lesson.creator = user
 
         lesson.save(flush: true)
 
@@ -53,7 +57,7 @@ class LessonController {
             lesson.save(flush: true)
         }
 
-        render(contentType: 'text/json') {
+        render(contentType: 'application/json') {
             [url: createLink(controller: 'course', action: 'show', id: lesson?.course?.id, params: [lessonId: lesson?.id])]
         }
     }
@@ -109,22 +113,27 @@ class LessonController {
         redirect(action: "show", id: lesson.id)
     }
 
+    /**
+     * 刪除單元
+     */
     def delete(Long id) {
         def lesson = Lesson.get(id)
         if (!lesson) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'lesson.label', default: 'Lesson'), id])
-            redirect(action: "list")
+            redirect(controller: 'course')
             return
         }
+
+        def courseId = lesson.course?.id
 
         try {
             lesson.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'lesson.label', default: 'Lesson'), id])
-            redirect(action: "list")
+            redirect(controller: 'course', action: 'show', id: courseId)
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'lesson.label', default: 'Lesson'), id])
-            redirect(action: "show", id: id)
+            redirect(controller: 'course', action: 'show', id: courseId, params: [lessonId: lesson.id])
         }
     }
 }

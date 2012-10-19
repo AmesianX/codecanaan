@@ -28,3 +28,22 @@ body {
 	font-family: 'Droid Sans Mono', monospace;
 	line-height: 1.5em;
 }
+
+.test-report {
+	pre {
+		font-family: 'Droid Sans Mono', monospace;
+		border: 0;
+		font-size: 10pt;
+		padding: 0;
+		margin: 0;
+		background: none;
+	}
+	.test-ok {
+	}
+	.test-error {
+		background-color: #FF7777;
+	}
+	.test-hint {
+		background-color: #77FF77;
+	}
+}

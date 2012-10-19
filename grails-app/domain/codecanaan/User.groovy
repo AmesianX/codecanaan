@@ -7,6 +7,9 @@ class User {
 	String fullName		//全名
 	String email		//電子郵件
 
+    Date dateCreated    //建立日期
+    Date lastUpdated    //修改日期
+
 	String username
 	String password
 	boolean enabled

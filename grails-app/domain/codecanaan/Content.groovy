@@ -42,11 +42,11 @@ class Content {
         description blank: true, maxSize: 1024*1024
 
         sourceCode  nullable: true, empty: true, maxSize: 1024*1024
-        sourceType  nullable: true, empty: true
-        sourcePath  nullable: true, empty: true, maxSize: 128
+        sourceType  nullable: true, empty: true, maxSize: 16
+        sourcePath  nullable: true, empty: true, maxSize: 96
         partialCode nullable: true, empty: true, maxSize: 1024*1024
 
-        answer nullable: true, empty: true
+        answer nullable: true, empty: true, maxSize: 1024*1024
 
         lesson nullable: true
         creator nullable: true

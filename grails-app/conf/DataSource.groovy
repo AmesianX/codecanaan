@@ -26,6 +26,23 @@ environments {
     production {
         dataSource {
             dbCreate = "update"
+			pooled = true
+			driverClassName = "com.mysql.jdbc.Driver"
+			username = "codecanaan"
+			password = "codecanaan"
+			url = "jdbc:mysql://localhost/codecanaan?useUnicode=true&characterEncoding=UTF8"
+			properties {
+				minEvictableIdleTimeMillis=1800000
+				timeBetweenEvictionRunsMillis=1800000
+				numTestsPerEvictionRun=3
+				testOnBorrow=true
+				testWhileIdle=true
+				testOnReturn=true
+				validationQuery="SELECT 1"
+			}
+	
+            /*
+            dbCreate = "update"
             url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
             pooled = true
             properties {
@@ -37,7 +54,7 @@ environments {
                testWhileIdle=true
                testOnReturn=true
                validationQuery="SELECT 1"
-            }
+            }*/
         }
     }
 }

@@ -47,9 +47,12 @@ class UserController {
      * 檢查個人資料是否完整
      */
     def check = {
-        def userDetails = springSecurityService.principal
-        
-        def user = User.get(userDetails.id)
+        def user = springSecurityService.currentUser
+
+        if (!user) {
+            redirect(url:'/')
+            return
+        }
 
         def hasError = false
         if (!user.email) hasError = true
@@ -57,9 +60,11 @@ class UserController {
 
         if (hasError) {
             redirect(controller: 'user', action: 'complete')
+            return
         }
         else {
             redirect(url: '/')
+            return
         }
     }
 

@@ -4,15 +4,62 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class CourseController {
 
+    def springSecurityService
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
         redirect(action: "list", params: params)
     }
 
-    def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        [courseList: Course.list(params), courseTotal: Course.count()]
+    /*
+     * 課程列表：只列出已選修課程
+     */
+    def list() {
+        def user = springSecurityService.currentUser
+
+        def links = UserCourse.findAllByUser(user)
+
+        def courses = []
+
+        links.each {
+            link ->
+            courses << link.course
+        }
+        [courses: courses]
+    }
+
+    /**
+     * 註冊新課程
+     */
+    def register() {
+        def user = springSecurityService.currentUser
+
+        def coupon = Coupon.findBySerialCode(params.serialCode)
+
+        def msg = "序號無效"
+
+        if (coupon) {
+            if (coupon.valid && !coupon.registered) {
+                coupon.user = user
+                coupon.registered = true
+                coupon.save(flush: true)
+
+                if (coupon.course) {
+                    def link = UserCourse.findOrCreateByUserAndCourse(user, coupon.course)
+                    link.reginfo = "reg. with ${coupon.serialCode}"
+                    
+                    if (link.save(flush: true)) {
+                        msg = "註冊成功"
+                    }
+                }
+
+            }
+        }
+
+        flash.message = msg
+
+        redirect(action: 'list')
     }
 
     /**
@@ -29,7 +76,13 @@ class CourseController {
      * 儲存新建的課程
      */
     def save() {
+        def user = springSecurityService.currentUser
+
         def course = new Course(params)
+
+        //建立者
+        course.creator = user
+
         if (!course.save(flush: true)) {
             render(view: "create", model: [course: course])
             return
@@ -39,7 +92,12 @@ class CourseController {
         redirect(action: "show", id: course.id)
     }
 
+    /**
+     * 顯示課程內容（重要實作）
+     */
     def show(Long id) {
+        def user = springSecurityService.currentUser
+
         def course = Course.get(id)
         if (!course) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'course.label', default: 'Course'), id])
@@ -59,10 +117,23 @@ class CourseController {
             content = Content.get(params.contentId)
         }
 
+        //是否啟用 on-the-fly editor
         def editor = params.editor?true:false
 
+        //取得記錄
+        def record = Record.findByUserAndContent(user, content)
+
+        //檢查修改權限
+        def authoring = user&&(user.id==1||course.creator==user)
+
         [
-            course: course, lesson: lesson, content: content, editor: editor,
+            user: user,
+            course: course,
+            lesson: lesson,
+            content: content,
+            record: record,
+            editor: editor,
+            authoring: authoring,
             jettyPort: session.jettyPort?session.jettyPort:1337
         ]
     }
@@ -89,7 +160,7 @@ class CourseController {
             course.save(flush: true)
         }
         
-        render(contentType: 'text/json') {
+        render(contentType: 'application/json') {
             [url: createLink(controller: 'course', action: 'show', id: course?.id)]
         }
     }

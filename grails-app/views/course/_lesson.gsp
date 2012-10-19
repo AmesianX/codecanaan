@@ -1,4 +1,4 @@
-<g:if test="${editor}">
+<g:if test="${authoring&&editor}">
     <!--編輯單元-->
     <g:form controller="lesson" action="ajaxSave" method="post">
         <div class="control-group">
@@ -28,24 +28,28 @@
     </g:form>
 </g:if>
 <g:else>
-    <div class="btn-group pull-right">
-        <g:link controller="course" action="show" id="${course.id}" params="['lessonId': lesson.id, editor: true]" class="btn">
-            <i class="icon icon-edit"></i>
-            修改單元
-        </g:link>
-        <a class="btn dropdown-toggle" data-toggle="dropdown">
-            <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-            <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id]"><i class="icon icon-pencil"></i> 新增內容</g:link></li>
-        </ul>
-    </div>
+    <!--檢查作者權限-->
+    <g:if test="${authoring}">
+        <div class="btn-group pull-right">
+            <g:link controller="course" action="show" id="${course.id}" params="['lessonId': lesson.id, editor: true]" class="btn">
+                <i class="icon icon-edit"></i>
+                修改單元
+            </g:link>
+            <a class="btn dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><g:link controller="lesson" action="delete" id="${lesson.id}" onclick="confirm('Are you sure???');"><i class="icon icon-remove"></i> 刪除單元</g:link></li>
+                <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id]"><i class="icon icon-pencil"></i> 新增內容</g:link></li>
+            </ul>
+        </div>
+    </g:if>
     <h1>${lesson.title}</h1>
     ${lesson.description}
     <!--目錄-->
     <g:if test="${lesson.contents?.size() > 0}">
         <hr class="soften" />
-        <p>教材內容</p>
+        <h4>教材內容</h4>
         <ul class="nav nav-tabs nav-stacked">
             <g:each in="${lesson.contents}" var="row" status="i">
                 <li><g:link controller="course" action="show" id="${course.id}" params="[lessonId: lesson.id, contentId: row.id]">${row.title}</g:link></li>
