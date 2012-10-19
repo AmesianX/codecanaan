@@ -21,7 +21,7 @@ upload:
 	s3cmd put -P target/codecanaan.war s3://s3.lyhdev.com/apps/
 
 download:
-	wget -O target/codecanaan.war s3://s3.lyhdev.com/apps/codecanaan.war
+	wget -O target/codecanaan.war http://s3.lyhdev.com/apps/codecanaan.war
 
 remote-deploy:
 	ssh -t kyle@contpub.org 'cd codecanaan && make update download && sudo make deploy'
