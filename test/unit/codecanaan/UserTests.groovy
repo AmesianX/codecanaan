@@ -11,7 +11,7 @@ import org.junit.*
 @TestFor(User)
 class UserTests {
 
-    void testSomething() {
-       fail "Implement me"
+    void testAddAdministrator() {
+       assertNotNull new User(username: 'admin', password: 'admin').save()
     }
 }

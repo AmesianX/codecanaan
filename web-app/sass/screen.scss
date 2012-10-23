@@ -47,3 +47,32 @@ body {
 		background-color: #77FF77;
 	}
 }
+
+.justfont {
+	text-rendering:optimizelegibility;
+	h1, h2, h3, h4, h5, h6 {
+		font-weight: normal;
+	}
+	h1, h2, h3 {
+		text-shadow:0 0 1px transparent;
+		text-shadow:0 0 0 #f00, 0 0 1px transparent;
+	}
+	p, li {
+		font-size: 13pt;
+		line-height: 200%;
+		letter-spacing: 1px;
+	}
+	pre {
+		font-family: 'Droid Sans Mono', monospace;
+	}
+}
+
+footer {
+	padding-top: 2em;
+	.nav, .copyright {
+		font-size: 10pt;
+	}
+	.copyright {
+		color: #555;
+	}
+}

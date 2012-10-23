@@ -5,22 +5,20 @@
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title><g:layoutTitle default="Grails"/></title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
-<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
-<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
-<style>
-body {
-padding-top: 60px;
-padding-bottom: 40px;
-}
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon" />
+<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}" />
+<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}" />
+<style type="text/css">
+body {padding-top: 60px;padding-bottom: 40px;}
 </style>
 <r:require modules="bootstrap, pagedown, webfont, compass, codemirror, highlightjs"/>
 <g:layoutHead/>
 <r:layoutResources />
+<r:script>window.jfAsyncInit=function(){ctb.main({'appId':'04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=','tag':{'ct1':'.justfont pre','ct2':{'0':'.justfont p','1':'.justfont li'},'ct3':{'0':'.justfont h2','1':'.justfont h3','2':'.justfont h4','3':'.justfont h5','4':'.justfont h6','5':'.justfont h1 small'},'ct4':'.justfont h1','ct5':'.justfont blockquote'}});};(function(){var jf=document.createElement('script');jf.type='text/javascript';jf.async=true;jf.src='http://ds.justfont.com/core/js/v1.0/04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(jf,s);})();</r:script>
 </head>
 <body>
 <!--facebook integration-->
@@ -33,7 +31,6 @@ FB.Event.subscribe('auth.login', function() {
     window.location.href = "${createLink(controller: 'user', action: 'check')}";
 });
 </facebookAuth:init>
-
 <!--header-->
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
@@ -60,33 +57,33 @@ FB.Event.subscribe('auth.login', function() {
 
         <!--已登入-->
         <sec:ifLoggedIn>
-          <sec:ifAllGranted roles="ROLE_FACEBOOK">
-              <div class="pull-right">
-                  <!--<sec:loggedInUserInfo field="fullName"/>-->
-                  <r:script>
-                  function doLogout() {
-                      if (typeof(FB) === 'object') {
-                          FB.logout(function() {
-                              window.location.href = "${createLink(uri: '/j_spring_security_logout')}";
-                          });
-                          return false;
-                      }
-                      return true;
-                  }
-                  </r:script>
-                  <!--使用者選單-->
-                  <div class="btn-group">
-                    <button class="btn"><i class="icon icon-user"></i> <sec:username /></button>
-                    <button class="btn dropdown-toggle" data-toggle="dropdown">
-                    <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><g:link uri="/j_spring_security_logout" onclick="return doLogout()"><i class="icon icon-off"></i> 登出</g:link></li>
-                    </ul>
-                  </div>
-              </div>
-          </sec:ifAllGranted>
+          <div class="pull-right">
+            <r:script>
+            function doLogout() {
+                if (typeof(FB) === 'object') {
+                    FB.logout(function() {
+                        window.location.href = "${createLink(uri: '/j_spring_security_logout')}";
+                    });
+                    return false;
+                }
+                return true;
+            }
+            </r:script>
+            <!--使用者選單-->
+            <div class="btn-group">
+                <button class="btn"><i class="icon icon-user"></i> <sec:username /></button>
+                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><g:link uri="/j_spring_security_logout" onclick="return doLogout()"><i class="icon icon-off"></i> 登出</g:link></li>
+                </ul>
+            </div>
+          </div>
         </sec:ifLoggedIn>
+        <sec:ifNotLoggedIn>
+          <g:link controller="login" class="btn pull-right">登入</g:link>
+        </sec:ifNotLoggedIn>
 
       </div><!--/.nav-collapse -->
     </div>
@@ -94,15 +91,6 @@ FB.Event.subscribe('auth.login', function() {
 </div>
 
 <div class="container" role="main">
-
-    <!--登入按鈕-->
-    <sec:ifNotLoggedIn>
-      <div style="height:30px;overflow:hidden" class="pull-right">
-        請先登入
-        <facebookAuth:connect permissions="email,user_about_me" />
-      </div>
-    </sec:ifNotLoggedIn>
-
     <!--快閃訊息-->
     <g:if test="${flash.message}">
         <div class="alert" role="status">
@@ -116,12 +104,25 @@ FB.Event.subscribe('auth.login', function() {
 
 <footer>
     <div class="container">
-        <hr class="soften" />
-        <div class="copyright">Copyright &copy; CodeCanaan Consulting Group</div>
-        <div class="links">
-            <g:link url="/?lang=zh_TW">中文版</g:link> |
-            <g:link url="/?lang=en">English</g:link>
-        </div>
+        <div class="copyright pull-right">Copyright &copy; CodeCanaan Inc.<br/>All rights reserved.</div>
+        <ul class="nav nav-pills">
+            <li><g:link url="#">部落格</g:link></li>
+            <li><g:link url="#">服務支援</g:link></li>
+            <li><g:link url="#">會員條款</g:link></li>
+            <li><g:link url="#">合作夥伴</g:link></li>
+            <li><g:link url="#">關於我們</g:link></li>
+            <li><g:link url="#">聯絡我們</g:link></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Language
+                <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><g:link url="/?lang=zh_TW">中文版</g:link></li>
+                    <li><g:link url="/?lang=en">English</g:link></li>
+                </ul>
+            </li>
+        </ul>
         <div class="footer" role="contentinfo"></div>
         <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
     </div>

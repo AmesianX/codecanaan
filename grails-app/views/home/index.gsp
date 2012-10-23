@@ -10,11 +10,10 @@
         <p><font size="6" class="popover-me logo-font" title="關於 CodeCanaan" data-content="根據聖經記載，Canaan（迦南）是上帝賜給以色列人祖先的應許之地，選民在流奶與蜜的迦南美地自由安居。CodeCanaan 是程式設計學習者的迦南美地，我們致力於創造一個自由開放且樂趣無窮的學習環境。">CodeCanaan</font><br/>專為程式設計課程研發的教學軟體</p>
         <r:script>$('.popover-me').popover({trigger: 'hover'});</r:script>
         <ul>
-            <li>免安裝維護軟體，有 Java 及瀏覽器即可執行</li>
+            <li>雲端運算架構，僅需 Java 及瀏覽器即可執行</li>
             <li>整合 Facebook 帳號登入</li>
             <li>支援 Markdown 友善編輯及預覽</li>
             <li>支援程式碼實作練習，簡化程式執行及測試</li>
-            <li>開放原始碼專案，採用 MIT License 授權</li>
         </ul>
 
         <hr class="soften" />

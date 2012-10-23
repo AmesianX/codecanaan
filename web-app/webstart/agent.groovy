@@ -106,7 +106,7 @@ SimpleGroovyServlet.run(jettyPort) { ->
     def dump = new StringBuffer()
 
     //get class name for Java files
-    def sourceBase = sourcePath.name.split('\\.')[0]
+    def sourceBase = sourcePath.split('\\.')[0]
 
     try {
         def batchFile = new File(cwd, 'execute.bat')

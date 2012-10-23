@@ -15,4 +15,11 @@ class UserCourse {
     static constraints = {
     	reginfo nullable: true, empty: true
     }
+
+    /**
+     * 建立新的使用者課程關聯
+     */
+	static UserCourse create(User user, Course course, boolean flush = false) {
+		new UserCourse(user: user, course: course).save(flush: flush, insert: true)
+	}
 }

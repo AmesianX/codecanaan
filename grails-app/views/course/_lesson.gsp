@@ -55,8 +55,11 @@
             </ul>
         </div>
     </g:if>
-    <h1>${lesson.title}</h1>
-    <div class="markdown-source">${lesson.description}</div>
+
+    <div class="justfont">
+        <h1>${lesson.title}</h1>
+        <div class="markdown-source">${lesson.description}</div>
+    </div>
     
     <!--目錄-->
     <g:if test="${lesson.contents?.size() > 0}">

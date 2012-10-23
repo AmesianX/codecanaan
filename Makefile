@@ -1,4 +1,5 @@
 server:
+	export GRAILS_OPTS="-XX:MaxPermSize=1024m -Xmx1024M -server"
 	grails run-app
 
 commit:

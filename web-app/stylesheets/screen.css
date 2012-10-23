@@ -48,3 +48,40 @@ body {
 .test-report .test-hint {
   background-color: #77FF77;
 }
+
+/* line 51, ../sass/screen.scss */
+.justfont {
+  text-rendering: optimizelegibility;
+}
+/* line 53, ../sass/screen.scss */
+.justfont h1, .justfont h2, .justfont h3, .justfont h4, .justfont h5, .justfont h6 {
+  font-weight: normal;
+}
+/* line 56, ../sass/screen.scss */
+.justfont h1, .justfont h2, .justfont h3 {
+  text-shadow: 0 0 1px transparent;
+  text-shadow: 0 0 0 #f00, 0 0 1px transparent;
+}
+/* line 60, ../sass/screen.scss */
+.justfont p, .justfont li {
+  font-size: 13pt;
+  line-height: 200%;
+  letter-spacing: 1px;
+}
+/* line 65, ../sass/screen.scss */
+.justfont pre {
+  font-family: 'Droid Sans Mono', monospace;
+}
+
+/* line 70, ../sass/screen.scss */
+footer {
+  padding-top: 2em;
+}
+/* line 72, ../sass/screen.scss */
+footer .nav, footer .copyright {
+  font-size: 10pt;
+}
+/* line 75, ../sass/screen.scss */
+footer .copyright {
+  color: #555;
+}

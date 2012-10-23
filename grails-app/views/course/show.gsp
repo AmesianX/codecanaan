@@ -173,7 +173,10 @@
                     }
                 },
                 error: function(data) {
-                    fnSaveRecord({passed: false});
+                    fnSaveRecord({
+                        passed: false,
+                        sourceCode: editor.getValue()
+                    });
                     fnShowResult('<font color="red">錯誤！請先啟動客戶端工具。</font>');
                 } 
             });
@@ -181,7 +184,9 @@
         });
         $('#cmdSave').click(function() {
             $('#cmdProgress').show();
-            fnSaveRecord({sourceCode: editor.getValue()}, function() {
+            fnSaveRecord({
+                sourceCode: editor.getValue()
+            }, function() {
                 $('#cmdProgress').hide();
             });
             return false;

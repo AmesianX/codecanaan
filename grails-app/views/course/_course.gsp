@@ -43,7 +43,8 @@
             </ul>
         </div>
     </g:if>
-    <h1>${course.title}</h1>
-    <div class="markdown-source">${course.description}</div>
-    <h1></h1>
+    <div class="justfont">
+        <h1>${course.title}</h1>
+        <div class="markdown-source">${course.description}</div>
+    </div>
 </g:else>

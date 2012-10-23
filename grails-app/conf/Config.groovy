@@ -111,5 +111,5 @@ grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'codecanaan.Us
 grails.plugins.springsecurity.authority.className = 'codecanaan.Role'
 
 grails.plugins.springsecurity.facebook.domain.classname='codecanaan.FacebookUser'
-grails.plugins.springsecurity.facebook.appId='102994276528232'
-grails.plugins.springsecurity.facebook.secret='74aec48530821bdccc61c61633d6d4fd'
+grails.plugins.springsecurity.facebook.appId='--appid--'
+grails.plugins.springsecurity.facebook.secret='--secret--'

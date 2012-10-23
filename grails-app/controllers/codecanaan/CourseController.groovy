@@ -18,6 +18,11 @@ class CourseController {
     def list() {
         def user = springSecurityService.currentUser
 
+        if (!user) {
+            redirect(url: '/')
+            return
+        }
+
         def links = UserCourse.findAllByUser(user)
 
         def courses = []
@@ -124,7 +129,7 @@ class CourseController {
         def record = Record.findByUserAndContent(user, content)
 
         //檢查修改權限
-        def authoring = user&&(user.id==1||course.creator==user)
+        def authoring = user && (course.creator==user)
 
         [
             user: user,

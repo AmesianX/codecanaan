@@ -97,18 +97,25 @@
     </g:if>
 
     <!--內容顯示-->
-    <h1>${content.title} <small><g:message code="content.contentType.${content.type}" default="Content" /></small></h1>
-    <div class="markdown-source">${content.description}</div>
+    <div class="justfont">
+        <h1>
+            ${content.title}
+            <small><g:message code="content.contentType.${content.type}" default="Content" /></small>
+        </h1>
+       <div class="markdown-source">${content.description}</div>
+    </div>
 
     <sec:ifLoggedIn>
         <!--程式碼區塊-->
-        <g:if test="${content.sourceCode}">
-            <g:if test="${content.sourcePath}">
-                <g:link controller="content" action="downloadSource" id="${content.id}" target="_blank"><i class="icon icon-file"></i> <em>${content.sourcePath}</em></g:link>
+        <g:if test="${content.type!=codecanaan.ContentType.CODE}">
+            <g:if test="${content.sourceCode}">
+                <g:if test="${content.sourcePath}">
+                    <g:link controller="content" action="downloadSource" id="${content.id}" target="_blank"><i class="icon icon-file"></i> ${content.sourcePath}</g:link>
+                </g:if>
+                <pre><code class="code-font">${content.sourceCode}</code></pre>
             </g:if>
-            <pre><code class="code-font">${content.sourceCode}</code></pre>
         </g:if>
-
+        
         <hr class="soften" />
         <h4>開始練習</h4>
 
@@ -138,7 +145,7 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="tab-editor">
-                    <g:textArea name="sourceEdit" value="${record?record.sourceCode:content.partialCode}" class="codemirror-textarea" />
+                    <g:textArea name="sourceEdit" value="${(record?.sourceCode)?record.sourceCode:content.partialCode}" class="codemirror-textarea" />
                 </div>
                 <div class="tab-pane" id="tab-output"><pre id="program-output" style="height:500px;overflow:auto">${record?.answer}</pre></div>
                 <div class="tab-pane" id="tab-answer"><pre style="height:500px;overflow:auto">${content.answer}</pre></div>
@@ -181,7 +188,7 @@
     </sec:ifNotLoggedIn>
 
     <!--內容跳頁-->
-    <div class="pagination">
+    <div class="pagination pagination-centered">
         <ul>
             <!--上一頁-->
             <g:if test="${content&&lesson.contents.indexOf(content)>0}">
