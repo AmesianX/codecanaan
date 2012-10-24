@@ -12,13 +12,23 @@
 <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon" />
 <link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}" />
 <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}" />
-<style type="text/css">
-body {padding-top: 60px;padding-bottom: 40px;}
-</style>
-<r:require modules="bootstrap, pagedown, webfont, compass, codemirror, highlightjs"/>
+<style type="text/css">body {padding-top: 60px;padding-bottom: 40px;}</style>
+<r:require modules="bootstrap-custom, pagedown, webfont, compass, codemirror, highlightjs"/>
 <g:layoutHead/>
 <r:layoutResources />
-<r:script>window.jfAsyncInit=function(){ctb.main({'appId':'04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=','tag':{'ct1':'.justfont pre','ct2':{'0':'.justfont p','1':'.justfont li'},'ct3':{'0':'.justfont h2','1':'.justfont h3','2':'.justfont h4','3':'.justfont h5','4':'.justfont h6','5':'.justfont h1 small'},'ct4':'.justfont h1','ct5':'.justfont blockquote'}});};(function(){var jf=document.createElement('script');jf.type='text/javascript';jf.async=true;jf.src='http://ds.justfont.com/core/js/v1.0/04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(jf,s);})();</r:script>
+<!--justfont--><r:script>window.jfAsyncInit=function(){ctb.main({'appId':'04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=','tag':{'ct1':'.justfont pre','ct2':{'0':'.justfont p','1':'.justfont li'},'ct3':{'0':'.justfont h2','1':'.justfont h3','2':'.justfont h4','3':'.justfont h5','4':'.justfont h6','5':'.justfont h1 small'},'ct4':'.justfont h1','ct5':'.justfont blockquote'}});};(function(){var jf=document.createElement('script');jf.type='text/javascript';jf.async=true;jf.src='http://ds.justfont.com/core/js/v1.0/04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(jf,s);})();</r:script>
+<r:script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-298440-14']);
+  _gaq.push(['_setDomainName', 'codecanaan.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</r:script>
 </head>
 <body>
 <!--facebook integration-->
@@ -33,61 +43,62 @@ FB.Event.subscribe('auth.login', function() {
 </facebookAuth:init>
 <!--header-->
 <div class="navbar navbar-inverse navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <g:link controller="home" action="index" class="brand logo-font">CodeCanaan</g:link>
-      <div class="nav-collapse collapse">
-        <ul class="nav">
-          <li class="${controllerName=='home'?'active':''}"><g:link controller="home"><g:message code="default.home.label" default="Home" /></g:link></li>
-          <!--已登入才顯示功能表-->
-          <sec:ifLoggedIn>
-            <li class="${controllerName=='course'?'active':''}"><g:link controller="course"><g:message code="course.label" default="Course" /></g:link></li>
-          </sec:ifLoggedIn>
-        </ul>
-        <!--<form class="navbar-form pull-right">
-          <input class="span2" type="text" placeholder="Email">
-          <input class="span2" type="password" placeholder="Password">
-          <button type="submit" class="btn">Sign in</button>
-        </form>-->
-
-        <!--已登入-->
-        <sec:ifLoggedIn>
-          <div class="pull-right">
-            <r:script>
-            function doLogout() {
-                if (typeof(FB) === 'object') {
-                    FB.logout(function() {
-                        window.location.href = "${createLink(uri: '/j_spring_security_logout')}";
-                    });
-                    return false;
-                }
-                return true;
-            }
-            </r:script>
-            <!--使用者選單-->
-            <div class="btn-group">
-                <button class="btn"><i class="icon icon-user"></i> <sec:username /></button>
-                <button class="btn dropdown-toggle" data-toggle="dropdown">
-                <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><g:link uri="/j_spring_security_logout" onclick="return doLogout()"><i class="icon icon-off"></i> 登出</g:link></li>
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <g:link controller="home" action="index" class="brand logo-font">
+                CodeCanaan
+            </g:link>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="${controllerName=='home'?'active':''}"><g:link controller="home"><g:message code="default.home.label" default="Home" /></g:link></li>
+                    <!--已登入才顯示功能表-->
+                    <sec:ifLoggedIn>
+                        <li class="${controllerName=='course'?'active':''}"><g:link controller="course"><g:message code="course.label" default="Course" /></g:link></li>
+                    </sec:ifLoggedIn>
                 </ul>
-            </div>
-          </div>
-        </sec:ifLoggedIn>
-        <sec:ifNotLoggedIn>
-          <g:link controller="login" class="btn pull-right">登入</g:link>
-        </sec:ifNotLoggedIn>
-
-      </div><!--/.nav-collapse -->
+                <ul class="nav pull-right">
+                    <sec:ifNotLoggedIn>
+                        <!--未登入-->
+                        <li>
+                            <g:link controller="login">
+                                <i class="icon icon-user"></i>
+                                登入
+                            </g:link>
+                        </li>
+                    </sec:ifNotLoggedIn>
+                    <sec:ifLoggedIn>
+                        <!--已登入-->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon icon-user"></i>
+                                <sec:username />
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><g:link uri="/j_spring_security_logout" onclick="return doLogout()"><i class="icon icon-off"></i> 登出</g:link></li>
+                            </ul>
+                        </li>
+                        <r:script>
+                        function doLogout() {
+                            if (typeof(FB) === 'object') {
+                                FB.logout(function() {
+                                    window.location.href = "${createLink(uri: '/j_spring_security_logout')}";
+                                });
+                                return false;
+                            }
+                            return true;
+                        }
+                        </r:script>
+                    </sec:ifLoggedIn>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
     </div>
-  </div>
 </div>
 
 <div class="container" role="main">

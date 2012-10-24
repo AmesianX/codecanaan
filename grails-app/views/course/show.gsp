@@ -56,6 +56,7 @@
     var converter = new Markdown.Converter();
     $('.markdown-source').each(function(index) {
         $(this).html(converter.makeHtml($(this).text()));
+        $(this).show();
     });
 
     //Markdown 編輯器處理

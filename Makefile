@@ -25,17 +25,16 @@ download:
 	wget -O target/codecanaan.war http://s3.lyhdev.com/apps/codecanaan.war
 
 remote-deploy:
-	ssh -t kyle@contpub.org 'cd codecanaan && make update download && sudo make deploy'
+	ssh -t kyle@contpub.org 'cd codecanaan && make update && make download && sudo make deploy'
 
 remote-log:
 	ssh -t kyle@contpub.org 'cd codecanaan && make log'
 
 deploy:
-	service tomcat6 stop
 	rm -rf /var/lib/tomcat6/webapps-codecanaan/ROOT.war
 	rm -rf /var/lib/tomcat6/webapps-codecanaan/ROOT
 	cp target/codecanaan.war /var/lib/tomcat6/webapps-codecanaan/ROOT.war
-	service tomcat6 start
+	service tomcat6 restart
 
 log:
 	tail -f /var/lib/tomcat6/logs/catalina.out

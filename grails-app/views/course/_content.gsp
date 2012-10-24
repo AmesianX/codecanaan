@@ -132,7 +132,7 @@
                 <div class="navbar-inner">
                     <ul class="nav">
                         <li><a href="#" id="cmdPlay"><i class="icon icon-play"></i> 執行測試</a></li>
-                        <li class="divider-vertical"></li>
+                        <!--<li class="divider-vertical"></li>-->
                         <li><a href="#" id="cmdSave"><i class="icon icon-hdd"></i> 儲存</a></li>
                         <li id="cmdProgress" style="display:none"><a href="#"><g:img dir="images" file="ajax-loader-small.gif" /> 處理中...</span></a></li>
                     </ul>

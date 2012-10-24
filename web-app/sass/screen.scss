@@ -4,6 +4,7 @@
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
 //@import "compass/reset";
+@import "compass/css3";
 
 body {
 	font-size: 11pt;
@@ -48,14 +49,22 @@ body {
 	}
 }
 
+.markdown-source {
+	display: none;
+}
+
+h1, h2, h3, h4 {
+	@include text-shadow(0 0 1px transparent, #aaa 1pt 1pt 2pt);
+}
+
 .justfont {
 	text-rendering:optimizelegibility;
 	h1, h2, h3, h4, h5, h6 {
 		font-weight: normal;
 	}
-	h1, h2, h3 {
-		text-shadow:0 0 1px transparent;
-		text-shadow:0 0 0 #f00, 0 0 1px transparent;
+	h1, h2, h3, h4 {
+		//text-shadow: 0 0 1px transparent;
+		//text-shadow: 0 0 0 #f00, 0 0 1px transparent;
 	}
 	p, li {
 		font-size: 13pt;
