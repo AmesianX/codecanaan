@@ -5,33 +5,36 @@
 /* line 9, ../sass/screen.scss */
 body {
   font-size: 11pt;
+  /* readability background */
+  /* background-color: #f8f8f5; */
 }
 
-/* line 13, ../sass/screen.scss */
+/* line 16, ../sass/screen.scss */
 .logo-font {
   font-family: Allura, sans-serif;
   cursor: pointer;
+  text-shadow: #999999 1pt 1pt 2pt;
 }
 
-/* line 18, ../sass/screen.scss */
+/* line 22, ../sass/screen.scss */
 .code-font {
   font-family: 'Droid Sans Mono', monospace;
   font-size: 11pt;
 }
 
-/* line 23, ../sass/screen.scss */
+/* line 27, ../sass/screen.scss */
 .CodeMirror {
   font-family: 'Droid Sans Mono', monospace;
   font-size: 11pt;
 }
 
-/* line 28, ../sass/screen.scss */
+/* line 32, ../sass/screen.scss */
 .CodeMirror-lines, .CodeMirror-gutter {
   font-family: 'Droid Sans Mono', monospace;
   line-height: 1.5em;
 }
 
-/* line 34, ../sass/screen.scss */
+/* line 38, ../sass/screen.scss */
 .test-report pre {
   font-family: 'Droid Sans Mono', monospace;
   border: 0;
@@ -40,53 +43,64 @@ body {
   margin: 0;
   background: none;
 }
-/* line 44, ../sass/screen.scss */
+/* line 48, ../sass/screen.scss */
 .test-report .test-error {
   background-color: #FF7777;
 }
-/* line 47, ../sass/screen.scss */
+/* line 51, ../sass/screen.scss */
 .test-report .test-hint {
   background-color: #77FF77;
 }
 
-/* line 52, ../sass/screen.scss */
+/* line 56, ../sass/screen.scss */
 .markdown-source {
   display: none;
 }
 
-/* line 56, ../sass/screen.scss */
+/* line 60, ../sass/screen.scss */
 h1, h2, h3, h4 {
   text-shadow: 0 0 1px transparent, #aaaaaa 1pt 1pt 2pt;
 }
 
-/* line 60, ../sass/screen.scss */
+/* line 65, ../sass/screen.scss */
+.carousel h1, .carousel h2, .carousel h3, .carousel h4 {
+  text-shadow: 0 0 0 transparent;
+}
+
+/* line 70, ../sass/screen.scss */
 .justfont {
   text-rendering: optimizelegibility;
 }
-/* line 62, ../sass/screen.scss */
+/* line 72, ../sass/screen.scss */
 .justfont h1, .justfont h2, .justfont h3, .justfont h4, .justfont h5, .justfont h6 {
   font-weight: normal;
 }
-/* line 69, ../sass/screen.scss */
+/* line 79, ../sass/screen.scss */
 .justfont p, .justfont li {
   font-size: 13pt;
   line-height: 200%;
   letter-spacing: 1px;
 }
-/* line 74, ../sass/screen.scss */
-.justfont pre {
+/* line 84, ../sass/screen.scss */
+.justfont pre, .justfont code {
+  font-size: 13pt;
   font-family: 'Droid Sans Mono', monospace;
 }
 
-/* line 79, ../sass/screen.scss */
+/* line 91, ../sass/screen.scss */
+.justfont.larger-font p, .justfont.larger-font li, .justfont.larger-font pre, .justfont.larger-font code {
+  font-size: 18pt;
+}
+
+/* line 96, ../sass/screen.scss */
 footer {
   padding-top: 2em;
 }
-/* line 81, ../sass/screen.scss */
+/* line 98, ../sass/screen.scss */
 footer .nav, footer .copyright {
   font-size: 10pt;
 }
-/* line 84, ../sass/screen.scss */
+/* line 101, ../sass/screen.scss */
 footer .copyright {
   color: #555;
 }

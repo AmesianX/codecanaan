@@ -21,7 +21,12 @@ class HomeController {
         //response.contentType = 'text/xml'
         response.contentType = 'application/x-java-jnlp-file'
         response.addHeader('Content-disposition', 'inline; filename=webstart.jnlp')
-        [jettyPort: session.jettyPort?session.jettyPort:1337]
+
+        render(
+            contentType: 'application/x-java-jnlp-file',
+            template: "webstart",
+            model: [jettyPort: session.jettyPort?session.jettyPort:1337]
+        )
     }
 
     /**

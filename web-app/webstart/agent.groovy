@@ -42,6 +42,11 @@ class SimpleGroovyServlet extends HttpServlet {
     }
 }
 
+def osname = System.properties['os.name']
+def isWindows = osname.toLowerCase().startsWith('windows')
+def isMac = osname.toLowerCase().startsWith('mac')
+def isLinux = osname.toLowerCase().startsWith('linux')
+
 //download toolkits.zip
 def toolkitsUrl = System.properties['codecanaan.toolkits.url'].toURL()
 
@@ -109,19 +114,46 @@ SimpleGroovyServlet.run(jettyPort) { ->
     def sourceBase = sourcePath.split('\\.')[0]
 
     try {
-        def batchFile = new File(cwd, 'execute.bat')
-        batchFile << """@echo off
+        if (isWindows) {
+            def batchFile = new File(cwd, 'execute.bat')
+            batchFile << """@echo off
 REM java -version
 javac -encoding utf-8 ${sourcePath} && ..\\execdump.exe stdout.dump "java ${sourceBase}"
 pause
 exit
 """
-        def proc = ['cmd', '/C', 'start', '/WAIT', batchFile.absolutePath].execute(null, cwd)
-        proc.waitFor()
-        stdout << proc.in.text
+            def proc = ['cmd', '/C', 'start', '/WAIT', batchFile.absolutePath].execute(null, cwd)
+            proc.waitFor()
+            stdout << proc.in.text
 
-        def dumpfile = new File(cwd, 'stdout.dump')
-        dump << dumpfile.getText('MS950')
+            def dumpfile = new File(cwd, 'stdout.dump')
+            dump << dumpfile.getText('MS950')
+        }
+        else if (isMac) {
+        /*
+   tell application "Terminal"
+       tell window 1
+           set title displays custom title to true
+           set title displays device name to false
+           set title displays shell path to false
+           set title displays file name to false
+           set custom title to "script"
+       end tell
+   end tell
+        */
+            def batchFile = new File(cwd, 'execute.scpt')
+            batchFile << """tell app "Terminal"
+    activate
+    do script with command "javac -encoding utf-8 ${sourcePath} && java ${sourceBase}"
+end tell
+return
+"""
+            def proc = ['osascript', 'execute.scpt'].execute(null, cwd)
+            proc.waitFor()
+            stdout << proc.in.text
+
+            dump << stdout
+        }
     }
     catch (ex) {
         logError << ex.message

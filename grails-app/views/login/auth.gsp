@@ -13,33 +13,36 @@ FB.Event.subscribe('auth.login', function() {
     window.location.href = "${createLink(controller: 'user', action: 'check')}";
 });
 </facebookAuth:init>
-<div class="container">
-	<div class="row">
-		<div class="span4">
-			<!--登入按鈕-->
-			<facebookAuth:connect permissions="email,user_about_me" />
+<div class="row">
+	<div class="span4">
+		<h3>Instant Sign-in</h3>
+		<div class="alert alert-info">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			請點擊下方按鈕，使用您的社群網站帳號密碼登入。
 		</div>
-		<div class="span8">
-			<form action="${postUrl}" method="POST" id="loginForm" class="cssform" autocomplete="off">
-				<legend><g:message code="springSecurity.login.header"/></legend>
-				<p>
-					<label for="username"><g:message code="springSecurity.login.username.label"/>:</label>
-					<input type="text" class="text_" name="j_username" id="username"/>
-				</p>
+		<!--登入按鈕-->
+		<facebookAuth:connect permissions="email,user_about_me" />
+	</div>
+	<div class="span8">
+		<form action="${postUrl}" method="POST" id="loginForm" class="cssform" autocomplete="off">
+			<legend><g:message code="springSecurity.login.header"/></legend>
+			<p>
+				<label for="username"><g:message code="springSecurity.login.username.label"/>:</label>
+				<input type="text" class="text_" name="j_username" id="username"/>
+			</p>
 
-				<p>
-					<label for="password"><g:message code="springSecurity.login.password.label"/>:</label>
-					<input type="password" class="text_" name="j_password" id="password"/>
-				</p>
+			<p>
+				<label for="password"><g:message code="springSecurity.login.password.label"/>:</label>
+				<input type="password" class="text_" name="j_password" id="password"/>
+			</p>
 
-				<label class="control-label">
-					<g:checkBox name="${rememberMeParameter}" checked="${hasCookie}" />
-					<g:message code="springSecurity.login.remember.me.label"/>
-				</label>
+			<label class="control-label">
+				<g:checkBox name="${rememberMeParameter}" checked="${hasCookie}" />
+				<g:message code="springSecurity.login.remember.me.label"/>
+			</label>
 
-				<g:submitButton name="submit" value="${message(code: "springSecurity.login.button")}" class="btn btn-primary" />
-			</form>
-		</div>
+			<g:submitButton name="submit" value="${message(code: "springSecurity.login.button")}" class="btn btn-primary" />
+		</form>
 	</div>
 </div>
 <r:script>

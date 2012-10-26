@@ -19,6 +19,10 @@
                 </li>
             </g:each>
         </ul>
+
+        <div class="pull-right">
+            <a href="#" class="btn btn-small" id="cmdResizeFont"><i class="icon icon-font"></i> 縮放字體</a>
+        </div>
     </div>
     <div class="span9">
         <g:if test="${content}">
@@ -211,6 +215,12 @@
         else {
             fnShowResult('<font color="red">答錯了，請再試一次！</font>');
         }
+    });
+
+    $('#cmdResizeFont').toggle(function() {
+        $('.justfont').addClass('larger-font');
+    }, function() {
+        $('.justfont').removeClass('larger-font');
     });
 })();
 </r:script>

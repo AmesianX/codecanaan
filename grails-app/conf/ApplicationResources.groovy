@@ -29,18 +29,15 @@ modules = {
     }
 
     compass {
-        resource url: [dir: 'stylesheets', file: 'screen.css'],
-            attrs: [media: 'screen, projection']
-        resource url: [dir: 'stylesheets', file: 'print.css'],
-            attrs: [media: 'print']
-        resource url: [dir: 'stylesheets', file: 'ie.css'],
-            attrs: [media: 'screen'],
-            wrapper: { s -> "<!--[if IE]>$s<![endif]-->" }
+        dependsOn 'bootstrap-custom'
+
+        resource url: [dir: 'stylesheets', file: 'screen.css'], attrs: [media: 'screen, projection'], disposition: 'head'
+        resource url: [dir: 'stylesheets', file: 'print.css'], attrs: [media: 'print'], disposition: 'head'
+        resource url: [dir: 'stylesheets', file: 'ie.css'], attrs: [media: 'screen'], wrapper: { s -> "<!--[if IE]>$s<![endif]-->" }
     }
 
     codemirror {
-        resource url: [dir: 'codemirror/lib', file: 'codemirror.css'],
-            attrs: [media: 'screen']
+        resource url: [dir: 'codemirror/lib', file: 'codemirror.css'], attrs: [media: 'screen']
         resource url: [dir: 'codemirror/lib', file: 'codemirror.js']
         resource url: [dir: 'codemirror/mode/clike', file: 'clike.js']
         resource url: [dir: 'codemirror/lib/util', file: 'runmode.js']

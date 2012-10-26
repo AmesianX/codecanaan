@@ -8,11 +8,15 @@
 
 body {
 	font-size: 11pt;
+
+	/* readability background */
+	/* background-color: #f8f8f5; */
 }
 
 .logo-font {
 	font-family: Allura, sans-serif;
 	cursor: pointer;
+	@include text-shadow(#999 1pt 1pt 2pt);
 }
 
 .code-font {
@@ -57,6 +61,12 @@ h1, h2, h3, h4 {
 	@include text-shadow(0 0 1px transparent, #aaa 1pt 1pt 2pt);
 }
 
+.carousel {
+	h1, h2, h3, h4 {
+		@include text-shadow(0 0 0 transparent);
+	}
+}
+
 .justfont {
 	text-rendering:optimizelegibility;
 	h1, h2, h3, h4, h5, h6 {
@@ -71,8 +81,15 @@ h1, h2, h3, h4 {
 		line-height: 200%;
 		letter-spacing: 1px;
 	}
-	pre {
+	pre, code {
+		font-size: 13pt;
 		font-family: 'Droid Sans Mono', monospace;
+	}
+}
+
+.justfont.larger-font {
+	p, li, pre, code {
+		font-size: 18pt;
 	}
 }
 

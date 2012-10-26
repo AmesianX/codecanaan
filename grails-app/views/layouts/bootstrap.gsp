@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title><g:layoutTitle default="Grails"/></title>
+<title><g:layoutTitle default="CodeCanaan"/> - CodeCanaan</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon" />
 <link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}" />
@@ -17,7 +17,7 @@
 <g:layoutHead/>
 <r:layoutResources />
 <!--justfont--><r:script>window.jfAsyncInit=function(){ctb.main({'appId':'04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=','tag':{'ct1':'.justfont pre','ct2':{'0':'.justfont p','1':'.justfont li'},'ct3':{'0':'.justfont h2','1':'.justfont h3','2':'.justfont h4','3':'.justfont h5','4':'.justfont h6','5':'.justfont h1 small'},'ct4':'.justfont h1','ct5':'.justfont blockquote'}});};(function(){var jf=document.createElement('script');jf.type='text/javascript';jf.async=true;jf.src='http://ds.justfont.com/core/js/v1.0/04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(jf,s);})();</r:script>
-<r:script>
+<!--analytics--><r:script>
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-298440-14']);
   _gaq.push(['_setDomainName', 'codecanaan.com']);
@@ -28,6 +28,11 @@
     ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
+</r:script>
+<!--page--><r:script>
+(function() {
+    $('a[rel=tooltip]').tooltip();
+})();
 </r:script>
 </head>
 <body>
@@ -80,7 +85,12 @@ FB.Event.subscribe('auth.login', function() {
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><g:link uri="/j_spring_security_logout" onclick="return doLogout()"><i class="icon icon-off"></i> 登出</g:link></li>
+                                <sec:ifAllGranted roles="ROLE_FACEBOOK">
+                                    <li><g:link uri="/j_spring_security_logout" onclick="return doLogout()"><i class="icon icon-off"></i> 登出</g:link></li>
+                                </sec:ifAllGranted>
+                                <sec:ifNotGranted roles="ROLE_FACEBOOK">
+                                    <li><g:link uri="/j_spring_security_logout"><i class="icon icon-off"></i> 登出</g:link></li>
+                                </sec:ifNotGranted>
                             </ul>
                         </li>
                         <r:script>
@@ -115,25 +125,30 @@ FB.Event.subscribe('auth.login', function() {
 
 <footer>
     <div class="container">
-        <div class="copyright pull-right">Copyright &copy; CodeCanaan Inc.<br/>All rights reserved.</div>
-        <ul class="nav nav-pills">
-            <li><g:link url="#">部落格</g:link></li>
-            <li><g:link url="#">服務支援</g:link></li>
-            <li><g:link url="#">會員條款</g:link></li>
-            <li><g:link url="#">合作夥伴</g:link></li>
-            <li><g:link url="#">關於我們</g:link></li>
-            <li><g:link url="#">聯絡我們</g:link></li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                Language
-                <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
+        <div class="row">
+            <div class="span9">
+                <ul class="nav nav-pills">
+                    <li><g:link url="#">合作夥伴</g:link></li>
+                    <li><g:link url="#">關於我們</g:link></li>
+                    <li><g:link url="#">聯絡我們</g:link></li>
                     <li><g:link url="/?lang=zh_TW">中文版</g:link></li>
                     <li><g:link url="/?lang=en">English</g:link></li>
+                    <!--<li class="dropdown">
+                        <g:link class="dropdown-toggle" data-toggle="dropdown" url="#">
+                            Languages
+                            <b class="caret"></b>
+                        </g:link>
+                        <ul class="dropdown-menu">
+
+                        </ul>
+                    </li>-->
                 </ul>
-            </li>
-        </ul>
+            </div>
+            <div class="span3 copyright">
+                <p>Copyright &copy; CodeCanaan Inc.<br/>All rights reserved.</p>
+                <p>程式設計數位學習方舟計畫<br/>網站由思創軟體設計與維護</p>
+            </div>
+        </div>
         <div class="footer" role="contentinfo"></div>
         <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
     </div>

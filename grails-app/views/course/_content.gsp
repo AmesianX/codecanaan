@@ -110,7 +110,10 @@
         <g:if test="${content.type!=codecanaan.ContentType.CODE}">
             <g:if test="${content.sourceCode}">
                 <g:if test="${content.sourcePath}">
-                    <g:link controller="content" action="downloadSource" id="${content.id}" target="_blank"><i class="icon icon-file"></i> ${content.sourcePath}</g:link>
+                    <g:link controller="content" action="downloadSource" id="${content.id}" target="_blank" rel="tooltip" data-placement="right" title="點擊右鍵將檔案下載到指定位置">
+                        <i class="icon icon-file"></i> ${content.sourcePath}
+                    </g:link>
+                    （檔案下載）
                 </g:if>
                 <pre><code class="code-font">${content.sourceCode}</code></pre>
             </g:if>
