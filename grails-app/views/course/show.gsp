@@ -196,6 +196,19 @@
             });
             return false;
         });
+
+        $('#cmdReset').click(function() {
+            editor.setValue($('#partialCode').val());
+            return false;
+        });
+        $('#cmdUndo').click(function() {
+            editor.undo();
+            return false;
+        });
+        $('#cmdRedo').click(function() {
+            editor.redo();
+            return false;
+        });
     }
 
     $('#cmdCheck').change(function() {
