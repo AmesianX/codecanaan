@@ -146,7 +146,7 @@ FB.Event.subscribe('auth.login', function() {
             </div>
             <div class="span3 copyright">
                 <p>Copyright &copy; CodeCanaan Inc.<br/>All rights reserved.</p>
-                <p>程式設計數位學習方舟計畫<br/>網站由思創軟體設計與維護</p>
+                <p>程式設計數位學習方舟計畫<br/>思創軟體設計</p>
             </div>
         </div>
         <div class="footer" role="contentinfo"></div>
