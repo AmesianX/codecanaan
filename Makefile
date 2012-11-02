@@ -21,8 +21,14 @@ war:
 upload:
 	s3cmd put -P target/codecanaan.war s3://s3.lyhdev.com/apps/
 
+upload-secret:
+	s3cmd put -P ~/.grails/codecanaan-config.groovy s3://s3.lyhdev.com/apps/
+
 download:
 	wget -O target/codecanaan.war http://s3.lyhdev.com/apps/codecanaan.war
+
+download-secret:
+	wget -O ~/.grails/codecanaan-config.groovy http://s3.lyhdev.com/apps/codecanaan-config.groovy
 
 remote-deploy:
 	ssh -t kyle@contpub.org 'cd codecanaan && make update && make download && sudo make deploy'
