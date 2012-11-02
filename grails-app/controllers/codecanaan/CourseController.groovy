@@ -120,6 +120,10 @@ class CourseController {
 
         if (params.contentId) {
             content = Content.get(params.contentId)
+            
+            //點擊次數 +1
+            content.hits ++
+            content.save(flush: true)
         }
 
         //是否啟用 on-the-fly editor

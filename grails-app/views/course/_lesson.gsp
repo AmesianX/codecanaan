@@ -65,11 +65,24 @@
     <g:if test="${lesson.contents?.size() > 0}">
         <hr class="soften" />
         <h4>教材內容</h4>
-        <ul class="nav nav-tabs nav-stacked">
-            <g:each in="${lesson.contents}" var="row" status="i">
-                <li><g:link controller="course" action="show" id="${course.id}" params="[lessonId: lesson.id, contentId: row.id]">${row.title}</g:link></li>
-            </g:each>
-        </ul>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th width="40">#</th>
+                    <th>標題</th>
+                    <th width="60">瀏覽次數</th>
+                </tr>
+            </thead>
+            <tbody>
+                <g:each in="${lesson.contents}" var="row" status="i">
+                    <tr>
+                        <td>${i+1}</td>
+                        <td><g:link controller="course" action="show" id="${course.id}" params="[lessonId: lesson.id, contentId: row.id]">${row.title}</g:link></td>
+                        <td>${row.hits}</td>
+                    </tr>
+                </g:each>
+            </tbody>
+        </table>
     </g:if>
     <g:else>
         <hr class="soften" />

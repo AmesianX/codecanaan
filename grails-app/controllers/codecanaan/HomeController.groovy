@@ -9,6 +9,7 @@ class HomeController {
         //println userDetails
 
         [
+            posts: Post.findAllByType(PostType.ANNOUNCE),
             courses: Course.list(),
             jettyPort: session.jettyPort?session.jettyPort:1337
         ]

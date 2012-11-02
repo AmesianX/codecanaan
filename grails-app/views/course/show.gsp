@@ -56,13 +56,6 @@
         return stringToTrim.replace(/\s+$/,"");
     };
 
-    //Markdown 顯示處理
-    var converter = new Markdown.Converter();
-    $('.markdown-source').each(function(index) {
-        $(this).html(converter.makeHtml($(this).text()));
-        $(this).show();
-    });
-
     //Markdown 編輯器處理
     if ($('.wmd-panel').size() > 0) {
         var converter1 = Markdown.getSanitizingConverter();

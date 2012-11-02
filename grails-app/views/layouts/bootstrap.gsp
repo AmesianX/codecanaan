@@ -91,6 +91,10 @@ FB.Event.subscribe('auth.login', function() {
                                 <sec:ifNotGranted roles="ROLE_FACEBOOK">
                                     <li><g:link uri="/j_spring_security_logout"><i class="icon icon-off"></i> 登出</g:link></li>
                                 </sec:ifNotGranted>
+                                <sec:ifAllGranted roles="ROLE_ADMIN">
+                                    <!--管理者權限-->
+                                    <li><g:link controller="post" action="create"><i class="icon icon-file"></i> 發佈新頁面</g:link></li>
+                                </sec:ifAllGranted>
                             </ul>
                         </li>
                         <r:script>
@@ -129,7 +133,7 @@ FB.Event.subscribe('auth.login', function() {
             <div class="span9">
                 <ul class="nav nav-pills">
                     <li><g:link url="#">合作夥伴</g:link></li>
-                    <li><g:link url="#">關於我們</g:link></li>
+                    <li><g:link url="/page/about">關於我們</g:link></li>
                     <li><g:link url="#">聯絡我們</g:link></li>
                     <li><g:link url="/?lang=zh_TW">中文版</g:link></li>
                     <li><g:link url="/?lang=en">English</g:link></li>
@@ -153,6 +157,16 @@ FB.Event.subscribe('auth.login', function() {
         <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
     </div>
 </footer>
+<r:script>
+(function () {
+    //Markdown 顯示處理
+    var converter = new Markdown.Converter();
+    $('.markdown-source').each(function(index) {
+        $(this).html(converter.makeHtml($(this).text()));
+        $(this).show();
+    });
+})();
+</r:script>
 
 <g:javascript library="application"/>
 <r:layoutResources />

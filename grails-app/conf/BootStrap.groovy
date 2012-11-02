@@ -6,13 +6,27 @@ class BootStrap {
         //基本權限
 
         environments {
-            development {
-                def role1 = new Role(authority: 'ROLE_USER').save(failOnError: true, flush: true)
-                def role2 = new Role(authority: 'ROLE_FACEBOOK').save(failOnError: true, flush: true)
 
-                def user1 = new User(username: 'admin', password: 'admin', enabled: true).save(failOnError: true, flush: true)
-
+            def role1 = Role.findOrSaveByAuthority('ROLE_USER')
+            def role2 = Role.findOrSaveByAuthority('ROLE_FACEBOOK')
+            def role3 = Role.findOrSaveByAuthority('ROLE_ADMIN')
+            def role4 = Role.findOrSaveByAuthority('ROLE_AUTHOR')
+            
+            //create administrator
+            def user1 = User.findByUsername('admin')
+            if (!user1) {
+                user1 = new User(username: 'admin', password: 'admin', enabled: true).save(failOnError: true, flush: true)
+                
+                //join roles
                 UserRole.create(user1, role1)
+                UserRole.create(user1, role3)
+                UserRole.create(user1, role4)
+            }
+                
+            production {
+                //empty
+            }
+            development {
 
                 def content1 = new Content(
                     type: ContentType.TUTORIAL,

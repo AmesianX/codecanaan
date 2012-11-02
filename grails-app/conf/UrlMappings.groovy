@@ -17,6 +17,13 @@ class UrlMappings {
 			constraints {
 			}
 		}
+		
+		"/page/$name" {
+			controller = "post"
+			action = "show"
+			constraints {
+			}
+		}
 
 		"/webstart.jnlp" {
 			controller = "home"

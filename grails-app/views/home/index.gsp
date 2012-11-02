@@ -8,11 +8,12 @@
     <div class="span6">
         <h4>學園佈告欄</h4>
         <ul>
-            <li><a href="http://weekly.ithome.com.tw/seminar/20121214jcd/" target="_blank">2012 Java 認證日（甲骨文大學 Oracle University）</a> <span class="label label-info">活動訊息</span></li>
-            <li><a href="http://www.tqcplus.org.tw/news_detail.asp?WebNewsID=1324" taret="_blank">Windows Store App 行動應用設計種子教師培育</a> <span class="label label-info">活動訊息</span></li>
-            <li><a href="http://www.registrano.com/events/phpconftw2012" target="_blank">PHPConf Taiwan 2012 程式開發者活動（中研院）</a> <span class="label label-info">活動訊息</span></li>
+            <g:each in="${posts}" var="post" status="i">
+                <li><g:link controller="post" action="show" params="[name: post.name]">${post.title}</g:link> <small class="muted">(${post.hits})</small></li>
+            </g:each>
         </ul>
-
+        <g:link controller="post" action="list">瀏覽更多訊息</g:link>
+        
         <hr class="soften" />
 
         <h4>專業電腦認證教學平台</h4>

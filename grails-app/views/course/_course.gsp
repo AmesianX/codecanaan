@@ -15,7 +15,7 @@
             <div class="tab-pane active" id="tab-editor">
                 <div class="wmd-panel">
                     <div id="wmd-button-bar"></div>
-                    <g:textArea name="description" cols="40" rows="5" maxlength="1048576" value="${course.description}" class="wmd-input input-xlarge" id="wmd-input" />
+                    <g:textArea name="description" cols="40" rows="10" maxlength="1048576" value="${course.description}" class="wmd-input input-xlarge" id="wmd-input" />
                 </div>
             </div>
             <div class="tab-pane" id="tab-preview">

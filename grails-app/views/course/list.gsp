@@ -24,7 +24,9 @@
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><g:link controller="course" action="create">新增課程</g:link></li>
+                    <sec:ifAllGranted roles="ROLE_AUTHOR">
+                        <li><g:link controller="course" action="create">新增課程</g:link></li>
+                    </sec:ifAllGranted>
                 </ul>
             </div>
         </sec:ifLoggedIn>

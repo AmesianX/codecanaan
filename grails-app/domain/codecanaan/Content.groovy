@@ -34,6 +34,8 @@ class Content {
 
     Date dateCreated    //建立日期
     Date lastUpdated    //修改日期
+    
+    int hits = 0        //點擊次數
 
     static belongsTo = [lesson: Lesson]
 
