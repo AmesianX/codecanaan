@@ -102,7 +102,7 @@
             ${content.title}
             <small><g:message code="content.contentType.${content.type}" default="Content" /></small>
         </h1>
-       <div class="markdown-source">${content.description}</div>
+       <div class="markdown-source">${content.description?.encodeAsHTML()}</div>
     </div>
 
     <sec:ifLoggedIn>
@@ -159,7 +159,7 @@
                 <div class="tab-pane" id="tab-output"><pre id="program-output" style="height:500px;overflow:auto">${record?.answer}</pre></div>
                 <div class="tab-pane" id="tab-answer"><pre style="height:500px;overflow:auto">${content.answer}</pre></div>
                 <g:if test="${authoring}">
-                    <div class="tab-pane" id="tab-source"><pre style="height:500px;overflow:auto"><code class="code-font">${content.sourceCode}</code></pre></div>
+                    <div class="tab-pane" id="tab-source"><pre style="height:500px;overflow:auto"><code class="code-font">${content.sourceCode?.encodeAsHTML()}</code></pre></div>
                 </g:if>
             </div>
         </g:if>

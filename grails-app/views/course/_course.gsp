@@ -45,6 +45,6 @@
     </g:if>
     <div class="justfont">
         <h1>${course.title}</h1>
-        <div class="markdown-source">${course.description}</div>
+        <div class="markdown-source">${course.description?.encodeAsHTML()}</div>
     </div>
 </g:else>

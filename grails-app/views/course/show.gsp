@@ -76,9 +76,6 @@
         editor.setSize(null, 500);
     }
 
-    //Pretty Code with Highlight.js
-    hljs.initHighlightingOnLoad();
-
     var fnSaveRecord = function(params, fncb) {
         $('#ajaxmsg').html('<img src="${resource(dir:'/images',file:'ajax-loader.gif')}" alt="ajaxloader" />');
         $.ajax({

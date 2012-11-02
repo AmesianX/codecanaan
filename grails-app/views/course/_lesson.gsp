@@ -58,7 +58,7 @@
 
     <div class="justfont">
         <h1>${lesson.title}</h1>
-        <div class="markdown-source">${lesson.description}</div>
+        <div class="markdown-source">${lesson.description?.encodeAsHTML()}</div>
     </div>
     
     <!--目錄-->

@@ -11,7 +11,7 @@
     </div>
     <div class="span9">
         <h2>${post?.title}</h2>
-        <div class="markdown-source">${post?.content}</div>
+        <div class="markdown-source">${post?.content?.encodeAsHTML()}</div>
         
         <hr class="soften" />
         

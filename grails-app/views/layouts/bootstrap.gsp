@@ -165,6 +165,9 @@ FB.Event.subscribe('auth.login', function() {
         $(this).html(converter.makeHtml($(this).text()));
         $(this).show();
     });
+    
+    //Pretty Code with Highlight.js
+    hljs.initHighlightingOnLoad();
 })();
 </r:script>
 

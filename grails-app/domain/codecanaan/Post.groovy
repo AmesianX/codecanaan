@@ -21,7 +21,7 @@ class Post {
     int hits = 0        //點擊次數
 
     static constraints = {
-    	name blank: false
+    	name blank: false, unique: true
 	    title blank: false
     	content nullable: true, empty: true, maxSize: 128*1024
     }
