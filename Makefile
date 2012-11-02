@@ -25,6 +25,7 @@ upload-secret:
 	s3cmd put -P ~/.grails/codecanaan-config.groovy s3://s3.lyhdev.com/apps/
 
 download:
+	[ -d target ] || mkdir target
 	wget -O target/codecanaan.war http://s3.lyhdev.com/apps/codecanaan.war
 
 download-secret:
