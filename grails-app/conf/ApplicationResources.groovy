@@ -1,10 +1,3 @@
-def dev = grails.util.GrailsUtil.isDevelopmentEnv()
-def configTagLib = org.codehaus.groovy.grails.commons.ApplicationHolder.application.config.grails.plugins.twitterbootstrap.fixtaglib
-def configDefaultBundle = org.codehaus.groovy.grails.commons.ApplicationHolder.application.config.grails.plugins.twitterbootstrap.defaultBundle
-if (!configDefaultBundle && !configDefaultBundle.equals(false)) {
-    configDefaultBundle = 'bundle_bootstrap'
-}
-
 modules = {
     application {
         resource url: 'js/application.js'
@@ -29,7 +22,7 @@ modules = {
     }
 
     compass {
-        dependsOn 'bootstrap-custom'
+        dependsOn 'custom-bootstrap'
 
         resource url: [dir: 'stylesheets', file: 'screen.css'], attrs: [media: 'screen, projection'], disposition: 'head'
         resource url: [dir: 'stylesheets', file: 'print.css'], attrs: [media: 'print'], disposition: 'head'
@@ -49,24 +42,16 @@ modules = {
             attrs: [media: 'screen']
         resource url: [dir: 'highlightjs', file: 'highlight.pack.js']
     }
-
-    'bootswatch-css' {
-        defaultBundle configDefaultBundle
-        if (configTagLib) {
-            dependsOn 'bootstrap-fixtaglib'
-        }
-
-        resource url: [dir: 'bootswatch', file: (dev ? 'united.css' : 'united.min.css')], disposition: 'head', exclude:'minify'       
-    }
-    
-    'bootswatch-responsive-css' {
-        defaultBundle configDefaultBundle
-        dependsOn 'bootswatch-css'
-
-        resource url:[plugin: 'twitter-bootstrap', dir: 'css', file: (dev ? 'bootstrap-responsive.css' : 'bootstrap-responsive.min.css')], disposition: 'head', exclude:'minify'
-    }
-
-    'bootstrap-custom' {
-        dependsOn 'bootstrap-js,bootswatch-responsive-css'
+   
+    'custom-bootstrap' {
+        dependsOn 'bootstrap-js'
+        
+        resource url: [dir: 'less', file: 'custom-bootstrap.less'], attrs:[rel: "stylesheet/less", type:'css']
+        /*
+        resource url: [dir: 'fontawesome/css', file: 'font-awesome.css'],
+            attrs: [media: 'screen']
+        resource url: [dir: 'fontawesome/css', file: 'font-awesome-ie7.css'],
+            attrs: [media: 'screen'],
+            wrapper: { s -> "<!--[if lte IE 7]>$s<![endif]-->" }*/
     }
 }

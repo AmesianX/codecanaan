@@ -17,12 +17,12 @@
         <hr class="soften" />
 
         <h4>專業電腦認證教學平台</h4>
-        <ul>
-            <li>完美結合 TQC+ 認證題庫與教材</li>
-            <li>軟體設計領域實作導向練習</li>
-            <li>雲端運算架構，僅需 Java 及瀏覽器即可執行</li>
-            <li>整合 Facebook 帳號登入</li>
-            <li>支援程式碼實作練習，簡化程式執行及測試</li>
+        <ul class="icons">
+            <li><i class="icon-ok"></i> 完美結合 TQC+ 認證題庫與教材</li>
+            <li><i class="icon-ok"></i> 軟體設計領域實作導向練習</li>
+            <li><i class="icon-ok"></i> 雲端運算架構，僅需 Java 及瀏覽器即可執行</li>
+            <li><i class="icon-ok"></i> 整合 Facebook 帳號登入</li>
+            <li><i class="icon-ok"></i> 支援程式碼實作練習，簡化程式執行及測試</li>
         </ul>
 
         <hr class="soften" />
@@ -37,7 +37,7 @@
         </div>
         <div id="message" style="clear:both"></div>
         <div class="alert alert-info"> 
-            開始練習實作題之前，請先啟動客戶端工具（如果有已經啟動的客戶端工具請先關閉）。
+            開始練習實作題之前，請先啟動客戶端工具。
         </div>
     </div>
     <div class="span6">
@@ -95,17 +95,17 @@
     <div class="span4">
         <img src="${resource(dir:'images', file:'responsive_web_design.png')}" alt="responsive" />
         <h4>Responsive Web Design</h4>
-        <p>可以放進口袋的雲端教室，結合行動通訊提供全年無休數位內容服務；針對各種尺寸螢幕提供最佳化閱讀效果，隨時使用智慧型手機或平板電腦複習教材，獲得前所未有的學習效果。</p>
+        <p><i class="icon icon-cloud"></i> 可以放進口袋的雲端教室，結合行動通訊提供全年無休數位內容服務；針對各種尺寸螢幕提供最佳化閱讀效果，隨時使用智慧型手機或平板電腦複習教材，獲得前所未有的學習效果。</p>
     </div>
     <div class="span4">
         <img src="${resource(dir:'images', file:'education.png')}" alt="education" />
         <h4>Certified Academy Program</h4>
-        <p>校園課程與專業認證的完美結合；本教學系統的前導計畫每年均獲得良好成效，培育出無數優秀的專業人才，不僅擁有實作能力，也取得企業認可的專業認證。</p>
+        <p><i class="icon icon-certificate"></i> 校園課程與專業認證的完美結合；本教學系統的前導計畫每年均獲得良好成效，培育出無數優秀的專業人才，不僅擁有實作能力，也取得企業認可的專業認證。</p>
     </div>
     <div class="span4">
         <img src="${resource(dir:'images', file:'learning_ark.png')}" alt="ark" />
         <h4>Learner's Ark</h4>
-        <p>數位學習方舟計畫運用最新科技，致力於發展教學解決方案，領航優秀程式設計人才養成之路，從校園到就業進修課程規劃，研發團隊結合最具公信力的認證機構、產業專家及學者，提供最好的教材與培訓。</p>
+        <p><i class="icon icon-thumbs-up"></i> 數位學習方舟計畫運用最新科技，致力於發展教學解決方案，領航優秀程式設計人才養成之路，從校園到就業進修課程規劃，研發團隊結合最具公信力的認證機構、產業專家及學者，提供最好的教材與培訓。</p>
     </div>
 </div>
 </body>
