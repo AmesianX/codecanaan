@@ -21,14 +21,6 @@ modules = {
             wrapper: { s -> "<!--[if IE 6]>$s<![endif]-->" }
     }
 
-    compass {
-        dependsOn 'custom-bootstrap'
-
-        resource url: [dir: 'stylesheets', file: 'screen.css'], attrs: [media: 'screen, projection'], disposition: 'head'
-        resource url: [dir: 'stylesheets', file: 'print.css'], attrs: [media: 'print'], disposition: 'head'
-        resource url: [dir: 'stylesheets', file: 'ie.css'], attrs: [media: 'screen'], wrapper: { s -> "<!--[if IE]>$s<![endif]-->" }
-    }
-
     codemirror {
         resource url: [dir: 'codemirror/lib', file: 'codemirror.css'], attrs: [media: 'screen']
         resource url: [dir: 'codemirror/lib', file: 'codemirror.js']
@@ -46,12 +38,26 @@ modules = {
     'custom-bootstrap' {
         dependsOn 'bootstrap-js'
         
-        resource url: [dir: 'less', file: 'custom-bootstrap.less'], attrs:[rel: "stylesheet/less", type:'css']
-        /*
-        resource url: [dir: 'fontawesome/css', file: 'font-awesome.css'],
-            attrs: [media: 'screen']
-        resource url: [dir: 'fontawesome/css', file: 'font-awesome-ie7.css'],
-            attrs: [media: 'screen'],
-            wrapper: { s -> "<!--[if lte IE 7]>$s<![endif]-->" }*/
+        resource url: [dir: 'bootstrap/less', file: 'bootstrap.less'], attrs:[rel: "stylesheet/less", type:'css']
+        resource url: [dir: 'bootstrap/less', file: 'responsive.less'], attrs:[rel: "stylesheet/less", type:'css']
     }
+    
+    'font-awesome' {
+        dependsOn 'custom-bootstrap'
+        
+        resource url: [dir: 'font-awesome/less', file: 'font-awesome.less'],
+            attrs: [rel: "stylesheet/less", type:'css']
+        resource url: [dir: 'font-awesome/less', file: 'font-awesome-ie7.less'],
+            attrs: [rel: "stylesheet/less", type:'css'],
+            wrapper: { s -> "<!--[if lte IE 7]>$s<![endif]-->" }
+    }
+    
+    compass {
+        dependsOn 'custom-bootstrap'
+
+        resource url: [dir: 'stylesheets', file: 'screen.css'], attrs: [media: 'screen, projection'], disposition: 'head'
+        resource url: [dir: 'stylesheets', file: 'print.css'], attrs: [media: 'print'], disposition: 'head'
+        resource url: [dir: 'stylesheets', file: 'ie.css'], attrs: [media: 'screen'], wrapper: { s -> "<!--[if IE]>$s<![endif]-->" }
+    }
+    
 }

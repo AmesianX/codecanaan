@@ -53,6 +53,8 @@ grails.project.dependency.resolution = {
         build ":tomcat:$grailsVersion"
         
         build ":svn:1.0.2"
+        
+        //build ":lesscss-resources:1.3.0.3"
 
         //runtime ":database-migration:1.1"
 

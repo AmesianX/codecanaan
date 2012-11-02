@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}" />
 <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}" />
 <style type="text/css">body {padding-top: 60px;padding-bottom: 40px;}</style>
-<r:require modules="custom-bootstrap, pagedown, webfont, compass, codemirror, highlightjs "/>
+<r:require modules="custom-bootstrap, font-awesome, pagedown, webfont, compass, codemirror, highlightjs "/>
 <g:layoutHead/>
 <r:layoutResources />
 <!--justfont--><r:script>window.jfAsyncInit=function(){ctb.main({'appId':'04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=','tag':{'ct1':'.justfont pre','ct2':{'0':'.justfont p','1':'.justfont li'},'ct3':{'0':'.justfont h2','1':'.justfont h3','2':'.justfont h4','3':'.justfont h5','4':'.justfont h6','5':'.justfont h1 small'},'ct4':'.justfont h1','ct5':'.justfont blockquote'}});};(function(){var jf=document.createElement('script');jf.type='text/javascript';jf.async=true;jf.src='http://ds.justfont.com/core/js/v1.0/04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(jf,s);})();</r:script>
