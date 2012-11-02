@@ -132,9 +132,9 @@ FB.Event.subscribe('auth.login', function() {
         <div class="row">
             <div class="span9">
                 <ul class="nav nav-pills">
-                    <li><g:link url="#">合作夥伴</g:link></li>
+                    <li><g:link url="/page/partner">合作夥伴</g:link></li>
                     <li><g:link url="/page/about">關於我們</g:link></li>
-                    <li><g:link url="#">聯絡我們</g:link></li>
+                    <li><g:link url="/page/contact">聯絡我們</g:link></li>
                     <li><g:link url="/?lang=zh_TW">中文版</g:link></li>
                     <li><g:link url="/?lang=en">English</g:link></li>
                     <!--<li class="dropdown">
