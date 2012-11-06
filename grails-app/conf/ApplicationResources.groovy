@@ -38,8 +38,11 @@ modules = {
     'custom-bootstrap' {
         dependsOn 'bootstrap-js'
         
-        resource url: [dir: 'bootstrap/less', file: 'bootstrap.less'], attrs:[rel: "stylesheet/less", type:'css']
-        resource url: [dir: 'bootstrap/less', file: 'responsive.less'], attrs:[rel: "stylesheet/less", type:'css']
+        //resource url: [dir: 'bootstrap/less', file: 'bootstrap.less'], attrs:[rel: "stylesheet/less", type:'css']
+        //resource url: [dir: 'bootstrap/less', file: 'responsive.less'], attrs:[rel: "stylesheet/less", type:'css']
+        
+        resource url: [dir: 'custom-bootstrap', file: 'swatchmaker.less'], attrs: [rel: 'stylesheet/less', type: 'css']
+        resource url: [dir: 'custom-bootstrap', file: 'swatchmaker-responsive.less'], attrs: [rel: 'stylesheet/less', type: 'css']
     }
     
     'font-awesome' {

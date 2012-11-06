@@ -104,6 +104,8 @@ log4j = {
            'net.sf.ehcache.hibernate'
 }
 
+// LessCSS Compiller
+grails.lesscss.resources.compress = true
 
 // Twitter Bootstrap
 grails.plugins.twitterbootstrap.fixtaglib = true
