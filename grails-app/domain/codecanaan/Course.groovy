@@ -14,6 +14,10 @@ class Course {
 	Collection lessons
 
 	static hasMany = [lessons: Lesson]
+	
+	static mapping = {
+		lessons sort: 'priority'
+	}
 
     static constraints = {
     	description blank: true, maxSize: 1024*1024

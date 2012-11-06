@@ -98,6 +98,40 @@ class CourseController {
     }
 
     /**
+     * 重新排序單元清單
+     */
+    def sort(Long id) {
+        def course = Course.get(id)
+        
+        [course: course]
+    }
+    
+    /**
+     * 儲存排序資料
+     */
+    def sortUpdate(Long id) {
+        def course = Course.get(id)
+        
+        if (params.priority) {
+            def priorities = (params.priority instanceof String)?[params.priority]:params.priority
+            
+            def i = 0
+            priorities.each {
+                lessonId ->
+                
+                def lesson = Lesson.get(lessonId)
+                
+                if (lesson) {
+                    lesson.priority = ++i
+                    lesson.save(flush: true)
+                }
+            }
+        }
+        
+        redirect(controller: 'course', action: 'show', id: course?.id)
+    }
+
+    /**
      * 顯示課程內容（重要實作）
      */
     def show(Long id) {

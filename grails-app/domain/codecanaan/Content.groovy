@@ -28,7 +28,7 @@ class Content {
 
     String answer           //解答
 
-    int priority = 0
+    int priority = 0    //排序
 
     User creator        //建立者
 

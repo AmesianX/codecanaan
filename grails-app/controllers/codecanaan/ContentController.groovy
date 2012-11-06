@@ -6,7 +6,7 @@ class ContentController {
 
     def springSecurityService
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [save: "POST", update: "POST"]
 
     def index() {
         redirect(action: "list", params: params)
@@ -22,18 +22,19 @@ class ContentController {
      */
     def create() {
         def user = springSecurityService.currentUser
-        def content = new Content(params)
-
-        //套用預設值
-        if (!content.type) {
-            content.type = ContentType.TUTORIAL
-        }
 
         //計算流水號
         def seq = 0
         def lesson = Lesson.get(params.lesson.id)
         if (lesson && lesson.contents) {
             seq = lesson.contents?.size()
+        }
+
+        def content = new Content(params)
+
+        //套用預設值
+        if (!content.type) {
+            content.type = ContentType.TUTORIAL
         }
 
         //println lesson
@@ -172,6 +173,7 @@ class ContentController {
      */
     def delete(Long id) {
         def content = Content.get(id)
+        
         if (!content) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'content.label', default: 'Content'), id])
             redirect(controller: 'course')

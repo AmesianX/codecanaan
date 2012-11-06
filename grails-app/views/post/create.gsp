@@ -38,8 +38,22 @@
 		<label class="control-label" for="title">
 			<g:message code="post.content.label" default="Content" />				
 		</label>
-		<div class="controls">
-			<g:textArea name="content" value="${post?.content}" class="input input-xlarge" cols="40" rows="10" />
+        <div class="controls">
+	        <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab-editor" data-toggle="tab">單元說明</a></li>
+                <li><a href="#tab-preview" data-toggle="tab">預覽</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab-editor">
+                    <div class="wmd-panel">
+                        <div id="wmd-button-bar"></div>
+                        <g:textArea name="content" cols="40" rows="20" value="${post?.content}" class="wmd-input" id="wmd-input" />
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab-preview">
+                    <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
+                </div>
+            </div>
 		</div>
 	</div>
 	<div class="control-group ${hasErrors(bean: post, field: 'tag', 'error')} ">

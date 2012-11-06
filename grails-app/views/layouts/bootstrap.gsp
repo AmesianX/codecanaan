@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}" />
 <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}" />
 <style type="text/css">body {padding-top: 60px;padding-bottom: 40px;}</style>
-<r:require modules="custom-bootstrap, font-awesome, pagedown, webfont, compass, codemirror, highlightjs "/>
+<r:require modules="jquery-ui, bootswatch, font-awesome, pagedown, webfont, compass, codemirror, highlightjs "/>
 <g:layoutHead/>
 <r:layoutResources />
 <!--justfont--><r:script>window.jfAsyncInit=function(){ctb.main({'appId':'04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=','tag':{'ct1':'.justfont pre','ct2':{'0':'.justfont p','1':'.justfont li'},'ct3':{'0':'.justfont h2','1':'.justfont h3','2':'.justfont h4','3':'.justfont h5','4':'.justfont h6','5':'.justfont h1 small'},'ct4':'.justfont h1','ct5':'.justfont blockquote'}});};(function(){var jf=document.createElement('script');jf.type='text/javascript';jf.async=true;jf.src='http://ds.justfont.com/core/js/v1.0/04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(jf,s);})();</r:script>
@@ -60,10 +60,20 @@ FB.Event.subscribe('auth.login', function() {
             </g:link>
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li class="${controllerName=='home'?'active':''}"><g:link controller="home"><g:message code="default.home.label" default="Home" /></g:link></li>
+                    <li class="${controllerName=='home'?'active':''}">
+                        <g:link controller="home">
+                            <i class="icon icon-home"></i>
+                            <g:message code="default.home.label" default="Home" />
+                        </g:link>
+                    </li>
                     <!--已登入才顯示功能表-->
                     <sec:ifLoggedIn>
-                        <li class="${controllerName=='course'?'active':''}"><g:link controller="course"><g:message code="course.label" default="Course" /></g:link></li>
+                        <li class="${controllerName=='course'?'active':''}">
+                            <g:link controller="course">
+                                <i class="icon icon-tasks"></i>
+                                <g:message code="course.label" default="Course" />
+                            </g:link>
+                        </li>
                     </sec:ifLoggedIn>
                 </ul>
                 <ul class="nav pull-right">
@@ -165,6 +175,13 @@ FB.Event.subscribe('auth.login', function() {
         $(this).html(converter.makeHtml($(this).text()));
         $(this).show();
     });
+    
+    //Markdown 編輯處理
+    if ($('.wmd-panel').size() > 0) {
+        var converter1 = Markdown.getSanitizingConverter();
+        var editor1 = new Markdown.Editor(converter1);
+        editor1.run();
+    }
     
     //Pretty Code with Highlight.js
     hljs.initHighlightingOnLoad();

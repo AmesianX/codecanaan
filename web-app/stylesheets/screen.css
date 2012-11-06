@@ -93,14 +93,19 @@ h1, h2, h3, h4 {
 }
 
 /* line 96, ../sass/screen.scss */
+.wmd-preview, .wmd-input {
+  height: 300px;
+}
+
+/* line 100, ../sass/screen.scss */
 footer {
   padding-top: 2em;
 }
-/* line 98, ../sass/screen.scss */
+/* line 102, ../sass/screen.scss */
 footer .nav, footer .copyright {
   font-size: 10pt;
 }
-/* line 101, ../sass/screen.scss */
+/* line 105, ../sass/screen.scss */
 footer .copyright {
   color: #555;
 }

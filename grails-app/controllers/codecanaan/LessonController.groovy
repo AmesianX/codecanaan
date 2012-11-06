@@ -22,17 +22,31 @@ class LessonController {
      */
     def create() {
         def user = springSecurityService.currentUser
+        
+        //計算流水號
+        def seq = 0
+        def course = Course.get(params.course.id)
+        if (course && course.lessons) {
+            seq = course.lessons?.size()
+        }
+        
         def lesson = new Lesson(params)
         
         //套用預設值
-        lesson.name = "lesson-${Lesson.count()+1}"
-        lesson.title = "Lesson ${Lesson.count()+1}"
+        lesson.name = "lesson-${seq+1}"
+        lesson.title = "Lesson ${seq+1}"
         lesson.description = "Write lesson description here."
         lesson.creator = user
+        lesson.priority = seq
 
         lesson.save(flush: true)
 
-        redirect(controller: 'course', action: 'show', id: lesson.course.id, params: [lessonId: lesson.id])
+        redirect(
+            controller: 'course',
+            action: 'show',
+            id: lesson.course.id,
+            params: [lessonId: lesson.id]
+        )
     }
 
     def save() {
@@ -60,6 +74,40 @@ class LessonController {
         render(contentType: 'application/json') {
             [url: createLink(controller: 'course', action: 'show', id: lesson?.course?.id, params: [lessonId: lesson?.id])]
         }
+    }
+    
+    /**
+     * 重新排序教材內容清單
+     */
+    def sort(Long id) {
+        def lesson = Lesson.get(id)
+        
+        [lesson: lesson]
+    }
+    
+    /**
+     * 儲存排序資料
+     */
+    def sortUpdate(Long id) {
+        def lesson = Lesson.get(id)
+        
+        if (params.priority) {
+            def priorities = (params.priority instanceof String)?[params.priority]:params.priority
+            
+            def i = 0
+            priorities.each {
+                contentId ->
+                
+                def content = Content.get(contentId)
+                
+                if (content) {
+                    content.priority = ++i
+                    content.save(flush: true)
+                }
+            }
+        }
+        
+        redirect(controller: 'course', action: 'show', id: lesson?.course?.id, params: [lessonId: lesson?.id])
     }
 
     def show(Long id) {

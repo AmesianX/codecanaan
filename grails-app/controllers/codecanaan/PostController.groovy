@@ -4,8 +4,26 @@ class PostController {
    
     def springSecurityService
    
+    def index() {
+        redirect(action: 'list', params: params)
+    }
+   
     def list() {
-        [posts: Post.findAllByType(PostType.ANNOUNCE)]
+        def type = PostType.ANNOUNCE
+        
+        switch (params.type) {
+            case 'ANNOUNCE':
+                type = PostType.ANNOUNCE
+            break
+            case 'STATIC':
+                type = PostType.STATIC
+            break
+        }
+
+        [
+            type: type,
+            posts: Post.findAllByType(type)
+        ]
     }
    
     def show(Long id) {

@@ -25,17 +25,28 @@
         </div>
     </div>
     <div class="span9">
-        <g:if test="${content}">
-            <g:render template="content"/>
-            <!--<pre>creator: ${content.creator}</pre>-->
+        <g:if test="${authoring&&editor}">
+            <!--切換編輯介面-->
+            <g:if test="${content}">
+                <g:render template="content_editor"/>
+            </g:if>
+            <g:elseif test="${lesson}">
+                <g:render template="lesson_editor"/>
+            </g:elseif>
+            <g:else>
+                <g:render template="course_editor"/>
+            </g:else>
         </g:if>
-        <g:elseif test="${lesson}">
-            <g:render template="lesson"/>
-            <!--<pre>creator: ${lesson.creator}</pre>-->
-        </g:elseif>
         <g:else>
-            <g:render template="course"/>
-            <!--<pre>creator: ${course.creator}</pre>-->
+            <g:if test="${content}">
+                <g:render template="content"/>
+            </g:if>
+            <g:elseif test="${lesson}">
+                <g:render template="lesson"/>
+            </g:elseif>
+            <g:else>
+                <g:render template="course"/>
+            </g:else>
         </g:else>
     </div>
 </div>
@@ -55,13 +66,6 @@
     var rtrim = function(stringToTrim) {
         return stringToTrim.replace(/\s+$/,"");
     };
-
-    //Markdown 編輯器處理
-    if ($('.wmd-panel').size() > 0) {
-        var converter1 = Markdown.getSanitizingConverter();
-        var editor1 = new Markdown.Editor(converter1);
-        editor1.run();
-    }
 
     //init codemirror
     var editor = null;

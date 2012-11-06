@@ -71,8 +71,17 @@ environments {
     development {
         grails.logging.jul.usebridge = true
         grails.serverURL = "http://dev.codecanaan.com:8080"
+        
+        //disable resource path hash ?_debugResources=y
+        grails.resource.debug = true
+        grails.resources.mapper.hashandcache.excludes = ['**/*']
     }
     production {
+    
+        //CDN    
+        grails.resources.cdn.enabled = true
+        grails.resources.cdn.url = "http://static.codecanaan.com/static/"
+    
         grails.logging.jul.usebridge = false
         // TODO: grails.serverURL = "http://www.changeme.com"
         grails.serverURL = "http://codecanaan.com"

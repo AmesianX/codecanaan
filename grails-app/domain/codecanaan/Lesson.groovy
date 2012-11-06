@@ -11,6 +11,8 @@ class Lesson {
 
 	User creator		//建立者
 
+	int priority = 0    //排序
+
 	Collection contents
 
 	static hasMany = [contents: Content]

@@ -9,9 +9,16 @@
 <body>
 <div class="row">
     <div class="span3">
+        <ul class="nav nav-tabs nav-stacked">
+            <li class="${type==codecanaan.PostType.ANNOUNCE?'active':''}">
+                <g:link action="list" params="[type: 'ANNOUNCE']">公告</g:link>
+            </li>
+            <li class="${type==codecanaan.PostType.STATIC?'active':''}">
+                <g:link action="list" params="[type: 'STATIC']">靜態頁面</g:link>
+            </li>
+        </ul>
     </div>
     <div class="span9">
-        <h3>頁面列表</h3>
         <table class="table">
             <thead>
                 <tr>
