@@ -110,7 +110,7 @@
         $('#cmdPlay').click(function() {
             $.ajax({
                 type: 'post',
-                url: 'http://localhost:${jettyPort}/',
+                url: 'http://localhost:${clientPort}/',
                 data: {
                     action: 'play',
                     sourceType: $('#sourceType').val(),

@@ -82,14 +82,19 @@ h1, h2, h3, h4 {
 		letter-spacing: 1px;
 	}
 	pre, code {
-		font-size: 13pt;
+		font-size: 11pt;
+		line-height: 150%;
 		font-family: 'Droid Sans Mono', monospace;
 	}
 }
 
+/* 投影用大字型 */
 .justfont.larger-font {
-	p, li, pre, code {
+	p, li {
 		font-size: 18pt;
+	}
+	pre, code {
+	    font-size: 16pt;
 	}
 }
 

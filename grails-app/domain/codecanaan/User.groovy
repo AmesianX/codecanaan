@@ -6,6 +6,8 @@ class User {
 
 	String fullName		//全名
 	String email		//電子郵件
+	
+	int clientPort = 1337   //客戶端工具連接埠
 
     Date dateCreated    //建立日期
     Date lastUpdated    //修改日期
@@ -22,6 +24,7 @@ class User {
 		email nullable: true, email: true
 		username blank: false, unique: true
 		password blank: false
+		clientPort range: 1000..65535
 	}
 
 	static mapping = {

@@ -67,9 +67,9 @@
                     <li><a href="#" id="cmdPlay"><i class="icon icon-play"></i> 執行測試</a></li>
                     <!--<li class="divider-vertical"></li>-->
                     <li><a href="#" id="cmdSave"><i class="icon icon-hdd"></i> 儲存</a></li>
-                    <li><a href="#" id="cmdUndo"><i class="icon icon-chevron-left"></i> 復原</a></li>
-                    <li><a href="#" id="cmdRedo"><i class="icon icon-chevron-right"></i> 取消復原</a></li>
-                    <li><a href="#" id="cmdReset"><i class="icon icon-repeat"></i> 清除重做</a></li>
+                    <li><a href="#" id="cmdUndo"><i class="icon icon-undo"></i> 復原</a></li>
+                    <li><a href="#" id="cmdRedo"><i class="icon icon-repeat"></i> 取消復原</a></li>
+                    <li><a href="#" id="cmdReset"><i class="icon icon-magic"></i> 清除重做</a></li>
                     <li id="cmdProgress" style="display:none"><a href="#"><g:img dir="images" file="ajax-loader-small.gif" /> 處理中...</span></a></li>
                 </ul>
             </div>

@@ -177,7 +177,7 @@ class CourseController {
             record: record,
             editor: editor,
             authoring: authoring,
-            jettyPort: session.jettyPort?session.jettyPort:1337
+            clientPort: user?.clientPort?user.clientPort:1337
         ]
     }
 

@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}" />
 <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}" />
 <style type="text/css">body {padding-top: 60px;padding-bottom: 40px;}</style>
-<r:require modules="jquery-ui, bootswatch, font-awesome, pagedown, webfont, compass, codemirror, highlightjs "/>
+<r:require modules="jquery-ui, bootswatch, bootstrap-lightbox, font-awesome, pagedown, webfont, compass, codemirror, highlightjs "/>
 <g:layoutHead/>
 <r:layoutResources />
 <!--justfont--><r:script>window.jfAsyncInit=function(){ctb.main({'appId':'04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=','tag':{'ct1':'.justfont pre','ct2':{'0':'.justfont p','1':'.justfont li'},'ct3':{'0':'.justfont h2','1':'.justfont h3','2':'.justfont h4','3':'.justfont h5','4':'.justfont h6','5':'.justfont h1 small'},'ct4':'.justfont h1','ct5':'.justfont blockquote'}});};(function(){var jf=document.createElement('script');jf.type='text/javascript';jf.async=true;jf.src='http://ds.justfont.com/core/js/v1.0/04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(jf,s);})();</r:script>
@@ -76,50 +76,8 @@ FB.Event.subscribe('auth.login', function() {
                         </li>
                     </sec:ifLoggedIn>
                 </ul>
-                <ul class="nav pull-right">
-                    <sec:ifNotLoggedIn>
-                        <!--未登入-->
-                        <li>
-                            <g:link controller="login">
-                                <i class="icon icon-user"></i>
-                                登入
-                            </g:link>
-                        </li>
-                    </sec:ifNotLoggedIn>
-                    <sec:ifLoggedIn>
-                        <!--已登入-->
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon icon-user"></i>
-                                <sec:username />
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <sec:ifAllGranted roles="ROLE_FACEBOOK">
-                                    <li><g:link uri="/j_spring_security_logout" onclick="return doLogout()"><i class="icon icon-off"></i> 登出</g:link></li>
-                                </sec:ifAllGranted>
-                                <sec:ifNotGranted roles="ROLE_FACEBOOK">
-                                    <li><g:link uri="/j_spring_security_logout"><i class="icon icon-off"></i> 登出</g:link></li>
-                                </sec:ifNotGranted>
-                                <sec:ifAllGranted roles="ROLE_ADMIN">
-                                    <!--管理者權限-->
-                                    <li><g:link controller="post" action="create"><i class="icon icon-file"></i> 發佈新頁面</g:link></li>
-                                </sec:ifAllGranted>
-                            </ul>
-                        </li>
-                        <r:script>
-                        function doLogout() {
-                            if (typeof(FB) === 'object') {
-                                FB.logout(function() {
-                                    window.location.href = "${createLink(uri: '/j_spring_security_logout')}";
-                                });
-                                return false;
-                            }
-                            return true;
-                        }
-                        </r:script>
-                    </sec:ifLoggedIn>
-                </ul>
+                <!--使用者選單-->
+                <g:applyLayout name="inc_usermenu" />
             </div><!--/.nav-collapse -->
         </div>
     </div>

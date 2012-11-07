@@ -4,14 +4,21 @@ class HomeController {
     def springSecurityService
 
     def index() {
-
-        //def userDetails = springSecurityService.principal
-        //println userDetails
-
         [
-            posts: Post.findAllByType(PostType.ANNOUNCE),
+            posts: Post.findAllByType(PostType.ANNOUNCE, [max: 10]),
             courses: Course.list(),
             jettyPort: session.jettyPort?session.jettyPort:1337
+        ]
+    }
+    
+    /**
+     * 客戶端工具
+     */
+    def client() {
+        def user = springSecurityService.currentUser
+        
+        [
+            clientPort: user?.clientPort?user.clientPort:1337
         ]
     }
 
@@ -19,6 +26,8 @@ class HomeController {
      * Java Web Start ;-)
      */
     def webstart() {
+        def user = springSecurityService.currentUser
+        
         //response.contentType = 'text/xml'
         response.contentType = 'application/x-java-jnlp-file'
         response.addHeader('Content-disposition', 'inline; filename=webstart.jnlp')
@@ -26,30 +35,9 @@ class HomeController {
         render(
             contentType: 'application/x-java-jnlp-file',
             template: "webstart",
-            model: [jettyPort: session.jettyPort?session.jettyPort:1337]
+            model: [
+                jettyPort: user?.clientPort?user?.clientPort:1337
+            ]
         )
-    }
-
-    /**
-     * 設定連接埠
-     */
-    def port() {
-        def port = params.value?params.value:1337
-
-        try {
-            port = new Integer(port)
-        }
-        catch (ex) {
-            port = 1337
-        }
-
-        if (port < 1000) {
-            port = 1337
-        }
-        else if (port > 65535) {
-            port = 65535
-        }
-        session.jettyPort = port
-        [port: port]
     }
 }

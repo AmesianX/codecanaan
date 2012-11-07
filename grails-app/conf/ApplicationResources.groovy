@@ -1,6 +1,13 @@
 def _bundleName = 'optimized'
 
 modules = {
+    'jquery-ui' {
+        defaultBundle _bundleName
+        
+        resource url: [dir: 'jquery-ui/css/smoothness', file: 'jquery-ui-1.9.1.custom.min.css']
+		resource url: [dir: 'jquery-ui/js', file: 'jquery-ui-1.9.1.custom.min.js']
+    }
+    
     application {
         defaultBundle _bundleName
         
@@ -11,13 +18,6 @@ modules = {
         defaultBundle _bundleName
         
     	resource url: 'js/webfont.js', disposition: 'head'
-    }
-
-    'jquery-ui' {
-        defaultBundle _bundleName
-        
-        resource url: [dir: 'jquery-ui/css/smoothness', file: 'jquery-ui-1.9.1.custom.min.css']
-		resource url: [dir: 'jquery-ui/js', file: 'jquery-ui-1.9.1.custom.min.js']
     }
 
     pagedown {
@@ -62,6 +62,15 @@ modules = {
         resource url: [dir: 'bootswatch/swatchmaker', file: 'swatchmaker.less'], attrs: [rel: 'stylesheet/less', type: 'css'], bundle: _bundleName
         
         resource url: [dir: 'bootswatch/swatchmaker', file: 'swatchmaker-responsive.less'], attrs: [rel: 'stylesheet/less', type: 'css'], bundle: _bundleName
+    }
+    
+    'bootstrap-lightbox' {
+        dependsOn 'bootswatch'
+        defaultBundle _bundleName
+        
+        resource url: [dir: 'bootstrap-lightbox', file: 'bootstrap-lightbox.css'], bundle: _bundleName
+        
+        resource url: [dir: 'bootstrap-lightbox', file: 'bootstrap-lightbox.js']
     }
     
     'font-awesome' {

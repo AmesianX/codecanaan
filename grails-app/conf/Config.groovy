@@ -34,7 +34,8 @@ grails.mime.types = [
     multipartForm: 'multipart/form-data',
     rss:           'application/rss+xml',
     text:          'text/plain',
-    xml:           ['text/xml', 'application/xml']
+    xml:           ['text/xml', 'application/xml'],
+    woff:          'application/x-font-woff'
 ]
 
 // URL Mapping Cache Max Size, defaults to 5000
@@ -119,6 +120,12 @@ grails.lesscss.resources.compress = true
 // Twitter Bootstrap
 grails.plugins.twitterbootstrap.fixtaglib = true
 grails.plugins.twitterbootstrap.defaultBundle = 'bundle_bootstrap'
+
+// Avatar
+avatarPlugin {
+	//defaultGravatarUrl="""http://yourdomain.com/images/default-gravatar-80.png"""
+	gravatarRating="G"
+}
 
 // Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'codecanaan.User'

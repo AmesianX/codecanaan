@@ -90,10 +90,44 @@ def counter = 0
 SimpleGroovyServlet.run(jettyPort) { ->
     response.addHeader('Access-Control-Allow-Origin', httpOrigin)
     response.contentType = 'application/json'
+    
+    def json = new JsonBuilder()
 
     def action = params['action']
 
     if (!action) return
+    
+    if (action == 'versions') {
+    
+        def java_proc = "java -version".execute()
+        java_proc.waitForOrKill(10*1000)
+        
+        def javac_proc = "javac -version".execute()
+        javac_proc.waitForOrKill(10*1000)
+        
+        def gcc_proc = "gcc --version".execute()
+        gcc_proc.waitForOrKill(10*1000)
+        
+        def ruby_proc = "ruby --version".execute()
+        ruby_proc.waitForOrKill(10*1000)
+        
+        def python_proc = "python --version".execute()
+        python_proc.waitForOrKill(10*1000)
+        
+        json.result {
+            status 'success'
+            versions (
+                java: [exitValue: java_proc.exitValue(), stdout: "${java_proc.in.text}\n${java_proc.err.text}"],
+                javac: [exitValue: javac_proc.exitValue(), stdout: "${javac_proc.in.text}\n${javac_proc.err.text}"],
+                gcc: [exitValue: gcc_proc.exitValue(), stdout: "${gcc_proc.in.text}\n${gcc_proc.err.text}"],
+                ruby: [exitValue: ruby_proc.exitValue(), stdout: "${ruby_proc.in.text}\n${ruby_proc.err.text}"],
+                python: [exitValue: python_proc.exitValue(), stdout: "${python_proc.in.text}\n${python_proc.err.text}"]
+            )
+        }
+        println json.toString()
+    
+        return
+    }
 
     def sourcePath = params['sourcePath']
     def sourceCode = params['sourceCode']
@@ -159,7 +193,6 @@ return
         logError << ex.message
     }
 
-    def json = new JsonBuilder()
     json.result {
         status 'success'
         data (info: logInfo.toString(), error: logError.toString(), stdout: stdout.toString(), dump: dump.toString())
