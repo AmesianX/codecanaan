@@ -7,4 +7,5 @@ stacktrace.log
 target
 /plugins
 /web-app/plugins
+/web-app/.sass-cache
 /web-app/WEB-INF/classes
