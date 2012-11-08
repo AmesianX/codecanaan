@@ -98,32 +98,39 @@ SimpleGroovyServlet.run(jettyPort) { ->
     if (!action) return
     
     if (action == 'versions') {
-    
-        def java_proc = "java -version".execute()
-        java_proc.waitForOrKill(10*1000)
-        
-        def javac_proc = "javac -version".execute()
-        javac_proc.waitForOrKill(10*1000)
-        
-        def gcc_proc = "gcc --version".execute()
-        gcc_proc.waitForOrKill(10*1000)
-        
-        def ruby_proc = "ruby --version".execute()
-        ruby_proc.waitForOrKill(10*1000)
-        
-        def python_proc = "python --version".execute()
-        python_proc.waitForOrKill(10*1000)
-        
+        def versionCheck = {
+            cmd ->
+            try {
+                def proc = cmd.execute()
+                proc.waitForOrKill(10*1000)
+                return [proc.exitValue(), "${proc.in.text}\n${proc.err.text}".trim()]
+            }
+            catch (e) {
+                return [-1, e.message]
+            }
+        }
+
+        def java_proc = versionCheck('java -version')
+        def javac_proc = versionCheck('javac -version')
+        def gcc_proc = versionCheck('gcc --version')
+        def ruby_proc = versionCheck('ruby --version')            
+        def python_proc = versionCheck('python --version')
+        def groovy_proc = versionCheck('groovy --version')
+
         json.result {
             status 'success'
+            message ''
+            os (name: System.properties['os.name'], version: System.properties['os.version'])
             versions (
-                java: [exitValue: java_proc.exitValue(), stdout: "${java_proc.in.text}\n${java_proc.err.text}"],
-                javac: [exitValue: javac_proc.exitValue(), stdout: "${javac_proc.in.text}\n${javac_proc.err.text}"],
-                gcc: [exitValue: gcc_proc.exitValue(), stdout: "${gcc_proc.in.text}\n${gcc_proc.err.text}"],
-                ruby: [exitValue: ruby_proc.exitValue(), stdout: "${ruby_proc.in.text}\n${ruby_proc.err.text}"],
-                python: [exitValue: python_proc.exitValue(), stdout: "${python_proc.in.text}\n${python_proc.err.text}"]
+                java:   [exitValue: java_proc[0],   stdout: java_proc[1]],
+                javac:  [exitValue: javac_proc[0],  stdout: javac_proc[1]],
+                gcc:    [exitValue: gcc_proc[0],    stdout: gcc_proc[1]],
+                ruby:   [exitValue: ruby_proc[0],   stdout: ruby_proc[1]],
+                python: [exitValue: python_proc[0], stdout: python_proc[1]],
+                groovy: [exitValue: groovy_proc[0], stdout: groovy_proc[1]]
             )
         }
+        
         println json.toString()
     
         return
