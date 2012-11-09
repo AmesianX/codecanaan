@@ -36,7 +36,9 @@ grails.mime.types = [
     text:          'text/plain',
     xml:           ['text/xml', 'application/xml'],
     woff:          'font/x-woff',
-    ttf:           'font/ttf'
+    ttf:           'font/ttf',
+    eot:           'font/eot',
+    otf:           'font/opentype'
 ]
 
 // URL Mapping Cache Max Size, defaults to 5000
@@ -81,7 +83,7 @@ environments {
     production {
     
         //CDN    
-        grails.resources.cdn.enabled = true
+        grails.resources.cdn.enabled = false
         grails.resources.cdn.url = "http://static.codecanaan.com/static/"
     
         grails.logging.jul.usebridge = false
