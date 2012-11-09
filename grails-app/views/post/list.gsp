@@ -8,13 +8,19 @@
 </head>
 <body>
 <div class="row">
-    <div class="span3">
-        <ul class="nav nav-tabs nav-stacked">
+    <div class="span3 bs-docs-sidebar">
+        <ul class="nav nav-list bs-docs-sidenav">
             <li class="${type==codecanaan.PostType.ANNOUNCE?'active':''}">
-                <g:link action="list" params="[type: 'ANNOUNCE']">公告</g:link>
+                <g:link action="list" params="[type: 'ANNOUNCE']">
+                    <i class="icon icon-chevron-right"></i>
+                    公告
+                </g:link>
             </li>
             <li class="${type==codecanaan.PostType.STATIC?'active':''}">
-                <g:link action="list" params="[type: 'STATIC']">靜態頁面</g:link>
+                <g:link action="list" params="[type: 'STATIC']">
+                    <i class="icon icon-chevron-right"></i>
+                    靜態頁面
+                </g:link>
             </li>
         </ul>
     </div>

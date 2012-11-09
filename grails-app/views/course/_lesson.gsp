@@ -52,7 +52,7 @@
         <thead>
             <tr>
                 <th width="30">#</th>
-                <th width="30">燈號</th>
+                <th width="40">燈號</th>
                 <th>標題</th>
                 <th width="50">瀏覽數</th>
             </tr>
