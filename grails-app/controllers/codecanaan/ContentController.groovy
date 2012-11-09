@@ -211,4 +211,33 @@ class ContentController {
 
         render(text: content.sourceCode, contentType:"text/plain", encoding:"UTF-8")
     }
+
+    /**
+     * 燈號圖片
+     */
+    def light(Long id) {
+        def user = springSecurityService.currentUser
+        def content = Content.get(id)
+        def record = Record.findByUserAndContent(user, content)
+
+        def imageFile = null
+
+        if (!record) {
+             imageFile = new File(request.session.servletContext.getRealPath('/images/gray_light_small.png'))
+        }
+        else if (record.passed) {
+             imageFile = new File(request.session.servletContext.getRealPath('/images/green_light_small.png'))
+        }
+        else {
+             imageFile = new File(request.session.servletContext.getRealPath('/images/red_light_small.png'))
+        }
+
+        def imageData = imageFile.bytes
+
+        response.setHeader('Content-disposition', 'inline; filename=light.png') 
+        response.contentType = 'image/png'
+        response.addHeader "Content-Length", "${imageData.length}"
+        response.outputStream << imageData
+        response.outputStream.flush()
+    }
 }

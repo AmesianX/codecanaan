@@ -6,7 +6,7 @@
 <body>
 <div class="row">
     <div class="span6">
-        <h4>學園佈告欄</h4>
+        <h4>佈告欄</h4>
         <ul>
             <g:each in="${posts}" var="post" status="i">
                 <li><g:link controller="post" action="show" params="[name: post.name]">${post.title}</g:link> <small class="muted">(${post.hits})</small></li>
@@ -14,7 +14,11 @@
         </ul>
         <g:link controller="post" action="list">瀏覽更多訊息</g:link>
         
-        <hr class="soften" />
+        <div style="text-align:center;padding:2em 0">
+            <font style="font-size:32pt" class="popover-auto logo-font" title="關於 CodeCanaan" data-placement="bottom" data-content="根據聖經記載，Canaan（迦南）是上帝賜給以色列人祖先的應許之地，選民在流奶與蜜的迦南美地自由安居。CodeCanaan 是程式設計學習者的迦南美地，我們致力於創造一個自由開放且樂趣無窮的學習環境。">CodeCanaan</font><br/>
+            <small style="font-family:'Droid Sans Mono';color:#000099">程式設計數位學習方舟計畫</small>
+        </div>
+        <r:script>$('.popover-auto').popover({trigger: 'hover'});</r:script>
 
         <h4>專業電腦認證教學平台</h4>
         <ul class="icons">
@@ -59,12 +63,6 @@
         <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
         </div>
         <r:script>$('.carousel').carousel();</r:script>
-
-        <div style="text-align:center;padding:1em">
-            <font style="font-size:32pt" class="popover-auto logo-font" title="關於 CodeCanaan" data-placement="left" data-content="根據聖經記載，Canaan（迦南）是上帝賜給以色列人祖先的應許之地，選民在流奶與蜜的迦南美地自由安居。CodeCanaan 是程式設計學習者的迦南美地，我們致力於創造一個自由開放且樂趣無窮的學習環境。">CodeCanaan</font><br/>
-            <small style="font-family:'Droid Sans Mono';color:gray">Learn more effectively</small>
-        </div>
-        <r:script>$('.popover-auto').popover({trigger: 'hover'});</r:script>
     </div>
 </div>
 <hr class="soften" />

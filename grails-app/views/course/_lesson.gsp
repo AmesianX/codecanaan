@@ -49,15 +49,17 @@
     <table class="table">
         <thead>
             <tr>
-                <th width="40">#</th>
+                <th width="30">#</th>
+                <th width="30">燈號</th>
                 <th>標題</th>
-                <th width="60">瀏覽次數</th>
+                <th width="50">瀏覽數</th>
             </tr>
         </thead>
         <tbody>
             <g:each in="${lesson.contents}" var="row" status="i">
                 <tr>
                     <td>${i+1}</td>
+                    <td><img src="${createLink(controller: 'content', action: 'light', id: row.id)}" alt="light" /></td>
                     <td><g:link controller="course" action="show" id="${course.id}" params="[lessonId: lesson.id, contentId: row.id]">${row.title}</g:link></td>
                     <td>${row.hits}</td>
                 </tr>

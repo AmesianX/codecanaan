@@ -12,7 +12,7 @@
 <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon" />
 <link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}" />
 <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}" />
-<style type="text/css">body {padding-top: 60px;padding-bottom: 40px;} section {padding-top: 30px;}</style>
+<style type="text/css">body {padding-top: 60px;/*padding-bottom: 40px;*/} section {padding-top: 30px;}</style>
 <r:require modules="jquery-ui, bootswatch, bootstrap-lightbox, font-awesome, pagedown, webfont, compass, codemirror, highlightjs "/>
 <g:layoutHead/>
 <r:layoutResources />
@@ -35,7 +35,7 @@
 })();
 </r:script>
 </head>
-<body>
+<body data-spy="scroll" data-target=".bs-docs-sidebar">
 <!--facebook integration-->
 <facebookAuth:init>
 FB.Event.subscribe('auth.login', function() {
@@ -55,9 +55,7 @@ FB.Event.subscribe('auth.login', function() {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <g:link controller="home" action="index" class="brand logo-font">
-                CodeCanaan
-            </g:link>
+            <g:link controller="home" action="index" class="brand logo-font">CodeCanaan</g:link>
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     <li class="${controllerName=='home'?'active':''}">
@@ -95,11 +93,12 @@ FB.Event.subscribe('auth.login', function() {
     <g:layoutBody/>
 </div>
 
-<footer>
+<footer class="footer">
     <div class="container">
         <div class="row">
             <div class="span9">
                 <ul class="nav nav-pills">
+                    <li><g:link url="/page/pricing">價格方案</g:link></li>
                     <li><g:link url="/page/partner">合作夥伴</g:link></li>
                     <li><g:link url="/page/about">關於我們</g:link></li>
                     <li><g:link url="/page/contact">聯絡我們</g:link></li>
@@ -121,12 +120,14 @@ FB.Event.subscribe('auth.login', function() {
                 <p>程式設計數位學習方舟計畫<br/>思創軟體設計</p>
             </div>
         </div>
-        <div class="footer" role="contentinfo"></div>
+        <div role="contentinfo"></div>
         <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
     </div>
 </footer>
 <r:script>
 (function () {
+    var $window = $(window);
+
     //Markdown 顯示處理
     var converter = new Markdown.Converter();
     $('.markdown-source').each(function(index) {
@@ -143,6 +144,15 @@ FB.Event.subscribe('auth.login', function() {
     
     //Pretty Code with Highlight.js
     hljs.initHighlightingOnLoad();
+
+    //Affix Sidebar
+    $('.bs-docs-sidenav').affix({
+      offset: {
+        top: function () { return $window.width() <= 980 ? 290 : 210 }
+      , bottom: 270
+      }
+    });
+
 })();
 </r:script>
 

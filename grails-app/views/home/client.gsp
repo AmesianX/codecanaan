@@ -6,32 +6,13 @@
 </head>
 <body>
 <div class="row">
-    <div class="span3">
-        <div data-spy="affix" data-offset-top="10" style="padding-top:30px">
-            <ul class="nav nav-tabs nav-stacked">
-                <li class="disabled">
-                    <a href="#">客戶端工具</a>
-                </li>
-                <li>
-                    <a href="#client">
-                        <i class="icon icon-chevron-right"></i>
-                        執行
-                    </a>
-                </li>
-                <li>
-                    <a href="#compatible">
-                        <i class="icon icon-chevron-right"></i>
-                        相容性檢查
-                    </a>
-                </li>
-                <li>
-                    <a href="#versions">
-                        <i class="icon icon-chevron-right"></i>
-                        軟體版本
-                    </a>
-                </li>
-            </ul>
-        </div>
+    <div class="span3 bs-docs-sidebar">
+        <ul class="nav nav-list bs-docs-sidenav">
+            <li class="disabled"><a href="#">客戶端工具</a></li>
+            <li><a href="#client"><i class="icon icon-chevron-right"></i> 執行</a></li>
+            <li><a href="#compatible"><i class="icon icon-chevron-right"></i> 相容性檢查</a></li>
+            <li><a href="#versions"><i class="icon icon-chevron-right"></i> 軟體版本</a></li>
+        </ul>
     </div>
     <div class="span9">
         

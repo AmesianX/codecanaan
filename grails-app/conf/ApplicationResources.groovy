@@ -62,6 +62,8 @@ modules = {
         resource url: [dir: 'bootswatch/swatchmaker', file: 'swatchmaker.less'], attrs: [rel: 'stylesheet/less', type: 'css'], bundle: _bundleName
         
         resource url: [dir: 'bootswatch/swatchmaker', file: 'swatchmaker-responsive.less'], attrs: [rel: 'stylesheet/less', type: 'css'], bundle: _bundleName
+
+        resource url: [dir: 'stylesheets', file: 'docs.css'], bundle: _bundleName
     }
     
     'bootstrap-lightbox' {

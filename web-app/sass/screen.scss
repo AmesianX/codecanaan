@@ -11,12 +11,14 @@ body {
 
 	/* readability background */
 	/* background-color: #f8f8f5; */
+
+	background: #fafafa url("../images/content_inner_bg.png");
 }
 
 .logo-font {
 	font-family: Allura, sans-serif;
 	cursor: pointer;
-	@include text-shadow(#999 1pt 1pt 2pt);
+	//@include text-shadow(#999 1pt 1pt 2pt);
 }
 
 .code-font {
