@@ -22,10 +22,18 @@
                     單元排序
                 </g:link>
             </li>
+            <li>
+                <g:link controller="course" action="delete" id="${course.id}" onclick="return confirm('Are you sure???');">
+                    <i class="icon icon-remove"></i>
+                    刪除課程
+                </g:link>
+            </li>
         </ul>
     </div>
 </g:if>
-<div class="justfont">
-    <h1>${course.title}</h1>
+<section class="justfont">
+    <div class="page-header">
+        <h1>${course.title}</h1>
+    </div>
     <div class="markdown-source">${course.description?.encodeAsHTML()}</div>
-</div>
+</section>

@@ -27,13 +27,12 @@
 </g:if>
 
 <!--內容顯示-->
-<div class="justfont">
-    <h1>
-        ${content.title}
-        <small><g:message code="content.contentType.${content.type}" default="Content" /></small>
-    </h1>
-   <div class="markdown-source">${content.description?.encodeAsHTML()}</div>
-</div>
+<section class="justfont">
+    <div class="page-header">
+        <h1>${content.title} <small><g:message code="content.contentType.${content.type}" default="Content" /></small></h1>
+    </div>
+    <div class="markdown-source">${content.description?.encodeAsHTML()}</div>
+</section>
 
 <sec:ifLoggedIn>
     <!--程式碼區塊-->

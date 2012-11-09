@@ -216,6 +216,9 @@ class ContentController {
      * 燈號圖片
      */
     def light(Long id) {
+        //tell browsers do not cache this
+        cache false
+
         def user = springSecurityService.currentUser
         def content = Content.get(id)
         def record = Record.findByUserAndContent(user, content)

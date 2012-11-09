@@ -37,15 +37,17 @@
     </div>
 </g:if>
 
-<div class="justfont">
-    <h1>${lesson.title}</h1>
+<section class="justfont">
+    <div class="page-header">
+        <h1>${lesson.title}</h1>
+    </div>
     <div class="markdown-source">${lesson.description?.encodeAsHTML()}</div>
-</div>
+</section>
 
 <!--目錄-->
 <g:if test="${lesson.contents?.size() > 0}">
     <hr class="soften" />
-    <h4>教材內容</h4>
+    <h3>教材內容</h3>
     <table class="table">
         <thead>
             <tr>

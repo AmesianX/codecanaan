@@ -61,8 +61,7 @@
                     </tr>
                     <tr>
                         <td>User-Agent</td>
-                        <td colspan="2"><pre>${request.getHeader("User-Agent")}</pre></td>
-                        <td></td>
+                        <td colspan="3"><small>${request.getHeader("User-Agent")}</small></td>
                     </tr>
                     <tr>
                         <td>Java Runtime</td>

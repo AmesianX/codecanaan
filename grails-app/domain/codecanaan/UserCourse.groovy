@@ -1,11 +1,21 @@
 package codecanaan
 
 /**
+ * 定義註冊類型
+ */
+public enum RegType {
+    OWNER,  //課程著作權擁有者
+    GUEST,  //訪客（僅限瀏覽）
+    USER;   //註冊使用者
+}
+
+/**
  * 使用者和課程的關聯
  */
 class UserCourse {
     
-	String reginfo	//註冊資訊
+	String reginfo	                    //註冊資訊
+    RegType regtype = RegType.GUEST     //註冊類型
 
 	Date dateCreated    //建立日期
     Date lastUpdated    //修改日期

@@ -6,7 +6,7 @@ class CourseController {
 
     def springSecurityService
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [save: "POST", update: "POST"]
 
     def index() {
         redirect(action: "list", params: params)
@@ -31,7 +31,17 @@ class CourseController {
             link ->
             courses << link.course
         }
-        [courses: courses]
+
+        links = UserGroup.findAllByUser(user)
+
+        def groups = []
+
+        links.each {
+            link ->
+            groups << link.group
+        }
+
+        [courses: courses, groups: groups]
     }
 
     /**
@@ -53,6 +63,7 @@ class CourseController {
                 if (coupon.course) {
                     def link = UserCourse.findOrCreateByUserAndCourse(user, coupon.course)
                     link.reginfo = "reg. with ${coupon.serialCode}"
+                    link.regtype = RegType.USER
                     
                     if (link.save(flush: true)) {
                         msg = "註冊成功"
@@ -72,7 +83,7 @@ class CourseController {
      */
     def create() {
         def course = new Course(params)
-        course.name = "course-${Course.count()}"
+        course.name = "course-${Course.count()+1}"
         course.description = "Write your course description here."
         [course: course]
     }
@@ -92,6 +103,11 @@ class CourseController {
             render(view: "create", model: [course: course])
             return
         }
+
+        def link = UserCourse.findOrCreateByUserAndCourse(user, course)
+        link.reginfo = "first creator"
+        link.regtype = RegType.OWNER    //登記為擁有者
+        link.save(flush: true)
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'course.label', default: 'Course'), course.id])
         redirect(action: "show", id: course.id)
@@ -237,6 +253,9 @@ class CourseController {
         redirect(action: "show", id: course.id)
     }
 
+    /**
+     * 刪除課程
+     */
     def delete(Long id) {
         def course = Course.get(id)
         if (!course) {
@@ -246,6 +265,12 @@ class CourseController {
         }
 
         try {
+            //先移除使用者
+            UserCourse.findAllByCourse(course).each {
+                link ->
+                link.delete(flush: true)
+            }
+
             course.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'course.label', default: 'Course'), id])
             redirect(action: "list")
