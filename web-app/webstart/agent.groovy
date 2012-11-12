@@ -185,15 +185,17 @@ exit
             def batchFile = new File(cwd, 'execute.scpt')
             batchFile << """tell app "Terminal"
     activate
-    do script with command "javac -encoding utf-8 ${sourcePath} && java ${sourceBase}"
+    set tab1 to do script "cd '${cwd.absolutePath}' && clear && javac ${sourcePath} && script -q stdout.dump java ${sourceBase} && read -p 'Press ENTER to continue...' && exit"
+    repeat until not exists tab1
+    end repeat
 end tell
-return
 """
             def proc = ['osascript', 'execute.scpt'].execute(null, cwd)
             proc.waitFor()
             stdout << proc.in.text
 
-            dump << stdout
+            def dumpfile = new File(cwd, 'stdout.dump')
+            dump << dumpfile.text
         }
     }
     catch (ex) {

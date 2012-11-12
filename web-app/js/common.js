@@ -1,3 +1,9 @@
+//pre-defined functions
+var trim = function(stringToTrim) {return stringToTrim.replace(/^\s+|\s+$/g,"");};
+var ltrim = function(stringToTrim) {return stringToTrim.replace(/^\s+/,"");};
+var rtrim = function(stringToTrim) {return stringToTrim.replace(/\s+$/,"");};
+
+//CodeMirror editors
 var editors = {};
 
 (function () {
@@ -27,17 +33,6 @@ var editors = {};
             bottom: 270
         }
     });
-
-    //pre-defined functions
-    var trim = function(stringToTrim) {
-        return stringToTrim.replace(/^\s+|\s+$/g,"");
-    };
-    var ltrim = function(stringToTrim) {
-        return stringToTrim.replace(/^\s+/,"");
-    };
-    var rtrim = function(stringToTrim) {
-        return stringToTrim.replace(/\s+$/,"");
-    };
 
     //init codemirror
     $('.codemirror-auto').each(function() {
