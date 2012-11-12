@@ -83,7 +83,7 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="tab-editor">
-                <g:textArea name="sourceEdit" value="${(record?.sourceCode)?record.sourceCode:content.partialCode}" class="codemirror-textarea" />
+                <g:textArea name="sourceEdit" value="${(record?.sourceCode)?record.sourceCode:content.partialCode}" data-mode="text/x-csrc" data-height="500" cols="40" rows="20" class="codemirror-auto" />
             </div>
             <div class="tab-pane" id="tab-output"><pre id="program-output" style="height:500px;overflow:auto">${record?.answer}</pre></div>
             <div class="tab-pane" id="tab-answer"><pre style="height:500px;overflow:auto">${content.answer}</pre></div>

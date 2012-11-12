@@ -7,6 +7,16 @@ modules = {
         resource url: [dir: 'jquery-ui/css/smoothness', file: 'jquery-ui-1.9.1.custom.min.css']
 		resource url: [dir: 'jquery-ui/js', file: 'jquery-ui-1.9.1.custom.min.js']
     }
+
+    common {
+        resource url: 'js/common.js'
+    }
+
+    exercise {
+        dependsOn 'common'
+
+        resource url: 'js/exercise.js'
+    }
     
     application {
         defaultBundle _bundleName
@@ -64,6 +74,13 @@ modules = {
         resource url: [dir: 'bootswatch/swatchmaker', file: 'swatchmaker-responsive.less'], attrs: [rel: 'stylesheet/less', type: 'css'], bundle: _bundleName
 
         resource url: [dir: 'stylesheets', file: 'docs.css'], bundle: _bundleName
+    }
+
+    bootbox {
+        dependsOn 'bootswatch'
+        defaultBundle _bundleName
+
+        resource url: 'js/bootbox.min.js'
     }
     
     'bootstrap-lightbox' {
