@@ -21,13 +21,15 @@
                 <h1>執行</h1>
             </div>
             <div>
-                <g:img dir="images" file="cloud_computing.png" />
+                <g:img dir="images" file="cloud_computing.png" style="padding:10px" />
 
                 <!--WebStart啟動按鈕-->
                 <g:link controller="home" action="webstart" class="btn btn-primary">
                     <i class="icon icon-download-alt"></i>
                     啟動客戶端工具
                 </g:link>
+
+                <div class="alert" style="margin-top:1em">提示！最新版本執行後<strong style="color:red">不會顯示視窗畫面</strong>，關閉客戶端工具請在工作列點選「<i class="icon icon-play"></i>」圖示，選擇選單的「Exit」以結束工具。</div>
             </div>
         </section>
 
@@ -103,48 +105,53 @@
     $('#jre-version').html(deployJava.versionCheck('1.6+')?'<font color="green">Installed</a>':'<font color="red">Missing</font>'+'<br/><strong>'+deployJava.getJREs()+'</strong>');
     $('#jws-version').html(deployJava.isWebStartInstalled('1.6')?'<font color="green">Installed</a>':'<font color="red">Missing</font>');
 
-    $.ajax({
-        type: 'post',
-        url: 'http://localhost:${clientPort}/',
-        data: {
-            action: 'versions'
-        },
-        timeout: 30*1000,
-        success: function(data) {
-            if (data && data.result && data.result.status=='success') {
-                
-                $('#client-status').html('<font color="green">已啟動</font>');
+    var pingClient = function() {
+        $.ajax({
+            type: 'post',
+            url: 'http://localhost:${clientPort}/',
+            data: {
+                action: 'versions'
+            },
+            timeout: 30*1000,
+            success: function(data) {
+                if (data && data.result && data.result.status=='success') {
+                    
+                    $('#client-status').html('<font color="green">已啟動</font>');
 
-                if (data.result.os) {
-                    $('#os-name').text(data.result.os.name);
-                    $('#os-version').text(data.result.os.version);
-                }
+                    if (data.result.os) {
+                        $('#os-name').text(data.result.os.name);
+                        $('#os-version').text(data.result.os.version);
+                    }
 
-                var versions = data.result.versions;
-                
-                for (var key in versions) {
-                    if (versions.hasOwnProperty(key)) {
-                        $('#client-versions').append((versions[key].exitValue==0?'<font color="green" class="pull-right">Installed</font>':'<font color="red" class="pull-right">Missing</font>')+'<h3>'+key+'</h3>'+'<pre>'+versions[key].stdout+'</pre>');
+                    var versions = data.result.versions;
+                    
+                    for (var key in versions) {
+                        if (versions.hasOwnProperty(key)) {
+                            $('#client-versions').append((versions[key].exitValue==0?'<font color="green" class="pull-right">Installed</font>':'<font color="red" class="pull-right">Missing</font>')+'<h3>'+key+'</h3>'+'<pre>'+versions[key].stdout+'</pre>');
+                        }
+                    }
+                    
+                    
+                    if (versions.java && versions.java.exitValue==0 && versions.javac && versions.javac.exitValue==0) {
+                        $('#jdk-version').html('<font color="green">Installed</font>');
+                    }
+                    else {
+                        $('#jdk-version').html('<font color="red">Missing</font>');
                     }
                 }
-                
-                
-                if (versions.java && versions.java.exitValue==0 && versions.javac && versions.javac.exitValue==0) {
-                    $('#jdk-version').html('<font color="green">Installed</font>');
-                }
                 else {
-                    $('#jdk-version').html('<font color="red">Missing</font>');
+                    $('#client-status').html('<font color="red">發生錯誤</font>');
                 }
-            }
-            else {
-                $('#client-status').html('<font color="red">發生錯誤</font>');
-            }
-        },
-        error: function(data) {
-            $('#client-status').html('<font color="red">未啟動</font>');
-        }
-    });
+            },
+            error: function(data) {
+                $('#client-status').html('<font color="red">未啟動</font>');
 
+                setTimeout(pingClient, 3000);
+            }
+        });
+    };
+
+    pingClient();
 })();
 </r:script>
 </body>

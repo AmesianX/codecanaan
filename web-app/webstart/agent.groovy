@@ -43,6 +43,14 @@ class SimpleGroovyServlet extends HttpServlet {
     }
 }
 
+//delete the .jnlp file
+try {
+    new File(System.properties['jnlpx.origFilenameArg'])?.delete()
+}
+catch(e) {
+    //none
+}
+
 def osname = System.properties['os.name']
 def isWindows = osname.toLowerCase().startsWith('windows')
 def isMac = osname.toLowerCase().startsWith('mac')
