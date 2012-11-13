@@ -5,9 +5,10 @@ import javax.servlet.http.*
 import javax.servlet.ServletConfig
 import groovy.json.*
 
-import groovy.swing.SwingBuilder
+//import groovy.swing.SwingBuilder
 import javax.swing.*
 import java.awt.*
+import java.awt.event.*
 
 class FileBinaryCategory{    
     def static leftShift(File file, URL url){    
@@ -48,7 +49,7 @@ def isMac = osname.toLowerCase().startsWith('mac')
 def isLinux = osname.toLowerCase().startsWith('linux')
 
 //download toolkits.zip
-def toolkitsUrl = System.properties['codecanaan.toolkits.url'].toURL()
+def toolkitsUrl = System.properties['core.toolkits.url'].toURL()
 
 //create temp dir
 def tempfile = File.createTempFile('temp', '.dump')
@@ -66,15 +67,15 @@ ant.unzip(src: toolkits, dest: tempdir, overwrite: 'true') {
     mapper(type: 'flatten')
 }
 
-def httpOrigin = System.properties['http.origin']?System.properties['http.origin']:'*'
-def jettyPort = System.properties['jetty.port']?new Integer(System.properties['jetty.port']):1337
+def httpOrigin = System.properties['core.http.origin']?System.properties['core.http.origin']:'*'
+def clientPort = System.properties['core.client.port']?new Integer(System.properties['core.client.port']):1337
 
-def swing = new SwingBuilder()
+/*def swing = new SwingBuilder()
 swing.edt {
     frame(title: 'CodeCanaan', defaultCloseOperation:JFrame.EXIT_ON_CLOSE, size: [320, 240], pack: false, show: true) {
         lookAndFeel("system")
         borderLayout()
-        label("練習過程請勿關閉 port: ${jettyPort}", constraints: BorderLayout.NORTH)
+        label("練習過程請勿關閉 port: ${clientPort}", constraints: BorderLayout.NORTH)
         button(
             text: '結束',
             actionPerformed: {
@@ -83,11 +84,75 @@ swing.edt {
             constraints: BorderLayout.SOUTH
         )
     }
+}*/
+
+UIManager.lookAndFeel = UIManager.systemLookAndFeelClassName
+UIManager.put('swing.boldMetal', Boolean.FALSE)
+
+//工作列圖示
+def iconFile = new File(tempdir, 'play-icon.png').absolutePath
+
+//if (!SystemTray.isSupported()) {
+
+def popup = new PopupMenu()
+def trayIcon = new java.awt.TrayIcon(Toolkit.defaultToolkit.getImage(iconFile))
+def tray = SystemTray.systemTray
+
+// Create a popup menu components
+MenuItem aboutItem = new MenuItem('About')
+Menu displayMenu = new Menu('Display')
+MenuItem portItem = new MenuItem('Port')
+MenuItem exitItem = new MenuItem('Exit')
+
+//Add components to popup menu
+popup.add(aboutItem)
+popup.addSeparator()
+popup.add(displayMenu)
+displayMenu.add(portItem)
+popup.add(exitItem)
+
+trayIcon.setPopupMenu(popup)
+
+try {
+    tray.add(trayIcon)
+} catch (Exception e) {
+    println('TrayIcon could not be added.')
 }
+
+def aboutAction = new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        JOptionPane.showMessageDialog null, 'CodeCanaan Client Tools'
+    }
+}
+trayIcon.addActionListener(aboutAction)
+aboutItem.addActionListener(aboutAction)
+
+ActionListener listener = new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        def item = (MenuItem)e.getSource();
+        if ("Port".equals(item.label)) {
+            trayIcon.displayMessage(
+                'Client Port',
+                "${clientPort}",
+                TrayIcon.MessageType.INFO
+            )            
+        }
+    }
+};
+
+portItem.addActionListener(listener)
+
+exitItem.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        tray.remove(trayIcon)
+        System.exit(0)
+    }
+})
+
 
 def counter = 0
 
-SimpleGroovyServlet.run(jettyPort) { ->
+SimpleGroovyServlet.run(clientPort) { ->
     response.addHeader('Access-Control-Allow-Origin', httpOrigin)
     response.contentType = 'application/json'
     

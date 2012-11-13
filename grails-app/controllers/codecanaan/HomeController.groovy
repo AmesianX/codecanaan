@@ -6,8 +6,7 @@ class HomeController {
     def index() {
         [
             posts: Post.findAllByType(PostType.ANNOUNCE, [max: 10]),
-            courses: Course.list(),
-            jettyPort: session.jettyPort?session.jettyPort:1337
+            courses: Course.list()
         ]
     }
     
@@ -36,7 +35,7 @@ class HomeController {
             contentType: 'application/x-java-jnlp-file',
             template: "webstart",
             model: [
-                jettyPort: user?.clientPort?user?.clientPort:1337
+                clientPort: user?.clientPort?user?.clientPort:1337
             ]
         )
     }

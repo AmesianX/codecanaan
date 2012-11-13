@@ -12,9 +12,9 @@
     <resources>
         <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se" />
         <jar href="lib/webstart-0.0.1.jar" />
-        <property name="jetty.port" value="${jettyPort}" />
-        <property name="http.origin" value="*" />
-        <property name="codecanaan.toolkits.url" value="${resource(dir: 'webstart', file: 'toolkits.zip', absolute: true)}" />
+        <property name="core.client.port" value="${clientPort}" />
+        <property name="core.http.origin" value="*" />
+        <property name="core.toolkits.url" value="${resource(dir: 'webstart', file: 'toolkits.zip', absolute: true)}" />
         <property name="core.script.type" value="groovy" />
         <property name="core.script.url" value="${resource(dir: 'webstart', file: 'agent.groovy', absolute: true)}" />
     </resources>
