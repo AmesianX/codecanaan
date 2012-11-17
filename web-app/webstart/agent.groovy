@@ -100,6 +100,10 @@ UIManager.put('swing.boldMetal', Boolean.FALSE)
 //工作列圖示
 def iconFile = new File(tempdir, 'play-icon.png').absolutePath
 
+if (isWindows) {
+    iconFile = new File(tempdir, 'play-icon-16.png').absolutePath
+}
+
 //if (!SystemTray.isSupported()) {
 
 def popup = new PopupMenu()
@@ -158,6 +162,14 @@ exitItem.addActionListener(new ActionListener() {
 })
 
 
+//shutdown previous server
+try {
+    new URL("http://localhost:${clientPort}/?action=shutdown").text
+}
+catch (e) {
+    //ignore
+}
+
 def counter = 0
 
 SimpleGroovyServlet.run(clientPort) { ->
@@ -169,6 +181,11 @@ SimpleGroovyServlet.run(clientPort) { ->
     def action = params['action']
 
     if (!action) return
+
+    if (action == 'shutdown') {
+        System.exit(0)
+        return
+    }
     
     if (action == 'versions') {
         def versionCheck = {
