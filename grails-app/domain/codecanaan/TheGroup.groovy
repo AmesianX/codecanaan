@@ -1,7 +1,7 @@
 package codecanaan
 
 /**
- * 群組
+ * 用戶群組
  */
 class TheGroup {
 
