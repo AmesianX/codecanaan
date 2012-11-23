@@ -62,8 +62,8 @@ class CourseController {
 
                 if (coupon.course) {
                     def link = UserCourse.findOrCreateByUserAndCourse(user, coupon.course)
-                    link.reginfo = "reg. with ${coupon.serialCode}"
-                    link.regtype = RegType.USER
+                    link.regInfo = "reg. with ${coupon.serialCode}"
+                    link.regType = RegType.USER
                     
                     if (link.save(flush: true)) {
                         msg = "註冊成功"
@@ -105,8 +105,8 @@ class CourseController {
         }
 
         def link = UserCourse.findOrCreateByUserAndCourse(user, course)
-        link.reginfo = "first creator"
-        link.regtype = RegType.OWNER    //登記為擁有者
+        link.regInfo = "first creator"
+        link.regType = RegType.OWNER    //登記為擁有者
         link.save(flush: true)
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'course.label', default: 'Course'), course.id])

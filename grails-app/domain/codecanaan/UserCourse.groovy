@@ -14,22 +14,22 @@ public enum RegType {
  */
 class UserCourse {
     
-	String reginfo	                    //註冊資訊
-    RegType regtype = RegType.GUEST     //註冊類型
+    String regInfo = ""                 //註冊資訊
+    RegType regType = RegType.GUEST     //註冊類型
 
-	Date dateCreated    //建立日期
+    Date dateCreated    //建立日期
     Date lastUpdated    //修改日期
 
     static belongsTo = [user: User, course: Course]
 
     static constraints = {
-    	reginfo nullable: true, empty: true
+        regInfo nullable: true, empty: true
     }
 
     /**
      * 建立新的使用者課程關聯
      */
-	static UserCourse create(User user, Course course, boolean flush = false) {
-		new UserCourse(user: user, course: course).save(flush: flush, insert: true)
-	}
+    static UserCourse create(User user, Course course, boolean flush = false) {
+        new UserCourse(user: user, course: course).save(flush: flush, insert: true)
+    }
 }
