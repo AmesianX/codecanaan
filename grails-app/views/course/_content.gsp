@@ -31,7 +31,12 @@
     <div class="page-header">
         <h1>${content.title} <small><g:message code="content.contentType.${content.type}" default="Content" /></small></h1>
     </div>
-    <div class="markdown-source">${content.description?.encodeAsHTML()}</div>
+    <g:if test="${content.type==codecanaan.ContentType.SLIDE}">
+        <iframe width="100%" height="400" src="${createLink(controller:'content', action:'deckjs', id:content.id)}" style="width:100%;height:400px;border:none"></iframe>
+    </g:if>
+    <g:else>
+        <div class="markdown-source">${content.description?.encodeAsHTML()}</div>
+    </g:else>
 </section>
 
 <sec:ifLoggedIn>
@@ -92,8 +97,8 @@
             </g:if>
         </div>
     </g:if>
-    <g:elseif test="${content.type==codecanaan.ContentType.TUTORIAL}">
-        <!--講義-->
+    <g:elseif test="${content.type==codecanaan.ContentType.TUTORIAL||content.type==codecanaan.ContentType.SLIDE}">
+        <!--講義或簡報-->
         <label class="checkbox"><g:checkBox name="cmdCheck" value="YES" checked="${record?.passed}" /> 打勾代表你已經閱讀完畢</label>
     </g:elseif>
     <g:elseif test="${content.type==codecanaan.ContentType.QUIZ}">

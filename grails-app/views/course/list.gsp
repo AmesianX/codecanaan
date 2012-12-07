@@ -37,7 +37,7 @@
                     </sec:ifAllGranted>
                     <sec:ifAllGranted roles="ROLE_AUTHOR">
                         <li>
-                            <g:link controller="group" action="create">
+                            <g:link controller="schedule" action="create">
                                 <i class="icon icon-group"></i>
                                 新增群組
                             </g:link>
@@ -92,16 +92,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <g:if test="${!groups}">
+                        <g:if test="${!schedules}">
                             <tr>
                                 <td colspan="3">您尚未加入任何群組</td>
                             </tr>
                         </g:if>
-                        <g:each in="${groups}" var="group" status="i">
+                        <g:each in="${schedules}" var="schedule" status="i">
                             <tr>
                                 <td>${i+1}</td>
-                                <td>${group.title}</td>
-                                <td><span class="muted">${group.name}</span></td>
+                                <td>${schedule.title}</td>
+                                <td><span class="muted">${schedule.name}</span></td>
                             </tr>
                         </g:each>
                     </tbody>

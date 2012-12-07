@@ -1,6 +1,6 @@
 package codecanaan
 
-class GroupController {
+class ScheduleController {
 
 	def springSecurityService
 
@@ -15,19 +15,19 @@ class GroupController {
         //計算流水號
         def seq = TheGroup.count()
         
-        def group = new TheGroup(params)
+        def schedule = new Schedule(params)
         
         //套用預設值
-        group.name = "group-${seq+1}"
-        group.title = "Group ${seq+1}"
-        group.creator = user
+        schedule.name = "schedule-${seq+1}"
+        schedule.title = "Schedule ${seq+1}"
+        schedule.creator = user
 
-        group.save(flush: true)
+        schedule.save(flush: true)
 
         //建立使用者與群組關連
-        def link = UserGroup.create(user, group, true)
+        def link = UserSchedule.create(user, schedule, true)
         if (link) {
-        	link.roleType = GroupRoleType.OWNER
+        	link.roleType = ScheduleRoleType.OWNER
         	link.save(flush: true)
         }
 

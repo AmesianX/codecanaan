@@ -3,7 +3,7 @@ package codecanaan
 /**
  * 用戶群組
  */
-class TheGroup {
+class Schedule {
 
 	String name
 	String title

@@ -32,16 +32,16 @@ class CourseController {
             courses << link.course
         }
 
-        links = UserGroup.findAllByUser(user)
+        links = UserSchedule.findAllByUser(user)
 
-        def groups = []
+        def schedules = []
 
         links.each {
             link ->
-            groups << link.group
+            schedules << link.schedule
         }
 
-        [courses: courses, groups: groups]
+        [courses: courses, schedules: schedules]
     }
 
     /**
@@ -183,7 +183,9 @@ class CourseController {
         def record = Record.findByUserAndContent(user, content)
 
         //檢查修改權限
-        def authoring = user && (course.creator==user)
+        //def authoring = user && (course.creator==user)
+        def authoring = true
+        //強制顯示解答（進度表功能完成後應移除）
 
         [
             user: user,

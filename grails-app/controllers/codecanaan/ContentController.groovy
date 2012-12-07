@@ -169,4 +169,20 @@ class ContentController {
         response.outputStream << imageData
         response.outputStream.flush()
     }
+
+    /**
+     * 產生簡報
+     */
+    def deckjs(Long id) {
+        def content = Content.get(id)
+        
+        if (!content) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'content.label', default: 'Content'), id])
+            redirect(controller: 'course')
+            return
+        }
+
+        [content: content]
+    }
+
 }

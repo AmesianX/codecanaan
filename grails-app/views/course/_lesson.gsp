@@ -25,6 +25,10 @@
                 <i class="icon icon-pencil"></i>
                 <g:message code="default.add.label" default="Add {0}" args="[message(code: 'content.contentType.TUTORIAL', default: 'Tutorial')]" />
             </g:link></li>
+            <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'SLIDE']">
+                <i class="icon icon-pencil"></i>
+                <g:message code="default.add.label" default="Add {0}" args="[message(code: 'content.contentType.SLIDE', default: 'Slides')]" />
+            </g:link></li>
             <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'CODE']">
                 <i class="icon icon-pencil"></i>
                 <g:message code="default.add.label" default="Add {0}" args="[message(code: 'content.contentType.CODE', default: 'Code')]" />
