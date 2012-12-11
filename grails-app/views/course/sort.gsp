@@ -7,7 +7,7 @@
 <body>
 <div class="row">
     <div class="span3">
-        請用滑鼠上下拖曳右邊的內容清單，以重新調整內容排序。
+        <div class="alert alert-info"><g:message code="default.ordering.description" /></div>
     </div>
     <div class="span9">
         <g:form controller="course" action="sortUpdate" id="${course.id}" method="post">
@@ -20,6 +20,7 @@
 
             <br/>
             <g:submitButton name="save" value="${message(code: 'default.button.update.label', default: 'Update')}" class="btn btn-primary" />
+            <g:link controller="course" action="show" id="${course.id}" class="btn"><g:message code="default.button.cancel.label" default="Cancel" /></g:link>
         </g:form>
     </div>
 </div>

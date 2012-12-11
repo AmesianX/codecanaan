@@ -4,7 +4,8 @@
     <div class="btn-group pull-right">
         <g:link action="show" id="${course.id}" params="[editor: true]" class="btn">
             <i class="icon-edit"></i>
-            修改課程
+            <!--修改課程-->
+            <g:message code="default.modify.label" default="Modify {0}" args="[message(code: 'course.label', default: 'Course')]" />
         </g:link>
         <button class="btn dropdown-toggle" data-toggle="dropdown">
             <span class="caret"></span>
@@ -13,19 +14,22 @@
             <li>
                 <g:link controller="lesson" action="create" params="['course.id': course.id]">
                     <i class="icon icon-book"></i>
-                    新增單元
+                    <!--新增單元-->
+                    <g:message code="default.add.label" default="Add {0}" args="[message(code: 'lesson.label', default: 'Lesson')]" />
                 </g:link>
             </li>
             <li>
                 <g:link controller="course" action="sort" id="${course.id}">
                     <i class="icon icon-sort"></i>
-                    單元排序
+                    <!--調整單元排序-->
+                    <g:message code="default.ordering.label" default="{0} Ordering" args="[message(code: 'lesson.label', default: 'Lesson')]" />
                 </g:link>
             </li>
             <li>
                 <g:link controller="course" action="delete" id="${course.id}" onclick="return confirm('Are you sure???');">
                     <i class="icon icon-remove"></i>
-                    刪除課程
+                    <!--刪除課程-->
+                    <g:message code="default.delete.label" default="Delete {0}" args="[message(code: 'course.label', default: 'Course')]" />
                 </g:link>
             </li>
         </ul>

@@ -32,12 +32,14 @@
         <h1>${content.title} <small><g:message code="content.contentType.${content.type}" default="Content" /></small></h1>
     </div>
     <g:if test="${content.type==codecanaan.ContentType.SLIDE}">
-        <iframe width="100%" height="400" src="${createLink(controller:'content', action:'deckjs', id:content.id)}" style="width:100%;height:400px;border:none"></iframe>
+        <iframe width="100%" height="400" src="${createLink(controller:'content', action:'deckjs', id:content.id)}" style="width:100%;height:480px;border:none"></iframe>
     </g:if>
     <g:else>
         <div class="markdown-source">${content.description?.encodeAsHTML()}</div>
     </g:else>
 </section>
+
+<hr class="soften" />
 
 <sec:ifLoggedIn>
     <!--程式碼區塊-->

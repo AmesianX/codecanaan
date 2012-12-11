@@ -50,15 +50,6 @@
                         </g:link>
                     </li>
                 </sec:ifNotGranted>
-                <sec:ifAllGranted roles="ROLE_ADMIN">
-                    <!--管理者權限-->
-                    <li>
-                        <g:link controller="post" action="create">
-                            <i class="icon icon-file"></i>
-                            發佈新頁面
-                        </g:link>
-                    </li>
-                </sec:ifAllGranted>
             </ul>
         </li>
     </sec:ifLoggedIn>

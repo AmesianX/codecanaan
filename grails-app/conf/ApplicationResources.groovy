@@ -75,13 +75,6 @@ modules = {
 
         resource url: [dir: 'stylesheets', file: 'docs.css'], bundle: _bundleName
     }
-
-    bootbox {
-        dependsOn 'bootswatch'
-        defaultBundle _bundleName
-
-        resource url: 'js/bootbox.min.js'
-    }
     
     'bootstrap-lightbox' {
         dependsOn 'bootswatch'
@@ -90,6 +83,19 @@ modules = {
         resource url: [dir: 'bootstrap-lightbox', file: 'bootstrap-lightbox.css'], bundle: _bundleName
         
         resource url: [dir: 'bootstrap-lightbox', file: 'bootstrap-lightbox.js']
+    }
+
+    'bootstrap-ext' {
+        dependsOn 'bootswatch'
+        defaultBundle _bundleName
+
+        resource url: 'bootstrap-ext/bootbox/bootbox.min.js'
+
+        resource url: 'bootstrap-ext/datepicker/css/datepicker.css'
+        resource url: 'bootstrap-ext/datepicker/js/bootstrap-datepicker.js'
+
+        resource url: 'bootstrap-ext/timepicker/compiled/timepicker.css'
+        resource url: 'bootstrap-ext/timepicker/js/bootstrap-timepicker.js'
     }
     
     'font-awesome' {
