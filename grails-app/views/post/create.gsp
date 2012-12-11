@@ -22,7 +22,7 @@
 			<span class="required-indicator">*</span>
 		</label>
 		<div class="controls">
-			<g:textField name="name" value="${post?.name}" class="input input-medium" />
+			<g:textField name="name" value="${post?.name}" class="input input-xlarge" />
 		</div>
 	</div>
 	<div class="control-group ${hasErrors(bean: post, field: 'title', 'error')} ">

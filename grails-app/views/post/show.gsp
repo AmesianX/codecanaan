@@ -21,10 +21,10 @@
             <!--controls-->
             <sec:ifAllGranted roles="ROLE_ADMIN">
                 <g:if test="${!post?.id}">
-                    <g:link controller="post" action="create" params="[name: post?.name]" class="btn">建立</g:link>
+                    <g:link controller="post" action="create" params="[name: post?.name]" class="btn"><g:message code="default.button.create.label" /></g:link>
                 </g:if>
                 <g:else>
-                    <g:link controller="post" action="edit" id="${post?.id}" class="btn">修改</g:link>
+                    <g:link controller="post" action="edit" id="${post?.id}" class="btn"><g:message code="default.button.edit.label" /></g:link>
                 </g:else>
             </sec:ifAllGranted>
         </div>

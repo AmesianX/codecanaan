@@ -6,13 +6,29 @@
 <body>
 <div class="row">
     <div class="span6">
-        <h4>佈告欄</h4>
-        <ul>
-            <g:each in="${posts}" var="post" status="i">
-                <li><g:link controller="post" action="show" params="[name: post.name]">${post.title}</g:link> <small class="muted">(${post.hits})</small></li>
-            </g:each>
-        </ul>
-        <g:link controller="post" action="list">瀏覽更多訊息</g:link>
+        <g:if test="${posts?.size()>0}">
+            <div class="announce-block">
+                <g:each in="${posts}" var="post" status="i">
+                    <dl>
+                        <dt>
+                            <g:link controller="post" action="show" params="[name: post.name]">${post.title}</g:link>
+                        </dt>
+                        <dd>
+                            <ul class="a-info">
+                                <li class="visits"><em>${post.hits}</em> hits</li>
+                                <li class="posted"><small class="muted">${post.dateCreated.format('yyyy/MM/dd')}</small></li>
+                            </ul>
+                        </dd>
+                    </dl>
+                </g:each>
+            </div>
+            <div style="text-align:right">
+                <g:link controller="post" action="list"><g:message code="default.more.label" args="[message(code:'postType.ANNOUNCE.label')]" /> ...</g:link>
+            </div>
+        </g:if>
+        <g:else>
+            <g:message code="default.empty.description" />
+        </g:else>
         
         <div style="text-align:center;padding:2em 0">
             <font style="font-size:32pt" class="popover-auto logo-font" title="關於 CodeCanaan" data-placement="bottom" data-content="根據聖經記載，Canaan（迦南）是上帝賜給以色列人祖先的應許之地，選民在流奶與蜜的迦南美地自由安居。CodeCanaan 是程式設計學習者的迦南美地，我們致力於創造一個自由開放且樂趣無窮的學習環境。">CodeCanaan</font><br/>

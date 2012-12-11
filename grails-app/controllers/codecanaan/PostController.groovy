@@ -43,7 +43,10 @@ class PostController {
     }
     
     def create() {
-        [post: new Post(params)]
+        def post = new Post(params)
+        post.name = "news-${new Date().format('yyyy')}-${new Date().format('MMddHHmmss')}"
+
+        [ post: post ]
     }
     
     def save() {

@@ -13,31 +13,36 @@
             <li class="${type==codecanaan.PostType.ANNOUNCE?'active':''}">
                 <g:link action="list" params="[type: 'ANNOUNCE']">
                     <i class="icon icon-chevron-right"></i>
-                    公告
+                    <g:message code="postType.ANNOUNCE.label" />
                 </g:link>
             </li>
             <li class="${type==codecanaan.PostType.STATIC?'active':''}">
                 <g:link action="list" params="[type: 'STATIC']">
                     <i class="icon icon-chevron-right"></i>
-                    靜態頁面
+                    <g:message code="postType.STATIC.label" />
                 </g:link>
             </li>
         </ul>
+
+        <hr class="soften" />
+        <sec:ifAnyGranted roles="ROLE_ADMIN">
+            <g:link action="create" params="[type:type]" class="btn"><g:message code="default.create.label" args="[message(code:'post.label')]" /></g:link>
+        </sec:ifAnyGranted>
     </div>
     <div class="span9">
         <table class="table">
             <thead>
                 <tr>
                     <th width="40">#</th>
-                    <th>標題</th>
-                    <th width="100">日期</th>
-                    <th width="60">瀏覽次數</th>
+                    <th><g:message code="post.title.label" /></th>
+                    <th width="100"><g:message code="post.dateCreated.label" /></th>
+                    <th width="60"><g:message code="post.hits.label" /></th>
                 </tr>
             </thead>
             <tbody>
                 <g:if test="${!posts}">
                     <tr>
-                        <td colspan="4">沒有任何頁面</td>
+                        <td colspan="4"><div style="text-align:center"><g:message code="default.empty.description" /></div></td>
                     </tr>
                 </g:if>
                 <g:each in="${posts}" var="post" status="i">

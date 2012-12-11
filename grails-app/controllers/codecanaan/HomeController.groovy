@@ -4,8 +4,12 @@ class HomeController {
     def springSecurityService
 
     def index() {
+        def posts = Post.findAll(max: 10, sort: 'dateCreated', order: 'desc') {
+            type == PostType.ANNOUNCE
+        }
+
         [
-            posts: Post.findAllByType(PostType.ANNOUNCE, [max: 10]),
+            posts: posts,
             courses: Course.list()
         ]
     }
