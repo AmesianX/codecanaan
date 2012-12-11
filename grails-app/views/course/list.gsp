@@ -18,7 +18,7 @@
         </g:form>
     </div>
     <div class="span9">
-        <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_AUTHOR">
+        <sec:ifAnyGranted roles="ROLE_AUTHOR">
             <!--功能清單-->
             <div class="btn-group pull-right">
                 <a class="btn dropdown-toggle" data-toggle="dropdown">
@@ -28,9 +28,10 @@
                 </a>
                 <ul class="dropdown-menu">
                     <sec:ifAllGranted roles="ROLE_AUTHOR">
-                        <li><!--新增課程-->
+                        <li>
                             <g:link controller="course" action="create">
                                 <i class="icon icon-book"></i>
+                                <!--新增課程-->
                                 <g:message code="default.add.label" default="Add {0}" args="[message(code: 'course.label', default: 'Course')]" />
                             </g:link>
                         </li>
@@ -50,14 +51,14 @@
             <thead>
                 <tr>
                     <th width="30">#</th>
-                    <th>課程名稱</th>
-                    <th width="100">代碼</th>
+                    <th><g:message code="course.title.label" /></th>
+                    <th width="100">ID</th>
                 </tr>
             </thead>
             <tbody>
                <g:if test="${!courses}">
                     <tr>
-                        <td colspan="3">您尚未註冊任何課程</td>
+                        <td colspan="3"><div style="text-align:center"><g:message code="default.empty.description" /></div></td>
                     </tr>
                 </g:if>
                 <g:each in="${courses}" var="course" status="i">

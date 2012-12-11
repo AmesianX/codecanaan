@@ -4,9 +4,9 @@ package codecanaan
  * 定義註冊類型
  */
 public enum RegType {
-    OWNER,  //課程著作權擁有者
-    GUEST,  //訪客（僅限瀏覽）
-    USER;   //註冊使用者
+    AUTHOR, //課程作者及協作者
+    USER,   //註冊使用者
+    GUEST;  //訪客（僅限瀏覽）
 }
 
 /**
@@ -31,5 +31,12 @@ class UserCourse {
      */
     static UserCourse create(User user, Course course, boolean flush = false) {
         new UserCourse(user: user, course: course).save(flush: flush, insert: true)
+    }
+
+    /**
+     * 建立新的使用者課程關聯（同時設定權限）
+     */
+    static UserCourse create(User user, Course course, RegType regType, boolean flush = false) {
+        new UserCourse(user: user, course: course, regType: regType).save(flush: flush, insert: true)
     }
 }

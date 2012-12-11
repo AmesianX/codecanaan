@@ -50,9 +50,27 @@ class ScheduleController {
     }
 
     /**
+     * 教學進度修改
+     */
+    def edit(Long id) {
+        def user = springSecurityService.currentUser
+
+        if (!user) {
+            redirect(url: '/')
+            return
+        }
+
+        def schedule = Schedule.get(id)
+
+        def scheduleLessons = ScheduleLesson.findAllBySchedule(schedule)
+
+        [schedule: schedule, scheduleLessons: scheduleLessons]
+    }
+
+    /**
      * 資料維護處理
      */
-    def showUpdate(Long id) {
+    def update(Long id) {
         def user = springSecurityService.currentUser
 
         if (!user) {
@@ -74,6 +92,13 @@ class ScheduleController {
         }
 
         if (params.actionUpdate) {
+
+            //更新基本資料
+            schedule.title = params.title
+            schedule.save(flush: true)
+
+            //更新課程單元連結
+
             def linkIdList = (params.linkId instanceof String)?[params.linkId]:params.linkId
 
             def beginDate = (params.beginDate instanceof String)?[params.beginDate]:params.beginDate
@@ -112,7 +137,7 @@ class ScheduleController {
             }
         }
         
-        redirect(action: 'show', id: schedule.id)
+        redirect(action: 'edit', id: schedule.id)
     }
 
     /**

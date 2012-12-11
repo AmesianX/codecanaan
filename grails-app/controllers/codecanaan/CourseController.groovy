@@ -106,7 +106,7 @@ class CourseController {
 
         def link = UserCourse.findOrCreateByUserAndCourse(user, course)
         link.regInfo = "first creator"
-        link.regType = RegType.OWNER    //登記為擁有者
+        link.regType = RegType.AUTHOR    //登記為作者
         link.save(flush: true)
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'course.label', default: 'Course'), course.id])
@@ -183,8 +183,17 @@ class CourseController {
         def record = Record.findByUserAndContent(user, content)
 
         //檢查修改權限
-        //def authoring = user && (course.creator==user)
-        def authoring = true
+        def authoring = false
+        if (user) {
+            //登記為作者可編輯
+            def link = UserCourse.findByUserAndCourse(user, course)
+            if (link) {
+                if (link.regType == RegType.AUTHOR) {
+                    authoring = true
+                }
+            }
+        }
+
         //強制顯示解答（進度表功能完成後應移除）
 
         [

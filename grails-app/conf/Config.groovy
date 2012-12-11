@@ -134,6 +134,10 @@ avatarPlugin {
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'codecanaan.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'codecanaan.UserRole'
 grails.plugins.springsecurity.authority.className = 'codecanaan.Role'
+grails.plugins.springsecurity.useSwitchUserFilter = true
+grails.plugins.springsecurity.controllerAnnotations.staticRules = [
+   '/j_spring_security_switch_user': ['ROLE_ADMIN']
+]
 
 grails.plugins.springsecurity.facebook.domain.classname='codecanaan.FacebookUser'
 grails.plugins.springsecurity.facebook.appId='--appid--'

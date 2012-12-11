@@ -12,7 +12,7 @@
         
     </div>
     <div class="span9">
-        <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_AUTHOR">
+        <sec:ifAnyGranted roles="ROLE_TEACHER">
             <!--功能清單-->
             <div class="btn-group pull-right">
                 <a class="btn dropdown-toggle" data-toggle="dropdown">

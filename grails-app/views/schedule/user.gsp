@@ -20,6 +20,7 @@
     <div class="span9">
 
         <div class="pull-right">
+            <!--返回-->
             <g:link controller="schedule" action="show" id="${schedule.id}" class="btn"><g:message code="default.button.goback.label" /></g:link>
         </div>
 

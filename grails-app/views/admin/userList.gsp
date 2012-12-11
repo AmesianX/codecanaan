@@ -19,7 +19,10 @@
         <g:each in="${users}" var="user" status="i">
             <tr>
                 <td>${i+1}</td>
-                <td>${user.username}</td>
+                <td>
+                    ${user.username}
+                    <a href="${request.contextPath}/j_spring_security_switch_user?j_username=${user.username}">變身</a>
+                </td>
                 <td>${user.email}</td>
                 <td>${user.fullName}</td>
                 <td>${user.dateCreated?.format('yyyy/MM/dd')}</td>

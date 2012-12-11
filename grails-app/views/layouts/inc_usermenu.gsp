@@ -50,6 +50,14 @@
                         </g:link>
                     </li>
                 </sec:ifNotGranted>
+                <sec:ifSwitched>
+                    <li>
+                        <a href='${request.contextPath}/j_spring_security_exit_user'>
+                            <i class="icon icon-off"></i>
+                            Resume as <sec:switchedUserOriginalUsername/>
+                        </a>
+                    </li>
+                </sec:ifSwitched>
             </ul>
         </li>
     </sec:ifLoggedIn>
