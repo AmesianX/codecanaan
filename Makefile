@@ -31,6 +31,9 @@ download:
 download-secret:
 	wget -O ~/.grails/codecanaan-config.groovy http://s3.lyhdev.com/apps/codecanaan-config.groovy
 
+done:
+	make clean war upload && make remote-deploy
+
 remote-deploy:
 	ssh -t kyle@contpub.org 'cd codecanaan && make update && make download && sudo make deploy'
 
