@@ -10,6 +10,10 @@
 
 	<title>Test-deck</title>
 
+	<!--require and layout resources-->
+	<r:require modules="jquery, webfont, highlightjs"/>
+	<r:layoutResources />
+
 	<!-- Core and extension CSS files -->
 	<link rel="stylesheet" href="${resource(dir: 'deckjs/core', file: 'deck.core.css')}">
 	<link rel="stylesheet" href="${resource(dir: 'deckjs/extensions/goto', file: 'deck.goto.css')}">
@@ -23,10 +27,12 @@
 	<link rel="stylesheet" id="transition-theme-link" href="${resource(dir: 'deckjs/themes/transition', file: 'horizontal-slide.css')}">
 
 	<!-- Custom CSS just for this page -->
-	<!--<link rel="stylesheet" href="introduction.css">-->
+	<link rel="stylesheet" id="transition-theme-link" href="${resource(dir: 'deckjs', file: 'customize.css')}">
 
-	<script src="${resource(dir: 'deckjs', file: 'jquery-1.7.2.min.js')}"></script>
+	<!--<script src="${resource(dir: 'deckjs', file: 'jquery-1.7.2.min.js')}"></script>-->
 	<script src="${resource(dir: 'deckjs', file: 'modernizr.custom.js')}"></script>
+
+	<!--justfont--><r:script>window.jfAsyncInit=function(){ctb.main({'appId':'04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=','tag':{'ct1':'.deck-container .slide pre','ct2':{'0':'.deck-container .slide p','1':'.deck-container .slide li'},'ct3':{'0':'.deck-container .slide h2','1':'.deck-container .slide h3','2':'.deck-container .slide h4','3':'.deck-container .slide h5','4':'.deck-container .slide h6','5':'.deck-container .slide h1 small'},'ct4':'.deck-container .slide h1','ct5':'.deck-container .slide blockquote'}});};(function(){var jf=document.createElement('script');jf.type='text/javascript';jf.async=true;jf.src='http://ds.justfont.com/core/js/v1.0/04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(jf,s);})();</r:script>
 </head>
 
 <body class="deck-container">
@@ -76,6 +82,10 @@
 
 <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
 
+<!--layout resources-->
+<r:layoutResources />
+
+<!--deckjs resources-->
 <script src="${resource(dir: 'deckjs/core', file: 'deck.core.js')}"></script>
 <script src="${resource(dir: 'deckjs/extensions/menu', file: 'deck.menu.js')}"></script>
 <script src="${resource(dir: 'deckjs/extensions/goto', file: 'deck.goto.js')}"></script>
@@ -87,6 +97,9 @@
 
 <!-- Initialize the deck. You can put this in an external file if desired. -->
 <script>
+	//Pretty Code with Highlight.js
+    hljs.initHighlightingOnLoad();
+	
 	$(function() {
 		$.deck('.slide');
 	});

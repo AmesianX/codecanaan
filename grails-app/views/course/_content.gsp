@@ -28,13 +28,16 @@
 
 <!--內容顯示-->
 <section class="justfont">
-    <div class="page-header">
-        <h1>${content.title} <small><g:message code="content.contentType.${content.type}" default="Content" /></small></h1>
-    </div>
     <g:if test="${content.type==codecanaan.ContentType.SLIDE}">
+        <!--簡報-->
         <iframe width="100%" height="400" src="${createLink(controller:'content', action:'deckjs', id:content.id)}" style="width:100%;height:480px;border:none"></iframe>
+        <g:link controller="content" action="deckjs" id="${content.id}" class="btn" target="_blank"><i class="icon icon-fullscreen"></i> Full Screen</g:link>
     </g:if>
     <g:else>
+        <div class="page-header">
+            <h1>${content.title} <small><g:message code="content.contentType.${content.type}" default="Content" /></small></h1>
+        </div>
+        <!--講義或練習-->
         <div class="markdown-source">${content.description?.encodeAsHTML()}</div>
     </g:else>
 </section>

@@ -1,0 +1,13 @@
+.deck-container .slide h1,
+.deck-container .slide h2,
+.deck-container .slide h3,
+.deck-container .slide h4,
+.deck-container .slide h5,
+.deck-container .slide h6 {
+	font-weight: normal;
+}
+
+.deck-container .slide pre {
+	font-family: 'Droid Sans Mono', monospace;
+	font-size: 80%;
+}
