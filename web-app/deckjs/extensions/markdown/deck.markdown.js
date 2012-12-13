@@ -23,7 +23,7 @@
             var cssClass = value.attr('class');
             // Prevent slides marked with no-md css class to be interpreted as markdown
             if (!cssClass || cssClass.indexOf('no-md') < 0) {
-                value.html(converter.makeHtml(value.html()));
+                value.html(converter.makeHtml(value.text()));
             }
 		});
 	});

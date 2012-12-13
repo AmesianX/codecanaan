@@ -55,9 +55,8 @@
 	<h1>${content?.title}</h1>
 </section>
 
-
 <g:each var="section" status="i" in="${content?.description?.split('----------')}">
-	<section class="slide" id="slide-${i+1}">${section}</section>
+	<section class="slide" id="slide-${i+1}">${section?.trim().encodeAsHTML()}</section>
 </g:each>
 
 <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
