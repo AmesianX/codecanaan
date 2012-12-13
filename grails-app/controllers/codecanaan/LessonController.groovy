@@ -65,14 +65,19 @@ class LessonController {
      */
     def ajaxSave(Long id) {
         def lesson = Lesson.get(id)
+        def success = false
 
         if (lesson) {
             lesson.properties = params
-            lesson.save(flush: true)
+            success = lesson.save(flush: true)
         }
-
+        
         render(contentType: 'application/json') {
-            [url: createLink(controller: 'course', action: 'show', id: lesson?.course?.id, params: [lessonId: lesson?.id])]
+            [
+                success: success,
+                url: createLink(controller: 'course', action: 'show', id: lesson?.course?.id, params: [lessonId: lesson?.id]),
+                message: success?'ok':renderErrors(bean: lesson)
+            ]
         }
     }
     

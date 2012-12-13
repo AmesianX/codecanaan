@@ -224,14 +224,19 @@ class CourseController {
      */
     def ajaxSave(Long id) {
         def course = Course.get(id)
+        def success = false
 
         if (course) {
             course.properties = params
-            course.save(flush: true)
+            success = course.save(flush: true)
         }
         
         render(contentType: 'application/json') {
-            [url: createLink(controller: 'course', action: 'show', id: course?.id)]
+            [
+                success: success,
+                url: createLink(controller: 'course', action: 'show', id: course?.id),
+                message: success?'ok':renderErrors(bean: course)
+            ]
         }
     }
 

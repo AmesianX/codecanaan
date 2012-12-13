@@ -5,7 +5,7 @@
         <g:link action="show" id="${course.id}" params="[editor: true]" class="btn">
             <i class="icon-edit"></i>
             <!--修改課程-->
-            <g:message code="default.modify.label" default="Modify {0}" args="[message(code: 'course.label', default: 'Course')]" />
+            <g:message code="default.modify.label" args="[message(code: 'course.label', default: 'Course')]" />
         </g:link>
         <button class="btn dropdown-toggle" data-toggle="dropdown">
             <span class="caret"></span>

@@ -9,7 +9,13 @@
             <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-            <li><g:link controller="content" action="delete" id="${content.id}" onclick="confirm('Are you sure???');"><i class="icon icon-remove"></i> 刪除內容</g:link></li>
+            <li>
+                <g:link controller="content" action="delete" id="${content.id}" onclick="confirm('Are you sure???');">
+                    <i class="icon icon-remove"></i>
+                    <!--刪除內容-->
+                    <g:message code="default.delete.label" args="[message(code: 'content.label')]" />
+                </g:link>
+            </li>
             <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'TUTORIAL']">
                 <i class="icon icon-pencil"></i>
                 <g:message code="default.add.label" default="Add {0}" args="[message(code: 'content.contentType.TUTORIAL', default: 'Tutorial')]" />

@@ -20,6 +20,7 @@ class Course {
 	}
 
     static constraints = {
+    	name unique: true
     	description blank: true, maxSize: 1024*1024
     	title blank: false
     	creator nullable: true

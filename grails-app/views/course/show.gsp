@@ -25,7 +25,7 @@
         </ul>
 
         <div class="pull-right">
-            <a href="#" class="btn btn-small" id="cmdResizeFont"><i class="icon icon-font"></i> 縮放字體</a>
+            <a href="#" class="btn btn-small" id="cmdResizeFont"><i class="icon icon-font"></i> <!--縮放字體--><g:message code="default.resizefont.text" /></a>
         </div>
     </div>
     <div class="span9">

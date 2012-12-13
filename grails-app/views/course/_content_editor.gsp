@@ -1,15 +1,44 @@
 <!--編輯課程-->
 <g:form controller="content" action="ajaxSave" method="post">
     <div class="control-group">
-        <label class="control-label" for="title">內容標題</label>
+        <label class="control-label" for="title">
+            <!--內容標題-->
+            <g:message code="content.title.label" />
+        </label>
         <div class="controls">
             <g:textField name="title" value="${content.title}" class="input input-xlarge" />
         </div>
     </div>
-
+    <div class="control-group">
+        <label class="control-label" for="subtitle">
+            <!--副標題-->
+            <g:message code="content.subtitle.label" />
+        </label>
+        <div class="controls">
+            <g:textField name="subtitle" value="${content.subtitle}" class="input input-xlarge" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="authors">
+            <!--作者-->
+            <g:message code="content.authors.label" />
+        </label>
+        <div class="controls">
+            <g:textField name="authors" value="${content.authors}" class="input input-xlarge" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="alias">
+            <!--別名-->
+            <g:message code="content.alias.label" />
+        </label>
+        <div class="controls">
+            <g:textField name="alias" value="${content.alias}" class="input input-medium" />
+        </div>
+    </div>
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab-editor" data-toggle="tab">修改內容</a></li>
-        <li><a href="#tab-preview" data-toggle="tab">預覽</a></li>
+        <li class="active"><a href="#tab-editor" data-toggle="tab"><g:message code="content.description.label" /></a></li>
+        <li><a href="#tab-preview" data-toggle="tab"><g:message code="default.preview.label" args="[message(code: 'content.label')]" /></a></li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="tab-editor">
@@ -24,38 +53,43 @@
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="sourceType">程式碼類型</label>
+        <label class="control-label" for="sourceType">
+            <!--程式碼類型-->
+            <g:message code="content.sourceType.label" />
+        </label>
         <div class="controls">
             <g:select name="sourceType" from="${codecanaan.SourceType?.values()}" keys="${codecanaan.SourceType.values()*.name()}" required="" value="${content.sourceType}"/>
         </div>
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="sourcePath">程式碼路徑</label>
+        <label class="control-label" for="sourcePath">
+            <!--程式碼路徑-->
+            <g:message code="content.sourcePath.label" />
+        </label>
+        </label>
         <div class="controls">
             <g:textField name="sourcePath" value="${content.sourcePath}" class="input input-xlarge" />
         </div>
     </div>
 
-    <div class="control-group">
-        <label class="control-label" for="sourceCode">程式原始碼</label>
-        <div class="controls">
-            
-        </div>
-    </div>
-
     <!--實作練習-->
-    <div class="navbar">
-        <div class="navbar-inner">
-            <ul class="nav">
-                <li><a href="#" id="cmdDump"><i class="icon icon-play"></i> 執行測試</a></li>
-            </ul>
-        </div>
+    <div class="btn-group pull-right">
+        <a href="#" id="cmdDump" class="btn"><i class="icon icon-play"></i> <!--執行測試--><g:message code="default.execution.text" /></a>
     </div>
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab-sourceCode" data-toggle="tab">標準程式碼</a></li>
-        <li><a href="#tab-partialCode" data-toggle="tab">填空程式碼</a></li>
-        <li><a href="#tab-answer" data-toggle="tab">標準輸出</a></li>
+        <li class="active"><a href="#tab-sourceCode" data-toggle="tab">
+            <!--程式原始碼-->
+            <g:message code="content.sourceCode.label" />
+        </a></li>
+        <li><a href="#tab-partialCode" data-toggle="tab">
+            <!--填空程式碼-->
+            <g:message code="content.partialCode.label" />
+        </a></li>
+        <li><a href="#tab-answer" data-toggle="tab">
+            <!--標準輸出-->
+            <g:message code="content.answer.label" />
+        </a></li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="tab-sourceCode">
@@ -71,8 +105,9 @@
             <g:textArea name="answer" value="${content.answer}" data-mode="text/plain" data-height="500" cols="40" rows="20" class="codemirror-auto" />
         </div>
     </div>
-
-    <!--按鈕-->
-    <g:submitToRemote url="[controller: 'content', action: 'ajaxSave', id: content.id]" class="btn btn-primary" value="更新" before="\$.each(editors, function(index, val){editors[index].save();});" onSuccess="if(data.url)location.href=data.url" />
-    <g:link controller="course" action="show" id="${course.id}" params="[lessonId: lesson.id, contentId: content.id]" class="btn cancel-button">取消修改</g:link>
+    <section>
+        <!--按鈕區-->
+        <g:submitToRemote url="[controller: 'content', action: 'ajaxSave', id: content.id]" class="btn btn-primary" value="${message(code: 'default.button.update.label')}" before="\$.each(editors, function(index, val){editors[index].save();});" onSuccess="if(data.success){if(data.url)location.href=data.url;}else{bootbox.alert(data.message);}" />
+        <g:link controller="course" action="show" id="${course.id}" params="[lessonId: lesson.id, contentId: content.id]" class="btn cancel-button"><g:message code="default.button.cancel.label" /></g:link>
+    </section>
 </g:form>

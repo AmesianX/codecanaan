@@ -15,10 +15,9 @@ FB.Event.subscribe('auth.login', function() {
 </facebookAuth:init>
 <div class="row">
 	<div class="span4">
-		<h3>Instant Sign-in</h3>
 		<div class="alert alert-info">
 			<button type="button" class="close" data-dismiss="alert">×</button>
-			請點擊下方按鈕，使用您的社群網站帳號密碼登入。
+			※ 目前僅開放使用 Facebook 帳號登入，請點選以下登入按鈕。
 		</div>
 		<!--登入按鈕-->
 		<facebookAuth:connect permissions="email,user_about_me" />

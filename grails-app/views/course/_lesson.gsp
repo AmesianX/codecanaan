@@ -3,7 +3,8 @@
     <div class="btn-group pull-right">
         <g:link controller="course" action="show" id="${course.id}" params="['lessonId': lesson.id, editor: true]" class="btn">
             <i class="icon icon-edit"></i>
-            修改單元
+            <!--修改單元-->
+            <g:message code="default.modify.label" args="[message(code: 'lesson.label')]" />
         </g:link>
         <a class="btn dropdown-toggle" data-toggle="dropdown">
             <span class="caret"></span>

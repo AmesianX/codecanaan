@@ -105,7 +105,7 @@ FB.Event.subscribe('auth.login', function() {
             </div>
         </div>
         <div role="contentinfo"></div>
-        <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+        <div id="spinner" class="spinner" style="display:none;"><p class="text-info"><g:message code="spinner.alt" default="Loading&hellip;"/></p></div>
     </div>
 </footer>
 

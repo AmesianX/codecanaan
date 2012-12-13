@@ -18,8 +18,11 @@ class Content {
 
     //基本欄位
     String title        //標題
+    String subtitle     //副標題
+    String authors      //作者（允許自行變更）
     String description  //原始內容
-    
+    String alias        //別名（非必要）
+
     //程式碼專用欄位
     String sourceCode       //程式碼內容
     SourceType sourceType   //程式類型（e.g. JAVA)
@@ -40,7 +43,10 @@ class Content {
     static belongsTo = [lesson: Lesson]
 
     static constraints = {
+        alias nullable: true
         title blank: false
+        subtitle nullable: true, blank: true
+        authors nullable: true, blank: true
         description blank: true, maxSize: 1024*1024
 
         sourceCode  nullable: true, empty: true, maxSize: 1024*1024
