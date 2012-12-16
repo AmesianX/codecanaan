@@ -124,6 +124,13 @@ grails.lesscss.resources.compress = true
 grails.plugins.twitterbootstrap.fixtaglib = true
 grails.plugins.twitterbootstrap.defaultBundle = 'bundle_bootstrap'
 
+// JustFont
+grails.justfont.appId = '04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY='
+
+// Analytics
+grails.analytics.account = 'UA-298440-14'
+grails.analytics.domainName = 'codecanaan.com'
+
 // Avatar
 avatarPlugin {
 	//defaultGravatarUrl="""http://yourdomain.com/images/default-gravatar-80.png"""
@@ -134,6 +141,7 @@ avatarPlugin {
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'codecanaan.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'codecanaan.UserRole'
 grails.plugins.springsecurity.authority.className = 'codecanaan.Role'
+
 grails.plugins.springsecurity.useSwitchUserFilter = true
 grails.plugins.springsecurity.controllerAnnotations.staticRules = [
    '/j_spring_security_switch_user': ['ROLE_ADMIN']

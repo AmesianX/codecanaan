@@ -50,6 +50,12 @@ class BootStrap {
                 UserRole.create(user5, role1)
                 UserRole.create(user5, role4)
                 
+                //產生測試使用者
+                (1..100).each {
+                    def userN = new User(username: "user${it}", fullName: "User No.${it}", email: "user${it}@codecanaan.com", password: "password${it}", enabled: true).save(failOnError: true, flush: true)
+                    UserRole.create(userN, role1)
+                }
+
                 def content1 = new Content(
                     type: ContentType.TUTORIAL,
                     title: '講義內容範例',

@@ -9,6 +9,9 @@ var editors = {};
 (function () {
     var $window = $(window);
 
+    // Tooltips
+    $('[rel=tooltip]').tooltip();
+
     //Markdown 顯示處理
     var converter = new Markdown.Converter();
     $('.markdown-source').each(function(index) {

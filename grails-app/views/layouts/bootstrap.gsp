@@ -16,23 +16,9 @@
 <r:require modules="common, jquery-ui, bootswatch, bootstrap-ext, bootstrap-lightbox, font-awesome, pagedown, webfont, compass, codemirror, highlightjs"/>
 <g:layoutHead/>
 <r:layoutResources />
-<!--justfont--><r:script>window.jfAsyncInit=function(){ctb.main({'appId':'04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=','tag':{'ct1':'.justfont pre','ct2':{'0':'.justfont p','1':'.justfont li'},'ct3':{'0':'.justfont h2','1':'.justfont h3','2':'.justfont h4','3':'.justfont h5','4':'.justfont h6','5':'.justfont h1 small'},'ct4':'.justfont h1','ct5':'.justfont blockquote'}});};(function(){var jf=document.createElement('script');jf.type='text/javascript';jf.async=true;jf.src='http://ds.justfont.com/core/js/v1.0/04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(jf,s);})();</r:script>
-<!--analytics--><r:script>
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-298440-14']);
-  _gaq.push(['_setDomainName', 'codecanaan.com']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</r:script>
-<!--page--><r:script>
-(function() {
-    $('a[rel=tooltip]').tooltip();
-})();
+<r:script>
+<g:justfont ct1=".justfont pre" ct2=".justfont p, .justfont li" ct3=".justfont h2, .justfont h3, .justfont h4, .justfont h5, .justfont h6, .justfont h1 small" ct4=".justfont h1" ct5=".justfont blockquote" />
+<g:analytics />
 </r:script>
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
@@ -64,19 +50,17 @@ FB.Event.subscribe('auth.login', function() {
         </div>
     </div>
 </div>
-
 <div class="container" role="main">
     <!--快閃訊息-->
     <g:if test="${flash.message}">
         <div class="alert" role="status">
             <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>New Message!</strong> ${flash.message}
+            <strong><g:message code="default.new.message.text" />!</strong> ${flash.message}
         </div>
     </g:if>
     <!--主畫面內容-->
     <g:layoutBody/>
 </div>
-
 <footer class="footer">
     <div class="container">
         <div class="row">
@@ -108,9 +92,7 @@ FB.Event.subscribe('auth.login', function() {
         <div id="spinner" class="spinner" style="display:none;"><p class="text-info"><g:message code="spinner.alt" default="Loading&hellip;"/></p></div>
     </div>
 </footer>
-
 <g:javascript library="application"/>
 <r:layoutResources />
-
 </body>
 </html>

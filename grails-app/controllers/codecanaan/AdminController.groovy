@@ -1,13 +1,30 @@
 package codecanaan
 
+import grails.plugins.springsecurity.Secured
+
+@Secured(['ROLE_ADMIN'])
 class AdminController {
 
     def index() {
     	
     }
 
-    def userList() {
-    	[users: User.list()]
+    def userList(Integer max) {
+        def statistics = [:]
+
+        Role.list().each {
+            role->
+            statistics[role.authority] = UserRole.countByRole(role)
+        }
+
+        params.max = Math.min(max ?: 10, 100)
+
+    	[
+            users: User.list(params),
+            userCount: User.count(),
+            offset: params.offset?params.offset.toLong():0,
+            statistics: statistics
+        ]
     }
 
     def userAdd() {
