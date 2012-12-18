@@ -41,13 +41,13 @@ remote-log:
 	ssh -t kyle@contpub.org 'cd codecanaan && make log'
 
 deploy:
-	rm -rf /var/lib/tomcat6/webapps-codecanaan/ROOT.war
-	rm -rf /var/lib/tomcat6/webapps-codecanaan/ROOT
-	cp target/codecanaan.war /var/lib/tomcat6/webapps-codecanaan/ROOT.war
-	service tomcat6 restart
+	rm -rf /var/lib/tomcat7/webapps-codecanaan/ROOT.war
+	rm -rf /var/lib/tomcat7/webapps-codecanaan/ROOT
+	cp target/codecanaan.war /var/lib/tomcat7/webapps-codecanaan/ROOT.war
+	service tomcat7 restart
 
 log:
-	tail -f /var/lib/tomcat6/logs/catalina.out
+	tail -f /var/lib/tomcat7/logs/catalina.out
 
 syncdb:
 	mysqldump -h contpub.org -usynconly -p contpub | mysql -h localhost -ucontpub -pcontpub contpub
