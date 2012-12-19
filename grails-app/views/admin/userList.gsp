@@ -26,12 +26,12 @@
                 <g:message code="default.add.label" args="[message(code:'user.label')]" />
             </g:link>
         </div>
-        <form class="form-search">
+        <g:form action="userList" class="form-search" method="get">
           <div class="input-append">
-            <input type="text" class="span2 search-query">
+            <input type="text" name="keyword" value="${params.keyword}" class="span2 search-query">
             <button type="submit" class="btn">Search</button>
           </div>
-        </form>
+        </g:form>
         <table class="table table-hover table-striped">
             <thead>
                 <tr>
@@ -48,7 +48,7 @@
                 <g:each in="${users}" var="user" status="i">
                     <tr>
                         <td><small>${offset+i+1}</small></td>
-                        <td>${user.username}</td>
+                        <td><g:link action="userEdit" id="${user.id}"><small>${user.username}</small></g:link></td>
                         <td><small>${user.email}</small></td>
                         <td><small>${user.fullName}</small></td>
                         <td><small>${user.dateCreated?.format('yyyy/MM/dd')}</small></td>
@@ -63,6 +63,7 @@
                 </g:each>
             </tbody>
         </table>
+        <span class="pull-left">Size: ${userCount}</span>
         <g:paginate controller="admin" action="userList" total="${userCount}" class="pagination-centered" />
     </div>
 </div>
