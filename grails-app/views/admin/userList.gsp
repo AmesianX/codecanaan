@@ -53,7 +53,7 @@
                         <td><small>${user.fullName}</small></td>
                         <td><small>${user.dateCreated?.format('yyyy/MM/dd')}</small></td>
                         <td>
-                            <small>${user.authorities.collect {it.authority}?.first()}</small>
+                            <small>${user.authorities?.size()>0?user.authorities.first().authority:''}</small>
                             <span class="badge badge-info" rel="tooltip" title="${user.authorities.collect {it.authority}?.join(', ')}">${user.authorities?.size()}</span>
                         </td>
                         <td>

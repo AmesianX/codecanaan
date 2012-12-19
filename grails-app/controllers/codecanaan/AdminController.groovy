@@ -1,9 +1,12 @@
 package codecanaan
 
 import grails.plugins.springsecurity.Secured
+import org.codehaus.groovy.grails.web.mapping.LinkGenerator
 
 @Secured(['ROLE_ADMIN'])
 class AdminController {
+
+    LinkGenerator grailsLinkGenerator
 
     def index() {
     	
