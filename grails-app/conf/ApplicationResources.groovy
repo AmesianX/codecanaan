@@ -11,10 +11,12 @@ modules = {
     }
 
     exercise {
+        dependsOn 'common'
         resource url: 'js/exercise.js'
     }
     
     application {
+        dependsOn 'common'
         resource url: 'js/application.js'
     }
 
@@ -22,29 +24,32 @@ modules = {
     	resource url: 'js/webfont.js', disposition: 'head'
     }
 
-    pagedown {
-        resource url: 'pagedown/pagedown.css'
-		resource url: 'pagedown/Markdown.Converter.js'
-		resource url: 'pagedown/Markdown.Sanitizer.js'
-        resource url: 'pagedown/Markdown.Editor.js'
-    }
-
     ie6 {
         resource url: 'universal-ie6-css/ie6.1.0.css',
             wrapper: { s -> "<!--[if IE 6]>$s<![endif]-->" }
     }
 
+    pagedown {
+        defaultBundle 'coding-tools'
+        resource url: 'pagedown/pagedown.css'
+        resource url: 'pagedown/Markdown.Converter.js', disposition: 'head'
+        resource url: 'pagedown/Markdown.Sanitizer.js', disposition: 'head'
+        resource url: 'pagedown/Markdown.Editor.js', disposition: 'head'
+    }
+
     codemirror {
+        defaultBundle 'coding-tools'
         resource url: 'codemirror/lib/codemirror.css'
-        resource url: 'codemirror/lib/codemirror.js'
-        resource url: 'codemirror/mode/clike/clike.js'
-        resource url: 'codemirror/lib/util/runmode.js'
-        //resource url: 'codemirror/lib/util/jquery.codemirror.js'
+        resource url: 'codemirror/lib/codemirror.js', disposition: 'head'
+        resource url: 'codemirror/mode/clike/clike.js', disposition: 'head'
+        resource url: 'codemirror/lib/util/runmode.js', disposition: 'head'
+        //resource url: 'codemirror/lib/util/jquery.codemirror.js', disposition: 'head'
     }
 
     highlightjs {
+        defaultBundle 'coding-tools'
         resource url: 'highlightjs/styles/vs.css'
-        resource url: 'highlightjs/highlight.pack.js'
+        resource url: 'highlightjs/highlight.pack.js', disposition: 'head'
     }
    
     bootswatch {

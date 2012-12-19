@@ -44,10 +44,10 @@ done:
 	make clean war upload && make remote-deploy
 
 remote-deploy:
-	ssh -t kyle@contpub.org 'cd codecanaan && make update && make download && sudo make deploy'
+	ssh -t kyle@codecanaan.com 'cd codecanaan && make update && make download && sudo make deploy'
 
 remote-log:
-	ssh -t kyle@contpub.org 'cd codecanaan && make log'
+	ssh -t kyle@codecanaan.com 'cd codecanaan && make log'
 
 deploy:
 	rm -rf /var/lib/tomcat7/webapps-codecanaan/ROOT.war
@@ -59,7 +59,7 @@ log:
 	tail -f /var/lib/tomcat7/logs/catalina.out
 
 syncdb:
-	mysqldump -h contpub.org -usynconly -p contpub | mysql -h localhost -ucontpub -pcontpub contpub
+	mysqldump -h codecanaan.com -usynconly -p contpub | mysql -h localhost -ucontpub -pcontpub contpub
 
 services:
 	mysqld_safe5 &

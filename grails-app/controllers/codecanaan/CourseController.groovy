@@ -296,4 +296,22 @@ class CourseController {
             redirect(action: "show", id: id)
         }
     }
+
+    /**
+     * 內容管理系統：page
+     */
+    def page() {
+
+        def category = params.category?params.category:'page'
+
+        def course = Course.findByName('system')
+        def lesson = Lesson.findByCourseAndName(course, category)
+        def content = Content.findByLessonAndAlias(lesson, params.alias)
+
+        if (!content) {
+            response.sendError 404
+        }
+
+        [content: content]
+    }
 }
