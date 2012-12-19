@@ -70,6 +70,18 @@ h1, h2, h3, h4 {
 	}
 }
 
+/* Markdown 文字區塊排版調校 */
+
+.markdown-source {
+	p, li {
+		line-height: 200%;
+	}
+	pre, code {
+		line-height: 150%;
+		font-family: 'Droid Sans Mono', monospace;
+	}
+}
+
 .justfont {
 	text-rendering:optimizelegibility;
 	h1, h2, h3, h4, h5, h6 {
