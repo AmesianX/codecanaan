@@ -55,7 +55,7 @@ class AdminController {
             params.remove('password')
         }
 
-        def roles = (params.roles instanceof String)?[params.roles]:params.roles
+        def roles = params.list(roles)
 
         params.remove('roles')
 
@@ -117,6 +117,22 @@ class AdminController {
      * 序號管理
      */
     def couponList(Integer max) {
+
+        if (params.delete) {
+            int ok = 0
+            params.list('selected').each {
+                id->
+
+                def coupon = Coupon.get(id)
+                if (coupon) {
+                    coupon.delete(flush: true)
+                    ok++
+                }
+            }
+            flash.message = "已刪除 ${ok} 筆序號"
+            redirect action: 'couponList'
+        }
+
         params.max = Math.min(max ?: 10, 100)
 
         [coupons: Coupon.list(params), couponCount: Coupon.count()]
