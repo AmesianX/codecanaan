@@ -75,7 +75,7 @@ class CourseController {
 
         def coupon = Coupon.findBySerialCode(params.serialCode)
 
-        def msg = "序號無效"
+        def msg = message(code: 'course.registration.invalid.message')
 
         if (coupon) {
             if (coupon.valid && !coupon.registered) {
@@ -89,7 +89,7 @@ class CourseController {
                     link.regType = RegType.USER
                     
                     if (link.save(flush: true)) {
-                        msg = "註冊成功"
+                        msg = message(code: 'course.registration.valid.message')
                     }
                 }
 

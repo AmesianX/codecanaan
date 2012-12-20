@@ -34,14 +34,14 @@
                         <g:link controller="schedule" action="join" id="${schedule.id}">
                             <i class="icon icon-book"></i>
                             <!--加入單元-->
-                            <g:message code="default.join.label" default="Join {0}" args="[message(code: 'lesson.label', default: 'Lesson')]" />
+                            <g:message code="default.add.label" default="Join {0}" args="[message(code: 'lesson.label', default: 'Lesson')]" />
                         </g:link>
                     </li>
                     <li>
                         <g:link controller="schedule" action="user" id="${schedule.id}">
                             <i class="icon icon-user"></i>
                             <!--加入使用者-->
-                            <g:message code="default.join.label" default="Join {0}" args="[message(code: 'user.label')]" />
+                            <g:message code="default.add.label" default="Join {0}" args="[message(code: 'user.label')]" />
                         </g:link>
                     </li>
                 </ul>

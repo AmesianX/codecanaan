@@ -10,10 +10,14 @@
 <div class="row">
     <div class="span3">
         <g:form action="register" method="post">
-            <legend>註冊新課程</legend>
+            <legend><g:message code="course.registration.text" /></legend>
             <div class="input-append">
-                <g:textField name="serialCode" value="" class="span2" placeholder="輸入課程序號" />
-                <button type="submit" class="btn"><i class="icon icon-chevron-right"></i> 註冊</button>
+                <g:textField name="serialCode" value="" class="span2" placeholder="${message(code:'course.registration.placeholder.text')}" />
+                <button type="submit" class="btn">
+                    <i class="icon icon-chevron-right"></i>
+                    <!--註冊-->
+                    <g:message code="default.register.text" />
+                </button>
             </div>            
         </g:form>
     </div>

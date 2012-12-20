@@ -26,18 +26,18 @@
         </ul>
     </div>
     <div class="span9">
-        <div class="page-header">
-            <h2>
-                ${scheduleLesson.lesson?.title}
-                
-            </h2>
-        </div>
-
+        
         <g:if test="${content}">
-            <h4>
-                ${content.title}
-                <small><g:message code="content.contentType.${content.type}" /></small>
-            </h4>
+            <div class="page-header">
+                <h2>
+                    ${content.title}
+                    <small><g:message code="content.contentType.${content.type}" /></small>
+                </h2>
+            </div>
+
+            <div class="markdown-source">${content.description?.encodeAsHTML()}</div>
+
+            <hr />
 
             <g:if test="${content.type==ContentType.CODE}">
                 Source Code
@@ -54,6 +54,9 @@
             </g:else>
         </g:if>
         <g:else>
+            <div class="page-header">
+                <h2>${scheduleLesson.lesson?.title}</h2>
+            </div>
             <div class="markdown-source">${scheduleLesson.lesson.description?.encodeAsHTML()}</div>
         </g:else>
 
