@@ -50,6 +50,21 @@
     </div>
 
     <div class="control-group">
+        <label class="control-label">
+            Options
+        </label>
+        <div class="controls">
+            <label class="checkbox">
+                <g:checkBox name="enabled" value="true" checked="${user.enabled}" /> Enabled
+            </label>
+        </div>
+    </div>
+
+
+    <div class="control-group">
+        <label class="control-label">
+            Authorities
+        </label>
         <div class="controls">
             <g:each in="${roles}" var="role">
                 <label class="checkbox">

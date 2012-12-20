@@ -14,6 +14,7 @@ class BootStrap {
             
             //create administrator
             def user1 = User.findByUsername('admin')
+
             if (!user1) {
                 user1 = new User(username: 'admin', password: 'admin', enabled: true).save(failOnError: true, flush: true)
                 
@@ -29,6 +30,7 @@ class BootStrap {
             production {
                 //empty
             }
+            
             development {
 
                 def user2 = new User(username: 'student', password: 'student', enabled: true).save(failOnError: true, flush: true)
