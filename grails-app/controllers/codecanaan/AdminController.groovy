@@ -168,13 +168,13 @@ class AdminController {
 
             def schedule = Schedule.get(params.schedule?.id)
 
-            def couponList = []
-
             int size = params.int('size')
 
             def prefix = params.prefix
 
             def history = []
+
+            def coupons = []
 
             int ok = 0
 
@@ -187,7 +187,7 @@ class AdminController {
                     //none
                 }
 
-                def serialCode = "${prefix}-${code}"
+                def serialCode = "${prefix}${code}"
 
                 def coupon = new Coupon(
                     course: course,
@@ -199,12 +199,13 @@ class AdminController {
 
                 if (coupon.save(flush: true)) {
                     ok++
+                    coupons << coupon
                 }
             }
 
             flash.message = "共產生 ${ok} 筆序號"
-
-            redirect action: 'couponList'
+            render(view: 'couponResult', model: [coupons: coupons])
+            return
         }
 
         []
@@ -217,6 +218,6 @@ class AdminController {
         (1..5).each { i->
             code << md5code[i]
         }
-        return code
+        return "${code}".toUpperCase()
     }
 }

@@ -6,10 +6,20 @@
             <g:textField name="title" value="${course.title}" class="input input-xlarge" />
         </div>
     </div>
+
     <div class="control-group">
         <label class="control-label" for="name"><g:message code="course.name.label" /></label>
         <div class="controls">
             <g:textField name="name" value="${course.name}" class="input input-medium" />
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="name">
+            <g:message code="default.options.text" />
+        </label>
+        <div class="controls">
+            
         </div>
     </div>
 

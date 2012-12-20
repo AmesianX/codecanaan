@@ -1,5 +1,0 @@
-package codecanaan
-
-class CouponController {
-
-}
