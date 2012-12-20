@@ -11,10 +11,27 @@ class UrlMappings {
 		//"/"(view:"/index")
 		"500"(view:'/error')
 
-		"/show/$id?/$lessonId?/$contentId?" {
+		"/course/$id?" {
 			controller = "course"
 			action = "show"
 			constraints {
+				id(matches:/\d+/)
+			}
+		}
+
+		"/lesson/$id?" {
+			controller = "lesson"
+			action = "show"
+			constraints {
+				id(matches:/\d+/)
+			}
+		}
+
+		"/content/$id?" {
+			controller = "content"
+			action = "show"
+			constraints {
+				id(matches:/\d+/)
 			}
 		}
 		

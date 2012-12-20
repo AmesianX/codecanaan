@@ -4,6 +4,8 @@ class ScheduleController {
 
 	def springSecurityService
 
+    def scheduleService
+
     def index() {
         redirect action: 'list'
     }
@@ -28,7 +30,17 @@ class ScheduleController {
             schedules << link.schedule
         }
 
-        [schedules: schedules]
+        def statistics = [:]
+
+        schedules.each {
+            schedule->
+            statistics[schedule] = UserSchedule.countBySchedule(schedule)
+        }
+
+        [
+            schedules: schedules,
+            statistics: statistics
+        ]
     }
 
     /**
@@ -46,7 +58,37 @@ class ScheduleController {
 
         def scheduleLessons = ScheduleLesson.findAllBySchedule(schedule)
 
-        [schedule: schedule, scheduleLessons: scheduleLessons]
+        [
+            schedule: schedule,
+            scheduleLessons: scheduleLessons,
+            today: new Date()
+        ]
+    }
+
+    /**
+     * 觀看解答
+     */
+    def answer(Long id) {
+        def scheduleLesson = ScheduleLesson.get(id)
+
+        //學習進度不存在
+        if (!scheduleLesson) {
+            response.sendError 404
+            return
+        }
+
+        //使用者沒有參與此學習進度
+        if (!scheduleService.hasUser(scheduleLesson.schedule, springSecurityService.currentUser)) {
+            response.sendError 404
+            return
+        }
+
+        def today = new Date()
+
+        [
+            scheduleLesson: scheduleLesson,
+            content: Content.get(params.content?.id)
+        ]
     }
 
     /**
@@ -137,7 +179,7 @@ class ScheduleController {
             }
         }
         
-        redirect(action: 'edit', id: schedule.id)
+        redirect(action: 'show', id: schedule.id)
     }
 
     /**

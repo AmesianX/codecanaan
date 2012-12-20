@@ -4,7 +4,8 @@
         <li>
             <g:link controller="login">
                 <i class="icon icon-user"></i>
-                登入
+                <!--登入-->
+                <g:message code="default.login.text" />
             </g:link>
         </li>
     </sec:ifNotLoggedIn>
@@ -22,7 +23,8 @@
                     <li>
                         <g:link controller="user" action="profile">
                             <i class="icon icon-user-md"></i>
-                            個人資料
+                            <!--個人資料-->
+                            <g:message code="default.user.preferences.text" />
                         </g:link>
                     </li>
                 </li>
@@ -30,7 +32,8 @@
                     <li>
                         <g:link controller="home" action="client">
                             <i class="icon icon-download"></i>
-                            客戶端工具
+                            <!--客戶端工具-->
+                            <g:message code="default.client.tools.text" />
                         </g:link>
                     </li>
                 </li>
@@ -38,7 +41,8 @@
                     <li>
                         <g:link uri="/j_spring_security_logout" onclick="return doLogout()">
                             <i class="icon icon-off"></i>
-                            登出
+                            <!--登出-->
+                            <g:message code="default.logout.text" />
                         </g:link>
                     </li>
                 </sec:ifAllGranted>
@@ -46,7 +50,7 @@
                     <li>
                         <g:link uri="/j_spring_security_logout">
                             <i class="icon icon-off"></i>
-                            登出
+                            <g:message code="default.logout.text" />
                         </g:link>
                     </li>
                 </sec:ifNotGranted>

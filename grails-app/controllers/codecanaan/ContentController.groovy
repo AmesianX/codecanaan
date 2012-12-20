@@ -6,11 +6,43 @@ class ContentController {
 
     def springSecurityService
 
+    def courseService
+
     static allowedMethods = [save: "POST", update: "POST"]
 
-    def index() {
-        redirect(action: "list", params: params)
+    /**
+     * 顯示內容
+     */
+    def show(Long id) {
+        def user = springSecurityService.currentUser
+
+        def content = Content.get(id)
+
+        if (!content) {
+            response.sendError 404
+            return
+        }
+
+        //點擊次數 +1
+        content.hits ++
+        content.save(flush: true)
+
+        //取得記錄
+        def record = Record.findByUserAndContent(user, content)
+
+        //檢查修改權限
+        def authoring = courseService.isAuthor(content.lesson?.course, user)
+
+        [
+            course: content.lesson?.course,
+            lesson: content.lesson,
+            content: content,
+            record: record,
+            authoring: authoring,
+            clientPort: user?.clientPort?user.clientPort:1337
+        ]
     }
+
 
     /**
      * 直接建立內容後回到瀏覽頁面
@@ -38,46 +70,42 @@ class ContentController {
         content.title = "${content.type} ${seq+1}"
         content.description = '''Write contents here using **Markdown** syntax.'''
 
-        content.sourceCode = "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello World\");\n    }\n}\n"
-        content.sourceType = SourceType.JAVA
-        content.sourcePath = 'Main.java'
-        content.partialCode = "public class Main {\n    public static void main(String[] args) {\n        //write here\n    }\n}\n"
-        content.answer = 'Hello World'
+        if (content.type == ContentType.CODE) {
+            content.sourceCode = "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello World\");\n    }\n}\n"
+            content.sourceType = SourceType.JAVA
+            content.sourcePath = 'Main.java'
+            content.partialCode = "public class Main {\n    public static void main(String[] args) {\n        //write here\n    }\n}\n"
+            content.answer = 'Hello World'
+        }
+
         content.priority = seq
         content.creator = user
 
         content.save(flush: true)
 
-        redirect(
-            controller: 'course',
-            action: 'show',
-            id: content.lesson?.course?.id,
-            params: [
-                lessonId: content.lesson?.id,
-                contentId: content.id
-            ]
-        )
+        redirect(action: 'show', id: content.id)
     }
 
     /**
      * Ajax 更新資料
      */
     def ajaxSave(Long id) {
-        def content = Content.get(id)
-        def success = false
 
-        if (content) {
-            content.properties = params
-            success = content.save(flush: true)
+        def content = Content.get(id)
+
+        if (!content) {
+            response.sendError 404
+            return
         }
+
+        content.properties = params
+        def success = content.save(flush: true)
         
-        render(contentType: 'application/json') {
-            [
-                success: success,
-                url: createLink(controller: 'course', action: 'show', id: content.lesson?.course?.id, params: [lessonId: content.lesson?.id, contentId: content.id]),
-                message: success?'ok':renderErrors(bean: content)
-            ]
-        }
+        render(contentType: 'application/json') {[
+            success: success,
+            url: createLink(action: 'show', id: content.id),
+            message: success?'ok':renderErrors(bean: content)
+        ]}
     }
 
     /**
@@ -106,22 +134,18 @@ class ContentController {
         def content = Content.get(id)
         
         if (!content) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'content.label', default: 'Content'), id])
-            redirect(controller: 'course')
+            response.sendError 404
             return
         }
-
-        def courseId = content.lesson?.course?.id
-        def lessonId = content.lesson?.id
 
         try {
             content.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'content.label', default: 'Content'), id])
-            redirect(controller: 'course', action: 'show', id: courseId, params: [lessonId: lessonId])
+            redirect(controller: 'lesson', action: 'show', id: content.lesson?.id)
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'content.label', default: 'Content'), id])
-            redirect(controller: 'course', action: 'show', id: courseId, params: [lessonId: lessonId, contentId: content.id])
+            redirect(action: 'show', id: content.id)
         }
     }
 

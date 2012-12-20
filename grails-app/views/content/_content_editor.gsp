@@ -108,6 +108,6 @@
     <section>
         <!--按鈕區-->
         <g:submitToRemote url="[controller: 'content', action: 'ajaxSave', id: content.id]" class="btn btn-primary" value="${message(code: 'default.button.update.label')}" before="\$.each(editors, function(index, val){editors[index].save();});" onSuccess="if(data.success){if(data.url)location.href=data.url;}else{bootbox.alert(data.message);}" />
-        <g:link controller="course" action="show" id="${course.id}" params="[lessonId: lesson.id, contentId: content.id]" class="btn cancel-button"><g:message code="default.button.cancel.label" /></g:link>
+        <g:link action="show" id="${content.id}" class="btn cancel-button"><g:message code="default.button.cancel.label" /></g:link>
     </section>
 </g:form>

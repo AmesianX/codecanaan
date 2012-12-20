@@ -18,9 +18,9 @@
                 </g:each>
             </li>
 
-            <br/>
+            <hr/>
             <g:submitButton name="save" value="${message(code: 'default.button.update.label', default: 'Update')}" class="btn btn-primary" />
-            <g:link controller="course" action="show" id="${lesson?.course?.id}" params="[lessonId: lesson.id]" class="btn"><g:message code="default.button.cancel.label" default="Cancel" /></g:link>
+            <g:link action="show" id="${lesson.id}" class="btn"><g:message code="default.button.cancel.label" default="Cancel" /></g:link>
         </g:form>
     </div>
 </div>

@@ -1,34 +1,34 @@
 <!--檢查作者權限-->
 <g:if test="${authoring}">
-    <div class="btn-group pull-right">
-        <g:link controller="course" action="show" id="${course.id}" params="[lessonId: lesson.id, contentId: content.id, editor: true]" class="btn">
-            <i class="icon icon-edit"></i>
-            <g:message code="default.edit.label" default="Edit {0}" args="[message(code: 'content.label', default: 'Content')]" />
-        </g:link>
-        <a class="btn dropdown-toggle" data-toggle="dropdown">
-            <span class="caret"></span>
+    <div class="btn-toolbar pull-right">
+
+        <a href="#" class="btn" id="cmdResizeFont">
+            <i class="icon icon-font"></i>
+            <!--縮放字體-->
+            <g:message code="default.resizefont.text" />
         </a>
-        <ul class="dropdown-menu">
-            <li>
-                <g:link controller="content" action="delete" id="${content.id}" onclick="confirm('Are you sure???');">
-                    <i class="icon icon-remove"></i>
-                    <!--刪除內容-->
-                    <g:message code="default.delete.label" args="[message(code: 'content.label')]" />
-                </g:link>
-            </li>
-            <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'TUTORIAL']">
-                <i class="icon icon-pencil"></i>
-                <g:message code="default.add.label" default="Add {0}" args="[message(code: 'content.contentType.TUTORIAL', default: 'Tutorial')]" />
-            </g:link></li>
-            <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'CODE']">
-                <i class="icon icon-pencil"></i>
-                <g:message code="default.add.label" default="Add {0}" args="[message(code: 'content.contentType.CODE', default: 'Code')]" />
-            </g:link></li>
-            <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'QUIZ']">
-                <i class="icon icon-pencil"></i>
-                <g:message code="default.add.label" default="Add {0}" args="[message(code: 'content.contentType.QUIZ', default: 'Quiz')]" />
-            </g:link></li>
-        </ul>
+
+        <!--新增內容選單-->
+        <g:render template="/content/addmenu" />
+
+        <div class="btn-group">
+            <g:link action="show" id="${content.id}" params="[editor: true]" class="btn">
+                <i class="icon icon-edit"></i>
+                <g:message code="default.edit.label" default="Edit {0}" args="[message(code: 'content.label', default: 'Content')]" />
+            </g:link>
+            <a class="btn dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <g:link controller="content" action="delete" id="${content.id}" onclick="confirm('Are you sure???');">
+                        <i class="icon icon-remove"></i>
+                        <!--刪除內容-->
+                        <g:message code="default.delete.label" args="[message(code: 'content.label')]" />
+                    </g:link>
+                </li>
+            </ul>
+        </div>
     </div>
 </g:if>
 
@@ -51,7 +51,7 @@
     </g:else>
 </section>
 
-<hr class="soften" />
+<hr />
 
 <sec:ifLoggedIn>
     <!--程式碼區塊-->
@@ -64,11 +64,14 @@
                 （檔案下載）
             </g:if>
             <pre><code class="code-font">${content.sourceCode}</code></pre>
+            <hr />
         </g:if>
     </g:if>
     
-    <hr class="soften" />
-    <h4>開始練習</h4>
+    <h3>
+        <!--開始練習--><g:message code="content.exercise.start.text" />
+        <small><g:message code="content.exercise.start.tagline" /></small>    
+    </h3>
 
     <!--隱藏變數-->
     <g:hiddenField name="sourcePath" value="${content.sourcePath}" />
@@ -143,7 +146,8 @@
 <sec:ifNotLoggedIn>
     <div class="alert">
         <button type="button" class="close" data-dismiss="alert">×</button>
-        您目前正在以訪客身分瀏覽，請先登入取得練習權限！
+        <!--訪客無法練習-->
+        <g:message code="message.signin.for.exercise" />
     </div>
 </sec:ifNotLoggedIn>
 
@@ -152,18 +156,22 @@
     <ul>
         <!--上一頁-->
         <g:if test="${content&&lesson.contents.indexOf(content)>0}">
-            <li><g:link action="show" id="${course?.id}" params="[lessonId: lesson?.id, contentId: lesson.contents[lesson.contents.indexOf(content)-1].id]">«</g:link></li>
+            <li><g:link action="show" id="${lesson.contents[lesson.contents.indexOf(content)-1]?.id}">«</g:link></li>
         </g:if>
         <g:else>
             <li class="disabled"><span>«</span></li>
         </g:else>
         <!--頁數-->
         <g:each in="${lesson?.contents}" var="row" status="i">
-            <li class="${row.id==content?.id?'active':''}"><g:link action="show" id="${course?.id}" params="[lessonId: lesson?.id, contentId: row?.id]">${i+1}</g:link></li>
+            <li class="${row.id==content.id?'active':''}">
+                <g:link action="show" id="${row.id}">${i+1}</g:link>
+            </li>
         </g:each>
         <!--下一頁-->
         <g:if test="${content&&lesson.contents.indexOf(content)+1<lesson.contents.size()}">
-            <li><g:link action="show" id="${course?.id}" params="[lessonId: lesson?.id, contentId: lesson.contents[lesson.contents.indexOf(content)+1].id]">»</g:link></li>
+            <li>
+                <g:link action="show" id="${lesson.contents[lesson.contents.indexOf(content)+1]?.id}">»</g:link>
+            </li>
         </g:if>
         <g:else>
             <li class="disabled"><span>»</span></li>

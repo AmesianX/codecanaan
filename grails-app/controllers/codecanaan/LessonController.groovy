@@ -6,15 +6,29 @@ class LessonController {
 
     def springSecurityService
 
+    def courseService
+
     static allowedMethods = [save: "POST", update: "POST", delete: "GET"]
 
-    def index() {
-        redirect(action: "list", params: params)
-    }
+    /* 顯示單元內容 */
+    def show(Long id) {
 
-    def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        [lessonList: Lesson.list(params), lessonTotal: Lesson.count()]
+        def lesson = Lesson.get(id)
+
+        if (!lesson) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'lesson.label', default: 'Lesson'), id])
+            redirect(action: "list")
+            return
+        }
+
+        //檢查修改權限
+        def authoring = courseService.isAuthor(lesson.course, springSecurityService.currentUser)
+
+        [
+            course: lesson.course,
+            lesson: lesson,
+            authoring: authoring
+        ]
     }
 
     /**
@@ -41,44 +55,29 @@ class LessonController {
 
         lesson.save(flush: true)
 
-        redirect(
-            controller: 'course',
-            action: 'show',
-            id: lesson.course.id,
-            params: [lessonId: lesson.id]
-        )
-    }
-
-    def save() {
-        def lesson = new Lesson(params)
-        if (!lesson.save(flush: true)) {
-            render(view: "create", model: [lesson: lesson])
-            return
-        }
-
-        flash.message = message(code: 'default.created.message', args: [message(code: 'lesson.label', default: 'Lesson'), lesson.id])
-        redirect(action: "show", id: lesson.id)
+        redirect(action: 'show', id: lesson.id)
     }
 
     /**
-     * Ajax 更新資料
+     * 更新單元資料（使用 AJAX）
      */
     def ajaxSave(Long id) {
-        def lesson = Lesson.get(id)
-        def success = false
 
-        if (lesson) {
-            lesson.properties = params
-            success = lesson.save(flush: true)
+        def lesson = Lesson.get(id)
+
+        if (!lesson) {
+            response.sendError 404
+            return
         }
+
+        lesson.properties = params
+        def success = lesson.save(flush: true)
         
-        render(contentType: 'application/json') {
-            [
-                success: success,
-                url: createLink(controller: 'course', action: 'show', id: lesson?.course?.id, params: [lessonId: lesson?.id]),
-                message: success?'ok':renderErrors(bean: lesson)
-            ]
-        }
+        render(contentType: 'application/json') {[
+            success: success,
+            url: createLink(action: 'show', id: lesson.id),
+            message: success?'ok':renderErrors(bean: lesson)
+        ]}
     }
     
     /**
@@ -95,7 +94,12 @@ class LessonController {
      */
     def sortUpdate(Long id) {
         def lesson = Lesson.get(id)
-        
+
+        if (!lesson) {
+            response.sendError 404
+            return
+        }
+
         if (params.priority) {
             def priorities = (params.priority instanceof String)?[params.priority]:params.priority
             
@@ -112,65 +116,16 @@ class LessonController {
             }
         }
         
-        redirect(controller: 'course', action: 'show', id: lesson?.course?.id, params: [lessonId: lesson?.id])
-    }
-
-    def show(Long id) {
-        def lesson = Lesson.get(id)
-        if (!lesson) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'lesson.label', default: 'Lesson'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [lesson: lesson]
-    }
-
-    def edit(Long id) {
-        def lesson = Lesson.get(id)
-        if (!lesson) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'lesson.label', default: 'Lesson'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [lesson: lesson]
-    }
-
-    def update(Long id, Long version) {
-        def lesson = Lesson.get(id)
-        if (!lesson) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'lesson.label', default: 'Lesson'), id])
-            redirect(action: "list")
-            return
-        }
-
-        if (version != null) {
-            if (lesson.version > version) {
-                lesson.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'lesson.label', default: 'Lesson')] as Object[],
-                          "Another user has updated this Lesson while you were editing")
-                render(view: "edit", model: [lesson: lesson])
-                return
-            }
-        }
-
-        lesson.properties = params
-
-        if (!lesson.save(flush: true)) {
-            render(view: "edit", model: [lesson: lesson])
-            return
-        }
-
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'lesson.label', default: 'Lesson'), lesson.id])
-        redirect(action: "show", id: lesson.id)
+        redirect(action: 'show', id: lesson.id)
     }
 
     /**
      * 刪除單元
      */
     def delete(Long id) {
+        
         def lesson = Lesson.get(id)
+
         if (!lesson) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'lesson.label', default: 'Lesson'), id])
             redirect(controller: 'course')
@@ -181,12 +136,12 @@ class LessonController {
 
         try {
             lesson.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'lesson.label', default: 'Lesson'), id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'lesson.label', default: 'Lesson'), lesson.title])
             redirect(controller: 'course', action: 'show', id: courseId)
         }
         catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'lesson.label', default: 'Lesson'), id])
-            redirect(controller: 'course', action: 'show', id: courseId, params: [lessonId: lesson.id])
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'lesson.label', default: 'Lesson'), lesson.title])
+            redirect(action: 'show', id: lesson.id)
         }
     }
 }

@@ -35,13 +35,12 @@
         <table class="table table-hover table-striped">
             <thead>
                 <tr>
-                    <th width="30">#</th>
-                    <th width="80"><g:message code="user.username.label" /></th>
+                    <th width="25">#</th>
+                    <th width="100"><g:message code="user.username.label" /></th>
                     <th><g:message code="user.email.label" /></th>
-                    <th width="90"><g:message code="user.fullName.label" /></th>
+                    <th width="120"><g:message code="user.fullName.label" /></th>
                     <th width="100"><g:message code="default.dateCreated.label" /></th>
-                    <th width="150"><g:message code="user.authorities.label" /></th>
-                    <th width="150"></th>
+                    <th width="100"><g:message code="user.authorities.label" /></th>
                 </tr>
             </thead>
             <tbody>
@@ -50,14 +49,11 @@
                         <td><small>${offset+i+1}</small></td>
                         <td><g:link action="userEdit" id="${user.id}"><small>${user.username}</small></g:link></td>
                         <td><small>${user.email}</small></td>
-                        <td><small>${user.fullName}</small></td>
+                        <td>${user.fullName}</td>
                         <td><small>${user.dateCreated?.format('yyyy/MM/dd')}</small></td>
                         <td>
                             <small>${user.authorities?.size()>0?user.authorities.first().authority:''}</small>
                             <span class="badge badge-info" rel="tooltip" title="${user.authorities.collect {it.authority}?.join(', ')}">${user.authorities?.size()}</span>
-                        </td>
-                        <td>
-                            <a href="${request.contextPath}/j_spring_security_switch_user?j_username=${user.username}" class="btn btn-small">Switch</a>
                         </td>
                     </tr>
                 </g:each>

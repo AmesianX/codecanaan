@@ -42,8 +42,8 @@
             <thead>
                 <tr>
                     <th width="30">#</th>
-                    <th>學習進度</th>
-                    <th width="100">代碼</th>
+                    <th><g:message code="schedule.label" /></th>
+                    <th width="100"><g:message code="schedule.user.count.text" /></th>
                 </tr>
             </thead>
             <tbody>
@@ -56,7 +56,7 @@
                     <tr>
                         <td>${i+1}</td>
                         <td><g:link controller="schedule" action="show" id="${schedule.id}">${schedule.title}</g:link></td>
-                        <td><span class="muted">${schedule.name}</span></td>
+                        <td><span class="muted">${statistics[schedule]}</span></td>
                     </tr>
                 </g:each>
             </tbody>

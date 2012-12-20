@@ -32,7 +32,7 @@ var editors = {};
     //Affix Sidebar
     $('.bs-docs-sidenav').affix({
         offset: {
-            top: function () { return $window.width() <= 980 ? 290 : 210 },
+            top: function () { return $window.width() <= 980 ? 100 : 20 },
             bottom: 270
         }
     });

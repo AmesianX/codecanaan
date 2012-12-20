@@ -76,13 +76,26 @@
                     <tr>
                         <td>${i+1}</td>
                         <td>
-                            ${link.lesson?.title}
+                            <schedule:answerAvailable test="${link}">
+                                <!--觀看解答-->
+                                <g:link action="answer" id="${link.id}" class="btn pull-right">
+                                    <i class="icon icon-eye-open"></i>
+                                    <g:message code="schedule.answer.text" />
+                                </g:link>
+                            </schedule:answerAvailable>
+
+                            <g:if test="${today >= link.begin && today <= link.end}">
+                                <g:link controller="lesson" action="show" id="${link.lesson.id}">${link.lesson?.title}</g:link>
+                            </g:if>
+                            <g:else>
+                                ${link.lesson?.title}
+                            </g:else>
                             <div class="muted"><small>${link.lesson?.course?.title}</small></div>
                             <g:hiddenField name="linkId" value="${link.id}" />
                         </td>
-                        <td>${link.begin?.format('yyyy/MM/dd HH:mm:ss')}</td>
-                        <td>${link.end?.format('yyyy/MM/dd HH:mm:ss')}</td>
-                        <td>${link.deadline?.format('yyyy/MM/dd HH:mm:ss')}</td>
+                        <td><small class="muted">${link.begin?.format('yyyy/MM/dd HH:mm:ss')}</small></td>
+                        <td><small class="muted">${link.end?.format('yyyy/MM/dd HH:mm:ss')}</small></td>
+                        <td><small class="muted">${link.deadline?.format('yyyy/MM/dd HH:mm:ss')}</small></td>
                     </tr>
                 </g:each>
             </tbody>

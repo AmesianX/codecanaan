@@ -1,5 +1,5 @@
 <!--編輯單元-->
-<g:form controller="lesson" action="ajaxSave" method="post">
+<g:form action="ajaxSave" method="post" class="form-horizontal">
     <div class="control-group">
         <label class="control-label" for="title"><g:message code="lesson.title.label" /></label>
         <div class="controls">
@@ -13,8 +13,16 @@
         </div>
     </div>
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab-editor" data-toggle="tab"><g:message code="lesson.description.label" /></a></li>
-        <li><a href="#tab-preview" data-toggle="tab"><g:message code="default.preview.label" args="[message(code: 'lesson.label')]" /></a></li>
+        <li class="active">
+            <a href="#tab-editor" data-toggle="tab">
+                <g:message code="lesson.description.label" />
+            </a>
+        </li>
+        <li>
+            <a href="#tab-preview" data-toggle="tab">
+                <g:message code="default.preview.text" />
+            </a>
+        </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="tab-editor">
@@ -27,7 +35,12 @@
             <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
         </div>
     </div>
-    <!--按鈕區-->
-    <g:submitToRemote url="[controller: 'lesson', action: 'ajaxSave', id: lesson.id]" class="btn btn-primary" value="${message(code: 'default.button.update.label')}" onSuccess="if(data.success){if(data.url)location.href=data.url;}else{bootbox.alert(data.message);}" />
-    <g:link action="show" id="${course.id}" params="[lessonId: lesson.id]" class="btn"><g:message code="default.button.cancel.label" /></g:link>
+    <hr />
+    <div class="control-group">
+        <div class="controls">
+            <!--按鈕區-->
+            <g:submitToRemote url="[action: 'ajaxSave', id: lesson.id]" class="btn btn-primary" value="${message(code: 'default.button.update.label')}" onSuccess="if(data.success){if(data.url)location.href=data.url;}else{bootbox.alert(data.message);}" />
+            <g:link action="show" id="${lesson.id}" class="btn"><g:message code="default.button.cancel.label" /></g:link>
+        </div>
+    </div>
 </g:form>
