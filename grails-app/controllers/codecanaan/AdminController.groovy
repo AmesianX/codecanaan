@@ -112,4 +112,10 @@ class AdminController {
     	flash.message = message(code: 'default.created.message', args: [message(code: 'user.label'), user.id])
         redirect action: 'userAdd'
     }
+
+    def couponList(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+
+        [coupons: Coupon.list(params), couponCount: Coupon.count()]
+    }
 }
