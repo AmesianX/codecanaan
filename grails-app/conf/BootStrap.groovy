@@ -4,9 +4,7 @@ class BootStrap {
 
     def init = { servletContext ->
         //基本權限
-
         environments {
-
             def role1 = Role.findOrSaveByAuthority('ROLE_USER')
             def role2 = Role.findOrSaveByAuthority('ROLE_FACEBOOK')
             def role3 = Role.findOrSaveByAuthority('ROLE_ADMIN')
@@ -21,8 +19,11 @@ class BootStrap {
                 
                 //join roles
                 UserRole.create(user1, role1)
+                UserRole.create(user1, role2)
                 UserRole.create(user1, role3)
                 UserRole.create(user1, role4)
+                UserRole.create(user1, role5)
+                UserRole.create(user1, role6)
             }
 
             production {

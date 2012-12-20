@@ -8,7 +8,10 @@
 <g:form action="couponCreate" class="form-horizontal">
 
     課程<br/>
-    <g:select name="course.id" from="${codecanaan.Course.list()}" optionKey="id" optionValue="title" /><br/>
+    <g:select name="course.id" from="${codecanaan.Course.list()}" optionKey="id" optionValue="title" noSelection="['':'']" /><br/>
+    <br/>
+    學習進度<br/>
+    <g:select name="schedule.id" from="${codecanaan.Schedule.list()}" optionKey="id" optionValue="title" noSelection="['':'']" /><br/>
     <br/>
     筆數<br/>
     <g:textField name="size" class="input input-small" value="1" /><br/>

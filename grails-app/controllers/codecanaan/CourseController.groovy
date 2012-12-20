@@ -83,6 +83,7 @@ class CourseController {
                 coupon.registered = true
                 coupon.save(flush: true)
 
+                //建立使用者與課程連結
                 if (coupon.course) {
                     def link = UserCourse.findOrCreateByUserAndCourse(user, coupon.course)
                     link.regInfo = "reg. with ${coupon.serialCode}"
@@ -93,6 +94,13 @@ class CourseController {
                     }
                 }
 
+                //建立使用者與學習進度連結
+                if (coupon.schedule) {
+                    def link = UserSchedule.findOrCreateByUserAndSchedule(user, coupon.schedule)
+                    link.roleType = ScheduleRoleType.MEMBER
+
+                    link.save(flush: true)
+                }
             }
         }
 

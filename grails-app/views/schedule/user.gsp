@@ -24,35 +24,47 @@
             <g:link controller="schedule" action="show" id="${schedule.id}" class="btn"><g:message code="default.button.goback.label" /></g:link>
         </div>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th width="30">#</th>
-                    <th><g:message code="user.username.label" /></th>
-                    <th><g:message code="user.fullName.label" /></th>
-                    <th><g:message code="user.email.label" /></th>
-                    <th width="100">Type</th>
-                    <th width="100">Issue Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <g:if test="${!userSchedules}">
+        <g:form action="userAction" id="${schedule.id}" method="post">
+            <table class="table table-striped">
+                <thead>
                     <tr>
-                        <td colspan="3"><div style="text-align:center"><g:message code="default.empty.description" /></div></td>
+                        <th width="30">#</th>
+                        <th><g:message code="user.username.label" /></th>
+                        <th><g:message code="user.fullName.label" /></th>
+                        <th><g:message code="user.email.label" /></th>
+                        <th width="100">Type</th>
+                        <th width="100">Issue Date</th>
+                        <th></th>
                     </tr>
-                </g:if>
-                <g:each in="${userSchedules}" var="link" status="i">
-                    <tr>
-                        <td>${i+1}</td>
-                        <td>${link.user?.username}</td>
-                        <td>${link.user?.fullName}</td>
-                        <td>${link.user?.email}</td>
-                        <td>${link.roleType}</td>
-                        <td>${link.dateCreated?.format('yyyy/MM/dd')}</td>
-                    </tr>
-                </g:each>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <g:if test="${!userSchedules}">
+                        <tr>
+                            <td colspan="3"><div style="text-align:center"><g:message code="default.empty.description" /></div></td>
+                        </tr>
+                    </g:if>
+                    <g:each in="${userSchedules}" var="link" status="i">
+                        <tr>
+                            <td>${i+1}</td>
+                            <td>${link.user?.username}</td>
+                            <td>${link.user?.fullName}</td>
+                            <td>${link.user?.email}</td>
+                            <td>${link.roleType}</td>
+                            <td>${link.dateCreated?.format('yyyy/MM/dd')}</td>
+                            <td>
+                                <g:if test="${link.roleType!=codecanaan.ScheduleRoleType.OWNER}">
+                                    <g:checkBox name="selected" value="${link.id}" checked="false" />
+                                </g:if>
+                            </td>
+                        </tr>
+                    </g:each>
+                </tbody>
+            </table>
+
+            <div class="btn-toolbar">
+                <g:submitButton name="delete" value="${message(code:'default.button.delete.label')}" class="btn" />
+            </div>
+        </g:form>
     </div>
 </div>
 </body>

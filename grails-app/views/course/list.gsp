@@ -56,7 +56,6 @@
                 <tr>
                     <th width="30">#</th>
                     <th><g:message code="course.title.label" /></th>
-                    <th width="100">ID</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,7 +68,6 @@
                     <tr>
                         <td>${i+1}</td>
                         <td><g:link controller="course" action="show" id="${course.id}">${course.title}</g:link></td>
-                        <td><span class="muted">${course.name}</span></td>
                     </tr>
                 </g:each>
             </tbody>

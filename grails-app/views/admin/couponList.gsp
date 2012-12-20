@@ -25,6 +25,7 @@
                 <th>Serial Code</th>
                 <th>Organization</th>
                 <th>Course</th>
+                <th>Schedule</th>
                 <th><small>Registered</small></th>
                 <th><small>Valid</small></th>
                 <th><small>Created</small></th>
@@ -43,6 +44,7 @@
                         </g:if>
                     </td>
                     <td><small>${coupon.course?.title}</small></td>
+                    <td><small>${coupon.schedule?.title}</small></td>
                     <td><small>
                         <i class="icon${coupon.registered?' icon-check':' icon-check-empty'}"></i>
                         <g:if test="${coupon.user}">

@@ -9,6 +9,7 @@ class Coupon {
 
 	User user 			//序號使用者
 	Course course 		//授權課程
+    Schedule schedule   //學習進度
 
 	Date dateCreated    //建立日期
     Date lastUpdated    //修改日期
@@ -19,6 +20,7 @@ class Coupon {
     	serialCode nullable: false, empty: false
     	user nullable: true
     	course nullable: false
+        schedule nullable: true
     	organization nullable: true, empty: true
         memo nullable: true, empty: true
     }

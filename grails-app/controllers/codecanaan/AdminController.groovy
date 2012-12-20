@@ -55,7 +55,7 @@ class AdminController {
             params.remove('password')
         }
 
-        def roles = params.list(roles)
+        def roles = params.list('roles')
 
         params.remove('roles')
 
@@ -166,6 +166,8 @@ class AdminController {
         if(params.generate) {
             def course = Course.get(params.course?.id)
 
+            def schedule = Schedule.get(params.schedule?.id)
+
             def couponList = []
 
             int size = params.int('size')
@@ -189,6 +191,7 @@ class AdminController {
 
                 def coupon = new Coupon(
                     course: course,
+                    schedule: schedule,
                     serialCode: serialCode,
                     organization: params.organization,
                     memo: params.memo

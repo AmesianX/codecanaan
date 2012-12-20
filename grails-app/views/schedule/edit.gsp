@@ -24,8 +24,13 @@
         <g:form action="update" id="${schedule.id}" method="post">
 
             <label>
-                <g:message code="schedule.title.label" />
+                <g:message code="schedule.title.label" /><br/>
                 <g:textField name="title" value="${schedule.title}" />
+            </label>
+
+            <label>
+                <g:message code="schedule.name.label" /><br/>
+                <g:textField name="name" value="${schedule.name}" />
             </label>
 
             <table class="table table-bordered">

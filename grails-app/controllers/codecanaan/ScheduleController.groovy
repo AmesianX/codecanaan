@@ -1,5 +1,7 @@
 package codecanaan
 
+import grails.plugins.springsecurity.Secured
+
 class ScheduleController {
 
 	def springSecurityService
@@ -46,21 +48,27 @@ class ScheduleController {
     /**
      * 教學進度詳細檢視
      */
+    @Secured(['ROLE_USER'])
     def show(Long id) {
-        def user = springSecurityService.currentUser
 
-        if (!user) {
-            redirect(url: '/')
-            return
-        }
+        def user = springSecurityService.currentUser
 
         def schedule = Schedule.get(id)
 
         def scheduleLessons = ScheduleLesson.findAllBySchedule(schedule)
+        
+        def editable = false
+
+        def userSchedule = UserSchedule.findByUserAndSchedule(user, schedule)
+
+        if (userSchedule?.roleType == ScheduleRoleType.OWNER) {
+            editable = true
+        }
 
         [
             schedule: schedule,
             scheduleLessons: scheduleLessons,
+            editable: editable,
             today: new Date()
         ]
     }
@@ -68,6 +76,7 @@ class ScheduleController {
     /**
      * 觀看解答
      */
+    @Secured(['ROLE_USER'])
     def answer(Long id) {
         def scheduleLesson = ScheduleLesson.get(id)
 
@@ -94,13 +103,8 @@ class ScheduleController {
     /**
      * 教學進度修改
      */
+    @Secured(['ROLE_TEACHER'])
     def edit(Long id) {
-        def user = springSecurityService.currentUser
-
-        if (!user) {
-            redirect(url: '/')
-            return
-        }
 
         def schedule = Schedule.get(id)
 
@@ -112,17 +116,12 @@ class ScheduleController {
     /**
      * 資料維護處理
      */
+    @Secured(['ROLE_TEACHER'])
     def update(Long id) {
-        def user = springSecurityService.currentUser
-
-        if (!user) {
-            redirect(url: '/')
-            return
-        }
 
         def schedule = Schedule.get(id)
 
-        def itemIdList = (params.itemId instanceof String)?[params.itemId]:params.itemId
+        def itemIdList = params.list('itemId')
 
         if (params.actionDelete && itemIdList) {
             itemIdList.each {
@@ -137,20 +136,20 @@ class ScheduleController {
 
             //更新基本資料
             schedule.title = params.title
+            schedule.name = params.name
             schedule.save(flush: true)
 
             //更新課程單元連結
+            def linkIdList = params.list('linkId')
 
-            def linkIdList = (params.linkId instanceof String)?[params.linkId]:params.linkId
+            def beginDate = params.list('beginDate')
+            def beginTime = params.list('beginTime')
 
-            def beginDate = (params.beginDate instanceof String)?[params.beginDate]:params.beginDate
-            def beginTime = (params.beginTime instanceof String)?[params.beginTime]:params.beginTime
+            def endDate = params.list('endDate')
+            def endTime = params.list('endTime')
 
-            def endDate = (params.endDate instanceof String)?[params.endDate]:params.endDate
-            def endTime = (params.endTime instanceof String)?[params.endTime]:params.endTime
-
-            def deadlineDate = (params.deadlineDate instanceof String)?[params.deadlineDate]:params.deadlineDate
-            def deadlineTime = (params.deadlineTime instanceof String)?[params.deadlineTime]:params.deadlineTime
+            def deadlineDate = params.list('deadlineDate')
+            def deadlineTime = params.list('deadlineTime')
 
             int i = 0;
             linkIdList.each {
@@ -185,6 +184,7 @@ class ScheduleController {
     /**
      * 刪除學習進度
      */
+    @Secured(['ROLE_TEACHER'])
     def delete(Long id) {
         def user = springSecurityService.currentUser
 
@@ -198,25 +198,32 @@ class ScheduleController {
         //先移除使用者與進度的連結
         UserSchedule.findAllBySchedule(schedule).each {
             link ->
-
             link.delete(flush: true)
         }
 
-        schedule.delete(flush: true)
+        //再移除單元連結
+        ScheduleLesson.findAllBySchedule(schedule).each {
+            link ->
+            link.delete(flush: true)
+        }
 
-        redirect(action: 'list')
+        try {
+            schedule.delete(flush: true)
+        }
+        catch (e) {
+            //error
+        }
+
+        redirect action: 'list'
     }
 
     /**
      * 管理使用者
      */
+    @Secured(['ROLE_TEACHER'])
     def user(Long id) {
-        def user = springSecurityService.currentUser
 
-        if (!user) {
-            redirect(url: '/')
-            return
-        }
+        def user = springSecurityService.currentUser
 
         def schedule = Schedule.get(id)
 
@@ -226,15 +233,29 @@ class ScheduleController {
     }
 
     /**
+     * 使用者資料維護
+     */
+    @Secured(['ROLE_TEACHER'])
+    def userAction(Long id) {
+
+        if (params.delete) {
+            params.list('selected').each {
+                linkId ->
+
+                UserSchedule.get(linkId)?.delete(flush: true)
+            }
+        }
+
+        redirect action: 'user', id: id
+    }
+
+    /**
      * 加入新單元
      */
+    @Secured(['ROLE_TEACHER'])
     def join(Long id) {
-        def user = springSecurityService.currentUser
 
-        if (!user) {
-            redirect(url: '/')
-            return
-        }
+        def user = springSecurityService.currentUser
 
         def schedule = Schedule.get(id)
 
@@ -261,6 +282,7 @@ class ScheduleController {
     /**
      * 使用者連結維護
      */
+    @Secured(['ROLE_TEACHER'])
     def userUpdate(Long id) {
 
         def schedule = Schedule.get(id)
@@ -279,10 +301,11 @@ class ScheduleController {
     /**
      * 儲存已選取的單元
      */
+    @Secured(['ROLE_TEACHER'])
     def joinSave(Long id) {
         def schedule = Schedule.get(id)
 
-        def lessonIdList = (params['lesson.id'] instanceof String)?[params['lesson.id']]:params['lesson.id']
+        def lessonIdList = params.list('lesson.id')
 
         if (lessonIdList) {
 
@@ -319,17 +342,15 @@ class ScheduleController {
     /**
      * 建立新單元（建立後直接回到單元顯示頁面）
      */
+    @Secured(['ROLE_TEACHER'])
     def create() {
         def user = springSecurityService.currentUser
         
-        //計算流水號
-        def seq = Schedule.count()
-        
         def schedule = new Schedule(params)
-        
+
         //套用預設值
-        schedule.name = "schedule-${seq+1}"
-        schedule.title = "Schedule ${seq+1}"
+        schedule.name = new Date().format('yyyyMMdd-HHmmss')
+        schedule.title = "Untitled Schedule"
         schedule.creator = user
 
         schedule.save(flush: true)

@@ -4,9 +4,11 @@ package codecanaan
  * 定義註冊類型
  */
 public enum RegType {
-    AUTHOR, //課程作者及協作者
-    USER,   //註冊使用者
-    GUEST;  //訪客（僅限瀏覽）
+    AUTHOR,  //課程作者及協作者
+    TEACHER, //課程教師
+    STUDENT, //課程學生
+    USER,    //註冊使用者
+    GUEST;   //訪客（僅限瀏覽）
 }
 
 /**
