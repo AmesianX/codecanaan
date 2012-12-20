@@ -5,6 +5,7 @@ class Coupon {
 	boolean registered = false	//已被註冊
 	boolean valid = true		//是否有效
 	String organization			//發券單位
+    String memo                 //備忘
 
 	User user 			//序號使用者
 	Course course 		//授權課程
@@ -19,5 +20,6 @@ class Coupon {
     	user nullable: true
     	course nullable: false
     	organization nullable: true, empty: true
+        memo nullable: true, empty: true
     }
 }

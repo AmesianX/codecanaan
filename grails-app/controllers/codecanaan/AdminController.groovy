@@ -113,9 +113,91 @@ class AdminController {
         redirect action: 'userAdd'
     }
 
+    /**
+     * 序號管理
+     */
     def couponList(Integer max) {
         params.max = Math.min(max ?: 10, 100)
 
         [coupons: Coupon.list(params), couponCount: Coupon.count()]
+    }
+
+    /**
+     * 序號編輯
+     */
+    def couponEdit(Integer id) {
+        [coupon: Coupon.get(id)]
+    }
+
+    /**
+     * 序號資料更新
+     */
+    def couponUpdate(Integer id) {
+        def coupon = Coupon.get(id)
+
+        coupon.properties = params
+
+        coupon.save(flush: true)
+
+        redirect action: 'couponList'
+    }
+
+    /**
+     * 序號產生
+     */
+    def couponCreate() {
+
+        if(params.generate) {
+            def course = Course.get(params.course?.id)
+
+            def couponList = []
+
+            int size = params.int('size')
+
+            def prefix = params.prefix
+
+            def history = []
+
+            int ok = 0
+
+            for (def i=0; i<size; i++) {
+                
+                def code
+
+                //避免重複
+                while (history.contains(code = gencode())) {
+                    //none
+                }
+
+                def serialCode = "${prefix}-${code}"
+
+                def coupon = new Coupon(
+                    course: course,
+                    serialCode: serialCode,
+                    organization: params.organization,
+                    memo: params.memo
+                )
+
+                if (coupon.save(flush: true)) {
+                    ok++
+                }
+            }
+
+            flash.message = "共產生 ${ok} 筆序號"
+
+            redirect action: 'couponList'
+        }
+
+        []
+    }
+
+    private gencode() {
+        def random = new Random()
+        def md5code = "${new Date().time}${random.nextInt(10000)}".encodeAsMD5()
+        def code = new StringBuffer()
+        (1..5).each { i->
+            code << md5code[i]
+        }
+        return code
     }
 }
