@@ -48,7 +48,7 @@
                     <td><small>
                         <i class="icon${coupon.registered?' icon-check':' icon-check-empty'}"></i>
                         <g:if test="${coupon.user}">
-                            ${coupon.user?.fullName}(${coupon.user?.username})
+                            ${coupon.user?.fullName}<!--(${coupon.user?.username})-->
                         </g:if>
                     </small></td>
                     <td><small><i class="icon${coupon.valid?' icon-check':' icon-check-empty'}"></i></small></td>
