@@ -20,7 +20,7 @@ class BootStrap {
                 
                 //join roles
                 UserRole.create(user1, role1)
-                UserRole.create(user1, role2)
+                //UserRole.create(user1, role2)
                 UserRole.create(user1, role3)
                 UserRole.create(user1, role4)
                 UserRole.create(user1, role5)

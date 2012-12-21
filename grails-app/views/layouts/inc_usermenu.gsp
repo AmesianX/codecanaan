@@ -50,6 +50,7 @@
                     <li>
                         <g:link uri="/j_spring_security_logout">
                             <i class="icon icon-off"></i>
+                            <!--登出-->
                             <g:message code="default.logout.text" />
                         </g:link>
                     </li>
@@ -58,6 +59,7 @@
                     <li>
                         <a href='${request.contextPath}/j_spring_security_exit_user'>
                             <i class="icon icon-off"></i>
+                            <!--回復身分-->
                             Resume as <sec:switchedUserOriginalUsername/>
                         </a>
                     </li>

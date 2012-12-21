@@ -22,14 +22,9 @@
 </r:script>
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
-<!--facebook integration-->
 <facebookAuth:init>
 FB.Event.subscribe('auth.login', function() {
-    //if (typeof(console) === 'object' && typeof(console.log) === 'function') {
-    //    console.log('Process auth.login...');
-    //}
-    //window.location.reload();
-    window.location.href = "${createLink(controller: 'user', action: 'check')}";
+    window.location.href = "${createLink(controller: 'user', action: 'facebookSync')}";
 });
 </facebookAuth:init>
 <!--header-->

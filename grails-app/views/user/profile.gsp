@@ -20,17 +20,24 @@
         </ul>
         </g:hasErrors>
         <g:form action="profile" method="post" class="form-horizontal">
-	        <legend>${user.fullName?user.fullName:'NONAME'} 個人資料</legend>
+	        <legend><!--個人資料--><g:message code="user.profile.text" /></legend>
 	        <div class="control-group">
 		        <label class="control-label">
-			        帳號類型
+			        <!--帳號類型-->
+			        <g:message code="user.login.type.text" />
 		        </label>
 		        <div class="controls">
 			        <g:if test="${user?.username.startsWith('facebook_')}">
-				        <span class="help-inline">連結 Facebook 帳號</span>
+				        <span class="help-inline">
+				        	<!--連結 Facebook 帳號-->
+				        	<g:message code="user.login.type.facebook.text" />
+			        	</span>
 			        </g:if>
 			        <g:else>
-				        <span class="help-inline">會員帳號</span>
+				        <span class="help-inline">
+				        	<!--會員帳號-->
+				        	<g:message code="user.login.type.normal.text" />
+				        </span>
 			        </g:else>
 		        </div>
 	        </div>

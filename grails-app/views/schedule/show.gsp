@@ -40,7 +40,7 @@
                 <g:link controller="schedule" action="user" id="${schedule.id}">
                     <i class="icon icon-user"></i>
                     <!--加入使用者-->
-                    <g:message code="default.addOrRemove.label" args="[message(code: 'user.label')]" />
+                    <g:message code="default.add.remove.label" args="[message(code: 'user.label')]" />
                 </g:link>
             </li>
         </ul>

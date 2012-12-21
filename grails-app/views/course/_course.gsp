@@ -19,6 +19,13 @@
                 </g:link>
             </li>
             <li>
+                <g:link action="user" id="${course.id}">
+                    <i class="icon icon-user"></i>
+                    <!--新增或移除使用者-->
+                    <g:message code="default.add.remove.label" args="[message(code: 'user.label')]" />
+                </g:link>
+            </li>
+            <li>
                 <g:link controller="course" action="sort" id="${course.id}">
                     <i class="icon icon-sort"></i>
                     <!--調整單元排序-->

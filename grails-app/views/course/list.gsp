@@ -1,4 +1,3 @@
-<%@ page import="codecanaan.Course" %>
 <!DOCTYPE html>
 <html>
 <head>

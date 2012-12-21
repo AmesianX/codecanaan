@@ -114,6 +114,30 @@ class AdminController {
     }
 
     /**
+     * 刪除使用者（危險！）
+     */
+    def userDelete(Long id) {
+        def user = User.get(id)
+
+        if (user) {
+
+            UserRole.findAllByUser(user).each {
+                link ->
+                link.delete(flush: true)
+            }
+
+            FacebookUser.findAllByUser(user).each {
+                link ->
+                link.delete(flush: true)
+            }
+
+            user.delete(flush: true)
+        }
+
+        redirect action: 'userList'
+    }
+
+    /**
      * 序號管理
      */
     def couponList(Integer max) {

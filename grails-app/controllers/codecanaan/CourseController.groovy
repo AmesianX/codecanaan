@@ -1,5 +1,6 @@
 package codecanaan
 
+import grails.plugins.springsecurity.Secured
 import org.springframework.dao.DataIntegrityViolationException
 
 class CourseController {
@@ -17,6 +18,7 @@ class CourseController {
     /*
      * 課程列表：只列出已選修課程
      */
+    @Secured(['ROLE_USER'])
     def list() {
         def user = springSecurityService.currentUser
 
@@ -228,5 +230,72 @@ class CourseController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'course.label', default: 'Course'), id])
             redirect(action: "show", id: id)
         }
+    }
+
+    /**
+     * 使用者連結維護列表
+     */
+    def user(Long id) {
+        def course = Course.get(id)
+
+        if (!course) {
+            response.sendError 404
+            return
+        }
+
+        [
+            course: course,
+            userCourses: UserCourse.findAllByCourse(course)
+        ]
+    }
+
+    /**
+     * 使用者連結維護處理
+     */
+    def userAction(Long id) {
+        def course = Course.get(id)
+
+        if (!course) {
+            response.sendError 404
+            return
+        }
+
+        //建立使用者連結
+        if (params.create) {
+            def user = User.findByUsernameOrEmail(params.username, params.username)
+
+            if (user) {
+                def link = UserCourse.findOrCreateWhere(user: user, course: course)
+
+                //已有"作者"權限就不進行權限變更
+                if (link.regType != RegType.AUTHOR) {
+                    link.regType = RegType.USER
+                }
+
+                //儲存連結
+                if (link.save(flush: true)) {
+                    //連結成功
+                    flash.message = message(code: 'default.created.message', args: [1, message(code: 'user.label')])
+                }
+            }
+
+        }
+        else if (params.delete) {
+            def ok = 0
+
+            params.list('selected').each {
+                linkId->
+
+                def link = UserCourse.get(linkId)
+
+                if (link) {
+                    ok++
+                    link.delete(flush: true)
+                }
+            }
+            flash.message = message(code: 'default.deleted.message', args: [ok, message(code: 'user.label')])
+        }
+
+        redirect action: 'user', id: course.id
     }
 }

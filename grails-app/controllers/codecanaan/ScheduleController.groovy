@@ -55,6 +55,12 @@ class ScheduleController {
 
         def schedule = Schedule.get(id)
 
+        if (!schedule) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'schedule.label'), id])
+            redirect action: 'list'
+            return
+        }
+
         def scheduleLessons = ScheduleLesson.findAllBySchedule(schedule)
         
         def editable = false
@@ -137,6 +143,7 @@ class ScheduleController {
             //更新基本資料
             schedule.title = params.title
             schedule.name = params.name
+            schedule.password = params.password
             schedule.save(flush: true)
 
             //更新課程單元連結
@@ -365,5 +372,28 @@ class ScheduleController {
         redirect(
             action: 'list'
         )
+    }
+
+    /**
+     * 使用者加入到學習進度
+     */
+    @Secured(['ROLE_STUDENT'])
+    def register() {
+        def user = springSecurityService.currentUser
+
+        def schedule = Schedule.findByName(params.name)
+
+        if (schedule && schedule.password == params.password) {
+            
+            def link = UserSchedule.findOrCreateWhere(user: user, schedule: schedule)
+
+            //防呆：擁有者重新註冊一次不改變權限
+            if (link.roleType != ScheduleRoleType.OWNER) {
+                link.roleType = ScheduleRoleType.MEMBER
+            }
+
+            link.save(flush: true)
+        }
+        redirect action: 'list'
     }
 }

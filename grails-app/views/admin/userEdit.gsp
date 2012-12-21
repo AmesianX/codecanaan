@@ -77,7 +77,11 @@
     <div class="control-group">
         <div class="controls">
             <g:submitButton name="actionCreate" value="${message(code:'default.button.update.label')}" class="btn btn-primary" />
+
+            <g:link action="userDelete" id="${user.id}" class="btn btn-danger" onclick="return confirm('Are you sure???');"><g:message code="default.button.delete.label" /></g:link>
+
             <g:link action="index" class="btn"><g:message code="default.button.cancel.label" /></g:link>
+
             <a href="${request.contextPath}/j_spring_security_switch_user?j_username=${user.username}" class="btn">Switch</a>
         </div>
     </div>

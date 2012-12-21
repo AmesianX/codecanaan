@@ -9,8 +9,11 @@
     <div class="span12">
 
         <div class="pull-right">
-            <!--返回-->
-            <g:link controller="schedule" action="show" id="${schedule.id}" class="btn"><g:message code="default.button.goback.label" /></g:link>
+            <g:link action="show" id="${schedule.id}" class="btn">
+                <!--返回-->
+                <i class="icon icon-arrow-left"></i>
+                <g:message code="default.button.goback.label" />
+            </g:link>
         </div>
         
         <div class="page-header">
@@ -21,17 +24,34 @@
             </h1>
         </div>
 
-        <g:form action="update" id="${schedule.id}" method="post">
+        <g:form action="update" id="${schedule.id}" method="post" class="form-horizontal">
 
-            <label>
-                <g:message code="schedule.title.label" /><br/>
-                <g:textField name="title" value="${schedule.title}" />
-            </label>
+            <div class="control-group">
+                <label class="control-label" for="title">
+                    <g:message code="schedule.title.label" />
+                </label>
+                <div class="controls">
+                    <g:textField name="title" value="${schedule.title}" class="input input-xlarge" />
+                </div>
+            </div>
 
-            <label>
-                <g:message code="schedule.name.label" /><br/>
-                <g:textField name="name" value="${schedule.name}" />
-            </label>
+            <div class="control-group">
+                <label class="control-label" for="name">
+                    <g:message code="schedule.name.label" />
+                </label>
+                <div class="controls">
+                    <g:textField name="name" value="${schedule.name}" class="input input-medium" />
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="password">
+                    <g:message code="schedule.password.label" />
+                </label>
+                <div class="controls">
+                    <g:passwordField name="password" value="${schedule.password}" class="input input-medium" />
+                </div>
+            </div>
 
             <table class="table table-bordered">
                 <thead>
@@ -96,10 +116,15 @@
                 </tbody>
             </table>
 
-            <!--更新-->
-            <g:submitButton name="actionUpdate" value="${message(code:'default.button.update.label')}" class="btn btn-primary" />
-            <!--刪除已選-->
-            <g:submitButton name="actionDelete" value="${message(code:'default.button.delete.selected.label')}" class="btn" onclick="return confirm('Are you sure???')" />
+            <div class="btn-toolbar">
+                <!--更新-->
+                <g:submitButton name="actionUpdate" value="${message(code:'default.button.update.label')}" class="btn btn-primary" />
+
+                <g:link action="show" id="${schedule.id}" class="btn"><g:message code="default.button.cancel.label" /></g:link>
+
+                <!--刪除已選-->
+                <g:submitButton name="actionDelete" value="${message(code:'default.button.delete.selected.label')}" class="btn btn-danger pull-right" onclick="return confirm('Are you sure???')" />
+            </div>
         </g:form>
     </div>
 </div>
