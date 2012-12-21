@@ -147,6 +147,7 @@ grails.plugins.springsecurity.controllerAnnotations.staticRules = [
    '/j_spring_security_switch_user': ['ROLE_ADMIN']
 ]
 
+grails.plugins.springsecurity.facebook.permissions='email,user_about_me'
 grails.plugins.springsecurity.facebook.filter.type='transparent'
 grails.plugins.springsecurity.facebook.domain.classname='codecanaan.FacebookUser'
 grails.plugins.springsecurity.facebook.appId='--appid--'

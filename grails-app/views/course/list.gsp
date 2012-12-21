@@ -10,14 +10,20 @@
     <div class="span3">
         <g:form action="register" method="post">
             <legend><g:message code="course.registration.text" /></legend>
+
+            <i class="icon icon-qrcode"></i>
+            <g:message code="coupon.label" />
+
             <div class="input-append">
                 <g:textField name="serialCode" value="" class="span2" placeholder="${message(code:'course.registration.placeholder.text')}" />
-                <button type="submit" class="btn">
+                <button type="submit" name="coupon" class="btn">
                     <i class="icon icon-chevron-right"></i>
                     <!--註冊-->
                     <g:message code="default.register.text" />
                 </button>
-            </div>            
+            </div>
+
+
         </g:form>
     </div>
     <div class="span9">

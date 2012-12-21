@@ -88,7 +88,7 @@ class CourseController {
                 //建立使用者與課程連結
                 if (coupon.course) {
                     def link = UserCourse.findOrCreateByUserAndCourse(user, coupon.course)
-                    link.regInfo = "reg. with ${coupon.serialCode}"
+                    link.regInfo = "register with coupon ${coupon.serialCode}"
                     link.regType = RegType.USER
                     
                     if (link.save(flush: true)) {

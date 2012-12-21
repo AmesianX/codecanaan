@@ -377,7 +377,7 @@ class ScheduleController {
     /**
      * 使用者加入到學習進度
      */
-    @Secured(['ROLE_STUDENT'])
+    @Secured(['ROLE_USER'])
     def register() {
         def user = springSecurityService.currentUser
 

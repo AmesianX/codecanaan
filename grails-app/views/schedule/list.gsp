@@ -9,24 +9,21 @@
 <body>
 <div class="row">
     <div class="span3">
-        <sec:ifAllGranted roles="ROLE_STUDENT">
-            <g:form action="register" method="post">
-                <legend><g:message code="default.join.label" args="[message(code: 'schedule.label')]" /></legend>
+        <g:form action="register" method="post">
+            <legend><g:message code="default.join.label" args="[message(code: 'schedule.label')]" /></legend>
 
-                <label>
-                    <g:message code="schedule.name.label" /><br/>
-                    <g:textField name="name" value="" class="input input-medium" />
-                </label>
-                
-                <label>
-                    <g:message code="schedule.password.label" /><br/>
-                    <g:passwordField name="password" value="" class="input input-small" />
-                </label>
+            <label>
+                <g:message code="schedule.name.label" /><br/>
+                <g:textField name="name" value="" class="input input-medium" />
+            </label>
+            
+            <label>
+                <g:message code="schedule.password.label" /><br/>
+                <g:passwordField name="password" value="" class="input input-small" />
+            </label>
 
-                <g:submitButton name="join" value="${message(code: 'default.join.text')}" class="btn" />
-
-            </g:form>
-        </sec:ifAllGranted>
+            <g:submitButton name="join" value="${message(code: 'default.join.text')}" class="btn" />
+        </g:form>
     </div>
     <div class="span9">
         <sec:ifAnyGranted roles="ROLE_TEACHER">
