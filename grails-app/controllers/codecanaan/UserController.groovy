@@ -6,6 +6,7 @@ import org.springframework.dao.DataIntegrityViolationException
 class UserController {
 
     def springSecurityService
+    def s3Service
 
     /**
      * 個人資料
@@ -27,11 +28,20 @@ class UserController {
      * 檢查個人資料是否完整
      */
     @Secured(['ROLE_USER'])
-    def facebookSync = {
+    def facebookSync() {
         def user = springSecurityService.currentUser
 
         //TODO: sync data from facebook
 
         redirect url: '/'
+    }
+
+    /**
+     */
+    @Secured(['ROLE_USER'])
+    def file() {
+        def user = springSecurityService.currentUser
+
+        []
     }
 }

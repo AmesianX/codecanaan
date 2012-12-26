@@ -5,46 +5,44 @@
 </head>
 <body>
 <div class="row">
-    <div class="span6">
-        <g:if test="${posts?.size()>0}">
-            <div class="announce-block">
-                <g:each in="${posts}" var="post" status="i">
-                    <dl>
-                        <dt>
-                            <g:link controller="post" action="show" params="[name: post.name]">${post.title}</g:link>
-                        </dt>
-                        <dd>
-                            <ul class="a-info">
-                                <li class="visits"><em>${post.hits}</em> hits</li>
-                                <li class="posted"><small class="muted">${post.dateCreated.format('yyyy/MM/dd')}</small></li>
-                            </ul>
-                        </dd>
-                    </dl>
-                </g:each>
+    <div class="span8">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#announce-tab" data-toggle="tab"><g:message code="postType.ANNOUNCE.label" /></a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="announce-tab">
+                <g:if test="${posts?.size()>0}">
+                    <ul class="links">
+                        <g:each in="${posts}" var="post" status="i">
+                            <li class="${i==0?'first':'show-lines'}">
+                                <g:link controller="post" action="show" params="[name: post.name]">${post.title}</g:link>
+                                <small><em>(${post.hits})</em></small>
+                                <small class="muted"><g:formatDate date="${post.dateCreated}" type="date" /></small>
+                            </li>
+                        </g:each>
+                    </ul>
+                    <div style="text-align:right">
+                        <g:link controller="post" action="list"><g:message code="default.more.label" args="[message(code:'postType.ANNOUNCE.label')]" /> ...</g:link>
+                    </div>
+                </g:if>
+                <g:else>
+                    <g:message code="default.empty.description" />
+                </g:else>
             </div>
-            <div style="text-align:right">
-                <g:link controller="post" action="list"><g:message code="default.more.label" args="[message(code:'postType.ANNOUNCE.label')]" /> ...</g:link>
-            </div>
-        </g:if>
-        <g:else>
-            <g:message code="default.empty.description" />
-        </g:else>
-        
+        </div>
+    </div>
+    <div class="span4">
+
         <div style="text-align:center;padding:2em 0">
             <font style="font-size:32pt" class="popover-auto logo-font" title="關於 CodeCanaan" data-placement="bottom" data-content="根據聖經記載，Canaan（迦南）是上帝賜給以色列人祖先的應許之地，選民在流奶與蜜的迦南美地自由安居。CodeCanaan 是程式設計學習者的迦南美地，我們致力於創造一個自由開放且樂趣無窮的學習環境。">CodeCanaan</font><br/>
             <small style="font-family:'Droid Sans Mono';color:#000099">程式設計數位學習方舟計畫</small>
         </div>
         <r:script>$('.popover-auto').popover({trigger: 'hover'});</r:script>
 
-        <h4>專業電腦認證教學平台</h4>
-        <ul class="icons">
-            <li><i class="icon-ok"></i> 完美結合 TQC+ 認證題庫與教材</li>
-            <li><i class="icon-ok"></i> 軟體設計領域實作導向練習</li>
-            <li><i class="icon-ok"></i> 雲端運算架構，僅需 Java 及瀏覽器即可執行</li>
-            <li><i class="icon-ok"></i> 整合 Facebook 帳號登入</li>
-            <li><i class="icon-ok"></i> 支援程式碼實作練習，簡化程式執行及測試</li>
-        </ul>
-        
+        <div>
+            <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fplweb.org&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=102994276528232" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
+        </div>
+
         <sec:ifLoggedIn>
             <g:link controller="home" action="client" class="btn btn-primary">
                 <i class="icon icon-download"></i>
@@ -57,7 +55,20 @@
             </div>
         </sec:ifNotLoggedIn>
     </div>
-    <div class="span6">
+</div>
+<hr />
+<div class="row">
+    <div class="span5">
+        <h4>專業電腦認證教學平台</h4>
+        <ul class="icons">
+            <li><i class="icon-ok"></i> 完美結合 TQC+ 認證題庫與教材</li>
+            <li><i class="icon-ok"></i> 軟體設計領域實作導向練習</li>
+            <li><i class="icon-ok"></i> 雲端運算架構，僅需 Java 及瀏覽器即可執行</li>
+            <li><i class="icon-ok"></i> 整合 Facebook 帳號登入</li>
+            <li><i class="icon-ok"></i> 支援程式碼實作練習，簡化程式執行及測試</li>
+        </ul>
+    </div>
+    <div class="span7">
         <div id="myCarousel" class="carousel slide">
         <div class="carousel-inner">
             <div class="active item">
@@ -79,13 +90,9 @@
         <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
         </div>
         <r:script>$('.carousel').carousel();</r:script>
-
-        <div>
-            <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fplweb.org&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=102994276528232" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
-        </div>
     </div>
 </div>
-<hr class="soften" />
+<hr />
 <div class="row">
     <div class="span6">
         <h4>使用手冊</h4>

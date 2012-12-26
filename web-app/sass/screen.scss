@@ -133,20 +133,54 @@ img, iframe, video, embed, object {
 	display: block;
 }
 
-.announce-block {
-	dl {
-		border-bottom: 1px dashed #ccc;
+ul.links {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	li {
+		line-height: 200%;
 	}
-	ul {
-		list-style: none;
+	
+	li.show-lines {
+		border-top: 1px dotted #D1D1D1;
+	}
+}
+
+.widget {
+	padding: 5px;
+	margin: 0;
+	border: 1px solid #7d2b58;
+	width: 240px;
+
+	header.top {
 		margin: 0;
 		padding: 0;
+		text-align: right;
+		font-style: italic;
+		color: #0000aa;
 	}
-	li {
-		display:inline-block;
-		margin-right: 2em;
+
+	figure {
+		margin: 0;
+		padding: 0;
+		height: 160px;
+		overflow: hidden;
 	}
-	li.posted {
-		float: right;
+
+	section {
+		margin: 0;
+		padding: 0;
+		color: #888888;
+		font-size: 10pt;
+		line-height: 150%;
 	}
+}
+
+.effect-round-corner {
+	@include border-radius(4px);
+}
+
+.effect-box-shadow {
+	@include single-box-shadow(#999999, 3px, 3px, 3px);
 }

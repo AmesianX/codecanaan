@@ -92,7 +92,7 @@ class BootStrap {
                     .save(failOnError: true, flush: true)
 
                 def course1 = new Course(
-                    name: 'course-1',
+                    name: 'tqc-plus-java6',
                     title: 'TQC+ Java 物件導向程式語言',
                     description: 'course-1 desc',
                     creator: user1
@@ -106,6 +106,24 @@ class BootStrap {
                 UserCourse.create(user2, course1, RegType.USER, true)
                 UserCourse.create(user3, course1, RegType.USER, true)
                 UserCourse.create(user5, course1, RegType.AUTHOR, true)
+
+
+                //自動產生文章 read rss from google news
+                def url = 'https://news.google.com/news/feeds?pz=1&cf=all&ned=tw&hl=zh-TW&output=rss'
+                def xml = new XmlParser().parse(url)
+                def i = 0
+                xml.channel[0].item.each {
+                    item->
+                    
+                    new Post(
+                        name: "post-${i++}",
+                        title: item.title[0].value().first(),
+                        content: item.description[0].value().first().replaceAll("<(.|\n)*?>", ''),
+                        type: PostType.ANNOUNCE,
+                        tag: 'tag1, tag2',
+                        creator: user1
+                    ).save()
+                }
             }
         }
     }

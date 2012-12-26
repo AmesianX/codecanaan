@@ -12,6 +12,7 @@ grails.project.dependency.resolution = {
         // specify dependency exclusions here; for example, uncomment this to disable ehcache:
         // excludes 'ehcache'
     }
+    
     log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
 
@@ -31,6 +32,7 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
     }
+
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
@@ -38,6 +40,8 @@ grails.project.dependency.resolution = {
 
         compile 'org.springframework.social:spring-social-core:1.0.0.RELEASE'
         compile 'org.springframework.social:spring-social-facebook:1.0.0.RELEASE'
+
+        runtime 'net.java.dev.jets3t:jets3t:0.9.0'
     }
 
     plugins {

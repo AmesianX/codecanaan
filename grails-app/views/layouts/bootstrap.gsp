@@ -70,10 +70,12 @@ FB.Event.subscribe('auth.login', function() {
         <div class="row">
             <div class="span9">
                 <ul class="nav nav-pills">
+                    <li><g:link url="/page/help">使用手冊</g:link></li>
                     <li><g:link url="/page/pricing">價格方案</g:link></li>
                     <li><g:link url="/page/partner">合作夥伴</g:link></li>
                     <li><g:link url="/page/about">關於我們</g:link></li>
                     <li><g:link url="/page/contact">聯絡我們</g:link></li>
+                    <li><a href="#"><small class="muted">|</small></a></li>
                     <li><g:link url="/?lang=zh_TW">中文版</g:link></li>
                     <li><g:link url="/?lang=en">English</g:link></li>
                     <!--<li class="dropdown">
@@ -88,7 +90,7 @@ FB.Event.subscribe('auth.login', function() {
                 </ul>
             </div>
             <div class="span3 copyright">
-                <p>Copyright &copy; CodeCanaan Inc.<br/>All rights reserved.</p>
+                <p>Copyright &copy; CodeCanaan<br/>All rights reserved.</p>
                 <p>程式設計數位學習方舟計畫<br/>思創軟體設計</p>
             </div>
         </div>

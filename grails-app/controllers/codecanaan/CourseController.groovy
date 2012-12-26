@@ -298,4 +298,11 @@ class CourseController {
 
         redirect action: 'user', id: course.id
     }
+
+    /**
+     * 探索新課程
+     */
+    def explore() {
+        [courses: Course.findAllByName('tqc-plus-java6')]
+    }
 }

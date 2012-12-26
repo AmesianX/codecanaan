@@ -9,8 +9,8 @@
 
 // Secure Passwords in private config file
 grails.config.locations = [
-	//"file:${userHome}/.grails/${appName}-config.properties",
-	"file:${userHome}/.grails/${appName}-config.groovy"
+    //"file:${userHome}/.grails/${appName}-config.properties",
+    "file:${userHome}/.grails/${appName}-config.groovy"
 ]
 
 // if (System.properties["${appName}.config.location"]) {
@@ -133,8 +133,8 @@ grails.analytics.domainName = 'codecanaan.com'
 
 // Avatar
 avatarPlugin {
-	//defaultGravatarUrl="""http://yourdomain.com/images/default-gravatar-80.png"""
-	gravatarRating="G"
+    //defaultGravatarUrl="""http://yourdomain.com/images/default-gravatar-80.png"""
+    gravatarRating="G"
 }
 
 // Added by the Spring Security Core plugin:
@@ -152,3 +152,10 @@ grails.plugins.springsecurity.facebook.filter.type='transparent'
 grails.plugins.springsecurity.facebook.domain.classname='codecanaan.FacebookUser'
 grails.plugins.springsecurity.facebook.appId='--appid--'
 grails.plugins.springsecurity.facebook.secret='--secret--'
+
+aws {
+    domain="s3.amazonaws.com"
+    accessKey="-accessKey-"
+    secretKey="-secretKey-"
+    bucketName="-bucketName-"
+}
