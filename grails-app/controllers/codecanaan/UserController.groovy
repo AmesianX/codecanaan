@@ -38,10 +38,18 @@ class UserController {
 
     /**
      */
-    @Secured(['ROLE_USER'])
+    @Secured(['ROLE_TEACHER', 'ROLE_AUTHOR', 'ROLE_ADMIN'])
     def file() {
         def user = springSecurityService.currentUser
 
         []
+    }
+
+    /**
+     * 檔案上傳
+     */
+    @Secured(['ROLE_TEACHER', 'ROLE_AUTHOR', 'ROLE_ADMIN'])
+    def fileUpload() {
+
     }
 }

@@ -26,13 +26,15 @@
                         <g:message code="default.user.preferences.text" />
                     </g:link>
                 </li>
-                <li>
-                    <g:link controller="user" action="file">
-                        <i class="icon icon-file"></i>
-                        <!--檔案管理-->
-                        <g:message code="default.file.management.text" />
-                    </g:link>
-                </li>
+                <sec:ifAnyGranted roles="ROLE_TEACHER,ROLE_AUTHOR,ROLE_ADMIN">
+                    <li>
+                        <g:link controller="user" action="file">
+                            <i class="icon icon-file"></i>
+                            <!--檔案管理-->
+                            <g:message code="default.file.management.text" />
+                        </g:link>
+                    </li>
+                </sec:ifAnyGranted>
                 <li>
                     <g:link controller="home" action="client">
                         <i class="icon icon-download"></i>
