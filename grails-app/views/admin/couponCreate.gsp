@@ -2,10 +2,10 @@
 <html>
 <head>
 <meta name="layout" content="bootstrap">
-<title><g:message code="admin.label" /></title>
+<title><g:message code="default.administration.text" /></title>
 </head>
 <body>
-<g:form action="couponCreate" class="form-horizontal">
+<g:form action="couponCreateAction" class="form-horizontal">
 
     課程<br/>
     <g:select name="course.id" from="${codecanaan.Course.list()}" optionKey="id" optionValue="title" noSelection="['':'']" /><br/>
@@ -21,6 +21,8 @@
     <br/>
     發給單位或組織<br/>
     <g:textField name="organization" class="input input-xlarge" value="" /><br/>
+    有效天數<br/>
+    <g:textField name="validDays" class="input input-small" value="30" /><br/>
     <br/>
     備忘資料<br/>
     <g:textArea name="memo" class="input input-xlarge" rows="3" value=""/></br>

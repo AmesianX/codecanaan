@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="layout" content="bootstrap">
-<title><g:message code="admin.label" /></title>
+<title><g:message code="default.administration.text" /></title>
 </head>
 <body>
 <g:form controller="admin" action="userEditSave" id="${user.id}" method="post" class="form-horizontal">

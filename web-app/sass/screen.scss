@@ -177,6 +177,12 @@ ul.links {
 	}
 }
 
+/*------------------ Common Styles ------------------*/
+
+.font-monospace {
+	font-family: 'Droid Sans Mono', monospace;
+}
+
 .effect-round-corner {
 	@include border-radius(4px);
 }

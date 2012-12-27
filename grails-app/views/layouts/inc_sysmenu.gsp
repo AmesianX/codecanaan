@@ -22,13 +22,4 @@
             </g:link>
         </li>
     </sec:ifLoggedIn>
-    <sec:ifAllGranted roles="ROLE_ADMIN">
-        <!-系統管理-->
-        <li class="${controllerName=='admin'?'active':''}">
-            <g:link controller="admin">
-                <i class="icon icon-wrench"></i>
-                <g:message code="admin.label" default="Administration" />
-            </g:link>
-        </li>
-    </sec:ifAllGranted>
 </ul>

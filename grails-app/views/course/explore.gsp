@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="layout" content="bootstrap">
-<title><g:message code="default.explore.label" /></title>
+<title><g:message code="default.explore.text" /></title>
 </head>
 <body>
 

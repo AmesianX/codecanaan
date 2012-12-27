@@ -26,6 +26,15 @@
                         <g:message code="default.user.preferences.text" />
                     </g:link>
                 </li>
+                <sec:ifAllGranted roles="ROLE_ADMIN">
+                    <li>
+                        <g:link controller="admin">
+                            <i class="icon icon-wrench"></i>
+                            <!-系統管理-->
+                            <g:message code="default.administration.text" />
+                        </g:link>
+                    </li>
+                </sec:ifAllGranted>
                 <sec:ifAnyGranted roles="ROLE_TEACHER,ROLE_AUTHOR,ROLE_ADMIN">
                     <li>
                         <g:link controller="user" action="file">

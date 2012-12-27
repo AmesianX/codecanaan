@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="layout" content="bootstrap">
-<title><g:message code="admin.label" /></title>
+<title><g:message code="default.administration.text" /></title>
 </head>
 <body>
 <div class="row">
@@ -26,12 +26,14 @@
                 <g:message code="default.add.label" args="[message(code:'user.label')]" />
             </g:link>
         </div>
+
         <g:form action="userList" class="form-search" method="get">
           <div class="input-append">
             <input type="text" name="keyword" value="${params.keyword}" class="span2 search-query">
             <button type="submit" class="btn">Search</button>
           </div>
         </g:form>
+        
         <table class="table table-hover table-striped">
             <thead>
                 <tr>
@@ -60,7 +62,7 @@
             </tbody>
         </table>
         <span class="pull-left">Size: ${userCount}</span>
-        <g:paginate controller="admin" action="userList" total="${userCount}" class="pagination-centered" />
+        <g:paginate controller="admin" action="userList" total="${userCount}" class="pagination-centered" max="10" />
     </div>
 </div>
 </body>
