@@ -20,6 +20,9 @@ grails.config.locations = [
 grails.app.context = '/'
 
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
+grails.project.fork.run = true
+grails.project.fork.run= [maxMemory:1024, minMemory:1024, debug:false, maxPerm:512, jvmArgs: '']
+
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false
 grails.mime.types = [

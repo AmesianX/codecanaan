@@ -65,8 +65,10 @@ grails.project.dependency.resolution = {
         //runtime ":database-migration:1.1"
 
         compile ':cache:1.0.1'
-        
+       
         //fix for cached-resources
         compile ":cache-headers:1.1.5"
+
+        compile ":browser-detection:0.4.3"
     }
 }
