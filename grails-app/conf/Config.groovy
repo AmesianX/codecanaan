@@ -151,7 +151,7 @@ grails.plugins.springsecurity.controllerAnnotations.staticRules = [
 ]
 
 grails.plugins.springsecurity.facebook.permissions='email,user_about_me'
-grails.plugins.springsecurity.facebook.filter.type='transparent'
+grails.plugins.springsecurity.facebook.filter.type='redirect'
 grails.plugins.springsecurity.facebook.domain.classname='codecanaan.FacebookUser'
 grails.plugins.springsecurity.facebook.appId='--appid--'
 grails.plugins.springsecurity.facebook.secret='--secret--'
