@@ -70,5 +70,9 @@ grails.project.dependency.resolution = {
         compile ":cache-headers:1.1.5"
 
         compile ":browser-detection:0.4.3"
+
+		// Google Chart Plugin
+		// 移除原因：功能不完整且效果不佳
+		//compile ":google-chart:0.5.2"
     }
 }

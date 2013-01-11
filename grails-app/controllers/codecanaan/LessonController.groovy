@@ -6,13 +6,14 @@ class LessonController {
 
     def springSecurityService
 
+    //課程服務
     def courseService
 
     static allowedMethods = [save: "POST", update: "POST", delete: "GET"]
 
     /* 顯示單元內容 */
     def show(Long id) {
-
+        def user = springSecurityService.currentUser
         def lesson = Lesson.get(id)
 
         if (!lesson) {
@@ -22,12 +23,13 @@ class LessonController {
         }
 
         //檢查修改權限
-        def authoring = courseService.isAuthor(lesson.course, springSecurityService.currentUser)
+        def authoring = courseService.isAuthor(lesson.course, user)
 
         [
             course: lesson.course,
             lesson: lesson,
-            authoring: authoring
+            authoring: authoring,
+            stats: courseService.getLessonStats(lesson, user)
         ]
     }
 

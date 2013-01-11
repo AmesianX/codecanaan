@@ -75,6 +75,10 @@
             </g:each>
         </tbody>
     </table>
+    
+    <!--圖表-->
+    <g:render template="lesson_chart" />
+    
 </g:if>
 <g:else>
     <hr class="soften" />
