@@ -14,7 +14,9 @@ Join chatroom on FreeNode IRC server
 
 ### Continuous Integration ###
 
-* Jenkins
+使用 Jenkins 持續整合
+
+http://jenkins.teamcollab.org/
 
 ### Q & A ###
 
