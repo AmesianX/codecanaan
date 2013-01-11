@@ -10,3 +10,9 @@ Join chatroom on FreeNode IRC server
   irc.freenode.net
   #codecanaan
 
+### Q & A ###
+
+* facebook 登入出現:* 發生錯誤，請稍後再試。
+
+	請清除瀏覽器 cookies
+
