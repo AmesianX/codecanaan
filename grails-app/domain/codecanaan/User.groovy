@@ -44,8 +44,14 @@ class User {
 			encodePassword()
 		}
 	}
-
+	
+	/**
+	 * @see http://stackoverflow.com/questions/8516837/how-to-unit-test-controllers-that-use-springsecurityservice
+	 */
 	protected void encodePassword() {
-		password = springSecurityService.encodePassword(password)
+        // SpringSecutiryService is not injected in tests.
+		
+        if (springSecurityService)
+        	password = springSecurityService.encodePassword(password)
 	}
 }

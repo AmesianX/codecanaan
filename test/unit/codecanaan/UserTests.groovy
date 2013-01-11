@@ -12,6 +12,12 @@ import org.junit.*
 class UserTests {
 
     void testAddAdministrator() {
-       assertNotNull new User(username: 'admin', password: 'admin').save()
+		
+		
+       def user= new User(username: 'admin', password: 'admin').save();
+	   
+	   println user;
+	   
+	   assertNotNull user;
     }
 }
