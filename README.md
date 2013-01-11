@@ -10,6 +10,8 @@ Join chatroom on FreeNode IRC server
   irc.freenode.net
   #codecanaan
 
+更新發佈至 GitHub 會自動以 **codecanaan-ghbot** 暱稱發佈 Commit 訊息到聊天室。
+
 ### Continuous Integration ###
 
 * Jenkins
