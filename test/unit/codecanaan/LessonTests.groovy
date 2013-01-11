@@ -14,28 +14,35 @@ class LessonTests {
         def content1 = new Content(
             type: ContentType.TUTORIAL,
             title: 'title1',
-            source: "### this is contents\n\ndescriptions",
-            output: 'output1',
+            sourceCode: "### this is contents\n\ndescriptions",
             question: 'question1',
             answer: 'ans1',
+			description:"",
             partial: 'partial1'
-        ).save()
+        ).save(failOnError: true, flush: true)
 
         def content2 = new Content(
             type: ContentType.CODE,
             title: 'title2',
-            source: "### this is contents 2\n\ndescriptions",
-            output: 'output2',
+            sourceCode: "### this is contents 2\n\ndescriptions",
             question: 'question2',
             answer: 'ans2',
-            partial: 'partial2'
-        ).save()
+			description:"",
+			partial: 'partial2'
+        ).save(failOnError: true, flush: true)
+		
 
-        def lesson = new Lesson(name: 'lesson1')
-        
+		
+        def lesson = new Lesson(
+			name: 'lesson-1',
+			title: '基本認識',
+			description: 'lesson-1 desc'
+		)
+		
+		
         assertNotNull lesson
         	.addToContents(content1)
         	.addToContents(content2)
-        	.save()
+        	.save(failOnError: true, flush: true)
     }
 }

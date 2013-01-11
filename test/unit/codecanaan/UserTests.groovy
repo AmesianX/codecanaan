@@ -11,13 +11,7 @@ import org.junit.*
 @TestFor(User)
 class UserTests {
 
-    void testAddAdministrator() {
-		
-		
-       def user= new User(username: 'admin', password: 'admin').save();
-	   
-	   println user;
-	   
-	   assertNotNull user;
+	void testAddAdministrator() {
+		assertNotNull new User(username: 'admin', password: 'admin').save();
     }
 }
