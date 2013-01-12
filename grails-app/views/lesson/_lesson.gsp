@@ -49,38 +49,44 @@
 
 <!--目錄-->
 <g:if test="${lesson.contents?.size() > 0}">
-    <hr />
-    <h3><g:message code="default.list.label" args="[message(code:'content.label')]" /></h3>
-    <table class="table">
-        <thead>
-            <tr>
-                <th width="30">#</th>
-                <th width="40"><!--燈號--><g:message code="default.light.text" /></th>
-                <th><!--標題--><g:message code="content.title.label" /></th>
-                <th width="50"><!--瀏覽數--><g:message code="default.hits.text" /></th>
-            </tr>
-        </thead>
-        <tbody>
-            <g:each in="${lesson.contents}" var="row" status="i">
+
+    <section>
+        <h3>學習進度</h3>
+        <!--圖表-->
+        <g:render template="lesson_chart" />
+    </section>
+
+    <section>
+    
+        <h3><g:message code="default.list.label" args="[message(code:'content.label')]" /></h3>
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>${i+1}</td>
-                    <td>
-                        <img src="${createLink(controller: 'content', action: 'light', id: row.id)}" alt="light" />
-                    </td>
-                    <td>
-                        <g:link controller="content" action="show" id="${row.id}">${row.title}</g:link>
-                    </td>
-                    <td>${row.hits}</td>
+                    <th width="30">#</th>
+                    <th width="40"><!--燈號--><g:message code="default.light.text" /></th>
+                    <th><!--標題--><g:message code="content.title.label" /></th>
+                    <th width="50"><!--瀏覽數--><g:message code="default.hits.text" /></th>
                 </tr>
-            </g:each>
-        </tbody>
-    </table>
-    
-    <!--圖表-->
-    <g:render template="lesson_chart" />
-    
+            </thead>
+            <tbody>
+                <g:each in="${lesson.contents}" var="row" status="i">
+                    <tr>
+                        <td>${i+1}</td>
+                        <td>
+                            <img src="${createLink(controller: 'content', action: 'light', id: row.id)}" alt="light" />
+                        </td>
+                        <td>
+                            <g:link controller="content" action="show" id="${row.id}">${row.title}</g:link>
+                        </td>
+                        <td>${row.hits}</td>
+                    </tr>
+                </g:each>
+            </tbody>
+        </table>
+    </div>
 </g:if>
 <g:else>
-    <hr class="soften" />
-    <p>此教學單元未包含任何教材內容！</p>
+    <div class="alert alert-warning">
+        <p>此教學單元未包含任何教材內容！</p>
+    </div>
 </g:else>
