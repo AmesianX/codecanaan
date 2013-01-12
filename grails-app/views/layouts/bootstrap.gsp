@@ -17,17 +17,11 @@
 <r:require modules="common, jquery-ui, bootswatch, bootstrap-ext, font-awesome, pagedown, webfont, compass, codemirror, highlightjs"/>
 <g:layoutHead/>
 <r:layoutResources />
-<r:script>
-<g:justfont ct1=".justfont pre" ct2=".justfont p, .justfont li" ct3=".justfont h2, .justfont h3, .justfont h4, .justfont h5, .justfont h6, .justfont h1 small" ct4=".justfont h1" ct5=".justfont blockquote" />
+<g:justfont />
 <g:analytics />
-</r:script>
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
-<facebookAuth:init>
-FB.Event.subscribe('auth.login', function() {
-    window.location.href = "${createLink(controller: 'user', action: 'facebookSync')}";
-});
-</facebookAuth:init>
+<facebookAuth:init/>
 <!--header-->
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">

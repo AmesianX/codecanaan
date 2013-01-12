@@ -11,10 +11,7 @@
 <r:require modules="common, jquery-ui, bootswatch, bootstrap-ext, font-awesome, pagedown, webfont, compass, codemirror, highlightjs"/>
 <g:layoutHead/>
 <r:layoutResources />
-<r:script>
-<g:justfont ct1=".justfont pre" ct2=".justfont p, .justfont li" ct3=".justfont h2, .justfont h3, .justfont h4, .justfont h5, .justfont h6, .justfont h1 small" ct4=".justfont h1" ct5=".justfont blockquote" />
 <g:analytics />
-</r:script>
 </head>
 <body>
 <div class="container" role="main">

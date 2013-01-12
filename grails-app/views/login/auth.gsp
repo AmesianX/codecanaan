@@ -4,14 +4,8 @@
 <title><g:message code="springSecurity.login.title"/></title>
 </head>
 <body>
-<facebookAuth:init>
-FB.Event.subscribe('auth.login', function() {
-    window.location.href = "${createLink(controller: 'user', action: 'facebookSync')}";
-});
-</facebookAuth:init>
 <div class="row">
 	<div class="span4">
-	
 	
 	    <p style="text-align:center;font-size:1.4em;margin-top:1em;">歡迎！已經有...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
 	    <p style="text-align:center;padding-top:1em;font-size:1.4em"><span style="font-size:72pt;color:#62783f;font-family:Helvetica;font-weight:bold" class="effect-text-shadow">${codecanaan.User.count()}</span> 位</p>

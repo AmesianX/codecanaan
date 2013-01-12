@@ -51,24 +51,13 @@
                         <g:message code="default.client.tools.text" />
                     </g:link>
                 </li>
-                <sec:ifAllGranted roles="ROLE_FACEBOOK">
-                    <li>
-                        <g:link uri="/j_spring_security_logout" onclick="return doLogout()">
-                            <i class="icon icon-off"></i>
-                            <!--登出-->
-                            <g:message code="default.logout.text" />
-                        </g:link>
-                    </li>
-                </sec:ifAllGranted>
-                <sec:ifNotGranted roles="ROLE_FACEBOOK">
-                    <li>
-                        <g:link uri="/j_spring_security_logout">
-                            <i class="icon icon-off"></i>
-                            <!--登出-->
-                            <g:message code="default.logout.text" />
-                        </g:link>
-                    </li>
-                </sec:ifNotGranted>
+                <li>
+                    <g:link uri="/j_spring_security_logout">
+                        <i class="icon icon-off"></i>
+                        <!--登出-->
+                        <g:message code="default.logout.text" />
+                    </g:link>
+                </li>
                 <sec:ifSwitched>
                     <li>
                         <a href='${request.contextPath}/j_spring_security_exit_user'>
@@ -82,14 +71,3 @@
         </li>
     </sec:ifLoggedIn>
 </ul>
-<r:script>
-function doLogout() {
-    if (typeof(FB) === 'object') {
-        FB.logout(function() {
-            window.location.href = "${createLink(uri: '/j_spring_security_logout')}";
-        });
-        return false;
-    }
-    return true;
-}
-</r:script>
