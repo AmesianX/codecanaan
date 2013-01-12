@@ -7,10 +7,10 @@ grails.project.source.level = 1.6
 grails.project.war.file = "target/${appName}.war"
 
 // Enable tomcat fork run
-grails.project.fork.run = true
+// grails.project.fork.run = true
 // uncomment (and adjust settings) to fork the JVM to isolate classpaths
 //grails.project.fork = [
-//   run: [maxMemory:1024, minMemory:64, debug:false, maxPerm:256]
+//   run: [maxMemory:1024, minMemory:64, debug:true, maxPerm:256]
 //]
 
 grails.project.dependency.resolution = {
