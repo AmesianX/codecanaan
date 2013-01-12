@@ -6,6 +6,20 @@ modules = {
 		resource url: 'jquery-ui/js/jquery-ui-1.9.1.custom.min.js'
     }
 
+    // Using jQuery File Upload Plug-in
+    'jquery-fileupload' {
+        dependsOn 'jquery'
+        
+        resource url: 'jquery-fileupload/css/jquery.fileupload-ui.css'
+        resource url: 'jquery-fileupload/css/jquery.fileupload-ui-noscript.css',
+            wrapper: { s -> "<noscript>$s</noscript>" }
+    
+        resource url: 'jquery-fileupload/js/jquery.iframe-transport.js'
+        resource url: 'jquery-fileupload/js/jquery.fileupload.js'
+        resource url: 'jquery-fileupload/js/jquery.fileupload-fp.js'
+        resource url: 'jquery-fileupload/js/jquery.fileupload-ui.js'
+    }
+
     common {
         resource url: 'js/common.js'
     }
