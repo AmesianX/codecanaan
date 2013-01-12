@@ -203,6 +203,10 @@ ul.links {
 	font-family: 'Droid Sans Mono', monospace;
 }
 
+.effect-text-shadow {
+	@include text-shadow(0 0 1px transparent, #aaa 1pt 1pt 2pt);
+}
+
 .effect-round-corner {
 	@include border-radius(4px);
 }
@@ -210,3 +214,4 @@ ul.links {
 .effect-box-shadow {
 	@include single-box-shadow(#999999, 3px, 3px, 3px);
 }
+
