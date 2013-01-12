@@ -101,7 +101,7 @@ log4j = {
         console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     }
 
-    //info "grails.app"
+    info "grails.app"
 
     debug 'codecanaan'
     

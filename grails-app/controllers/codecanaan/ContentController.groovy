@@ -5,6 +5,8 @@ import org.springframework.dao.DataIntegrityViolationException
 class ContentController {
 
     def springSecurityService
+    
+    def s3Service
 
     def courseService
 
@@ -213,5 +215,81 @@ class ContentController {
 
         [content: content]
     }
-
+    
+    /**
+     * 讀取附件
+     */
+    def attachment(Long id) {
+        def content = Content.get(id)
+        
+        if (!content) {
+            response.sendError 404
+            return
+        }
+        
+        try {
+            def object = s3Service.getObject("attachment/${content.lesson?.course?.id}/${content.lesson?.id}/${content.id}/${params.file}")
+            
+            response.outputStream << object.dataInputStream
+        }
+        catch (e) {
+            e.printStackTrace()
+            response.sendError 404
+        }
+    }
+    
+    /**
+     * 附件上傳及清單（顯示在 iframe 頁框內）
+     */
+    def attachmentList(Long id) {
+        def content = Content.get(id)
+        
+        if (!content) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'content.label', default: 'Content'), id])
+            redirect(controller: 'course')
+            return
+        }
+        
+        [
+            content: content,
+            files: s3Service.getObjectList("attachment/${content.lesson?.course?.id}/${content.lesson?.id}/${content.id}")
+        ]
+    }
+    
+    /**
+     * 儲存上傳的附件檔案
+     */
+    def attachmentSave(Long id) {
+        def content = Content.get(id)
+        
+        if (!content) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'content.label', default: 'Content'), id])
+            redirect(controller: 'course')
+            return
+        }
+        
+        params.files.each {
+            i,file->
+            
+            if (!file.isEmpty()) {
+                //儲存已上傳的檔案
+                log.info "Process file ${file.originalFilename} upload to ${content}."
+                s3Service.saveObject "attachment/${content.lesson?.course?.id}/${content.lesson?.id}/${content.id}/${file.originalFilename}", file.contentType, file.inputStream, file.size
+            }
+        }
+        
+        redirect action: 'attachmentList', id: content.id
+    }
+    
+    def attachmentDelete(Long id) {
+        def content = Content.get(id)
+        
+        params.list('selected').each {
+            path->
+            //移除檔案
+            s3Service.deleteObject path
+        }
+        
+        redirect action: 'attachmentList', id: content.id
+    }
 }

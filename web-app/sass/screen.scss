@@ -51,8 +51,10 @@ span.required-mark {
 }
 
 /* 附件區 */
-.attachment-panel {
+iframe#attachment-frame {
+	width: 95%;
 	height: 360px;
+	border: none;
 }
 
 .wmd-preview, .wmd-input {

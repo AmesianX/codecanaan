@@ -35,6 +35,14 @@ class UrlMappings {
 			}
 		}
 		
+		"/attachment/$id/$file" {
+		    controller = "content"
+		    action = "attachment"
+		    constraints {
+		        id(matches:/\d+/)
+		    }
+		}
+		
 		"/page/$name" {
 			controller = "post"
 			action = "show"
