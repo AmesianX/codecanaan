@@ -7,3 +7,6 @@
 [submodule "web-app/bootswatch"]
 	path = web-app/bootswatch
 	url = git@github.com:lyhcode/bootswatch.git
+[submodule "web-app/jQuery-File-Upload"]
+	path = web-app/jQuery-File-Upload
+	url = git@github.com:blueimp/jQuery-File-Upload.git

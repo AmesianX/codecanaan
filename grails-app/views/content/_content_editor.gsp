@@ -1,9 +1,14 @@
 <!--編輯課程-->
 <g:form controller="content" action="ajaxSave" method="post">
+
+    <p class="pull-right">標記 <span class="required-mark">*</span> 為必填欄位</p>
+    
     <div class="control-group">
-        <label class="control-label" for="title">
+        <label class="control-label required" for="title">
             <!--內容標題-->
             <g:message code="content.title.label" />
+            <!--必填-->
+            <span class="required-mark">*</span>
         </label>
         <div class="controls">
             <g:textField name="title" value="${content.title}" class="input input-xlarge" />
@@ -37,8 +42,24 @@
         </div>
     </div>
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab-editor" data-toggle="tab"><g:message code="content.description.label" /></a></li>
-        <li><a href="#tab-preview" data-toggle="tab"><g:message code="default.preview.label" args="[message(code: 'content.label')]" /></a></li>
+        <li class="active">
+            <a href="#tab-editor" data-toggle="tab">
+                <!-- [教材內容] -->
+                <g:message code="content.description.label" />
+            </a>
+        </li>
+        <li>
+            <a href="#tab-preview" data-toggle="tab">
+                <!-- [內容預覽] -->
+                <g:message code="default.preview.label" args="[message(code: 'content.label')]" />
+            </a>
+        </li>
+        <li>
+            <a href="#tab-attachment" data-toggle="tab">
+                <!-- [附件] -->
+                附件
+            </a>
+        </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="tab-editor">
@@ -49,6 +70,9 @@
         </div>
         <div class="tab-pane" id="tab-preview">
             <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
+        </div>
+        <div class="tab-pane" id="tab-attachment">
+            <div id="attachment-area" class="attachment-panel"></div> 
         </div>
     </div>
 

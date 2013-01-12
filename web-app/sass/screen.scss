@@ -26,15 +26,37 @@ body {
 	font-size: 11pt;
 }
 
+/*-------------------- CodeMirror ----------------------*/
+
 .CodeMirror {
 	border: 1px solid #dadada;
 	font-family: 'Droid Sans Mono', monospace;
 	font-size: 11pt;
-
+	background: white;
 }
 .CodeMirror-lines, .CodeMirror-gutter {
 	font-family: 'Droid Sans Mono', monospace;
 	line-height: 1.5em;
+}
+
+/*--------------------- 加強表單 ---------------------------*/
+
+label.required {
+	font-weight: bold;
+}
+
+span.required-mark {
+	font-weight: bold;
+	color: red;
+}
+
+/* 附件區 */
+.attachment-panel {
+	height: 360px;
+}
+
+.wmd-preview, .wmd-input {
+    height: 360px;
 }
 
 .test-report {
@@ -111,10 +133,6 @@ h1, h2, h3, h4 {
 	pre, code {
 	    font-size: 16pt;
 	}
-}
-
-.wmd-preview, .wmd-input {
-    height: 300px;
 }
 
 footer {
