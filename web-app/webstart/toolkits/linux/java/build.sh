@@ -18,3 +18,4 @@ fi
 read -p 'Press ENTER to continue...' __KEY
 
 touch .complete
+
