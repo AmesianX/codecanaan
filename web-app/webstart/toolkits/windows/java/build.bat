@@ -1,5 +1,7 @@
 @echo off
 
+title CodeCanaan
+
 cd %CC_CLIENT_CWD%
 
 javac -encoding utf-8 %CC_CLIENT_FILE%

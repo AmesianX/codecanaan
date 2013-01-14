@@ -99,6 +99,24 @@ catch (e) {
     //ignore
 }
 
+def versionCheck = {
+    cmd ->
+    try {
+        def proc = cmd.execute()
+        proc.waitForOrKill(10*1000)
+        return [
+            exitValue: proc.exitValue(),
+            stdout: "${proc.in.text}\n${proc.err.text}".trim()
+        ]
+    }
+    catch (e) {
+        return [
+            exitValue: -1,
+            stdout: e.message
+        ]
+    }
+}
+
 def counter = 0
 
 SimpleGroovyServlet.run(clientPort) { ->
@@ -117,49 +135,30 @@ SimpleGroovyServlet.run(clientPort) { ->
     }
     
     if (action == 'versions') {
-        def versionCheck = {
-            cmd ->
-            try {
-                def proc = cmd.execute()
-                proc.waitForOrKill(10*1000)
-                return [proc.exitValue(), "${proc.in.text}\n${proc.err.text}".trim()]
-            }
-            catch (e) {
-                return [-1, e.message]
-            }
-        }
-
-        def java_proc = versionCheck('java -version')
-        def javac_proc = versionCheck('javac -version')
-        def gcc_proc = versionCheck('gcc --version')
-        def ruby_proc = versionCheck('ruby --version')            
-        def python_proc = versionCheck('python --version')
-        def groovy_proc = versionCheck('groovy --version')
-
         json.result {
             status 'success'
             message ''
             os (name: System.properties['os.name'], version: System.properties['os.version'])
             versions (
-                java:   [exitValue: java_proc[0],   stdout: java_proc[1]],
-                javac:  [exitValue: javac_proc[0],  stdout: javac_proc[1]],
-                gcc:    [exitValue: gcc_proc[0],    stdout: gcc_proc[1]],
-                ruby:   [exitValue: ruby_proc[0],   stdout: ruby_proc[1]],
-                python: [exitValue: python_proc[0], stdout: python_proc[1]],
-                groovy: [exitValue: groovy_proc[0], stdout: groovy_proc[1]]
+                java:   versionCheck('java -version'),
+                javac:  versionCheck('javac -version'),
+                gcc:    versionCheck('gcc --version'),
+                'g++':  versionCheck('g++ --version'),
+                ruby:   versionCheck('ruby --version'),
+                python: versionCheck('python --version'),
+                groovy: versionCheck('groovy --version')
             )
         }
-        
         println json.toString()
-    
         return
     }
 
     def sourcePath = params['sourcePath']
     def sourceCode = params['sourceCode']
-
+    def sourceType = params['sourceType']
+    
     //Current Working Directory
-    def cwd = new File(tempdir, "${counter++}")
+    def cwd = new File(tempdir, "tmp${counter++}")
     cwd.mkdir()
 
     def sourceFile = new File(cwd, sourcePath)
@@ -188,63 +187,54 @@ SimpleGroovyServlet.run(clientPort) { ->
     //copy envp2 to envp
     envp2.each { envp << it }
 
+    //type of build scripts
+    def type = sourceType.toLowerCase()
+
     try {
         if (isWindows) {
-            def batchFile = new File(cwd, 'execute.bat')
-            batchFile << """@echo off
-REM java -version
-javac -encoding utf-8 ${sourcePath} && ..\\execdump.exe stdout.dump "java ${sourceBase}"
-pause
-exit
-"""
-            def proc = ['cmd', '/C', 'start', '/WAIT', batchFile.absolutePath].execute(null, cwd)
-            proc.waitFor()
-            stdout << proc.in.text
-
-            def dumpfile = new File(cwd, 'stdout.dump')
-            dump << dumpfile.getText('MS950')
+            /* Windows */
+            def proc = [
+                'cmd', '/C',
+                'start',
+                "..\\windows\\${type}\\build.bat"
+            ].execute(envp, cwd)
         }
         else if (isMac) {
-
             /* Mac OS X */
-            
             def cmdbuff = new StringBuffer();
             
             cmdbuff << "cd ${cwd.absolutePath};"
             envp2.each { cmdbuff << "export ${it};" }
-            cmdbuff << "sh ../mac/java/build.sh;"
+            cmdbuff << "sh ../mac/${type}/build.sh;"
             cmdbuff << "exit"
             
             def proc = [
                 'osascript',
-                '../mac/java/terminal.scpt',
+                '../terminal.scpt',
                 cmdbuff.toString()
             ].execute(envp, cwd)
-
-            //等待程式執行完成的訊號
-            while (!new File(cwd, '.complete').exists()) {
-                sleep(500)
-            }
-            
-            def dumpfile = new File(cwd, '.stdout')
-            dump << dumpfile.text
         }
         else if (isLinux) {
-        
             /* Linux */
-            
             def proc = [
                 'gnome-terminal',
                 '-t', 'CodeCanaan',
-                '-x', 'sh', '../linux/java/build.sh'
+                '-x', 'sh', "../linux/${type}/build.sh"
             ].execute(envp, cwd)
-            
-            //等待程式執行完成的訊號
-            while (!new File(cwd, '.complete').exists()) {
-                sleep(500)
-            }
-            
-            def dumpfile = new File(cwd, '.stdout')
+        }
+
+        //等待程式執行完成的訊號
+        while (!new File(cwd, '.complete').exists()) {
+            sleep(500)
+        }
+        
+        def dumpfile = new File(cwd, '.stdout')
+        
+        if (isWindows) {
+            //Windows Using MS950 Encoding for Text Files
+            dump << dumpfile.getText('MS950')
+        }
+        else {
             dump << dumpfile.text
         }
     }
