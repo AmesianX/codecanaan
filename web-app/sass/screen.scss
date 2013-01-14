@@ -107,7 +107,8 @@ h1, h2, h3, h4 {
 }
 
 .justfont {
-	text-rendering:optimizelegibility;
+	text-rendering: optimizelegibility;
+	
 	h1, h2, h3, h4, h5, h6 {
 		font-weight: normal;
 	}
@@ -115,12 +116,12 @@ h1, h2, h3, h4 {
 		//text-shadow: 0 0 1px transparent;
 		//text-shadow: 0 0 0 #f00, 0 0 1px transparent;
 	}
-	p, li {
+	p, li, blockquote {
 		font-size: 12pt;
 		line-height: 200%;
 		letter-spacing: 1px;
 	}
-	pre, code {
+	pre, code, textarea {
 		font-size: 11pt;
 		line-height: 150%;
 		font-family: 'Droid Sans Mono', monospace;
