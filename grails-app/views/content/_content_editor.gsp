@@ -82,7 +82,7 @@
             <g:message code="content.sourceType.label" />
         </label>
         <div class="controls">
-            <g:select name="sourceType" from="${codecanaan.SourceType?.values()}" keys="${codecanaan.SourceType.values()*.name()}" required="" value="${content.sourceType}"/>
+            <g:select name="sourceType" from="${codecanaan.SourceType?.values()}" keys="${codecanaan.SourceType.values()*.name()}" required="" value="${content.sourceType.name()}" />
         </div>
     </div>
 
