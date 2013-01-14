@@ -14,7 +14,7 @@ run:
 	
 zip:
 	mkdir -p toolkits/windows/java
-	for i in windows linux mac; do for j in java c; do mkdir -p toolkits/$$i/$$j; done; done
-	for i in windows linux mac; do for j in java c; do cp toolkits-src/$$i/$$j/build.* toolkits/$$i/$$j; done; done
+	for i in windows linux mac; do for j in java c cpp; do mkdir -p toolkits/$$i/$$j; done; done
+	for i in windows linux mac; do for j in java c cpp; do cp toolkits-src/$$i/$$j/build.* toolkits/$$i/$$j; done; done
 	rm -f toolkits.zip
 	cd toolkits && zip -r9 ../toolkits.zip *
