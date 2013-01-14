@@ -57,7 +57,8 @@ class CourseServiceTests {
 		.addToContents(content2)
 		.save()
 		
-
+		new Record(user: user, content: content1 ,dateCreated: new Date(), passed:true).save()
+		new Record(user: user, content: content2 ,dateCreated: new Date() ,lastUpdated: new Date() , passed:false).save()
 		
 	}
     void testIsAuthor() {
@@ -67,9 +68,6 @@ class CourseServiceTests {
     }
 	
 	void testGetLessonStats(){
-		new Record(user: user, content: content1, passed:true).save()
-		new Record(user: user, content: content2, passed:false).save()
-		
 		def cs= new CourseService()
 		def stat = cs.getLessonStats(newLession, user)
 		
