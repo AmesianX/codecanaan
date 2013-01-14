@@ -4,35 +4,31 @@
 <!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=1024, user-scalable=no">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=1024, user-scalable=no">
+<title>${content?.title}</title>
+<!--require and layout resources-->
+<r:require modules="jquery, webfont, highlightjs"/>
+<r:layoutResources />
 
-	<title>Test-deck</title>
+<!-- Core and extension CSS files -->
+<link rel="stylesheet" href="${resource(dir: 'deckjs/core', file: 'deck.core.css')}">
+<link rel="stylesheet" href="${resource(dir: 'deckjs/extensions/goto', file: 'deck.goto.css')}">
+<!--<link rel="stylesheet" href="${resource(dir: 'deckjs/extensions/menu', file: 'deck.menu.css')}">-->
+<link rel="stylesheet" href="${resource(dir: 'deckjs/extensions/navigation', file: 'deck.navigation.css')}">
+<link rel="stylesheet" href="${resource(dir: 'deckjs/extensions/status', file: 'deck.status.css')}">
+<link rel="stylesheet" href="${resource(dir: 'deckjs/extensions/hash', file: 'deck.hash.css')}">
 
-	<!--require and layout resources-->
-	<r:require modules="jquery, webfont, highlightjs"/>
-	<r:layoutResources />
+<!-- Theme CSS files (menu swaps these out) -->
+<link rel="stylesheet" id="style-theme-link" href="${resource(dir: 'deckjs/themes/style', file: 'web-2.0.css')}">
+<link rel="stylesheet" id="transition-theme-link" href="${resource(dir: 'deckjs/themes/transition', file: 'horizontal-slide.css')}">
 
-	<!-- Core and extension CSS files -->
-	<link rel="stylesheet" href="${resource(dir: 'deckjs/core', file: 'deck.core.css')}">
-	<link rel="stylesheet" href="${resource(dir: 'deckjs/extensions/goto', file: 'deck.goto.css')}">
-	<!--<link rel="stylesheet" href="${resource(dir: 'deckjs/extensions/menu', file: 'deck.menu.css')}">-->
-	<link rel="stylesheet" href="${resource(dir: 'deckjs/extensions/navigation', file: 'deck.navigation.css')}">
-	<link rel="stylesheet" href="${resource(dir: 'deckjs/extensions/status', file: 'deck.status.css')}">
-	<link rel="stylesheet" href="${resource(dir: 'deckjs/extensions/hash', file: 'deck.hash.css')}">
+<!-- Custom CSS just for this page -->
+<link rel="stylesheet" id="transition-theme-link" href="${resource(dir: 'deckjs', file: 'customize.css')}">
 
-	<!-- Theme CSS files (menu swaps these out) -->
-	<link rel="stylesheet" id="style-theme-link" href="${resource(dir: 'deckjs/themes/style', file: 'web-2.0.css')}">
-	<link rel="stylesheet" id="transition-theme-link" href="${resource(dir: 'deckjs/themes/transition', file: 'horizontal-slide.css')}">
-
-	<!-- Custom CSS just for this page -->
-	<link rel="stylesheet" id="transition-theme-link" href="${resource(dir: 'deckjs', file: 'customize.css')}">
-
-	<!--<script src="${resource(dir: 'deckjs', file: 'jquery-1.7.2.min.js')}"></script>-->
-	<script src="${resource(dir: 'deckjs', file: 'modernizr.custom.js')}"></script>
-
-	<!--justfont--><r:script>window.jfAsyncInit=function(){ctb.main({'appId':'04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=','tag':{'ct1':'.deck-container .slide pre','ct2':{'0':'.deck-container .slide p','1':'.deck-container .slide li'},'ct3':{'0':'.deck-container .slide h2','1':'.deck-container .slide h3','2':'.deck-container .slide h4','3':'.deck-container .slide h5','4':'.deck-container .slide h6','5':'.deck-container .slide h1 small'},'ct4':'.deck-container .slide h1','ct5':'.deck-container .slide blockquote p'}});};(function(){var jf=document.createElement('script');jf.type='text/javascript';jf.async=true;jf.src='http://ds.justfont.com/core/js/v1.0/04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY=.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(jf,s);})();</r:script>
+<script src="${resource(dir: 'deckjs', file: 'modernizr.custom.js')}"></script>
+<g:justfont force="true" />
 </head>
 
 <body class="deck-container">
