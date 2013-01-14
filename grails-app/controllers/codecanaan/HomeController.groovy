@@ -2,6 +2,8 @@ package codecanaan
 
 class HomeController {
     def springSecurityService
+    
+    def grailsLinkGenerator
 
     def index() {
         def posts = Post.findAll(max: 10, sort: 'dateCreated', order: 'desc') {
@@ -32,13 +34,15 @@ class HomeController {
         def user = springSecurityService.currentUser
         
         //response.contentType = 'text/xml'
-        response.contentType = 'application/x-java-jnlp-file'
+        //response.contentType = 'application/x-java-jnlp-file'
         response.addHeader('Content-disposition', 'inline; filename=webstart.jnlp')
-
+        
         render(
+            //contentType: 'text/xml',
             contentType: 'application/x-java-jnlp-file',
             template: "webstart",
             model: [
+                baseURL: grailsLinkGenerator.serverBaseURL,
                 clientPort: user?.clientPort?user?.clientPort:1337
             ]
         )

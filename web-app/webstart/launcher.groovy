@@ -1,3 +1,8 @@
+/**
+ * CodeCanaan Client Tools 客戶端工具
+ * 服務啟動程式（Launcher）
+ */
+
 import org.mortbay.jetty.Server
 import org.mortbay.jetty.servlet.*
 import groovy.servlet.*
@@ -11,7 +16,7 @@ import java.awt.*
 import java.awt.event.*
 
 class FileBinaryCategory{    
-    def static leftShift(File file, URL url){    
+    def static leftShift(File file, URL url) {
        url.withInputStream {is->
             file.withOutputStream {os->
                 def bs = new BufferedOutputStream( os )
@@ -43,7 +48,7 @@ class SimpleGroovyServlet extends HttpServlet {
     }
 }
 
-//delete the .jnlp file
+//移除瀏覽器下載的 .jnlp 暫存檔案
 try {
     new File(System.properties['jnlpx.origFilenameArg'])?.delete()
 }
@@ -78,89 +83,13 @@ ant.unzip(src: toolkits, dest: tempdir, overwrite: 'true') {
 def httpOrigin = System.properties['core.http.origin']?System.properties['core.http.origin']:'*'
 def clientPort = System.properties['core.client.port']?new Integer(System.properties['core.client.port']):1337
 
-/*def swing = new SwingBuilder()
-swing.edt {
-    frame(title: 'CodeCanaan', defaultCloseOperation:JFrame.EXIT_ON_CLOSE, size: [320, 240], pack: false, show: true) {
-        lookAndFeel("system")
-        borderLayout()
-        label("練習過程請勿關閉 port: ${clientPort}", constraints: BorderLayout.NORTH)
-        button(
-            text: '結束',
-            actionPerformed: {
-                System.exit(0)
-            },
-            constraints: BorderLayout.SOUTH
-        )
-    }
-}*/
 
+//Swing UI Look And Feel
 UIManager.lookAndFeel = UIManager.systemLookAndFeelClassName
 UIManager.put('swing.boldMetal', Boolean.FALSE)
 
-//工作列圖示
-def iconFile = new File(tempdir, 'play-icon.png').absolutePath
-
-if (isWindows) {
-    iconFile = new File(tempdir, 'play-icon-16.png').absolutePath
-}
-
-//if (!SystemTray.isSupported()) {
-
-def popup = new PopupMenu()
-def trayIcon = new java.awt.TrayIcon(Toolkit.defaultToolkit.getImage(iconFile))
-def tray = SystemTray.systemTray
-
-// Create a popup menu components
-MenuItem aboutItem = new MenuItem('About')
-Menu displayMenu = new Menu('Display')
-MenuItem portItem = new MenuItem('Port')
-MenuItem exitItem = new MenuItem('Exit')
-
-//Add components to popup menu
-popup.add(aboutItem)
-popup.addSeparator()
-popup.add(displayMenu)
-displayMenu.add(portItem)
-popup.add(exitItem)
-
-trayIcon.setPopupMenu(popup)
-
-try {
-    tray.add(trayIcon)
-} catch (Exception e) {
-    println('TrayIcon could not be added.')
-}
-
-def aboutAction = new ActionListener() {
-    public void actionPerformed(ActionEvent e) {
-        JOptionPane.showMessageDialog null, 'CodeCanaan Client Tools'
-    }
-}
-trayIcon.addActionListener(aboutAction)
-aboutItem.addActionListener(aboutAction)
-
-ActionListener listener = new ActionListener() {
-    public void actionPerformed(ActionEvent e) {
-        def item = (MenuItem)e.getSource();
-        if ("Port".equals(item.label)) {
-            trayIcon.displayMessage(
-                'Client Port',
-                "${clientPort}",
-                TrayIcon.MessageType.INFO
-            )            
-        }
-    }
-};
-
-portItem.addActionListener(listener)
-
-exitItem.addActionListener(new ActionListener() {
-    public void actionPerformed(ActionEvent e) {
-        tray.remove(trayIcon)
-        System.exit(0)
-    }
-})
-
+//彈出訊息
+JOptionPane.showMessageDialog(null, "<html>客戶端工具已執行！<br/>Client Tools executed.")
 
 //shutdown previous server
 try {
