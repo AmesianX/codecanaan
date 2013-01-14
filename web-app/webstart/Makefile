@@ -20,4 +20,4 @@ zip:
 	cp toolkits-src/linux/java/build.sh toolkits/linux/java
 	cp toolkits-src/windows/java/build.bat toolkits/windows/java
 	rm -f toolkits.zip
-	cd toolkits && zip -r ../toolkits.zip *
+	cd toolkits && zip -r9 ../toolkits.zip *
