@@ -57,8 +57,8 @@ class CourseServiceTests {
 		.addToContents(content2)
 		.save()
 		
-		new Record(user: user, content: content1, passed:true).save()
-		new Record(user: user, content: content2, passed:false).save()
+		new Record(user: user, content: content1, passed:true).save(failOnError: true, flush: true)
+		new Record(user: user, content: content2, passed:false).save(failOnError: true, flush: true)
 		
 	}
     void testIsAuthor() {
