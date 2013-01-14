@@ -10,7 +10,7 @@ sign:
 	find lib/ -name "*.jar" -exec jarsigner -storepass "$$storepass" {} mykey \; -print
 
 run:
-	gradle run -Dcore.script.type='groovy' -Dcore.script.url='http://dev.codecanaan.com:8080/webstart/test.groovy'
+	gradle run -Dcore.script.type='groovy' -Dcore.script.url='http://dev.codecanaan.com:8080/webstart/launcher.groovy'
 	
 zip:
 	mkdir -p toolkits/windows/java

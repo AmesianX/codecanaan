@@ -13,8 +13,9 @@ repositories {
 }
 
 dependencies {
-	groovy 'org.codehaus.groovy:groovy-all:2.0.2'
+	groovy 'org.codehaus.groovy:groovy-all:2.0.6'
     groovy 'org.apache.ant:ant:1.8.4'
+	compile 'commons-codec:commons-codec:1.7'
     compile 'org.mortbay.jetty:jetty-embedded:6.1.26'
 }
 
@@ -41,5 +42,4 @@ task (run, dependsOn: 'classes', type: JavaExec) {
 }
 
 defaultTasks 'jar'
-
 

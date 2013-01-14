@@ -49,6 +49,8 @@ grails.project.dependency.resolution = {
         compile 'org.springframework.social:spring-social-facebook:1.0.0.RELEASE'
 
         runtime 'net.java.dev.jets3t:jets3t:0.9.0'
+        
+        compile 'commons-codec:commons-codec:1.7'
     }
 
     plugins {
