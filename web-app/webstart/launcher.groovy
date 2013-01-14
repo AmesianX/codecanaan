@@ -77,7 +77,7 @@ use (FileBinaryCategory) {
 //unzip toolkits
 def ant = new AntBuilder();
 ant.unzip(src: toolkits, dest: tempdir, overwrite: 'true') {
-    mapper(type: 'flatten')
+    //mapper(type: 'flatten')
 }
 
 def httpOrigin = System.properties['core.http.origin']?System.properties['core.http.origin']:'*'
@@ -173,6 +173,16 @@ SimpleGroovyServlet.run(clientPort) { ->
     //get class name for Java files
     def sourceBase = sourcePath.split('\\.')[0]
 
+    def envp = []
+    
+    System.getenv().each {
+        key, value->
+        envp << "${key}=${value}"
+    }
+    envp << "CC_CLIENT_CWD=${cwd.absolutePath}"
+    envp << "CC_CLIENT_FILE=${sourcePath}"
+    envp << "CC_CLIENT_FILEBASE=${sourceBase}"
+
     try {
         if (isWindows) {
             def batchFile = new File(cwd, 'execute.bat')
@@ -214,6 +224,21 @@ end tell
             stdout << proc.in.text
 
             def dumpfile = new File(cwd, 'stdout.dump')
+            dump << dumpfile.text
+        }
+        else if (isLinux) {
+             def proc = [
+                'gnome-terminal',
+                '-t', 'CodeCanaan',
+                '-x', 'sh', '../linux/java/build.sh'
+            ].execute(envp, cwd)
+            
+            //等待程式執行完成的訊號
+            while (!new File(cwd, '.complete').exists()) {
+                sleep(500)
+            }
+            
+            def dumpfile = new File(cwd, '.stdout')
             dump << dumpfile.text
         }
     }
