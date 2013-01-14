@@ -15,6 +15,104 @@ import javax.swing.*
 import java.awt.*
 import java.awt.event.*
 
+/*
+System.getenv().each {
+k,v->
+println "${k} = ${v}"
+}
+println "-----"
+System.properties.each {
+k,v->
+println "${k} = ${v}"
+}
+*/
+
+def osname = System.properties['os.name']
+def isWindows = osname.toLowerCase().startsWith('windows')
+def isMac = osname.toLowerCase().startsWith('mac')
+def isLinux = osname.toLowerCase().startsWith('linux')
+
+
+def env = [:]   //Map
+def envp = []   //List
+
+if (isWindows) {
+
+    //read environment variables (for windows special processing)
+    System.getenv().each {
+        k,v->
+        //Special letter case detection
+        if (['PATH', 'JAVA_HOME', 'CLASSPATH'].contains(k.toUpperCase())) {
+            k = k.toUpperCase()
+        }
+        
+        env[k] = v
+    }
+
+    //auto-detect path
+    def proc = "cmd /C javac -version".execute()
+    
+    proc.waitForOrKill(10*1000)
+    
+    if (proc.exitValue() != 0) {
+        //missing javac
+        def pf = new File(System.getenv('ProgramFiles'))
+        def jdir = new File(pf, 'Java')
+        if (jdir.exists()) {
+            //C:\Program Files\Java exists
+            
+            def java_home = System.getenv('JAVA_HOME')
+            
+            if (java_home && !new File(java_home).exists()) {
+                java_home = null
+            }
+            
+            //deep search
+            if (!java_home) {
+                jdir.eachFile() {
+                    dir->
+                    if (dir.exists() && dir.isDirectory()) {
+                        if (dir.name.startsWith('jdk')) {
+                            if (dir.name.contains('1.6')||
+                                dir.name.contains('1.7')) {
+                                //use this path as JAVA_HOME
+                                java_home = dir.absolutePath
+                            }
+                        }
+                    }
+                }
+            }
+            
+            if (java_home != null) {
+                //set JAVA_HOME
+                env['JAVA_HOME'] = "${java_home}"
+                
+                //set PATH
+                env['PATH'] = "${java_home}\\bin;${env['PATH']}"
+                
+                //set CLASSPATH
+                env['CLASSPATH'] = ".;${java_home}\\lib"
+            }
+        }
+    }
+    
+    //MinGW path fix
+    def mdir = new File("${System.getenv('SystemDrive')}\\MinGW\\bin")
+    if (mdir.exists()) {
+        env['PATH'] = "${mdir.absolutePath};${env['PATH']}"
+    }
+}
+else {
+    System.getenv().each { k,v-> env[k]=v }
+}
+
+env.each {
+    key, value->
+    envp << "${key}=${value}"
+}
+
+envp.each{println it}
+
 class FileBinaryCategory{    
     def static leftShift(File file, URL url) {
        url.withInputStream {is->
@@ -55,11 +153,6 @@ try {
 catch(e) {
     //none
 }
-
-def osname = System.properties['os.name']
-def isWindows = osname.toLowerCase().startsWith('windows')
-def isMac = osname.toLowerCase().startsWith('mac')
-def isLinux = osname.toLowerCase().startsWith('linux')
 
 //download toolkits.zip
 def toolkitsUrl = System.properties['core.toolkits.url'].toURL()
@@ -107,7 +200,7 @@ def versionCheck = {
             cmd = "cmd /C ${cmd}"
         }
         
-        def proc = cmd.execute()
+        def proc = cmd.execute(envp, null)
         proc.waitForOrKill(10*1000)
         
         def output = "";
@@ -187,13 +280,7 @@ SimpleGroovyServlet.run(clientPort) { ->
     //get class name for Java files
     def sourceBase = sourcePath.split('\\.')[0]
 
-    def envp = []
     def envp2 = []
-    
-    System.getenv().each {
-        key, value->
-        envp << "${key}=${value}"
-    }
     
     envp2 << "CC_CLIENT_CWD=${cwd.absolutePath}"
     envp2 << "CC_CLIENT_FILE=${sourcePath}"
