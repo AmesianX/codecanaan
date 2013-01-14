@@ -6,6 +6,29 @@ var rtrim = function(stringToTrim) {return stringToTrim.replace(/\s+$/,"");};
 //CodeMirror editors
 var editors = {};
 
+//CodeMirror Fullscreen
+function setFullScreen(cm, full) {
+    var wrap = cm.getWrapperElement();
+    if (full) {
+        wrap.className += " CodeMirror-fullscreen";
+        wrap.style.height = winHeight() + "px";
+        document.documentElement.style.overflow = "hidden";
+        } else {
+        wrap.className = wrap.className.replace(" CodeMirror-fullscreen", "");
+        wrap.style.height = "";
+        document.documentElement.style.overflow = "";
+    }
+    cm.refresh();
+}
+
+function isFullScreen(cm) {
+    return /\bCodeMirror-fullscreen\b/.test(cm.getWrapperElement().className);
+}
+
+function winHeight() {
+    return window.innerHeight || (document.documentElement || document.body).clientHeight;
+}
+    
 (function () {
     var $window = $(window);
 
@@ -37,18 +60,50 @@ var editors = {};
         }
     });
 
+    /*
+    CodeMirror.on(window, "resize", function() {
+      var showing = document.body.getElementsByClassName("CodeMirror-fullscreen")[0];
+      if (!showing) return;
+      showing.CodeMirror.getWrapperElement().style.height = winHeight() + "px";
+    });
+    */
+
     //init codemirror
     $('.codemirror-auto').each(function() {
+    
         var id = $(this).prop('id');
         var mode = $(this).data('mode');
         var height = $(this).data('height');
+        
         editors[id] = CodeMirror.fromTextArea(this, {
             lineNumbers: true,
             matchBrackets: true,
             mode: mode,
-            indentUnit: 4
+            indentUnit: 4,
+            extraKeys: {
+                "F11": function(cm) {
+                    //setFullScreen(cm, !isFullScreen(cm));
+                },
+                "Esc": function(cm) {
+                    //if (isFullScreen(cm)) setFullScreen(cm, false);
+                }
+            }
         });
         editors[id].setSize(null, height);
+        
+        $('.CodeMirror').resizable({
+            handles: 'n, s',
+            grid: 50,
+            maxHeight: 1000,
+            maxWidth: 600,
+            minHeight: 250,
+            minWidth: 480,
+            stop: function() { editors[id].refresh(); },
+            resize: function() {
+                editors[id].setSize($(this).width(), $(this).height());
+                editors[id].refresh();
+            }
+        });
     });
 
 })();

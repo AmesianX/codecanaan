@@ -34,10 +34,19 @@ body {
 	font-size: 11pt;
 	background: white;
 }
+
 .CodeMirror-lines, .CodeMirror-gutter {
 	font-family: 'Droid Sans Mono', monospace;
 	line-height: 1.5em;
 }
+
+/*.CodeMirror-fullscreen {
+    display: block;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    z-index: 9999;
+}*/
 
 /*--------------------- 加強表單 ---------------------------*/
 

@@ -33,7 +33,7 @@
 </g:if>
 
 <!--內容顯示-->
-<section class="justfont">
+<section>
     <g:if test="${content.type==codecanaan.ContentType.SLIDE}">
         <!--簡報-->
         <div class="page-header">

@@ -40,7 +40,7 @@
     </div>
 </g:if>
 
-<section class="justfont">
+<section>
     <div class="page-header">
         <h1>${lesson.title}</h1>
     </div>

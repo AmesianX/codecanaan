@@ -10,7 +10,7 @@
         <!--課程單元列表-->
         <g:render template="/course/menu" />
     </div>
-    <div class="span9">
+    <div class="span9 justfont">
         <g:if test="${authoring&&params.editor}">
             <!--切換編輯介面-->
             <g:render template="lesson_editor"/>

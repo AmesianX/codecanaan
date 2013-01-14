@@ -10,7 +10,8 @@ public enum ContentType {
 public enum SourceType {
     JAVA,
     C,
-    CPP;
+    CPP,
+    SCHEME;
 }
 
 class Content {

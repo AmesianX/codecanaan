@@ -9,7 +9,7 @@
 <div class="row">
     <div class="span3">
     </div>
-    <div class="span9">
+    <div class="span9 justfont">
         <h2>${post?.title}</h2>
         <div class="markdown-source">${post?.content?.encodeAsHTML()}</div>
         
