@@ -174,14 +174,19 @@ SimpleGroovyServlet.run(clientPort) { ->
     def sourceBase = sourcePath.split('\\.')[0]
 
     def envp = []
+    def envp2 = []
     
     System.getenv().each {
         key, value->
         envp << "${key}=${value}"
     }
-    envp << "CC_CLIENT_CWD=${cwd.absolutePath}"
-    envp << "CC_CLIENT_FILE=${sourcePath}"
-    envp << "CC_CLIENT_FILEBASE=${sourceBase}"
+    
+    envp2 << "CC_CLIENT_CWD=${cwd.absolutePath}"
+    envp2 << "CC_CLIENT_FILE=${sourcePath}"
+    envp2 << "CC_CLIENT_FILEBASE=${sourceBase}"
+    
+    //copy envp2 to envp
+    envp2.each { envp << it }
 
     try {
         if (isWindows) {
@@ -200,34 +205,35 @@ exit
             dump << dumpfile.getText('MS950')
         }
         else if (isMac) {
-        /*
-   tell application "Terminal"
-       tell window 1
-           set title displays custom title to true
-           set title displays device name to false
-           set title displays shell path to false
-           set title displays file name to false
-           set custom title to "script"
-       end tell
-   end tell
-        */
-            def batchFile = new File(cwd, 'execute.scpt')
-            batchFile << """tell app "Terminal"
-    activate
-    set tab1 to do script "cd '${cwd.absolutePath}' && clear && javac ${sourcePath} && script -q stdout.dump java ${sourceBase} && read -p 'Press ENTER to continue...' && exit"
-    repeat until not exists tab1
-    end repeat
-end tell
-"""
-            def proc = ['osascript', 'execute.scpt'].execute(null, cwd)
-            proc.waitFor()
-            stdout << proc.in.text
 
-            def dumpfile = new File(cwd, 'stdout.dump')
+            /* Mac OS X */
+            
+            def cmdbuff = new StringBuffer();
+            
+            cmdbuff << "cd ${cwd.absolutePath};"
+            envp2.each { cmdbuff << "export ${it};" }
+            cmdbuff << "sh ../mac/java/build.sh;"
+            cmdbuff << "exit"
+            
+            def proc = [
+                'osascript',
+                '../mac/java/terminal.scpt',
+                cmdbuff.toString()
+            ].execute(envp, cwd)
+
+            //等待程式執行完成的訊號
+            while (!new File(cwd, '.complete').exists()) {
+                sleep(500)
+            }
+            
+            def dumpfile = new File(cwd, '.stdout')
             dump << dumpfile.text
         }
         else if (isLinux) {
-             def proc = [
+        
+            /* Linux */
+            
+            def proc = [
                 'gnome-terminal',
                 '-t', 'CodeCanaan',
                 '-x', 'sh', '../linux/java/build.sh'
