@@ -102,11 +102,26 @@ catch (e) {
 def versionCheck = {
     cmd ->
     try {
+    
+        if (isWindows) {
+            cmd = "cmd /C ${cmd}"
+        }
+        
         def proc = cmd.execute()
         proc.waitForOrKill(10*1000)
+        
+        def output = "";
+
+        if (isWindows) {
+            output = "${proc.in.getText('MS950')}\n${proc.err.getText('MS950')}".trim()
+        }
+        else {
+            output = "${proc.in.text}\n${proc.err.text}".trim()
+        }
+        
         return [
             exitValue: proc.exitValue(),
-            stdout: "${proc.in.text}\n${proc.err.text}".trim()
+            stdout: output
         ]
     }
     catch (e) {
