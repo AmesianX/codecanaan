@@ -10,5 +10,8 @@ import org.junit.*
  */
 @TestFor(WebstartController)
 class WebstartControllerTests {
-
+	void testScript() {
+		def c = new WebstartController()
+		assert true
+	}
 }
