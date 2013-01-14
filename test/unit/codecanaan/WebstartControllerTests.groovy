@@ -11,7 +11,4 @@ import org.junit.*
 @TestFor(WebstartController)
 class WebstartControllerTests {
 
-    void testSomething() {
-       fail "Implement me"
-    }
 }
