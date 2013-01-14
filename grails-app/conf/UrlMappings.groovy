@@ -35,7 +35,7 @@ class UrlMappings {
 			}
 		}
 		
-		"/attachment/$id/$file" {
+		"/content/file/$id/$file" {
 		    controller = "content"
 		    action = "attachment"
 		    constraints {
