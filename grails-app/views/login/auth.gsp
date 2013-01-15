@@ -13,13 +13,16 @@
 	    
 	    <p>登入後享有會員權利...</p>
 	    <ul class="icons">
-	        <li class="icon-ok">
+	        <li>
+	            <i class="icon-ok"></i>
 	            更多的教材內容
             </li>
-            <li class="icon-ok">
+            <li>
+                <i class="icon-ok"></i>
 	            完整的課程功能
             </li>
-            <li class="icon-ok">
+            <li>
+                <i class="icon-ok"></i>
 	            個人學習記錄雲端儲存
             </li>
 	    </ul>
