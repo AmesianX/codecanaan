@@ -18,19 +18,19 @@
                     <div class="da-img"><img src="http://lyhcode.com/assets/themes/gravis/img/parallax-slider/imac.png" alt="image01" /></div>
                 </div>
                 <div class="da-slide">
-                    <h2>舒適的高品質閱讀</h2>
+                    <h2>閱讀，享受高品質</h2>
                     <p>「壹學院」比傳統 e-Learning 平台更重視教材閱讀品質，採用更完美的「信黑體」專業級中文網頁字型，並支援高解析度的平板閱讀器，提供媲美印刷等級的無障礙舒適閱讀。</p>
                     <!--<a href="#" class="da-link">Read more</a>-->
                     <div class="da-img"><img src="http://lyhcode.com/assets/themes/gravis/img/parallax-slider/ipad-mini.png" alt="image02" /></div>
                 </div>
                 <div class="da-slide">
-                    <h2>千名學員的見證</h2>
+                    <h2>見證，千位學習者</h2>
                     <p>在過去幾年之中，我們開發的程式設計教學軟體，已經培訓過數千位學員，高達百分之九十五的使用者，肯定自己得到更好的學習效果。</p>
                     <!--<a href="#" class="da-link">Read more</a>-->
                     <div class="da-img" style="margin-left: -150px"><img src="http://lyhcode.com/assets/themes/gravis/img/parallax-slider/mapa.png" alt="image03" /></div>
                 </div>
                 <div class="da-slide">
-                    <h2>源自對專業的堅持</h2>
+                    <h2>專業，我們的堅持</h2>
                     <p>透過成功的產學合作基礎，來自業界資深開發經驗的工程師，與教學資歷豐富的認證講師協同合作，聯手打造最值得您信賴的專業教學平台。</p>
                     <!--<a href="#" class="da-link">Read more</a>-->
                     <div class="da-img" style="margin-left: -100px"><img src="http://lyhcode.com/assets/themes/gravis/img/parallax-slider/html5.png" alt="image04" /></div>
