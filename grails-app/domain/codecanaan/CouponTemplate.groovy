@@ -7,9 +7,11 @@ class CouponTemplate {
 
 	String prefix		//前置碼
 	String organization //組織
-	Course course 		//授權課程
 	int validDays		//有效天數
 
+    //Course course 		//授權課程
+    static belongsTo = [course: Course]
+ 
     static constraints = {
 
     }

@@ -19,6 +19,15 @@ modules = {
         resource url: 'jquery-fileupload/js/jquery.fileupload-fp.js'
         resource url: 'jquery-fileupload/js/jquery.fileupload-ui.js'
     }
+    
+    'jquery-cslider' {
+        dependsOn 'jquery'
+        
+        resource url: 'jquery-cslider/parallax-slider.css'
+        
+        resource url: 'jquery-cslider/jquery.cslider.js'
+        resource url: 'jquery-cslider/slider.js'
+    }
 
     common {
         resource url: 'js/common.js'

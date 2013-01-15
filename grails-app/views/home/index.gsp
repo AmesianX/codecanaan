@@ -2,133 +2,171 @@
 <head>
 <title>Home</title>
 <meta name="layout" content="bootstrap"/>
+<r:require modules="jquery-cslider" />
 </head>
 <body>
+
 <div class="row">
-    <div class="span8">
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#announce-tab" data-toggle="tab"><g:message code="postType.ANNOUNCE.label" /></a></li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane active" id="announce-tab">
-                <g:if test="${posts?.size()>0}">
-                    <ul class="links">
-                        <g:each in="${posts}" var="post" status="i">
-                            <li class="${i==0?'first':'show-lines'}">
-                                <g:link controller="post" action="show" params="[name: post.name]">${post.title}</g:link>
-                                <small><em>(${post.hits})</em></small>
-                                <small class="muted"><g:formatDate date="${post.dateCreated}" type="date" /></small>
-                            </li>
-                        </g:each>
-                    </ul>
-                    <div style="text-align:right">
-                        <g:link controller="post" action="list"><g:message code="default.more.label" args="[message(code:'postType.ANNOUNCE.label')]" /> ...</g:link>
+    <div class="span12 clearlook-wrapper">
+        <!-- start: Slider -->
+        <div class="slider-wrapper">
+            <div id="da-slider" class="da-slider justfont">
+                <div class="da-slide">
+                    <h2>動手，學寫程式</h2>
+                    <p>只有讓學習者自己動手練習撰寫程式，才能獲得最好的學習效果。我們提供的豐富學習教材，提供比一般書籍題庫更大量的實作練習。</p>
+                    <!--<a href="#" class="da-link">連結</a>-->
+                    <div class="da-img"><img src="http://lyhcode.com/assets/themes/gravis/img/parallax-slider/imac.png" alt="image01" /></div>
+                </div>
+                <div class="da-slide">
+                    <h2>舒適的閱讀品質</h2>
+                    <p>我們比一般的 eLearning 系統更加重視教材排版，使用更完美的「信黑體」中文網頁字型，就是要讓讀者在學習過程減輕負擔。</p>
+                    <!--<a href="#" class="da-link">Read more</a>-->
+                    <div class="da-img"><img src="http://lyhcode.com/assets/themes/gravis/img/parallax-slider/ipad-mini.png" alt="image02" /></div>
+                </div>
+                <div class="da-slide">
+                    <h2>千名學員的見證</h2>
+                    <p>在過去幾年之中，我們開發的程式設計教學軟體，已經培訓過數千位學員，高達百分之九十五的使用者，肯定自己得到更好的學習效果。</p>
+                    <!--<a href="#" class="da-link">Read more</a>-->
+                    <div class="da-img" style="margin-left: -150px"><img src="http://lyhcode.com/assets/themes/gravis/img/parallax-slider/mapa.png" alt="image03" /></div>
+                </div>
+                <div class="da-slide">
+                    <h2>源自對專業的堅持</h2>
+                    <p>我們擁有軟體開發經驗豐富的成員，包括擅長使用最新科技的開發者，以及教學資歷豐富的專業認證講師，是最值得您信賴的教學產品研發團隊。</p>
+                    <!--<a href="#" class="da-link">Read more</a>-->
+                    <div class="da-img" style="margin-left: -100px"><img src="http://lyhcode.com/assets/themes/gravis/img/parallax-slider/html5.png" alt="image04" /></div>
+                </div>
+                <nav class="da-arrows">
+                    <span class="da-arrows-prev"></span>
+                    <span class="da-arrows-next"></span>
+                </nav>
+            </div>
+        </div>
+        <r:script>$('#da-slider').cslider({autoplay:true,bgincrement:0});</r:script>
+        <!-- end: Slider -->
+    </div>
+</div>
+
+<div class="row">
+    <div class="span12 clearlook-wrapper">
+    
+        <div class="span7">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#announce-tab" data-toggle="tab" class="effect-text-shadow larger-font"><g:message code="postType.ANNOUNCE.label" /></a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="announce-tab">
+                    <g:if test="${posts?.size()>0}">
+                        <ul class="links">
+                            <g:each in="${posts}" var="post" status="i">
+                                <li class="${i==0?'first':'show-lines'}">
+                                    <g:link controller="post" action="show" params="[name: post.name]">${post.title}</g:link>
+                                    <small><em>(${post.hits})</em></small>
+                                    <small class="muted"><g:formatDate date="${post.dateCreated}" type="date" /></small>
+                                </li>
+                            </g:each>
+                        </ul>
+                        <div style="text-align:right">
+                            <g:link controller="post" action="list" class="btn"><g:message code="default.more.label" args="[message(code:'postType.ANNOUNCE.label')]" /></g:link>
+                        </div>
+                    </g:if>
+                    <g:else>
+                        <g:message code="default.empty.description" />
+                    </g:else>
+                </div>
+            </div>
+        </div>
+        
+        <div class="span4">
+
+            <div style="margin-bottom: 40px;">
+                <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fcodecanaan&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=102994276528232" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
+            </div>
+            <div style="margin-bottom: 40px;">
+                <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fgroovy.taiwan&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=102994276528232" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
+            </div>
+            <div style="margin-bottom: 40px;">
+                <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fnodejs.tw&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=102994276528232" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="span12 clearlook-wrapper">
+        <div class="span4 product-marketing">
+            <p class="slogan">專業程式語言認證教學平台，首創雲端教室讓您的學習如虎添翼</p>
+            <ul class="features icons">
+                <li><i class="icon-ok icon-2x"></i> 完美結合 TQC+ 認證題庫與教材</li>
+                <li><i class="icon-ok icon-2x"></i> 軟體設計領域實作導向練習</li>
+                <li><i class="icon-ok icon-2x"></i> 雲端運算架構，僅需 Java 及瀏覽器即可執行</li>
+                <li><i class="icon-ok icon-2x"></i> 整合 Facebook 帳號登入</li>
+                <li><i class="icon-ok icon-2x"></i> 支援程式碼實作練習，簡化程式執行及測試</li>
+            </ul>
+            
+            <div class="controls">
+                <g:link controller="course" action="show" id="9" class="btn btn-large btn-primary">我想瞭解更多</g:link>
+                
+                <p class="rights">即使起開放免費申請，會員登入後即可獲得免費致贈的線上課程</p>
+            </div>
+        </div>
+        
+        <div class="span7 product-preview pull-right">
+
+            <div id="preview-carousel" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="active item">
+                        <g:img dir="images" file="preview-1.png" />
+                        <div class="carousel-caption">
+                            <p>教材數位化設計，使用瀏覽器上網即可閱讀！</p>
+                        </div>
                     </div>
-                </g:if>
-                <g:else>
-                    <g:message code="default.empty.description" />
-                </g:else>
+                    <div class="item">
+                        <g:img dir="images" file="preview-2.png" />
+                        <div class="carousel-caption">
+                            <p>強大的網頁式整合開發環境（Web-base IDE）！</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <g:img dir="images" file="preview-3.png" />
+                        <div class="carousel-caption">
+                            <p>整合自動化編譯、測試流程，資料上傳雲端保存！</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <g:img dir="images" file="preview-4.png" />
+                        <div class="carousel-caption">
+                            <p>個人化進度管理，學習效果更加倍！</p>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control left" href="#preview-carousel" data-slide="prev">&lsaquo;</a>
+                <a class="carousel-control right" href="#preview-carousel" data-slide="next">&rsaquo;</a>
             </div>
+            <r:script>$('#preview-carousel').carousel();</r:script>
+
         </div>
     </div>
-    <div class="span4">
+</div>
 
-        <div style="text-align:center;padding:2em 0">
-            <font style="font-size:32pt" class="popover-auto logo-font" title="關於 CodeCanaan" data-placement="bottom" data-content="根據聖經記載，Canaan（迦南）是上帝賜給以色列人祖先的應許之地，選民在流奶與蜜的迦南美地自由安居。CodeCanaan 是程式設計學習者的迦南美地，我們致力於創造一個自由開放且樂趣無窮的學習環境。">CodeCanaan</font><br/>
-            <small style="font-family:'Droid Sans Mono';color:#000099">程式設計數位學習方舟計畫</small>
+<div style="text-align:center;padding:20px;margin:2em;">
+    <r:img dir="images" file="logoset.png" />
+</div>
+
+<div class="row">
+    <div class="span12 clearlook-wrapper">
+        
+        <div class="span8">
+            <p class="larger-font" style="text-align:center">立即體驗！使用 Facebook 帳號登入免註冊。</p>
         </div>
-        <r:script>$('.popover-auto').popover({trigger: 'hover'});</r:script>
-
+        
         <div>
-            <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fcodecanaan&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=102994276528232" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
+            <facebookAuth:connect permissions="email,user_about_me" />
         </div>
+        
+    </div>
+</div>
 
-        <sec:ifLoggedIn>
-            <g:link controller="home" action="client" class="btn btn-primary">
-                <i class="icon icon-download"></i>
-                客戶端工具
-            </g:link>
-        </sec:ifLoggedIn>
-        <sec:ifNotLoggedIn>
-            <div class="alert">
-                登入後啟動客戶端工具
-            </div>
-        </sec:ifNotLoggedIn>
-    </div>
-</div>
-<hr />
-<div class="row">
-    <div class="span5">
-        <h4>專業電腦認證教學平台</h4>
-        <ul class="icons">
-            <li><i class="icon-ok"></i> 完美結合 TQC+ 認證題庫與教材</li>
-            <li><i class="icon-ok"></i> 軟體設計領域實作導向練習</li>
-            <li><i class="icon-ok"></i> 雲端運算架構，僅需 Java 及瀏覽器即可執行</li>
-            <li><i class="icon-ok"></i> 整合 Facebook 帳號登入</li>
-            <li><i class="icon-ok"></i> 支援程式碼實作練習，簡化程式執行及測試</li>
-        </ul>
-    </div>
-    <div class="span7">
-        <div id="myCarousel" class="carousel slide">
-        <div class="carousel-inner">
-            <div class="active item">
-                <g:img dir="images" file="home-slide-1.png" />
-                <div class="carousel-caption">
-                    <h4>不打烊的雲端教室</h4>
-                    <p>瀏覽器連網就能學習，教學效率提昇百分百！</p>
-                </div>
-            </div>
-            <div class="item">
-                <g:img dir="images" file="home-slide-2.png" />
-                <div class="carousel-caption">
-                    <h4>數位化教材與全球同步</h4>
-                    <p>彈指之間就能取得來自各地頂尖教學機構的資源共享！</p>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-        </div>
-        <r:script>$('.carousel').carousel();</r:script>
-    </div>
-</div>
-<hr />
-<div class="row">
-    <div class="span6">
-        <h4>使用手冊</h4>
-        <ul>
-            <li>開始實作練習題之前，請先<a href="http://www.java.com/zh_TW/" target="_blank">安裝 Java 軟體</a>，依照教材指示正確設定開發環境，並確認「客戶端工具」已經啟動！</li>
-            <li>個人帳號免註冊，請使用 Facebook 帳號直接登入；TQC+ Java 課程序號請洽<strong>電腦技能基金會</strong>索取試用。</li>
-        </ul>
-    </div>
-    <div class="span6">
-        <h4>瀏覽器相容性</h4>
-        <ul>
-            <li>建議使用 Google Chrome 瀏覽器以獲得最佳體驗</li>
-            <li>支援各式 HTML5 相容的瀏覽器閱讀教材內容</li>
-            <li>程式碼實作練習支援 Google Chrome 及 Firefox 瀏覽器</li>
-            <li>已針對平板電腦提供最佳化閱讀效果</li>
-        </ul>
-        <img src="${resource(dir:'images', file:'browsers.png')}" alt="browsers" />
-    </div>
-</div>
-<hr class="soften" />
-<div class="row">
-    <div class="span4">
-        <img src="${resource(dir:'images', file:'responsive_web_design.png')}" alt="responsive" />
-        <h4><i class="icon icon-cloud"></i> Responsive Web Design</h4>
-        <p>可以放進口袋的雲端教室，結合行動通訊提供全年無休數位內容服務；針對各種尺寸螢幕提供最佳化閱讀效果，隨時使用智慧型手機或平板電腦複習教材，獲得前所未有的學習效果。</p>
-    </div>
-    <div class="span4">
-        <img src="${resource(dir:'images', file:'education.png')}" alt="education" />
-        <h4><i class="icon icon-certificate"></i> Certified Academy Program</h4>
-        <p>校園課程與專業認證的完美結合；本教學系統的前導計畫每年均獲得良好成效，培育出無數優秀的專業人才，不僅擁有實作能力，也取得企業認可的專業認證。</p>
-    </div>
-    <div class="span4">
-        <img src="${resource(dir:'images', file:'learning_ark.png')}" alt="ark" />
-        <h4><i class="icon icon-thumbs-up"></i> Learner's Ark</h4>
-        <p>數位學習方舟計畫運用最新科技，致力於發展教學解決方案，領航優秀程式設計人才養成之路，從校園到就業進修課程規劃，研發團隊結合最具公信力的認證機構、產業專家及學者，提供最好的教材與培訓。</p>
-    </div>
-</div>
 </body>
 </html>
