@@ -60,7 +60,7 @@
                             <g:each in="${posts}" var="post" status="i">
                                 <li class="${i==0?'first':'show-lines'}">
                                     <g:link controller="post" action="show" params="[name: post.name]">${post.title}</g:link>
-                                    <small><em>(${post.hits})</em></small>
+                                    <small><em>${post.hits}</em></small>
                                     <small class="muted"><g:formatDate date="${post.dateCreated}" type="date" /></small>
                                 </li>
                             </g:each>
@@ -78,13 +78,17 @@
         
         <div class="span4">
 
-            <div style="margin-bottom: 40px;">
+            <div style="margin-bottom: 25px;">
+                <g:render template="/adsense/ad300x250" />
+            </div>
+
+            <div style="margin-bottom: 25px;">
                 <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fcodecanaan&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=102994276528232" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
             </div>
-            <div style="margin-bottom: 40px;">
+            <div style="margin-bottom: 25px;">
                 <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fgroovy.taiwan&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=102994276528232" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
             </div>
-            <div style="margin-bottom: 40px;">
+            <div style="margin-bottom: 25px;">
                 <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fnodejs.tw&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=102994276528232" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
             </div>
 
@@ -93,9 +97,9 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row-fluid">
     <div class="span12 clearlook-wrapper">
-        <div class="span4 product-marketing">
+        <div class="span6 product-marketing">
             <p class="slogan">專業程式語言認證教學平台，首創雲端教室讓您的學習如虎添翼</p>
             <ul class="features icons">
                 <li><i class="icon-ok icon-2x"></i> 完美結合 TQC+ 認證題庫與教材</li>
@@ -112,31 +116,31 @@
             </div>
         </div>
         
-        <div class="span7 product-preview pull-right">
+        <div class="span6 product-preview">
 
             <div id="preview-carousel" class="carousel slide">
                 <div class="carousel-inner">
                     <div class="active item">
                         <g:img dir="images" file="preview-1.png" />
-                        <div class="carousel-caption">
+                        <div class="carousel-caption effect-round-corner">
                             <p>教材數位化設計，使用瀏覽器上網即可閱讀！</p>
                         </div>
                     </div>
                     <div class="item">
                         <g:img dir="images" file="preview-2.png" />
-                        <div class="carousel-caption">
+                        <div class="carousel-caption effect-round-corner">
                             <p>強大的網頁式整合開發環境（Web-base IDE）！</p>
                         </div>
                     </div>
                     <div class="item">
                         <g:img dir="images" file="preview-3.png" />
-                        <div class="carousel-caption">
+                        <div class="carousel-caption effect-round-corner">
                             <p>整合自動化編譯、測試流程，資料上傳雲端保存！</p>
                         </div>
                     </div>
                     <div class="item">
                         <g:img dir="images" file="preview-4.png" />
-                        <div class="carousel-caption">
+                        <div class="carousel-caption effect-round-corner">
                             <p>個人化進度管理，學習效果更加倍！</p>
                         </div>
                     </div>
@@ -151,14 +155,14 @@
 </div>
 
 <div style="text-align:center;padding:20px;margin:2em;">
-    <r:img dir="images" file="logoset.png" />
+    <r:img dir="images/logoset" file="logoset.png" />
 </div>
 
 <div class="row">
     <div class="span12 clearlook-wrapper">
         
         <div class="span8">
-            <p class="larger-font" style="text-align:center">立即體驗！使用 Facebook 帳號登入免註冊。</p>
+            <p class="larger-font" style="text-align:center">立即開始體驗！歡迎使用 Facebook 帳號直接登入。</p>
         </div>
         
         <div>

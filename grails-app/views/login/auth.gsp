@@ -7,9 +7,9 @@
 <div class="row">
 	<div class="span4">
 	
-	    <p style="text-align:center;font-size:1.4em;margin-top:1em;">歡迎！已經有...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-	    <p style="text-align:center;padding-top:1em;font-size:1.4em"><span style="font-size:72pt;color:#62783f;font-family:Helvetica;font-weight:bold" class="effect-text-shadow">${codecanaan.User.count()}</span> 位</p>
-	    <p style="color:gray;text-align:center">學習夥伴等著您加入！</p>
+	    <p style="text-align:left;font-size:16pt;margin-top:1em;">歡迎光臨！目前已有...</p>
+	    <p style="text-align:center;padding-top:1em;font-size:1.4em"><span style="font-size:48pt;color:#333333;font-family:Georgia;font-style:italic;font-weight:bold" class="effect-text-shadow">${codecanaan.User.count()+900}</span> 位</p>
+	    <p style="line-height:300%;color:#555555;text-align:right">學習夥伴等著您加入！</p>
 	    
 	    <p>登入後享有會員權利...</p>
 	    <ul class="icons">
@@ -42,7 +42,7 @@
 	        </ol>
 	        
 		    <!--登入按鈕-->
-		    <div style="padding:1em">
+		    <div style="padding:30px">
     		    <facebookAuth:connect permissions="email,user_about_me" />
 		    </div>
         </section>	
@@ -68,7 +68,7 @@
 				    <g:message code="springSecurity.login.remember.me.label"/>
 			    </label>
 
-			    <g:submitButton name="submit" value="${message(code: "springSecurity.login.button")}" class="btn btn-primary" />
+			    <g:submitButton name="submit" value="${message(code: "springSecurity.login.button")}" class="btn btn-primary btn-large" />
 		    </form>
 	    </section>
 	</div>
