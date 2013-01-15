@@ -12,6 +12,6 @@ import org.junit.*
 class S3ServiceTests {
 
     void testSomething() {
-//        fail "Implement me"
+		//TODO 還不知道怎麼寫測試，先跳過
     }
 }

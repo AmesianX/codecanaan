@@ -1,5 +1,7 @@
 package codecanaan
 
+import java.util.Date;
+
 import grails.test.mixin.*
 import org.junit.*
 
@@ -9,7 +11,11 @@ import org.junit.*
 @TestFor(Schedule)
 class ScheduleTests {
 
-    void testSomething() {
-//       fail "Implement me"
+    void testSaveSchedule() {
+		new Schedule(
+			name:'Schedule1',
+			title:'Schedule1',
+			password:'pw'
+		).save()
     }
 }
