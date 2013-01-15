@@ -74,7 +74,7 @@ class CourseServiceTests {
 
 		assert stat.empty + stat.ok + stat.error==2
 
-		//TODO on jenkins 下面測試匯出錯，雖然在setup有將兩個record 設定 passed，但jenkins上的結果會是 empty==2
+		//TODO on jenkins 下面測試會出錯，雖然在 setup 有將兩個 record 設定 passed 的值，但jenkins上的測試結果會是 empty==2
 		//assert stat.empty==0
 		//assert stat.ok==1
 		//assert stat.error==1
