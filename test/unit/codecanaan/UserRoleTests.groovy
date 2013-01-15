@@ -20,10 +20,10 @@ class UserRoleTests {
 		role1 = Role.findOrSaveByAuthority('ROLE_USER')
 		user1 = new User(username: 'student', password: 'student', enabled: true).save(failOnError: true, flush: true)
 		user2 = new User(username: 'teacher', password: 'teacher', enabled: true).save(failOnError: true, flush: true)
-		UserRole.create(user1,role1)
+		UserRole.create(user1,role1,true)
 	}
     void "test call UserRole create" () {
-		UserRole.create(user2,role1)
+		UserRole.create(user2,role1,true)
 		
 		assert 2, UserRole.list().size() 
     }
