@@ -11,7 +11,14 @@ import org.junit.*
 @TestFor(Role)
 class RoleTests {
 
-    void testSomething() {
-//       fail "Implement me"
+    void testAddRole() {
+		def role1 = Role.findOrSaveByAuthority('ROLE_USER')
+        def role2 = Role.findOrSaveByAuthority('ROLE_FACEBOOK')
+        def role3 = Role.findOrSaveByAuthority('ROLE_ADMIN')
+        def role4 = Role.findOrSaveByAuthority('ROLE_AUTHOR')
+        def role5 = Role.findOrSaveByAuthority('ROLE_STUDENT')
+        def role6 = Role.findOrSaveByAuthority('ROLE_TEACHER')
+		
+		assert 6 , Role.list().size()
     }
 }
