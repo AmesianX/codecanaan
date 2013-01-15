@@ -12,7 +12,7 @@
         <div class="slider-wrapper">
             <div id="da-slider" class="da-slider justfont">
                 <div class="da-slide">
-                    <h2>動手，學寫程式</h2>
+                    <h2>動手，學會寫程式</h2>
                     <p>只有讓學習者自己動手練習撰寫程式，才能獲得最好的學習效果。我們提供的豐富學習教材，提供比一般書籍題庫更大量的實作練習。</p>
                     <!--<a href="#" class="da-link">連結</a>-->
                     <div class="da-img"><img src="http://lyhcode.com/assets/themes/gravis/img/parallax-slider/imac.png" alt="image01" /></div>
@@ -60,8 +60,8 @@
                             <g:each in="${posts}" var="post" status="i">
                                 <li class="${i==0?'first':'show-lines'}">
                                     <g:link controller="post" action="show" params="[name: post.name]">${post.title}</g:link>
-                                    <small><em>${post.hits}</em></small>
-                                    <small class="muted"><g:formatDate date="${post.dateCreated}" type="date" /></small>
+                                    <div class="pull-right"><small style="font-family:Georgia"><em>${post.hits}</em></small>
+                                    <small class="muted"><g:formatDate date="${post.dateCreated}" type="date" /></small></div>
                                 </li>
                             </g:each>
                         </ul>
