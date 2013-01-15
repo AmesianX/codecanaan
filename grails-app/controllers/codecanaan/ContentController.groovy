@@ -70,7 +70,7 @@ class ContentController {
         //println seq
 
         content.title = "${content.type} ${seq+1}"
-        content.description = '''Write contents here using **Markdown** syntax.'''
+        content.description = '''請使用 Markdown 語法編輯內容\nWrite contents here using **Markdown** syntax.'''
 
         if (content.type == ContentType.CODE) {
             content.sourceCode = "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello World\");\n    }\n}\n"
@@ -85,7 +85,7 @@ class ContentController {
 
         content.save(flush: true)
 
-        redirect(action: 'show', id: content.id)
+        redirect(action: 'show', id: content.id, params: [editor: true])
     }
 
     /**

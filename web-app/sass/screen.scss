@@ -32,7 +32,7 @@ body {
 }
 
 .larger-font {
-    font-size: 14pt;
+    font-size: 16pt;
 }
 
 /*------------------- Theming ---------------------------*/
@@ -53,10 +53,11 @@ ul.links {
 
     a {
         color: #333333;
+        padding-left: 10px;
+        font-size: 11pt;
     }
 
 	li {
-	    paddint-left: 5px;
     	line-height: 200%;
 		border-bottom: 1px solid #e1e1e1;
 	}
@@ -70,6 +71,8 @@ ul.links {
 /*-------------------- Product Marketing ---------------*/
 
 .product-marketing {
+    padding: 20px;
+
     font-size: 10pt;
     
     .slogan {
@@ -99,6 +102,8 @@ ul.links {
 }
 
 .product-preview {
+    padding: 15px;
+
     .carousel-caption {
         text-align: center;
         letter-spacing: 1px;
