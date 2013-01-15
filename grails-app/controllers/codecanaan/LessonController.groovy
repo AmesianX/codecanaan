@@ -50,14 +50,14 @@ class LessonController {
         
         //套用預設值
         lesson.name = "lesson-${seq+1}"
-        lesson.title = "Lesson ${seq+1}"
-        lesson.description = "Write lesson description here."
+        lesson.title = "單元標題 Lesson ${seq+1}"
+        lesson.description = "請編輯單元說明內容\nWrite lesson description here."
         lesson.creator = user
         lesson.priority = seq
 
         lesson.save(flush: true)
 
-        redirect(action: 'show', id: lesson.id)
+        redirect(action: 'show', id: lesson.id, params: [editor: true])
     }
 
     /**
