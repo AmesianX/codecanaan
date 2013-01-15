@@ -5,8 +5,6 @@ package codecanaan
 import grails.plugins.springsecurity.SpringSecurityService
 import grails.test.GrailsMock
 import grails.test.GrailsUnitTestCase
-import grails.test.mixin.*
-import org.junit.*
 
 /**
  * See the API for {@link grails.test.mixin.web.GroovyPageUnitTestMixin} for usage instructions
