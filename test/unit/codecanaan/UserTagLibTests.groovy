@@ -2,6 +2,9 @@ package codecanaan
 
 
 
+import grails.plugins.springsecurity.SpringSecurityService
+import grails.test.GrailsMock
+import grails.test.GrailsUnitTestCase
 import grails.test.mixin.*
 import org.junit.*
 
@@ -9,9 +12,13 @@ import org.junit.*
  * See the API for {@link grails.test.mixin.web.GroovyPageUnitTestMixin} for usage instructions
  */
 @TestFor(UserTagLib)
-class UserTagLibTests {
+class UserTagLibTests {	
+	void setUp(){
+      tagLib.springSecurityService = new SpringSecurityService()
+	}
 
-    void testSomething() {
-//        fail "Implement me"
+    void testSomething() {		 
+		def result= applyTemplate("<g:displayUserName />")
+		assertNotNull result
     }
 }

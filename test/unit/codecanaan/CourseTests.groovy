@@ -18,13 +18,14 @@ class CourseTests {
 	def user=null 
 	def lesson =null
 	void setUp() {
-		 user= new User(username: 'admin', password: 'admin').save();
-		 lesson = new Lesson(
-			 name: 'lesson-1',
-			 title: '基本認識',
-			 description: 'lesson-1 desc',
-			 creator: user
-		 ).save()
+		User.metaClass.encodePassword = {}
+		user= new User(username: 'admin', password: 'admin').save();
+		lesson = new Lesson(
+			name: 'lesson-1',
+			title: '基本認識',
+			description: 'lesson-1 desc',
+			creator: user
+		).save()
 	}
 
 

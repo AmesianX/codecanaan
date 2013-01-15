@@ -18,6 +18,11 @@ class CourseServiceTests {
 	def content2 =null
 	
 	void setUp(){
+		//overwrite User.encodePassword
+		//本來要用 injection 但是在 domain 無法注入，在sevice 與 taglib 目前測試沒有問題
+		User.metaClass.encodePassword = {}
+		
+		
 		user= new User(username: 'admin', password: 'admin').save();
 		newCourse=new Course(
 			name: 'tqc-plus-java6',
