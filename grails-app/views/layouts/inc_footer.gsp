@@ -5,7 +5,7 @@
             
                 <p><span class="logo logo-font effect-text-shadow-black">CodeCanaan</span></p>
                 
-                <p class="visions">程式設計數位學習方舟計畫，</p>
+                <p class="visions">程式設計數位學習方舟計畫</p>
                 
                 <ul class="nav nav-pills">
                     <li><g:link url="/page/help">使用手冊</g:link></li>
