@@ -24,13 +24,13 @@
                     <div class="da-img"><img src="http://lyhcode.com/assets/themes/gravis/img/parallax-slider/ipad-mini.png" alt="image02" /></div>
                 </div>
                 <div class="da-slide">
-                    <h2>見證，千位學習者</h2>
+                    <h2>數千位學習者見證</h2>
                     <p>在過去幾年之中，我們開發的程式設計教學軟體，已經培訓過數千位學員，高達百分之九十五的學習者，肯定自己得到更好的學習效果。</p>
                     <!--<a href="#" class="da-link">Read more</a>-->
                     <div class="da-img" style="margin-left: -150px"><img src="http://lyhcode.com/assets/themes/gravis/img/parallax-slider/mapa.png" alt="image03" /></div>
                 </div>
                 <div class="da-slide">
-                    <h2>為教育堅持，專業</h2>
+                    <h2>專業，熱誠，服務</h2>
                     <p>透過成功的產學合作基礎，來自業界資深開發經驗的工程師，與教學資歷豐富的認證講師協同合作，聯手打造最值得您信賴的專業教學平台。</p>
                     <!--<a href="#" class="da-link">Read more</a>-->
                     <div class="da-img" style="margin-left: -100px"><img src="http://lyhcode.com/assets/themes/gravis/img/parallax-slider/html5.png" alt="image04" /></div>
@@ -46,10 +46,10 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row-fluid">
     <div class="span12 clearlook-wrapper">
     
-        <div class="span7">
+        <div class="span8 padding-around">
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#announce-tab" data-toggle="tab" class="effect-text-shadow larger-font"><g:message code="postType.ANNOUNCE.label" /></a></li>
             </ul>
@@ -78,17 +78,17 @@
         
         <div class="span4">
 
-            <div style="margin-bottom: 25px;">
-                <g:render template="/adsense/ad300x250" />
+            <div class="margin-below">
+                <g:render template="/adsense/ad250x250" />
             </div>
 
-            <div style="margin-bottom: 25px;">
+            <div class="margin-below">
                 <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fcodecanaan&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=102994276528232" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
             </div>
-            <div style="margin-bottom: 25px;">
+            <div class="margin-below">
                 <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fgroovy.taiwan&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=102994276528232" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
             </div>
-            <div style="margin-bottom: 25px;">
+            <div class="margin-below">
                 <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fnodejs.tw&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=102994276528232" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
             </div>
 

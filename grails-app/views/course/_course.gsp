@@ -42,9 +42,29 @@
         </ul>
     </div>
 </g:if>
+
+<!--主要內容-->
 <section>
     <div class="page-header">
         <h1>${course.title}</h1>
     </div>
     <div class="markdown-source">${course.description?.encodeAsHTML()}</div>
+    
+    <hr />
+    
+    <h2>學習單元</h2>
+    
+    <g:if test="${course.lessons}">
+        <ul class="icons">
+            <g:each in="${course.lessons}" var="lesson" status="i">
+                <li>
+                    <i class="icon-ok" style="color:#70995C"></i>
+                    <g:link controller="lesson" action="show" id="${lesson.id}">${lesson.title}</g:link>
+                </li>
+            </g:each>
+        </ul>
+    </g:if>
+    <g:else>
+        <p>尚未新增任何學習單元</p>
+    </g:else>
 </section>

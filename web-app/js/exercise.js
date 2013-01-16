@@ -146,6 +146,12 @@
 
         //執行測試（教材編輯模式）
         $('#cmdDump').click(function() {
+        
+            if ($('#sourcePath').val().trim()=='') {
+                bootbox.alert('請設定「程式碼路徑」欄位');
+                return false;
+            }
+            
             $.ajax({
                 type: 'post',
                 url: 'http://localhost:'+__ajax_client_port+'/',

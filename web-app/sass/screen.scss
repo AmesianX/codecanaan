@@ -22,6 +22,33 @@ body {
 	background-color: #f5f5f5;
 }
 
+/*-------------------- Layouts --------------------------*/
+
+.padding-around {
+    padding: 20px;
+}
+
+.margin-below {
+    margin-bottom: 20px;
+}
+
+.padding-leftside {
+    padding: 20px 0 20px 20px;
+}
+
+.padding-rightside {
+    padding: 20px 20px 20px 0;
+}
+
+@media (max-width: 767px) {
+    .padding-leftside {
+        padding: 5px;
+    }
+    .padding-rightside {
+        padding: 5px;
+    }
+}
+
 /*--------------------- Fonts ---------------------------*/
 
 .logo-font {
@@ -202,6 +229,8 @@ h1, h2, h3, h4 {
 		font-family: 'Droid Sans Mono', monospace;
 	}
 }
+
+/*---------------------- Just Font --------------------*/
 
 .justfont {
 	text-rendering: optimizelegibility;
