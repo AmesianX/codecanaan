@@ -32,7 +32,7 @@ environments {
 			//dialect = org.hibernate.dialect.MySQLMyISAMDialect
 			username = "codecanaan"
 			password = "codecanaan"
-			url = "jdbc:mysql://localhost/codecanaan?useUnicode=true&characterEncoding=UTF8"
+			url = "jdbc:mysql://localhost/codecanaan?useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull"
 			properties {
 				minEvictableIdleTimeMillis=1800000
 				timeBetweenEvictionRunsMillis=1800000
