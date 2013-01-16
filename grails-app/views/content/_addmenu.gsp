@@ -5,19 +5,19 @@
         <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-        <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'TUTORIAL']">
+        <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'TUTORIAL']" class="auto-loadmask">
             <i class="icon icon-pencil"></i>
             <g:message code="content.contentType.TUTORIAL" />
         </g:link></li>
-        <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'SLIDE']">
+        <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'SLIDE']" class="auto-loadmask">
             <i class="icon icon-pencil"></i>
             <g:message code="content.contentType.SLIDE" />
         </g:link></li>
-        <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'CODE']">
+        <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'CODE']" class="auto-loadmask">
             <i class="icon icon-pencil"></i>
             <g:message code="content.contentType.CODE" />
         </g:link></li>
-        <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'QUIZ']">
+        <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'QUIZ']" class="auto-loadmask">
             <i class="icon icon-pencil"></i>
             <g:message code="content.contentType.QUIZ" />
         </g:link></li>

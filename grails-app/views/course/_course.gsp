@@ -12,7 +12,7 @@
         </button>
         <ul class="dropdown-menu">
             <li>
-                <g:link controller="lesson" action="create" params="['course.id': course.id]">
+                <g:link controller="lesson" action="create" params="['course.id': course.id]" class="auto-loadmask">
                     <i class="icon icon-book"></i>
                     <!--新增單元-->
                     <g:message code="default.add.label" default="Add {0}" args="[message(code: 'lesson.label', default: 'Lesson')]" />

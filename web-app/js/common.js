@@ -31,6 +31,13 @@ function winHeight() {
     
 (function () {
     var $window = $(window);
+    
+    
+    // Enable loadmask
+    $('.auto-loadmask').click(function() {
+        $('body').append('<div class="modal-backdrop"></div>');
+    });
+
 
     // Tooltips
     $('[rel=tooltip]').tooltip();
