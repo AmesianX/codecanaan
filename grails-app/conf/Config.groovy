@@ -170,6 +170,8 @@ grails.plugins.springsecurity.rememberMe.key='xyzApp'
 grails.plugins.springsecurity.rememberMe.useSecureCookie=false
 grails.plugins.springsecurity.rememberMe.persistent=false
 */
+grails.plugins.springsecurity.rememberMe.persistent = true
+grails.plugins.springsecurity.rememberMe.persistentToken.domainClassName = 'codecanaan.PersistentLogin'
 
 //SpringSecurity Facebook
 grails.plugins.springsecurity.facebook.permissions='email,user_about_me'
@@ -184,3 +186,4 @@ aws {
     secretKey="-secretKey-"
     bucketName="-bucketName-"
 }
+
