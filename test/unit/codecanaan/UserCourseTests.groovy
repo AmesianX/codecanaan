@@ -11,27 +11,26 @@ import org.junit.*
 @TestFor(UserCourse)
 @Mock([User,Course])
 class UserCourseTests {
-	def user=null
-	def newCourse =null
-	void setup(){
-		user= new User(username: 'admin', password: 'admin').save();
-		newCourse=new Course(
-			name: 'tqc-plus-java6',
-			title: 'TQC+ Java 物件導向程式語言',
-			description: 'course-1 desc',
-			creator: user
-		).save()
+
+	void setUp(){		
+		println "setup"
 	}
 	
     void testSaveUserCourse() {
-		UserCourse.create(user,newCourse,true)
+		println "start "+ UserCourse.list().size()
+		UserCourse.create(new User(),new Course(),true)
 		
 		assert 1, UserCourse.findByUserAndCourse(user,newCourse).list().size()
+		
+		println "end "+ UserCourse.list().size()
     }
 	
 	void testSaveUserCourseWithRegType() {
-		UserCourse.create(user,newCourse,RegType.USER,true)
+		
+		println "start "+ UserCourse.list().size()
+		UserCourse.create(new User(),new Course(),RegType.USER,true)
 		
 		assert RegType.USER, UserCourse.findByUserAndCourse(user,newCourse).list().get(0).regType
+		println "end "+UserCourse.list().size()
 	}
 }
