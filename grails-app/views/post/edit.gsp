@@ -38,7 +38,7 @@
                 <div class="tab-pane active" id="tab-editor">
                     <div class="wmd-panel">
                         <div id="wmd-button-bar"></div>
-                        <g:textArea name="content" cols="40" rows="20" value="${post?.content}" class="wmd-input" id="wmd-input" />
+                        <g:textArea name="content" cols="40" rows="20" value="${post?.content}" class="wmd-input enable-tabkey" id="wmd-input" />
                     </div>
                 </div>
                 <div class="tab-pane" id="tab-preview">
