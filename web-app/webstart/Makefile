@@ -3,7 +3,8 @@ key:
 
 deploy:
 	gradle jar
-	cp -f build/libs/*.jar lib/
+	mkdir -p lib
+	cp -f build/libs/*.jar lib
 
 sign:
 	read -p "password? " storepass; \

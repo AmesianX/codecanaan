@@ -2,14 +2,14 @@ apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'application'
 
-group = 'standalone'
-version = '0.0.1'
-description = ''
 
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
 mainClassName = 'com.codecanaan.ScriptLoader'
+
+startScripts.applicationName = 'ClientTools'
+startScripts.optsEnvironmentVar = 'CC_OPTS -Dcore.client.port=1337 -Dcore.http.origin=* -Dcore.toolkits.url=http://codecanaan.com/webstart/toolkits.zip -Dcore.script.type=groovy -Dcore.script.url=http://codecanaan.com/webstart/script'
 
 repositories {
 	mavenCentral()
@@ -27,6 +27,7 @@ def defaultEncoding = 'UTF-8'
 [compileJava, compileTestJava]*.options*.encoding = defaultEncoding
 [compileGroovy, compileTestGroovy]*.options*.encoding = defaultEncoding
 [compileGroovy, compileTestGroovy]*.groovyOptions*.encoding = defaultEncoding
+
 /*
 // Package Fat Jar
 jar {
