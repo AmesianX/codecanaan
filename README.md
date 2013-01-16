@@ -1,11 +1,12 @@
-codecanaan
-==========
+CodeCanaan Project
+==================
 
-程式設計互動式教學系統
+CodeCanaan is an e-Learning web application builds for programming courses.
+Build-in Web-based IDE provides a real coding exercise experience to learners.
 
-### IRC Channel ###
+### Join us ####
 
-Join chatroom on FreeNode IRC server
+Get onto the #codecanaan IRC channel on FreeNode chat server.
 
   irc.freenode.net
   #codecanaan
