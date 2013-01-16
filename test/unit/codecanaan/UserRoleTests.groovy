@@ -9,7 +9,7 @@ import org.junit.*
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
 @TestFor(UserRole)
-@Mock([User, Role])
+@Mock([User, Role, UserRole])
 class UserRoleTests {
 	def role1 =null
 	def user1 =null
