@@ -18,5 +18,5 @@
         <property name="core.script.type" value="groovy" />
         <property name="core.script.url" value="${createLink(controller:'webstart',action:'script',absolute:true)}" />
     </resources>
-    <application-desc main-class="com.lyhdev.gws.ScriptLoader" />
+    <application-desc main-class="com.codecanaan.ScriptLoader" />
 </jnlp>

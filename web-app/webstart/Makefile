@@ -11,7 +11,10 @@ sign:
 
 run:
 	gradle run -Dcore.script.type='groovy' -Dcore.script.url='http://dev.codecanaan.com:8080/webstart/launcher.groovy'
-	
+
+clean:
+	gradle clean
+
 zip:
 	mkdir -p toolkits/windows/java
 	for i in windows linux mac; do for j in java c cpp; do mkdir -p toolkits/$$i/$$j; done; done

@@ -29,7 +29,7 @@ def defaultEncoding = 'UTF-8'
 jar {
 	from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
 	manifest {
-		attributes 'Implementation-Title': 'Loader', 'Implementation-Version': version, 'Main-Class' : 'com.lyhdev.gws.ScriptLoader'
+		attributes 'Implementation-Title': 'Loader', 'Implementation-Version': version, 'Main-Class' : 'com.codecanaan.ScriptLoader'
 	}
     exclude('META-INF/*.txt')
     exclude('javax/servlet/jsp/resources/*')
@@ -37,8 +37,8 @@ jar {
 
 task (run, dependsOn: 'classes', type: JavaExec) {
 	classpath = sourceSets.main.runtimeClasspath
-	main = 'com.lyhdev.gws.ScriptLoader'
-	jvmArgs = ['-XstartOnFirstThread', '-Xdock:name=gws']
+	main = 'com.codecanaan.ScriptLoader'
+	jvmArgs = ['-XstartOnFirstThread', '-Xdock:name=CodeCanaan']
 }
 
 defaultTasks 'jar'

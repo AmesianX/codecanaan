@@ -1,0 +1,42 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'application'
+
+group = 'standalone'
+version = '0.0.1'
+description = ''
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+mainClassName = 'com.codecanaan.ScriptLoader'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	groovy 'org.codehaus.groovy:groovy-all:2.0.6'
+    groovy 'org.apache.ant:ant:1.8.4'
+	compile 'commons-codec:commons-codec:1.7'
+    compile 'org.mortbay.jetty:jetty-embedded:6.1.26'
+}
+
+def defaultEncoding = 'UTF-8'
+
+[compileJava, compileTestJava]*.options*.encoding = defaultEncoding
+[compileGroovy, compileTestGroovy]*.options*.encoding = defaultEncoding
+[compileGroovy, compileTestGroovy]*.groovyOptions*.encoding = defaultEncoding
+/*
+// Package Fat Jar
+jar {
+	from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
+	manifest {
+		attributes 'Implementation-Title': 'Loader', 'Implementation-Version': version, 'Main-Class' : 'com.codecanaan.ScriptLoader'
+	}
+    exclude('META-INF/*.txt')
+    exclude('javax/servlet/jsp/resources/*')
+}
+
+defaultTasks 'jar'
+*/

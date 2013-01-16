@@ -170,6 +170,7 @@ grails.plugins.springsecurity.rememberMe.key='xyzApp'
 grails.plugins.springsecurity.rememberMe.useSecureCookie=false
 grails.plugins.springsecurity.rememberMe.persistent=false
 */
+grails.plugins.springsecurity.rememberMe.alwaysRemember = true
 grails.plugins.springsecurity.rememberMe.persistent = true
 grails.plugins.springsecurity.rememberMe.persistentToken.domainClassName = 'codecanaan.PersistentLogin'
 

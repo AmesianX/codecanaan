@@ -29,7 +29,7 @@ environments {
 			pooled = true
 			driverClassName = "com.mysql.jdbc.Driver"
 			//dialect = org.hibernate.dialect.MySQL5InnoDBDialect
-			dialect = org.hibernate.dialect.MySQLMyISAMDialect
+			//dialect = org.hibernate.dialect.MySQLMyISAMDialect
 			username = "codecanaan"
 			password = "codecanaan"
 			url = "jdbc:mysql://localhost/codecanaan?useUnicode=true&characterEncoding=UTF8"
