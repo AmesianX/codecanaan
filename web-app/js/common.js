@@ -37,7 +37,9 @@ function winHeight() {
     $('.auto-loadmask').click(function() {
         $('body').append('<div class="modal-backdrop"></div>');
     });
-
+    
+    // Fix for textarea "TAB" keydown
+    $('textarea.enable-tabkey').tabby({tabString:'    '});
 
     // Tooltips
     $('[rel=tooltip]').tooltip();

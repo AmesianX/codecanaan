@@ -28,6 +28,12 @@ modules = {
         resource url: 'jquery-cslider/jquery.cslider.js'
         resource url: 'jquery-cslider/slider.js'
     }
+    
+    'jquery-plugins' {
+        dependsOn 'jquery'
+        
+        resource url: 'jquery-plugins/jquery.textarea.min.js'
+    }
 
     common {
         resource url: 'js/common.js'

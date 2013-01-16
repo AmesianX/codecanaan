@@ -6,6 +6,10 @@
 //@import "compass/reset";
 @import "compass/css3";
 
+html {
+    background-color: #252525;
+}
+
 body {
 	font-size: 12pt;
 
@@ -270,7 +274,7 @@ h1, h2, h3, h4 {
 
     /*border-top: 3px solid #dadada;*/
     border-top: 1px solid #000000;
-    @include single-box-shadow(#252525, 0, 0, 10px);
+    @include single-box-shadow(#252525, 0, 0, 10px, 3px);
     
     a {
         color: #bdbdbd;
