@@ -11,11 +11,9 @@ import grails.test.GrailsUnitTestCase
  */
 @TestFor(UserTagLib)
 class UserTagLibTests {	
-	void setUp(){
-      tagLib.springSecurityService = new SpringSecurityService()
-	}
 
     void testSomething() {		 
+		tagLib.springSecurityService = new SpringSecurityService()
 		def result= applyTemplate("<g:displayUserName />")
 		assertNotNull result
     }
