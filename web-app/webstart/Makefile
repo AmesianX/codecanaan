@@ -5,6 +5,7 @@ deploy:
 	gradle jar
 	mkdir -p lib
 	cp -f build/libs/*.jar lib
+	gradle clean
 
 sign:
 	read -p "password? " storepass; \
