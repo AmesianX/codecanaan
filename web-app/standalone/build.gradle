@@ -9,7 +9,9 @@ targetCompatibility = 1.6
 mainClassName = 'com.codecanaan.ScriptLoader'
 
 startScripts.applicationName = 'ClientTools'
-startScripts.optsEnvironmentVar = 'CC_OPTS -Dcore.client.port=1337 -Dcore.http.origin=* -Dcore.toolkits.url=http://codecanaan.com/webstart/toolkits.zip -Dcore.script.type=groovy -Dcore.script.url=http://codecanaan.com/webstart/script'
+
+//dirty hacks for System.getProperty() sourcing
+startScripts.optsEnvironmentVar = 'CC_OPTS'
 
 repositories {
 	mavenCentral()
@@ -27,6 +29,19 @@ def defaultEncoding = 'UTF-8'
 [compileJava, compileTestJava]*.options*.encoding = defaultEncoding
 [compileGroovy, compileTestGroovy]*.options*.encoding = defaultEncoding
 [compileGroovy, compileTestGroovy]*.groovyOptions*.encoding = defaultEncoding
+
+//opts hacking
+startScripts {
+	doLast {
+		String opts = '-Dcore.client.port=1337 -Dcore.http.origin=* -Dcore.toolkits.url="http://codecanaan.com/webstart/toolkits.zip" -Dcore.script.type=groovy -Dcore.script.url="http://codecanaan.com/webstart/script"'
+
+		windowsScript.text = windowsScript.text.replace('%CC_OPTS%', opts)
+		unixScript.text = unixScript.text.replace('$CC_OPTS', opts)
+
+		println windowsScript.text
+	}
+}
+
 
 /*
 // Package Fat Jar
