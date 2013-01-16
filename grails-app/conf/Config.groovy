@@ -112,6 +112,9 @@ log4j = {
 
     debug 'codecanaan'
     
+    //SpringSecurity Facebook
+    debug   'com.the6hours', 'grails.app.taglib.com.the6hours'
+    
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
            'org.codehaus.groovy.grails.web.pages',          // GSP
            'org.codehaus.groovy.grails.web.sitemesh',       // layouts
@@ -145,6 +148,8 @@ avatarPlugin {
     gravatarRating="G"
 }
 
+//--------------- SpringSecurity ------------------------
+
 // Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'codecanaan.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'codecanaan.UserRole'
@@ -155,6 +160,18 @@ grails.plugins.springsecurity.controllerAnnotations.staticRules = [
    '/j_spring_security_switch_user': ['ROLE_ADMIN']
 ]
 
+//RememberMe Filters
+/*
+grails.plugins.springsecurity.rememberMe.cookieName='xyz_remember_me'
+grails.plugins.springsecurity.rememberMe.alwaysRemember=false
+grails.plugins.springsecurity.rememberMe.tokenValiditySeconds=31*24*60*60
+grails.plugins.springsecurity.rememberMe.parameter='_spring_security_remember_me'
+grails.plugins.springsecurity.rememberMe.key='xyzApp'
+grails.plugins.springsecurity.rememberMe.useSecureCookie=false
+grails.plugins.springsecurity.rememberMe.persistent=false
+*/
+
+//SpringSecurity Facebook
 grails.plugins.springsecurity.facebook.permissions='email,user_about_me'
 grails.plugins.springsecurity.facebook.filter.type='redirect'
 grails.plugins.springsecurity.facebook.domain.classname='codecanaan.FacebookUser'
