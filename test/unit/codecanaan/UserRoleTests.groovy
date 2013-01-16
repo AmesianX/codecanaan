@@ -20,7 +20,6 @@ class UserRoleTests {
 		role1 = Role.findOrSaveByAuthority('ROLE_USER')
 		user1 = new User(username: 'student', password: 'student', enabled: true).save(failOnError: true, flush: true)
 		user2 = new User(username: 'teacher', password: 'teacher', enabled: true).save(failOnError: true, flush: true)
-		UserRole.create(user1,role1,true)
 		
 		new UserRole(
 			user: user1,
@@ -36,11 +35,11 @@ class UserRoleTests {
 	void "test call UserRole remove" () {
 		assertNotNull UserRole.findByRole(role1)
 		
-		assert UserRole.list().size() == 2
+		assert UserRole.list().size() == 1
 		
 		assertTrue UserRole.remove(user1, role1, true)
 		
-		assert UserRole.list().size() == 1
+		assert UserRole.list().size() == 0
 	}
 	
 	void "test ccall UserRole hashCode" () {
