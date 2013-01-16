@@ -8,14 +8,25 @@ class UserTagLib {
     }
     
     def displayUserName = { attrs, body ->
-        def user = springSecurityService.currentUser
+    
+        def output = ''
         
-        def display = user?.fullName
-        
-        if (!display) {
-            display = user?.username
+        try {
+            def user = springSecurityService.currentUser
+            
+            def display = user?.fullName
+            
+            if (!display) {
+                display = user?.username
+            }
+            
+            output = display
+            
+        }
+        catch (e) {
+            log.error e.message
         }
         
-        out << body() << display
+        out << body() << output
     }
 }

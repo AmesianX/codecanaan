@@ -4,14 +4,14 @@ import codecanaan.User
 
 class FacebookUser {
 
-	long uid
+    long uid
     String accessToken
     
-    Date accessTokenExpires
+    //Date accessTokenExpires
 
-	static belongsTo = [user: User]
+    static belongsTo = [user: User]
 
-	static constraints = {
-		uid unique: true
-	}
+    static constraints = {
+        uid unique: true
+    }
 }
