@@ -18,6 +18,12 @@
 	        <g:message code="springSecurity.login.remember.me.label"/>
         </label>
 
-        <g:submitButton name="submit" value="${message(code: "springSecurity.login.button")}" class="btn btn-primary btn-large" />
+        <hr />
+        
+        <button class="btn btn-primary btn-large">
+            <i class="icon icon-signin"></i>
+            ${message(code: "springSecurity.login.button")}
+        </button>
+        
     </form>
 </section>

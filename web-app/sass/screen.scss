@@ -153,9 +153,9 @@ ul.links {
 .progress-tracker {
     //background-image: url(../images/lightgray_bg.png);
     padding: 25px 0;
-    @include border-radius(6px);
-    border: 1px solid #dadada;
-    @include single-box-shadow(rgba(0, 0, 0, 0.0745098), 0px, 1px, 2px, false, inset);
+    //@include border-radius(6px);
+    //border: 1px solid #dadada;
+    //@include single-box-shadow(rgba(0, 0, 0, 0.0745098), 0px, 1px, 2px, false, inset);
     
     .steps {
         ul {
@@ -170,10 +170,10 @@ ul.links {
             width: 25%;
             display: inline-block;
             text-align: center;
-            color: #4f6881;
+            color: #2a3a5c;
         }
         li.active {
-            color: #2a3a5c;
+            color: #b10e0e;
             //font-weight: bold;
         }
     }
