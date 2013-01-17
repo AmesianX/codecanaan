@@ -12,6 +12,11 @@
 <g:layoutHead/>
 <r:layoutResources />
 <google:analytics />
+<style type="text/css">
+html, body {
+    background: transparent;
+}
+</style>
 </head>
 <body>
 <div class="container" role="main">
