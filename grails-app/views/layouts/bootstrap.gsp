@@ -40,16 +40,15 @@
         </div>
     </div>
 </div>
+
 <div class="container" role="main">
+    
     <!--GoogleChromeFrame-->
-    <browser:isMsie versionLower="9">
-        <div class="alert alert-info" role="status">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong><g:message code="message.chrome.frame.upgrade.tips" /></strong>
-            <g:message code="message.chrome.frame.upgrade.descriptions" /><br/>
-            <a href="http://www.google.com/chromeframe"><i class="icon icon-download"></i> <g:message code="message.chrome.frame.download.text" /></a>
-        </div>
-    </browser:isMsie>
+    <g:render template="/layouts/alert_chromeframe" />
+
+    <!--ClientTools-->
+    <g:render template="/layouts/alert_clienttools" />
+    
     <!--快閃訊息-->
     <g:if test="${flash.message}">
         <div class="alert" role="status">
@@ -60,6 +59,7 @@
     <!--主畫面內容-->
     <g:layoutBody/>
 </div>
+
 <g:applyLayout name="inc_footer" />
 <g:javascript library="application"/>
 <r:layoutResources />

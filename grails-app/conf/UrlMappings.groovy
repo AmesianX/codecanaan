@@ -9,7 +9,11 @@ class UrlMappings {
 
 		'/' (controller: 'home')
 		//"/"(view:"/index")
-		"500"(view:'/error')
+		
+		"500" (view: '/error500')
+        //"500" (controller: 'error', action: 'serverError')
+        
+        "404" (controller: 'error', action: 'notFound')
 
 		"/course/$id?" {
 			controller = "course"
