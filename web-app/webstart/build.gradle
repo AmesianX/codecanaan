@@ -1,6 +1,18 @@
 apply plugin: 'java'
 apply plugin: 'groovy'
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'eu.appsatori:gradle-fatjar-plugin:0.2-rc1'
+    }
+}
+
+apply plugin: 'fatjar'
+
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
@@ -22,6 +34,7 @@ def defaultEncoding = 'UTF-8'
 [compileGroovy, compileTestGroovy]*.groovyOptions*.encoding = defaultEncoding
 
 // Package Fat Jar
+/*
 jar {
 	from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
 	manifest {
@@ -30,12 +43,13 @@ jar {
     exclude('META-INF/*.txt')
     exclude('javax/servlet/jsp/resources/*')
 }
+*/
 
+/*
 task (run, dependsOn: 'classes', type: JavaExec) {
 	classpath = sourceSets.main.runtimeClasspath
 	main = 'com.codecanaan.ScriptLoader'
 	jvmArgs = ['-XstartOnFirstThread', '-Xdock:name=CodeCanaan']
 }
-
-defaultTasks 'jar'
+*/
 

@@ -2,7 +2,7 @@ key:
 	keytool -genkey -alias mykey -validity 1095
 
 deploy:
-	gradle jar
+	gradle fatJar
 	mkdir -p lib
 	cp -f build/libs/*.jar lib
 	gradle clean
@@ -16,6 +16,7 @@ run:
 
 clean:
 	gradle clean
+	rm -rf .gradle
 
 zip:
 	mkdir -p toolkits/windows/java

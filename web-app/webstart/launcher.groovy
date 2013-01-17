@@ -181,16 +181,72 @@ def clientPort = System.properties['core.client.port']?new Integer(System.proper
 UIManager.lookAndFeel = UIManager.systemLookAndFeelClassName
 UIManager.put('swing.boldMetal', Boolean.FALSE)
 
-//彈出訊息
-JOptionPane.showMessageDialog(null, "<html>客戶端工具已執行！<br/>Client Tools executed.")
+
+/*----------- 顯示工作列圖示 ------------*/
+
+def iconFile = new File(tempdir, 'play-icon.png').absolutePath
+
+if (isWindows || isLinux) {
+    iconFile = new File(tempdir, 'play-icon-16.png').absolutePath
+}
+
+//if(!SystemTray.isSupported())	  	
+def popup = new PopupMenu()
+def trayIcon = new java.awt.TrayIcon(Toolkit.defaultToolkit.getImage(iconFile))
+def tray = SystemTray.systemTray
+
+// Create a popup menu components
+MenuItem aboutItem = new MenuItem('About')
+MenuItem exitItem = new MenuItem('Exit')
+
+//Add components to popup menu
+popup.add(aboutItem)
+popup.add(exitItem)
+
+trayIcon.setPopupMenu(popup)
+
+try {
+    tray.add(trayIcon)
+} catch (Exception e) {
+    println 'TrayIcon could not be added.'
+	println e.message
+}
+
+def aboutAction = new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        JOptionPane.showMessageDialog null, 'CodeCanaan Client Tools'
+    }
+}
+
+trayIcon.addActionListener(aboutAction)
+aboutItem.addActionListener(aboutAction)
+
+exitItem.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        tray.remove(trayIcon)
+        System.exit(0)
+    }
+})
+
+
+/*---------- 關閉已執行服務 -----------*/
 
 //shutdown previous server
 try {
     new URL("http://localhost:${clientPort}/?action=shutdown").text
 }
 catch (e) {
-    //ignore
+	println e.message
 }
+
+
+/*--------- 主動通知使用者 ------------*/
+
+//彈出訊息
+JOptionPane.showMessageDialog(null, "<html>客戶端工具已執行！<br/>Client Tools executed.")
+
+
+/*---------- 軟體版本檢查 -------------*/
 
 def versionCheck = {
     cmd ->
