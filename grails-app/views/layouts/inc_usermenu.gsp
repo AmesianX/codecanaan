@@ -3,9 +3,10 @@
         <!--未登入-->
         <li>
             <g:link controller="login">
-                <i class="icon icon-user"></i>
+                <i class="icon icon-signin"></i>
                 <!--登入-->
-                <g:message code="default.login.text" />
+                <!--<g:message code="default.login.text" />-->
+                開始使用
             </g:link>
         </li>
     </sec:ifNotLoggedIn>

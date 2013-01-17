@@ -5,7 +5,7 @@ server:
 assets:
 	compass compile web-app
 	mkdir -p web-app/font
-	cp web-app/font-awesome/font/* web-app/font
+	#cp web-app/font-awesome/font/* web-app/font
 	lessc --yui-compress web-app/font-awesome/less/font-awesome.less web-app/stylesheets/font-awesome.css
 	lessc --yui-compress web-app/font-awesome/less/font-awesome-ie7.less web-app/stylesheets/font-awesome-ie7.css
 	lessc --yui-compress web-app/swatchmaker/swatchmaker.less > web-app/stylesheets/bootstrap.min.css
