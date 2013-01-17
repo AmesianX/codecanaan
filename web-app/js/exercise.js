@@ -65,7 +65,7 @@
     //比較兩個輸出並傳回比較結果
     var fnDiffAndReport = function(ans, std) {
         //force trim
-        std = std.trim();
+        std = std.rtrim();
     
         var report = $('<div class="test-report" />');
 
@@ -135,6 +135,8 @@
                     
                     iframe.load(function() {
                         var output = $(iframe).contents().find('#bs-console-plain').text();
+                        
+                        $('#program-output').text(output);
 
                         //bootbox.alert('<pre><code>'+output+'</code></pre>');
 
@@ -162,9 +164,9 @@
                     success: function(data) {
 
                         if (data) {
-                            $('#program-output').text(data.result.data.dump);
-
                             var output = data.result.data.dump;
+                            
+                            $('#program-output').text(output);
 
                             var passed = fnDiffAndReport(output, correctOutput);
 
@@ -180,7 +182,7 @@
                             passed: false,
                             sourceCode: sourceCode
                         });
-                        fnShowResult('<font color="red">錯誤！請先啟動客戶端工具。</font>');
+                        bootbox.alert('錯誤！請先啟動客戶端工具。');
                     } 
                 });
             }
@@ -214,6 +216,18 @@
 
     if (editors && editors['sourceCode']) {
         var editor = editors['sourceCode'];
+        
+        
+        $('#sourceType').change(function() {
+            var type = $('#sourceType').val();
+            
+            //Simple detect, only support scheme and c-like this time
+            var cmmode = (type=='SCHEME'?'text/x-scheme':'text/x-csrc');
+            
+            editors['sourceCode'].setOption("mode", cmmode);
+            editors['partialCode'].setOption("mode", cmmode);
+            
+        });
 
         //執行測試（教材編輯模式）
         $('#cmdDump').click(function() {
@@ -248,7 +262,7 @@
 
                         bootbox.alert('<pre><code>'+output+'</code></pre>');
                         
-                        editors['answer'].setValue(output.trim());
+                        editors['answer'].setValue(output.rtrim());
                     }); 
                 });
             }
@@ -291,10 +305,10 @@
             answer: ans
         });
         if (passed) {
-            fnShowResult('<font color="blue">恭喜你答對了！</font>');
+            bootbox.alert('恭喜你答對了！');
         }
         else {
-            fnShowResult('<font color="red">答錯了，請再試一次！</font>');
+            bootbox.alert('答錯了，請再試一次！');
         }
     });
 

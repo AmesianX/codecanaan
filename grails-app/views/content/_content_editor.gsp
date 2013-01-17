@@ -118,11 +118,11 @@
     <div class="tab-content">
         <div class="tab-pane active" id="tab-sourceCode">
             <!--程式碼-->
-            <g:textArea name="sourceCode" value="${content.sourceCode}" data-mode="text/x-csrc" data-height="500" cols="40" rows="20" class="codemirror-auto" />
+            <g:textArea name="sourceCode" value="${content.sourceCode}" data-mode="${cmmode(type:content.sourceType)}" data-height="500" cols="40" rows="20" class="codemirror-auto" />
         </div>
         <div class="tab-pane" id="tab-partialCode">
             <!--部分答案-->
-            <g:textArea name="partialCode" value="${content.partialCode}" data-mode="text/x-csrc" data-height="500" cols="40" rows="20" class="codemirror-auto" />
+            <g:textArea name="partialCode" value="${content.partialCode}" data-mode="${cmmode(type:content.sourceType)}" data-height="500" cols="40" rows="20" class="codemirror-auto" />
         </div>
         <div class="tab-pane" id="tab-answer">
             <!--標準輸出-->

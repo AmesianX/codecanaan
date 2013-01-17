@@ -63,6 +63,7 @@ modules = {
 
     pagedown {
         defaultBundle 'coding-tools'
+        
         resource url: 'pagedown/pagedown.css'
         resource url: 'pagedown/Markdown.Converter.js', disposition: 'head'
         resource url: 'pagedown/Markdown.Sanitizer.js', disposition: 'head'
@@ -71,9 +72,11 @@ modules = {
 
     codemirror {
         defaultBundle 'coding-tools'
+        
         resource url: 'codemirror/lib/codemirror.css'
         resource url: 'codemirror/lib/codemirror.js', disposition: 'head'
         resource url: 'codemirror/mode/clike/clike.js', disposition: 'head'
+        resource url: 'codemirror/mode/scheme/scheme.js', disposition: 'head'
         resource url: 'codemirror/lib/util/runmode.js', disposition: 'head'
         //resource url: 'codemirror/lib/util/jquery.codemirror.js', disposition: 'head'
     }

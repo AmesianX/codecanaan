@@ -9,4 +9,18 @@ class CommonTagLib {
             out << render(template: '/taglib/justfont')
         }
     }
+    
+    /**
+     * CodeMirror Syntax Mode
+     */
+    def cmmode = { attr, body ->
+        if (attr && attr.type) {
+            if (attr.type.toString().toLowerCase()=='scheme') {
+               out << 'text/x-scheme'
+            }
+            else {
+                out << 'text/x-csrc'
+            }
+        }
+    }
 }

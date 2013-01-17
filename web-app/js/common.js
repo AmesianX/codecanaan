@@ -101,12 +101,10 @@ function winHeight() {
         editors[id].setSize(null, height);
         
         $('.CodeMirror').resizable({
-            handles: 'n, s',
+            handles: 's',
             grid: 50,
             maxHeight: 1000,
-            maxWidth: 600,
-            minHeight: 250,
-            minWidth: 480,
+            minHeight: 300,
             stop: function() { editors[id].refresh(); },
             resize: function() {
                 editors[id].setSize($(this).width(), $(this).height());
