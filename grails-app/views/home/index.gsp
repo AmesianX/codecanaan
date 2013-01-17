@@ -25,7 +25,7 @@
                 </div>
                 <div class="da-slide">
                     <h2>數千位學習者見證</h2>
-                    <p class="justfont-force">在過去幾年之中，我們開發的程式設計教學軟體，已經培訓過數千位學員，高達百分之九十五的學習者，肯定自己得到更好的學習效果。</p>
+                    <p class="justfont-force">在過去幾年之中，我們開發的程式設計教學軟體，已經培訓超過 4,000 位優秀學員，問卷調查結果顯示，高達百分之九十五的學習者，肯定自己得到更好的學習效果。</p>
                     <!--<a href="#" class="da-link">Read more</a>-->
                     <div class="da-img" style="margin-left: -150px"><img src="http://lyhcode.com/assets/themes/gravis/img/parallax-slider/mapa.png" alt="image03" /></div>
                 </div>
