@@ -12,7 +12,7 @@
                 <p class="larger-font" style="text-align:center"><i class="icon  icon-thumbs-up icon-2x icon-blue"></i> 只要四個步驟就能獲得完整的學習功能</p>
             </div>
             <div class="progress progress-striped">
-                <div class="bar" style="width: 5%;"></div>
+                <div class="bar" style="width: 25%;"></div>
             </div>
             <ul class="steps">
                 <li class="step1 active">會員登入 »</li>
