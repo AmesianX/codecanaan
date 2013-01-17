@@ -4,6 +4,22 @@
 <title><g:message code="springSecurity.login.title"/></title>
 </head>
 <body>
+
+<div class="row">
+    <div class="span12 progress-tracker">
+        <div class="progress progress-striped">
+            <div class="bar" style="width: 25%;"></div>
+        </div>
+        <ul class="steps">
+            <li class="step1">註冊</li>
+            <li class="step1">安裝 Java 軟體</li>
+            <li class="step1">啟動客戶端工具</li>
+            <li class="step1">完成</li>
+        </ul>
+    </div>
+</div>
+
+
 <div class="row">
 	<div class="span4">
 	
