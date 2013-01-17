@@ -292,4 +292,29 @@ class ContentController {
         
         redirect action: 'attachmentList', id: content.id
     }
+    
+    /**
+     * 暫存程式碼（類型、路徑、內容）
+     */
+    def ajaxSaveTemp() {
+        //保存程式碼類型
+        session['__tempSourceType'] = params.sourceType;
+
+        //保存程式碼路徑
+        session['__tempSourcePath'] = params.sourcePath;
+        
+        //保存程式碼內容
+        session['__tempSourceCode'] = params.sourceCode;
+        
+        render(contentType: 'application/json') {[
+            success: true
+        ]}
+    }
+    
+    /**
+     * BiwaScheme
+     */
+    def biwascheme() {
+        [sourceCode: session['__tempSourceCode']]
+    }
 }

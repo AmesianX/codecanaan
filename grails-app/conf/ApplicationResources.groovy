@@ -36,11 +36,14 @@ modules = {
     }
 
     common {
+        dependsOn 'jquery, jquery-ui, jquery-plugins'
+        
         resource url: 'js/common.js'
     }
 
     exercise {
-        dependsOn 'common'
+        dependsOn 'jquery, common'
+        
         resource url: 'js/exercise.js'
     }
     
@@ -139,5 +142,10 @@ modules = {
             bundle: "print"
         resource url: 'stylesheets/ie.css',
             wrapper: { s -> "<!--[if IE]>$s<![endif]-->" }
+    }
+    
+    biwascheme {
+        //resource url: 'biwascheme/biwascheme.js'
+        resource url: 'biwascheme/biwascheme-min.js'
     }
 }

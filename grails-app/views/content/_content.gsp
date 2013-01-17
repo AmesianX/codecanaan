@@ -130,18 +130,6 @@
     <!--伺服器回應訊息區-->
     <div id="ajaxmsg"></div>
 
-    <!--作答結果顯示區-->
-    <!--<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>-->
-    <div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">作答結果</h3>
-        </div>
-        <div class="modal-body" id="modalmsg"></div>
-        <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">關閉</button>
-        </div>
-    </div>
 </sec:ifLoggedIn>
 <sec:ifNotLoggedIn>
     <div class="alert">

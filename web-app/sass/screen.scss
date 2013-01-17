@@ -141,28 +141,6 @@ ul.links {
     }
 }
 
-/*-------------------- CodeMirror ----------------------*/
-
-.CodeMirror {
-	border: 1px solid #dadada;
-	font-family: 'Droid Sans Mono', monospace;
-	font-size: 11pt;
-	background: white;
-}
-
-.CodeMirror-lines, .CodeMirror-gutter {
-	font-family: 'Droid Sans Mono', monospace;
-	line-height: 1.5em;
-}
-
-/*.CodeMirror-fullscreen {
-    display: block;
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    z-index: 9999;
-}*/
-
 /*--------------------- 加強表單 ---------------------------*/
 
 label.required {
@@ -189,24 +167,22 @@ iframe#attachment-frame {
 	pre {
 		font-family: 'Droid Sans Mono', monospace;
 		border: 0;
-		font-size: 10pt;
+		font-size: 11pt;
 		padding: 0;
-		margin: 0;
+		margin: 5px 0;
 		background: none;
 	}
 	.test-ok {
 	}
 	.test-error {
-		background-color: #FF7777;
+		background-color: #D4BFBE;
 	}
 	.test-hint {
 		background-color: #77FF77;
 	}
 }
 
-.markdown-source {
-	display: none;
-}
+/*--------------------- Headings ---------------------------------------------*/
 
 h1, h2, h3, h4 {
 	@include text-shadow(0 0 1px transparent, #aaa 1pt 1pt 2pt);
@@ -218,7 +194,13 @@ h1, h2, h3, h4 {
 	}
 }
 
+/*-------------------- Source Code -------------------------------------------*/
+
 /* Markdown 文字區塊排版調校 */
+
+.markdown-source {
+	display: none;
+}
 
 .markdown-source {
 	p, li {
@@ -230,7 +212,29 @@ h1, h2, h3, h4 {
 	}
 }
 
-/*---------------------- Just Font --------------------*/
+/*-------------------- CodeMirror ----------------------*/
+
+.CodeMirror {
+	border: 1px solid #dadada;
+	font-family: 'Droid Sans Mono', monospace;
+	font-size: 11pt;
+	background: white;
+}
+
+.CodeMirror-lines, .CodeMirror-gutter {
+	font-family: 'Droid Sans Mono', monospace;
+	line-height: 1.5em;
+}
+
+/*.CodeMirror-fullscreen {
+    display: block;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    z-index: 9999;
+}*/
+
+/*---------------------- Just Font -------------------------------------------*/
 
 .justfont {
 	text-rendering: optimizelegibility;

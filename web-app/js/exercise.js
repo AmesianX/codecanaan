@@ -11,7 +11,9 @@
     var __ajax_save_record_url = $('input[name="__ajax_save_record_url"]').val();
     var __ajax_client_port = $('input[name="__ajax_client_port"]').val();
     var __ajax_loader_image_src = $('input[name="__ajax_loader_image_src"]').val();
-
+    var __ajax_biwascheme_url = $('input[name="__ajax_biwascheme_url"]').val();
+    var __ajax_savetemp_url = $('input[name="__ajax_savetemp_url"]').val();
+    
     //儲存記錄
     var fnSaveRecord = function(params, fncb) {
         $('#ajaxmsg').html('<img src="'+__ajax_loader_image_src+'" alt="ajaxloader" />');
@@ -27,6 +29,20 @@
             }
         });
     };
+    
+    //暫存程式碼
+    var fnSaveTemp = function(params, fncb) {
+        $.ajax({
+            type: 'post',
+            url: __ajax_savetemp_url,
+            data: params,
+            success: function(data) {
+                if ($.isFunction(fncb)) {
+                    fncb();
+                }
+            }
+        });
+    };
 
     //互動按鈕
     var fnCheckAnswer = function(ans) {
@@ -36,84 +52,139 @@
 
     //顯示結果報表
     var fnShowResult = function(msg) {
-        $('#modalmsg').html(msg);
-        $('#myModal').modal();
+        var m = $('<div class="modal hide fade" tabindex="-1" role="dialog" />');
+        
+        m.append('<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h2>程式執行結果</h2></div>');
+        m.append($('<div class="modal-body"></div>').append(msg));
+        
+        m.append('<div class="modal-footer"><small style="padding-right:20px">按「ESC」關閉視窗</small><button class="btn" data-dismiss="modal" aria-hidden="true">關閉</button></div>');
+    
+        m.modal();
     };
+    
+    //比較兩個輸出並傳回比較結果
+    var fnDiffAndReport = function(ans, std) {
+        //force trim
+        std = std.trim();
+    
+        var report = $('<div class="test-report" />');
+
+        var lines = std.split("\n");
+        var lines2 = ans.split("\n");
+        var linec = 0;
+        var linec2 = 0;
+        for (i=0; i<lines.length; i++) {
+            linec++;
+            if (i < lines2.length) {
+                if (rtrim(lines[i])==rtrim(lines2[i])) {
+                    linec2++;
+                    report.append('<pre class="test-ok"><i class="icon icon-ok"></i> '+lines[i]+'</pre>');
+                }
+                else {
+                    report.append('<pre class="test-error"><i class="icon icon-remove"></i> '+lines2[i]+'</pre>');
+                    //report.append('<pre class="test-hint"><i class="icon icon-ok"></i> '+lines[i]+'</pre>');
+                }
+            }
+        }
+
+        var passed = (linec == linec2);
+
+        report.append('<hr/>');
+
+        if (passed) {
+            report.append('<font color="green"><i class="icon icon-ok"></i> 通過測試，請繼續做下一個題目。</font>');
+        }
+        else {
+            report.append('<font color="red"><i class="icon icon-error"></i> 無法通過測試，請修正程式碼再重新執行一次。</font>');
+        }
+
+        //report.append('<pre>'+ans+'</pre>');
+        //report.append('<h4>標準執行結果</h4>');
+        //report.append('<pre>'+std+'</pre>');
+
+        fnShowResult(report);
+        
+        return passed;
+    }
 
     if (editors && editors['sourceEdit']) {
+        //學生練習模式
+    
         var editor = editors['sourceEdit'];
 
         $('#cmdPlay').click(function() {
-            $.ajax({
-                type: 'post',
-                url: 'http://localhost:'+__ajax_client_port+'/',
-                data: {
-                    action: 'play',
-                    sourceType: $('#sourceType').val(),
-                    sourcePath: $('#sourcePath').val(),
-                    sourceCode: editor.getValue()
-                },
-                timeout: 180*1000,
-                success: function(data) {
+        
+            var sourceType = $('#sourceType').val().trim();
+            var sourcePath = $('#sourcePath').val().trim();
+            var sourceCode = editor.getValue();
+            var correctOutput = $('#answer').val();
 
-                    if (data) {
-                        $('#program-output').text(data.result.data.dump);
+            if (sourceType=='SCHEME') {
+            
+                //先暫存程式碼再執行
+                fnSaveTemp({
+                    sourceType: sourceType,
+                    sourcePath: sourcePath,
+                    sourceCode: sourceCode
+                }, function() {
+                
+                    //使用 IFRAME 載入 Scheme Console
+                    var iframe = $('<iframe src="'+__ajax_biwascheme_url+'?_t='+new Date().getTime()+'" style="display:none"></iframe>');
+                    
+                    $('body').append(iframe);
+                    
+                    iframe.load(function() {
+                        var output = $(iframe).contents().find('#bs-console-plain').text();
 
-                        var ans = data.result.data.dump;
-                        var std = $('#answer').val();
+                        //bootbox.alert('<pre><code>'+output+'</code></pre>');
 
-                        var report = $('<div class="test-report" />');
-
-                        var lines = std.split("\n");
-                        var lines2 = ans.split("\n");
-                        var linec = 0;
-                        var linec2 = 0;
-                        for (i=0; i<lines.length; i++) {
-                            linec++;
-                            if (i < lines2.length) {
-                                if (rtrim(lines[i])==rtrim(lines2[i])) {
-                                    linec2++;
-                                    report.append('<pre class="test-ok"><i class="icon icon-ok"></i> '+lines[i]+'</pre>');
-                                }
-                                else {
-                                    report.append('<pre class="test-error"><i class="icon icon-remove"></i> '+lines2[i]+'</pre>');
-                                    report.append('<pre class="test-hint"><i class="icon icon-ok"></i> '+lines[i]+'</pre>');
-                                }
-                            }
-                        }
-
-                        var passed = (linec == linec2);
-
-                        report.append('<h4>測試結果</h4>');
-
-                        if (passed) {
-                            report.append('<font color="green"><i class="icon icon-ok"></i> 通過測試，請繼續做下一個題目</font>');
-                        }
-                        else {
-                            report.append('<font color="red"><i class="icon icon-error"></i> 無法通過測試，請修正程式碼再重新執行一次</font>');
-                        }
-
-                        //report.append('<pre>'+ans+'</pre>');
-                        //report.append('<h4>標準執行結果</h4>');
-                        //report.append('<pre>'+std+'</pre>');
-
-                        fnShowResult(report);
+                        var passed = fnDiffAndReport(output, correctOutput);
 
                         fnSaveRecord({
                             passed: passed,
-                            answer: ans,
-                            sourceCode: editor.getValue()
+                            answer: output,
+                            sourceCode: sourceCode
                         });
-                    }
-                },
-                error: function(data) {
-                    fnSaveRecord({
-                        passed: false,
-                        sourceCode: editor.getValue()
-                    });
-                    fnShowResult('<font color="red">錯誤！請先啟動客戶端工具。</font>');
-                } 
-            });
+                    }); 
+                });
+            }
+            else {
+                $.ajax({
+                    type: 'post',
+                    url: 'http://localhost:'+__ajax_client_port+'/',
+                    data: {
+                        action: 'play',
+                        sourceType: sourceType,
+                        sourcePath: sourcePath,
+                        sourceCode: sourceCode
+                    },
+                    timeout: 180*1000,
+                    success: function(data) {
+
+                        if (data) {
+                            $('#program-output').text(data.result.data.dump);
+
+                            var output = data.result.data.dump;
+
+                            var passed = fnDiffAndReport(output, correctOutput);
+
+                            fnSaveRecord({
+                                passed: passed,
+                                answer: output,
+                                sourceCode: sourceCode
+                            });
+                        }
+                    },
+                    error: function(data) {
+                        fnSaveRecord({
+                            passed: false,
+                            sourceCode: sourceCode
+                        });
+                        fnShowResult('<font color="red">錯誤！請先啟動客戶端工具。</font>');
+                    } 
+                });
+            }
+            
             return false;
         });
 
@@ -147,32 +218,63 @@
         //執行測試（教材編輯模式）
         $('#cmdDump').click(function() {
         
-            if ($('#sourcePath').val().trim()=='') {
+            var sourceType = $('#sourceType').val().trim();
+            var sourcePath = $('#sourcePath').val().trim();
+            var sourceCode = editor.getValue();
+            
+            if (sourcePath=='') {
                 bootbox.alert('請設定「程式碼路徑」欄位');
                 return false;
             }
             
-            $.ajax({
-                type: 'post',
-                url: 'http://localhost:'+__ajax_client_port+'/',
-                data: {
-                    action: 'play',
-                    sourceType: $('#sourceType').val(),
-                    sourcePath: $('#sourcePath').val(),
-                    sourceCode: editor.getValue()
-                },
-                timeout: 180*1000,
-                success: function(data) {
-                    //alert("程式執行完畢");
+            if (sourceType=='SCHEME') {
+                //alert(sourceCode);
+                //window.open('/content/biwascheme','biwascheme','width=640,height=480,location=no,menubar=no,resizable=no,scrollbars=no,titlebar=no,toolbar=no,status=no,top=0,left=0');
+                
+                //先暫存程式碼再執行
+                fnSaveTemp({
+                    sourceType: sourceType,
+                    sourcePath: sourcePath,
+                    sourceCode: sourceCode
+                }, function() {
+                
+                    //使用 IFRAME 載入 Scheme Console
+                    var iframe = $('<iframe src="'+__ajax_biwascheme_url+'?_t='+new Date().getTime()+'" style="display:none"></iframe>');
+                    
+                    $('body').append(iframe);
+                    
+                    iframe.load(function() {
+                        var output = $(iframe).contents().find('#bs-console-plain').text();
 
-                    if (data) {
-                        editors['answer'].setValue(data.result.data.dump);
+                        bootbox.alert('<pre><code>'+output+'</code></pre>');
+                        
+                        editors['answer'].setValue(output.trim());
+                    }); 
+                });
+            }
+            else {
+                $.ajax({
+                    type: 'post',
+                    url: 'http://localhost:'+__ajax_client_port+'/',
+                    data: {
+                        action: 'play',
+                        sourceType: sourceType,
+                        sourcePath: sourcePath,
+                        sourceCode: sourceCode
+                    },
+                    timeout: 180*1000,
+                    success: function(data) {
+                        //alert("程式執行完畢");
+
+                        if (data) {
+                            editors['answer'].setValue(data.result.data.dump);
+                        }
+                    },
+                    error: function(data) {
+                        bootbox.alert("錯誤！請先啟動客戶端工具。");
                     }
-                },
-                error: function(data) {
-                    bootbox.alert("錯誤！請先啟動客戶端工具。");
-                }
-            });
+                });
+            }
             return false;
         });
     }
