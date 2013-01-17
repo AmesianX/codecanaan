@@ -188,3 +188,7 @@ aws {
     bucketName="-bucketName-"
 }
 
+google {
+    adsense.adClient = 'ca-pub-0839975967683137'
+}
+

@@ -28,7 +28,10 @@
 <link rel="stylesheet" id="transition-theme-link" href="${resource(dir: 'deckjs', file: 'customize.css')}">
 
 <script src="${resource(dir: 'deckjs', file: 'modernizr.custom.js')}"></script>
+
 <g:justfont force="true" />
+<google:analytics />
+
 </head>
 
 <body class="deck-container">

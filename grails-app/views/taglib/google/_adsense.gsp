@@ -1,9 +1,7 @@
 <script type="text/javascript"><!--
-google_ad_client = "ca-pub-0839975967683137";
-/* CodeCanaan 首頁 */
-google_ad_slot = "3171136828";
-google_ad_width = 250;
-google_ad_height = 250;
+google_ad_client = "${adClient}";
+google_ad_width = ${width};
+google_ad_height = ${height};
 //-->
 </script>
 <script type="text/javascript"

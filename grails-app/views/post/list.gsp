@@ -49,7 +49,7 @@
                     <tr>
                         <td>${i+1}</td>
                         <td><g:link controller="post" action="show" params="[name: post?.name]">${post.title}</g:link></td>
-                        <td><g:formatDate format="yyyy-MM-dd" date="${post.lastUpdated}" /></td>
+                        <td><g:formatDate date="${post.lastUpdated}" type="date" style="SHOROT" /></td>
                         <td><span class="muted">${post.hits}</span></td>
                     </tr>
                 </g:each>

@@ -11,7 +11,7 @@
 <r:require modules="common, jquery-ui, bootswatch, bootstrap-ext, font-awesome, pagedown, webfont, compass, codemirror, highlightjs"/>
 <g:layoutHead/>
 <r:layoutResources />
-<g:analytics />
+<google:analytics />
 </head>
 <body>
 <div class="container" role="main">

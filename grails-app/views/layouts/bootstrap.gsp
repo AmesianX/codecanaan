@@ -18,7 +18,7 @@
 <g:layoutHead/>
 <r:layoutResources />
 <g:justfont />
-<g:analytics />
+<google:analytics />
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
 <facebookAuth:init/>

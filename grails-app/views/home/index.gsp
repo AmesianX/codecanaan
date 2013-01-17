@@ -13,25 +13,25 @@
             <div id="da-slider" class="da-slider justfont">
                 <div class="da-slide">
                     <h2>動手，學會寫程式</h2>
-                    <p>只有讓學習者自己動手練習撰寫程式，才能獲得最好的學習效果。「壹學院」提供的豐富學習教材，提供比一般書籍題庫更大量的實作練習。</p>
+                    <p class="justfont-force">只有讓學習者自己動手練習撰寫程式，才能獲得最好的學習效果。「壹學院」提供的豐富學習教材，提供比一般書籍題庫更大量的實作練習。</p>
                     <!--<a href="#" class="da-link">連結</a>-->
                     <div class="da-img"><img src="http://lyhcode.com/assets/themes/gravis/img/parallax-slider/imac.png" alt="image01" /></div>
                 </div>
                 <div class="da-slide">
                     <h2>閱讀，享受高品質</h2>
-                    <p>「壹學院」比傳統 e-Learning 平台更重視教材閱讀品質，採用更完美的「信黑體」專業級中文網頁字型，並支援高解析度的平板閱讀器，提供媲美印刷等級的無障礙舒適閱讀。</p>
+                    <p class="justfont-force">「壹學院」比傳統 e-Learning 平台更重視教材閱讀品質，採用更完美的「信黑體」專業級中文網頁字型，並支援高解析度的平板閱讀器，提供媲美印刷等級的無障礙舒適閱讀。</p>
                     <!--<a href="#" class="da-link">Read more</a>-->
                     <div class="da-img"><img src="http://lyhcode.com/assets/themes/gravis/img/parallax-slider/ipad-mini.png" alt="image02" /></div>
                 </div>
                 <div class="da-slide">
                     <h2>數千位學習者見證</h2>
-                    <p>在過去幾年之中，我們開發的程式設計教學軟體，已經培訓過數千位學員，高達百分之九十五的學習者，肯定自己得到更好的學習效果。</p>
+                    <p class="justfont-force">在過去幾年之中，我們開發的程式設計教學軟體，已經培訓過數千位學員，高達百分之九十五的學習者，肯定自己得到更好的學習效果。</p>
                     <!--<a href="#" class="da-link">Read more</a>-->
                     <div class="da-img" style="margin-left: -150px"><img src="http://lyhcode.com/assets/themes/gravis/img/parallax-slider/mapa.png" alt="image03" /></div>
                 </div>
                 <div class="da-slide">
                     <h2>專業，熱誠，服務</h2>
-                    <p>透過成功的產學合作基礎，來自業界資深開發經驗的工程師，與教學資歷豐富的認證講師協同合作，聯手打造最值得您信賴的專業教學平台。</p>
+                    <p class="justfont-force">透過成功的產學合作基礎，來自業界資深開發經驗的工程師，與教學資歷豐富的認證講師協同合作，聯手打造最值得您信賴的專業教學平台。</p>
                     <!--<a href="#" class="da-link">Read more</a>-->
                     <div class="da-img" style="margin-left: -100px"><img src="http://lyhcode.com/assets/themes/gravis/img/parallax-slider/html5.png" alt="image04" /></div>
                 </div>
@@ -61,7 +61,7 @@
                                 <li class="${i==0?'first':'show-lines'}">
                                     <g:link controller="post" action="show" params="[name: post.name]">${post.title}</g:link>
                                     <div class="pull-right"><small style="font-family:Georgia"><em>${post.hits}</em></small>
-                                    <small class="muted"><g:formatDate date="${post.dateCreated}" type="date" /></small></div>
+                                    <small class="muted"><g:formatDate date="${post.dateCreated}" type="date" style="SHORT" /></small></div>
                                 </li>
                             </g:each>
                         </ul>
@@ -79,7 +79,7 @@
         <div class="span4">
 
             <div class="margin-below">
-                <g:render template="/adsense/ad250x250" />
+                <google:adsense width="250" height="250" />
             </div>
 
             <div class="margin-below">
