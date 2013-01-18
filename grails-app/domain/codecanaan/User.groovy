@@ -63,7 +63,7 @@ class User {
     /**
      * 是否通過所有「開始使用」的步驟
      */
-    boolean works
+    boolean works = false
     
     /**
      * 經驗值；
@@ -86,6 +86,7 @@ class User {
 	static constraints = {
 		fullName nullable: true, size: 2..25
 		email nullable: true, email: true
+		description nullable: true, empty: true
 		username blank: false, unique: true
 		password blank: false
 		clientPort range: 1000..65535
