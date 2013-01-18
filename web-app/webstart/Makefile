@@ -19,8 +19,12 @@ clean:
 	rm -rf .gradle
 
 zip:
-	mkdir -p toolkits/windows/java
+	mkdir -p toolkits
 	for i in windows linux mac; do for j in java c cpp; do mkdir -p toolkits/$$i/$$j; done; done
 	for i in windows linux mac; do for j in java c cpp; do cp toolkits-src/$$i/$$j/build.* toolkits/$$i/$$j; done; done
+	cp toolkits-src/*.exe toolkits
+	cp toolkits-src/*.scpt toolkits
+	cp toolkits-src/*.png toolkits
 	rm -f toolkits.zip
 	cd toolkits && zip -r9 ../toolkits.zip *
+	rm -rf toolkits
