@@ -6,7 +6,8 @@ class SystemConfig {
     String value
 
     static mapping = {
-        id name: 'key', column: 'key_name',  generator: 'assigned'
+        id name: 'key', generator: 'assigned'
+		key column: 'key_name'
     }
 
     static constraints = {
