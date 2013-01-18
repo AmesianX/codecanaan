@@ -53,6 +53,8 @@ body {
 
 @include font-face("Allura", font-files("../../font/Allura-Regular-webfont.woff", "../../font/Allura-Regular-webfont.eot", "../../font/Allura-Regular-webfont.ttf", "../../font/Allura-Regular-webfont.svg"));
 
+@include font-face("Droid Sans Mono", font-files("../../font/DroidSansMono-webfont.woff", "../../font/DroidSansMono-webfont.eot", "../../font/DroidSansMono-webfont.ttf", "../../font/DroidSansMono-webfont.svg"));
+
 .logo-font {
 	font-family: Allura, sans-serif;
 	cursor: pointer;
