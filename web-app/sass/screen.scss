@@ -51,6 +51,8 @@ body {
 
 /*--------------------- Fonts ---------------------------*/
 
+@include font-face("Allura", font-files("../../font/Allura-Regular-webfont.woff", "../../font/Allura-Regular-webfont.eot", "../../font/Allura-Regular-webfont.ttf", "../../font/Allura-Regular-webfont.svg"));
+
 .logo-font {
 	font-family: Allura, sans-serif;
 	cursor: pointer;
@@ -67,6 +69,12 @@ body {
 }
 
 /*------------------- Theming ---------------------------*/
+
+a.brand {
+    display: inline-block;
+    text-align: center;
+    width: 120px;
+}
 
 .icon-green {
     color: #57ad56;    
@@ -171,6 +179,7 @@ ul.links {
             color: #2a3a5c;
         }
         li.active {
+            font-size: 14pt;
             color: #b10e0e;
             //font-weight: bold;
         }

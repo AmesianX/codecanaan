@@ -1,5 +1,5 @@
 WebFontConfig = {
-  google: { families: [ 'Droid+Sans+Mono::latin', 'Mr+Dafoe::latin', 'Allura::latin' ] }
+  google: { families: [ 'Droid+Sans+Mono::latin', 'Mr+Dafoe::latin' ] }
 };
 (function() {
   var wf = document.createElement('script');

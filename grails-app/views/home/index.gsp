@@ -111,7 +111,7 @@
             </ul>
             
             <div class="controls">
-                <g:link controller="course" action="show" id="9" class="btn btn-large btn-primary">我想瞭解更多</g:link>
+                <g:link controller="course" action="show" id="9" class="btn btn-large btn-primary">開始使用 »</g:link>
                 
                 <p class="rights">即使起開放免費申請，會員登入後即可獲得免費致贈的線上課程</p>
             </div>

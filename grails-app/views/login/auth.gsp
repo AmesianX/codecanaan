@@ -9,7 +9,7 @@
     <div class="span12 progress-tracker">
         <div class="padding-around">
             <div>
-                <p style="text-align:center"><i class="icon  icon-thumbs-up icon-blue"></i> 只要四個步驟就能獲得完整的學習功能</p>
+                <p style="text-align:center"><i class="icon  icon-thumbs-up icon-blue"></i> 完成四個步驟就能獲得完整的學習功能</p>
             </div>
             <div class="progress progress-striped">
                 <div class="bar" style="width: 25%;"></div>
@@ -18,7 +18,7 @@
                 <li class="step1 active">會員登入 »</li>
                 <li class="step2">安裝 Java 軟體 »</li>
                 <li class="step3">啟動客戶端工具 »</li>
-                <li class="step4">完成</li>
+                <li class="step4">取得免費課程 »</li>
             </ul>
         </div>
     </div>
