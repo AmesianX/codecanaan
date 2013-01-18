@@ -24,7 +24,7 @@
                 <g:img dir="images" file="cloud_computing.png" style="padding:10px" />
 
                 <!--WebStart啟動按鈕-->
-                <g:link controller="home" action="webstart" class="btn btn-primary">
+                <g:link controller="webstart" action="launcher" class="btn btn-primary">
                     <i class="icon icon-download-alt"></i>
                     啟動客戶端工具
                 </g:link>

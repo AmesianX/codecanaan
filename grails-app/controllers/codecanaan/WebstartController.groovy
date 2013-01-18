@@ -8,6 +8,10 @@ class WebstartController {
     
     def grailsApplication
     
+    def grailsLinkGenerator
+    
+    def springSecurityService
+    
     def index() { }
     
     def script() {
@@ -29,5 +33,26 @@ class WebstartController {
            contentType: 'text/plain',
            encoding: 'UTF-8'
        )
+    }
+
+    /**
+     * Java Web Start ;-)
+     */
+    def launcher() {
+        def user = springSecurityService.currentUser
+        
+        //response.contentType = 'text/xml'
+        //response.contentType = 'application/x-java-jnlp-file'
+        response.addHeader('Content-disposition', 'inline; filename=webstart.jnlp')
+        
+        render(
+            //contentType: 'text/xml',
+            contentType: 'application/x-java-jnlp-file',
+            template: "webstart",
+            model: [
+                baseURL: grailsLinkGenerator.serverBaseURL,
+                clientPort: user?.clientPort?user?.clientPort:1337
+            ]
+        )
     }
 }

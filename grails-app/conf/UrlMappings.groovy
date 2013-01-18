@@ -55,8 +55,8 @@ class UrlMappings {
 		}
 
 		"/webstart.jnlp" {
-			controller = "home"
-			action = "webstart"
+			controller = "webstart"
+			action = "launcher"
 			constraints {
 			}
 		}
