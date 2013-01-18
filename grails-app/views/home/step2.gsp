@@ -9,14 +9,13 @@
 <!--Progress Tracker-->
 <g:render template="progress" model="[step: 2]" />
 
-<div class="row-fluid">
-    <div class="span12 clearlook-wrapper justfont">
+<div class="row-fluid clearlook-wrapper justfont">
+    <div class="span12">
 
-        <p style="text-align:center">您的帳號已經通過驗證。接下來，請為您的電腦安裝 Java 軟體！</p>        
+        <p class="textalign-center">您的帳號已經通過驗證。接下來，請為您的電腦安裝 Java 軟體！</p>        
         <hr/>
 
-        <div class="padding-around">
-            
+        <div class="padding-around margin-around">
             
             <h3>自動偵測 Java 版本</h3>
             
@@ -29,16 +28,14 @@
             
             <p class="muted"><small>以上自動偵測結果僅供參考，若您確定電腦已經安裝 Java，<br/>請直接忽略「無法偵測」的訊息，並繼續下一個步驟。</small></p>
             
-            <div style="text-align:center">
-                <p class="larger-font">已偵測到 Java 軟體，您可以繼續下一個步驟！</p>
-                <g:link action="step3" class="btn btn-large btn-primary">繼續下一個步驟 »</g:link>
+            <div class="visible-if-java-installed hide">
+                <p class="textalign-center larger-font"><i class="icon icon-ok icon-2x icon-green"></i> 已偵測到 Java 軟體，您可以繼續下一個步驟！</p>
             </div>
             
         </div>
             
-        <hr/>
-            
-        <div class="padding-around">
+        
+        <div class="padding-around margin-around hidden-if-java-installed">
 
             <h3>立即安裝最新版 Java 軟體</h3>
             
@@ -58,16 +55,32 @@
             
             <p><a href="http://www.java.com/zh_TW/download/manual.jsp?locale=zh_TW" target="_blank">下載適合用於所有作業系統的 Java</a></p>
             
+            <p><strong>下載後如何安裝？</strong></p>
+            
+            <div class="java-install-details">
+                
+                <p>執行下載的「.exe」安裝程式，等待歡迎畫面出現。</p>
+                
+                <p><g:img dir="images/help" file="java-install-xp-1.png" style="display:none" /></p>
+                
+                <p>等待下載安裝 Java 所需的檔案，如果您的網路速度太慢或不穩，可能需要等待比較長的時間。</p>
+                
+                <p><g:img dir="images/help" file="java-install-xp-2.png" style="display:none" /></p>
+                
+                <p>看到「您已經成功安裝 Java」代表安裝過程順利；如果發生錯誤，請重新再執行一次安裝程式，或重新開機後再試一次。</p>
+                
+                <p><g:img dir="images/help" file="java-install-xp-3.png" style="display:none" /></p>
+                
+            </div>
+
+            <button class="show-details btn">顯示每個步驟的畫面</button>
+            
         </div>
             
         <hr/>
             
         <div class="padding-around">
-            
-            <h3>安裝成功？</h3>
-            
-            <p>如果您已經依照步驟順利安裝完成 Java 軟體，或您的電腦已經內建 Java 軟體，<br/>請點選「繼續下一個步驟」。</p>
-            
+                        
             <div style="text-align:center">
                 <g:link action="step3" class="btn btn-large btn-primary">繼續下一個步驟 »</g:link>
             </div>
@@ -78,8 +91,20 @@
 <r:script>
 (function() {
 
+    $('button.show-details').toggle(function() {
+        $('div.java-install-details img').show();
+    }, function() {
+        $('div.java-install-details img').hide();
+    });
+
     var hasJava = deployJava.versionCheck('1.6+');
     var hasJavaWS = deployJava.isWebStartInstalled('1.6+');
+    
+    // IF Java IS INSTALLED
+    if (hasJava && hasJavaWS) {
+        $('.visible-if-java-installed').show();
+        $('.hidden-if-java-installed').hide();
+    }
 
     $('#jre-version').html(hasJava?'<font color="green"><i class="icon icon-ok"></i> 已安裝</a>':'<font color="orange">無法偵測</font>'+' <small>'+deployJava.getJREs()+'</small>');
     $('#jws-version').html(hasJavaWS?'<font color="green"><i class="icon icon-ok"></i> 已安裝</a>':'<font color="orange">無法偵測</font>');

@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<div class="row">
+<div class="row margin-below">
     <div class="span12 clearlook-wrapper">
         <!-- start: Slider -->
         <div class="slider-wrapper">
@@ -46,116 +46,111 @@
     </div>
 </div>
 
-<div class="row-fluid">
-    <div class="span12 clearlook-wrapper">
+<div class="row-fluid clearlook-wrapper margin-below">
+    <div class="span8 padding-around">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#announce-tab" data-toggle="tab" class="effect-text-shadow larger-font"><g:message code="postType.ANNOUNCE.label" /></a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="announce-tab">
+                <g:if test="${posts?.size()>0}">
+                    <ul class="links">
+                        <g:each in="${posts}" var="post" status="i">
+                            <li class="${i==0?'first':'show-lines'}">
+                                <g:link controller="post" action="show" params="[name: post.name]">${post.title}</g:link>
+                                <div class="pull-right"><small style="font-family:Georgia"><em>${post.hits}</em></small>
+                                <small class="muted"><g:formatDate date="${post.dateCreated}" type="date" style="SHORT" /></small></div>
+                            </li>
+                        </g:each>
+                    </ul>
+                    <div style="text-align:right">
+                        <g:link controller="post" action="list" class="btn"><g:message code="default.more.label" args="[message(code:'postType.ANNOUNCE.label')]" /></g:link>
+                    </div>
+                </g:if>
+                <g:else>
+                    <g:message code="default.empty.description" />
+                </g:else>
+            </div>
+        </div>
+    </div>
     
-        <div class="span8 padding-around">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#announce-tab" data-toggle="tab" class="effect-text-shadow larger-font"><g:message code="postType.ANNOUNCE.label" /></a></li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane active" id="announce-tab">
-                    <g:if test="${posts?.size()>0}">
-                        <ul class="links">
-                            <g:each in="${posts}" var="post" status="i">
-                                <li class="${i==0?'first':'show-lines'}">
-                                    <g:link controller="post" action="show" params="[name: post.name]">${post.title}</g:link>
-                                    <div class="pull-right"><small style="font-family:Georgia"><em>${post.hits}</em></small>
-                                    <small class="muted"><g:formatDate date="${post.dateCreated}" type="date" style="SHORT" /></small></div>
-                                </li>
-                            </g:each>
-                        </ul>
-                        <div style="text-align:right">
-                            <g:link controller="post" action="list" class="btn"><g:message code="default.more.label" args="[message(code:'postType.ANNOUNCE.label')]" /></g:link>
-                        </div>
-                    </g:if>
-                    <g:else>
-                        <g:message code="default.empty.description" />
-                    </g:else>
-                </div>
-            </div>
+    <div class="span4">
+
+        <div class="margin-below">
+            <google:adsense width="250" height="250" />
         </div>
-        
-        <div class="span4">
 
-            <div class="margin-below">
-                <google:adsense width="250" height="250" />
-            </div>
-
-            <div class="margin-below">
-                <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fcodecanaan&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=102994276528232" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
-            </div>
-            <div class="margin-below">
-                <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fgroovy.taiwan&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=102994276528232" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
-            </div>
-            <div class="margin-below">
-                <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fnodejs.tw&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=102994276528232" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
-            </div>
-
+        <div class="margin-below">
+            <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fcodecanaan&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=102994276528232" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
+        </div>
+        <div class="margin-below">
+            <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fgroovy.taiwan&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=102994276528232" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
+        </div>
+        <div class="margin-below">
+            <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fnodejs.tw&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=102994276528232" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
         </div>
 
     </div>
+
 </div>
 
-<div class="row-fluid">
-    <div class="span12 clearlook-wrapper">
-        <div class="span6 product-marketing">
-            <p class="slogan">專業程式語言認證教學平台，首創雲端教室讓您的學習如虎添翼</p>
-            <ul class="features icons">
-                <li><i class="icon-ok icon-2x icon-green"></i> 整合 Facebook 帳號登入</li>
-                <li><i class="icon-ok icon-2x icon-green"></i> 完美結合 TQC+ 軟體設計領域認證題庫與教材</li>
-                <li><i class="icon-ok icon-2x icon-green"></i> 大量強調手腦並用的程式碼實作練習題</li>
-                <li><i class="icon-ok icon-2x icon-green"></i> 雲端教室數位學習服務，教學零負擔</li>
+<div class="row-fluid clearlook-wrapper">
+    <div class="span6 product-marketing">
+        <p class="slogan">專業程式語言認證教學平台，首創雲端教室讓您的學習如虎添翼</p>
+        <ul class="features icons">
+            <li><i class="icon-ok icon-2x icon-green"></i> 整合 Facebook 帳號登入</li>
+            <li><i class="icon-ok icon-2x icon-green"></i> 完美結合 TQC+ 軟體設計領域認證題庫與教材</li>
+            <li><i class="icon-ok icon-2x icon-green"></i> 大量強調手腦並用的程式碼實作練習題</li>
+            <li><i class="icon-ok icon-2x icon-green"></i> 雲端教室數位學習服務，教學零負擔</li>
 
-                <li><i class="icon-ok icon-2x icon-green"></i> 創新的網頁式整合開發環境，支援自動化編譯與測試</li>
-            </ul>
+            <li><i class="icon-ok icon-2x icon-green"></i> 創新的網頁式整合開發環境，支援自動化編譯與測試</li>
+        </ul>
+        
+        <div class="controls">
+            <g:link controller="course" action="show" id="9" class="btn btn-large btn-primary">開始使用 »</g:link>
             
-            <div class="controls">
-                <g:link controller="course" action="show" id="9" class="btn btn-large btn-primary">開始使用 »</g:link>
-                
-                <p class="rights">即使起開放免費申請，會員登入後即可獲得免費致贈的線上課程</p>
-            </div>
+            <p class="rights">即使起開放免費申請，會員登入後即可獲得免費致贈的線上課程</p>
         </div>
-        
-        <div class="span6 product-preview">
+    </div>
+    
+    <div class="span6 product-preview">
 
-            <div id="preview-carousel" class="carousel slide">
-                <div class="carousel-inner">
-                    <div class="active item">
-                        <g:img dir="images" file="preview-1.png" />
-                        <div class="carousel-caption effect-round-corner">
-                            <p>教材數位化設計，使用瀏覽器上網即可閱讀！</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <g:img dir="images" file="preview-2.png" />
-                        <div class="carousel-caption effect-round-corner">
-                            <p>強大的網頁式整合開發環境（Web-base IDE）！</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <g:img dir="images" file="preview-3.png" />
-                        <div class="carousel-caption effect-round-corner">
-                            <p>整合自動化編譯、測試流程，資料上傳雲端保存！</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <g:img dir="images" file="preview-4.png" />
-                        <div class="carousel-caption effect-round-corner">
-                            <p>個人化進度管理，學習效果更加倍！</p>
-                        </div>
+        <div id="preview-carousel" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="active item">
+                    <g:img dir="images" file="preview-1.png" />
+                    <div class="carousel-caption effect-round-corner">
+                        <p>教材數位化設計，使用瀏覽器上網即可閱讀！</p>
                     </div>
                 </div>
-                <a class="carousel-control left" href="#preview-carousel" data-slide="prev">&lsaquo;</a>
-                <a class="carousel-control right" href="#preview-carousel" data-slide="next">&rsaquo;</a>
+                <div class="item">
+                    <g:img dir="images" file="preview-2.png" />
+                    <div class="carousel-caption effect-round-corner">
+                        <p>強大的網頁式整合開發環境（Web-base IDE）！</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <g:img dir="images" file="preview-3.png" />
+                    <div class="carousel-caption effect-round-corner">
+                        <p>整合自動化編譯、測試流程，資料上傳雲端保存！</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <g:img dir="images" file="preview-4.png" />
+                    <div class="carousel-caption effect-round-corner">
+                        <p>個人化進度管理，學習效果更加倍！</p>
+                    </div>
+                </div>
             </div>
-            <r:script>$('#preview-carousel').carousel();</r:script>
-
+            <a class="carousel-control left" href="#preview-carousel" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#preview-carousel" data-slide="next">&rsaquo;</a>
         </div>
+        <r:script>$('#preview-carousel').carousel();</r:script>
+
     </div>
 </div>
 
-<div style="text-align:center;padding:20px;margin:2em;">
+<div class="padding-around margin-around textalign-center">
     <r:img dir="images/logoset" file="logoset.png" />
 </div>
 

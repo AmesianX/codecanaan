@@ -52,7 +52,11 @@ class HomeController {
      */
     @Secured(['ROLE_USER'])
     def step3() {
-        []
+        def user = springSecurityService.currentUser
+        
+        [
+            clientPort: user?.clientPort?:1337
+        ]
     }
     
     /**
@@ -60,11 +64,69 @@ class HomeController {
      */
     @Secured(['ROLE_USER'])
     def step4() {
-        def courses = Course.list()
+        def courses = OpenCourse.list()*.course
     
         [courses: courses]
     }
     
+    /**
+     * 已經完成啟用流程
+     */
+    @Secured(['ROLE_USER'])
+    def works() {
+    
+        if (params.agree=='yes') {
+        
+            def user = springSecurityService.currentUser
+            
+            //設定是否接收訊息
+            user.enableNews = (params.enableNews=='true')
+            
+            //設定使用者狀態為已啟用
+            user.works = true
+            
+            //先儲存使用者資料
+            user.save(flush: true)
+            
+            //註冊已選的開放式課程
+            params.list('courses').each {
+                cid->
+                
+                def c = Course.get(cid)
+                def oc = OpenCourse.findByCourse(c)
+                
+                //先檢查課程是否真的是開放式課程
+                if (oc) {
+                    //設定為課程的註冊學生
+                    UserCourse.create(user, c, RegType.STUDENT)
+                }
+            }
+            
+            //給予學生身份 ROLE_STUDENT
+            def srole = Role.findByAuthority('ROLE_USER')
+            UserRole.create(user, srole)
+            
+            //註冊到系統使用手冊課程
+            def shc = Course.findByName('system-help')
+            if (shc) {
+                UserCourse.create(user, shc, RegType.STUDENT)
+            }
+            
+            if (shc) {
+                //直接進入系統使用手冊
+                redirect controller: 'course', action: 'show', id: shc.id
+            }
+            else {
+                //系統手冊不存在（錯誤？），回到我的課程
+                redirect controller: 'course', action: 'list'
+            }
+            
+            return
+        }
+        
+        redirect url: '/'
+    }
+
     /**
      * 客戶端工具
      */
@@ -72,7 +134,7 @@ class HomeController {
         def user = springSecurityService.currentUser
         
         [
-            clientPort: user?.clientPort?user.clientPort:1337
+            clientPort: user?.clientPort?:1337
         ]
     }
 }

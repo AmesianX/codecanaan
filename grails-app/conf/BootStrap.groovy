@@ -91,6 +91,18 @@ class BootStrap {
                     .addToContents(content2)
                     .save(failOnError: true, flush: true)
 
+                //建立使用手冊
+                def course0 = new Course(
+                    name: 'system-help',
+                    title: '教學系統使用手冊',
+                    description: '系統說明',
+                    creator: user1
+                ).save(failOnError: true, flush: true)
+                
+                //Admin擁有使用手冊
+                UserCourse.create(user1, course0, RegType.AUTHOR, true)
+
+                //建立測試課程
                 def course1 = new Course(
                     name: 'tqc-plus-java6',
                     title: 'TQC+ Java 物件導向程式語言',
@@ -101,6 +113,9 @@ class BootStrap {
                 course1
                     .addToLessons(lesson)
                     .save(failOnError: true, flush: true)
+                    
+                //將測試課程加入開放式課程清單
+                OpenCourse.openTheCourse(course1)
 
                 UserCourse.create(user1, course1, RegType.AUTHOR, true)
                 UserCourse.create(user2, course1, RegType.USER, true)
