@@ -9,7 +9,7 @@
     <div class="span12 progress-tracker">
         <div class="padding-around">
             <div>
-                <p class="larger-font" style="text-align:center"><i class="icon  icon-thumbs-up icon-2x icon-blue"></i> 只要四個步驟就能獲得完整的學習功能</p>
+                <p style="text-align:center"><i class="icon  icon-thumbs-up icon-blue"></i> 只要四個步驟就能獲得完整的學習功能</p>
             </div>
             <div class="progress progress-striped">
                 <div class="bar" style="width: 25%;"></div>
