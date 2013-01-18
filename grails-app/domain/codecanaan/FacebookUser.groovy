@@ -2,12 +2,25 @@ package codecanaan
 
 import codecanaan.User
 
+/**
+ * Facebook 帳號資料
+ */
 class FacebookUser {
 
+	/**
+	 * Facebook 帳號序號（ID）
+	 */
     long uid
+
+	/**
+	 * 存取 Facebook Graph API 的授權碼
+	 */
     String accessToken
     
-    //Date accessTokenExpires
+	/**
+	 * Access Token 有效期時間
+	 */
+    Date accessTokenExpires
 
     static belongsTo = [user: User]
 

@@ -19,6 +19,10 @@ Get onto the #codecanaan IRC channel on FreeNode chat server.
 
 http://jenkins.teamcollab.org/
 
+### 開發文件 ###
+
+JavaDoc API Document http://jenkins.teamcollab.org/job/codecanaan/javadoc/
+
 ### Q & A ###
 
 * facebook 登入出現:** 發生錯誤，請稍後再試。**
