@@ -60,7 +60,9 @@ class HomeController {
      */
     @Secured(['ROLE_USER'])
     def step4() {
-        []
+        def courses = Course.list()
+    
+        [courses: courses]
     }
     
     /**

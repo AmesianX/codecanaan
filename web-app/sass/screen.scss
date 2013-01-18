@@ -51,14 +51,15 @@ body {
 
 /*--------------------- Fonts ---------------------------*/
 
+//Allura for Logo
 @include font-face("Allura", font-files("../../font/Allura-Regular-webfont.woff", "../../font/Allura-Regular-webfont.eot", "../../font/Allura-Regular-webfont.ttf", "../../font/Allura-Regular-webfont.svg"));
 
+//Droid Sans Mono for Code Block
 @include font-face("Droid Sans Mono", font-files("../../font/DroidSansMono-webfont.woff", "../../font/DroidSansMono-webfont.eot", "../../font/DroidSansMono-webfont.ttf", "../../font/DroidSansMono-webfont.svg"));
 
 .logo-font {
 	font-family: Allura, sans-serif;
 	cursor: pointer;
-	//@include text-shadow(#999 1pt 1pt 2pt);
 }
 
 .code-font {
@@ -68,6 +69,47 @@ body {
 
 .larger-font {
     font-size: 16pt;
+}
+
+/*---------------------- Just Font -------------------------------------------*/
+
+.justfont {
+	text-rendering: optimizelegibility;
+	
+	h1, h2, h3, h4, h5, h6 {
+		font-weight: normal;
+	}
+	
+	h1, h2, h3, h4 {
+		//text-shadow: 0 0 1px transparent;
+		//text-shadow: 0 0 0 #f00, 0 0 1px transparent;
+	}
+	
+	p, li, blockquote {
+		font-size: 12pt;
+		line-height: 200%;
+		letter-spacing: 1px;
+	}
+	
+	pre, code, textarea {
+		font-size: 11pt;
+		line-height: 150%;
+		font-family: 'Droid Sans Mono', monospace;
+	}
+	
+	.larger-font {
+	    font-size: 16pt;
+	}
+}
+
+/* 投影用大字型 */
+.justfont.larger-font {
+	p, li {
+		font-size: 18pt;
+	}
+	pre, code {
+	    font-size: 16pt;
+	}
 }
 
 /*------------------- Theming ---------------------------*/
@@ -282,39 +324,6 @@ h1, h2, h3, h4 {
     z-index: 9999;
 }*/
 
-/*---------------------- Just Font -------------------------------------------*/
-
-.justfont {
-	text-rendering: optimizelegibility;
-	
-	h1, h2, h3, h4, h5, h6 {
-		font-weight: normal;
-	}
-	h1, h2, h3, h4 {
-		//text-shadow: 0 0 1px transparent;
-		//text-shadow: 0 0 0 #f00, 0 0 1px transparent;
-	}
-	p, li, blockquote {
-		font-size: 12pt;
-		line-height: 200%;
-		letter-spacing: 1px;
-	}
-	pre, code, textarea {
-		font-size: 11pt;
-		line-height: 150%;
-		font-family: 'Droid Sans Mono', monospace;
-	}
-}
-
-/* 投影用大字型 */
-.justfont.larger-font {
-	p, li {
-		font-size: 18pt;
-	}
-	pre, code {
-	    font-size: 16pt;
-	}
-}
 
 .widget {
 	padding: 5px;

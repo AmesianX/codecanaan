@@ -18,20 +18,47 @@
     
     <div class="span12">
 
-        <div class="span8 padding-leftside">
+        <div class="span9 padding-leftside">
         
-            <h3>服務條款</h3>
-            <g:render template="terms_zh_TW" />
+            <section>
+                <h3>服務條款</h3>
+                <g:render template="terms_zh_TW" />
+                            
+                <label>
+                    <g:checkBox name="agree" value="" checked="true" />
+                    我已經閱讀並同意遵守上述條款內容
+                </label>
+            </section>
             
-            <p>壹學院需要在您的電腦上執行「客戶端工具」程式，此程式用於幫助您建立整合開發環境（IDE），以支援程式碼的自動化編譯與測試。當您不需要使用「客戶端工具」時，可以隨時將它關閉。</p>
+            <section>            
+                <h3>會員獨享</h3>    
+
+                <p>壹學院不定期舉辦各類課程及活動，只提供給已註冊的會員朋友，如果您不想錯過這些訊息，請接收系統自動寄發的電子報。若您以後不願意繼續收到郵件，只要在個人設定區取消訂閱即可。</p>
+
+                <label>
+                    <g:checkBox name="enableNews" value="" checked="true" />
+                    我願意收到最新課程及活動訊息（電子報）
+                </label>                
+            </section>
             
-            <p><strong>防火牆設定</strong></p>
-            
-            <p><strong>安全設定</strong></p>
-            
+            <section>
+                <h3>免費課程</h3>
+                
+                <p>壹學院正在推行「開放式數位課程（Open CourseWare）」計畫，您可以依個人學習需求勾選需要的課程項目，我們將會為您保留這些課程的使用權利。</p>
+                
+                <g:each in="${courses}" var="course" status="i">
+                
+                    <label>
+                        <g:checkBox name="courses" value="${course.id}" checked="false" />
+                        ${course.title}
+                    </label>    
+                
+                </g:each>
+                
+            </section>
         </div>
         
-        <div class="span8 padding-rightside">
+        <div class="span3 padding-rightside">
             <!--付費課程廣告-->
         </div>
     
