@@ -12,18 +12,18 @@ var requestNativeFullScreen = function(element) {
 	if (!element) {
 		element = document.documentElement;
 	}
-    var isSupport = false;
+    var result = null;
     if (element.requestFullscreen) {
         element.requestFullscreen();
-        isSupport = true;
+        result = document.fullscreenElement;
     } else if (element.mozRequestFullScreen) {
         element.mozRequestFullScreen();
-        isSupport = true;
+        result = document.mozFullScreenElement;
     } else if (element.webkitRequestFullscreen) {
         element.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-        isSupport = true;
+        result = document.webkitFullscreenElement;
     }
-    return isSupport;
+    return result;
 };
 
 // Cancel FullScreen Mode
@@ -31,18 +31,18 @@ var cancelNativeFullScreen = function(element) {
 	if (!element) {
 		element = document.documentElement;
 	}
-    var isSupport = false;
+    var result = null;
     if (document.cancelFullScreen) {
+        result = document.fullscreenElement;
         document.cancelFullScreen();
-        isSupport = true;
     } else if (document.mozCancelFullScreen) {
+        result = document.mozFullScreenElement;
         document.mozCancelFullScreen();
-        isSupport = true;
     } else if (document.webkitCancelFullScreen) {
+        result = document.webkitFullscreenElement;
         document.webkitCancelFullScreen();
-        isSupport = true;
     }
-    return isSupport;
+    return result;
 };
 
 //CodeMirror Fullscreen
@@ -156,9 +156,12 @@ function winHeight() {
         var editor1 = new Markdown.Editor(converter1);
         editor1.run();
     }
-    
-    //Pretty Code with Highlight.js
-    hljs.initHighlightingOnLoad();
+  
+	// Hightlight.js only support MSIE 9+ and other modern browsers
+	if (!$.browser.msie || ($.browser.msie && $.browser.version.slice(0,1)>8)) {
+		//Pretty Code with Highlight.js
+	    hljs.initHighlightingOnLoad();
+	}
 
     //Affix Sidebar
     $('.bs-docs-sidenav').affix({

@@ -84,6 +84,8 @@ grails.project.dependency.resolution = {
 
         compile ":browser-detection:0.4.3"
 
+		runtime ":modernizr:2.6.2"
+
 		// Google Chart Plugin
 		// 移除原因：功能不完整且效果不佳
 		//compile ":google-chart:0.5.2"
