@@ -11,7 +11,6 @@
 <!--require and layout resources-->
 <r:require modules="jquery, webfont, highlightjs"/>
 <r:layoutResources />
-
 <!-- Core and extension CSS files -->
 <link rel="stylesheet" href="${resource(dir: 'deckjs/core', file: 'deck.core.css')}">
 <link rel="stylesheet" href="${resource(dir: 'deckjs/extensions/goto', file: 'deck.goto.css')}">
@@ -19,22 +18,16 @@
 <link rel="stylesheet" href="${resource(dir: 'deckjs/extensions/navigation', file: 'deck.navigation.css')}">
 <link rel="stylesheet" href="${resource(dir: 'deckjs/extensions/status', file: 'deck.status.css')}">
 <link rel="stylesheet" href="${resource(dir: 'deckjs/extensions/hash', file: 'deck.hash.css')}">
-
 <!-- Theme CSS files (menu swaps these out) -->
 <link rel="stylesheet" id="style-theme-link" href="${resource(dir: 'deckjs/themes/style', file: 'web-2.0.css')}">
 <link rel="stylesheet" id="transition-theme-link" href="${resource(dir: 'deckjs/themes/transition', file: 'horizontal-slide.css')}">
-
 <!-- Custom CSS just for this page -->
 <link rel="stylesheet" id="transition-theme-link" href="${resource(dir: 'deckjs', file: 'customize.css')}">
-
 <script src="${resource(dir: 'deckjs', file: 'modernizr.custom.js')}"></script>
-
 <g:justfont force="true" />
 <google:analytics />
-
 </head>
-
-<body class="deck-container">
+<body class="deck-container justfont">
 
 <!--<div class="theme-menu">
 	<h2>Themes</h2>	
@@ -95,13 +88,14 @@
 <script src="${resource(dir: 'deckjs/extensions/markdown', file: 'deck.markdown.js')}"></script>
 
 <!-- Initialize the deck. You can put this in an external file if desired. -->
-<script>
+<script javascript="text/javascript">
+$(function() {
 	//Pretty Code with Highlight.js
     hljs.initHighlightingOnLoad();
-	
-	$(function() {
-		$.deck('.slide');
-	});
+    
+	// Turn on slides
+	$.deck('.slide');
+});
 </script>
 </body>
 </html>

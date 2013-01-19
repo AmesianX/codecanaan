@@ -1,4 +1,9 @@
 <ul class="nav">
+    <li>
+        <a href="#" class="document-request-fullscreen">
+            <i class="icon icon-fullscreen"></i>
+        </a>
+    </li>
     <li class="${controllerName=='home'?'active':''}">
         <g:link controller="home">
             <i class="icon icon-home"></i>

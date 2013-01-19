@@ -37,10 +37,10 @@
     <g:if test="${content.type==codecanaan.ContentType.SLIDE}">
         <!--簡報-->
         <div class="page-header">
-            <g:link controller="content" action="deckjs" id="${content.id}" class="btn pull-right" target="_blank"><i class="icon icon-fullscreen"></i> Full Screen</g:link>
+            <g:link controller="content" action="deckjs" id="${content.id}" params="[fullscreen: true]" class="btn pull-right element-request-fullscreen" data-element="deckjs-iframe" target="_blank"><i class="icon icon-fullscreen"></i></g:link>
             <h1>${content.title} <small><g:message code="content.contentType.${content.type}" default="Content" /></small></h1>
         </div>
-        <iframe width="100%" height="400" src="${createLink(controller:'content', action:'deckjs', id:content.id)}" style="width:100%;height:480px;border:none"></iframe>
+        <iframe id="deckjs-iframe" width="100%" height="400" src="${createLink(controller:'content', action:'deckjs', id:content.id)}" style="width:100%;height:480px;border:none"></iframe>
     </g:if>
     <g:else>
         <div class="page-header">

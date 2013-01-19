@@ -6,6 +6,45 @@ var rtrim = function(stringToTrim) {return stringToTrim.replace(/\s+$/,"");};
 //CodeMirror editors
 var editors = {};
 
+
+// Request FullScreen Mode
+var requestNativeFullScreen = function(element) {
+	if (!element) {
+		element = document.documentElement;
+	}
+    var isSupport = false;
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+        isSupport = true;
+    } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+        isSupport = true;
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+        isSupport = true;
+    }
+    return isSupport;
+};
+
+// Cancel FullScreen Mode
+var cancelNativeFullScreen = function(element) {
+	if (!element) {
+		element = document.documentElement;
+	}
+    var isSupport = false;
+    if (document.cancelFullScreen) {
+        document.cancelFullScreen();
+        isSupport = true;
+    } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+        isSupport = true;
+    } else if (document.webkitCancelFullScreen) {
+        document.webkitCancelFullScreen();
+        isSupport = true;
+    }
+    return isSupport;
+};
+
 //CodeMirror Fullscreen
 function setFullScreen(cm, full) {
     var wrap = cm.getWrapperElement();
@@ -32,7 +71,67 @@ function winHeight() {
 (function () {
     var $window = $(window);
     
+    var __codecanaan_fullscreen = null;
     
+    //實作全螢幕機制
+    var isDocumentFullScreen = function() {
+        if ( document.fullscreenElement ||    // alternative standard method
+             document.mozFullScreenElement ||
+             document.webkitFullscreenElement ||
+             __codecanaan_fullscreen) {  // current working methods
+             return true;
+         }
+         return false;
+    }
+
+    if (!window.opener) {
+        $('.document-request-fullscreen').click(function() {
+        
+            if (!isDocumentFullScreen()) {
+                if (requestNativeFullScreen) {
+                    if (!requestNativeFullScreen()) {
+                        //open window
+                        if ($(this).is('a')) {
+                            __codecanaan_fullscreen = window.open($(this).attr('href'),'__codecanaan_fullscreen','fullscreen=yes,top=0,left=0,width='+screen.width+',height='+screen.height+',location=no,menubar=no,resizable=no,scrollbars=no,titlebar=no,toolbar=no,status=no',false);
+                            __codecanaan_fullscreen.moveTo(0, 0);
+                            __codecanaan_fullscreen.focus();
+                        }
+
+                    }
+                }
+            
+            }
+            else {
+                if (cancelNativeFullScreen) {
+                    if (!cancelNativeFullScreen()) {
+                        if (__codecanaan_fullscreen) {
+                            __codecanaan_fullscreen.close();
+                            __codecanaan_fullscreen = null;
+                        }
+                    }
+                }
+            }
+        });
+    }
+    else {
+        $('.document-request-fullscreen').click(function() {
+            window.opener.$('.document-request-fullscreen').trigger('click');
+        });
+    }
+
+	//部份內容全螢幕
+	$('.element-request-fullscreen').click(function() {
+		if (requestNativeFullScreen) {
+			var elementId = $(this).data('element');
+			var element = document.getElementById(elementId);
+			if (element) {
+				if (requestNativeFullScreen(element)) {
+					return false;
+				}
+			}
+		}
+	});
+
     // Enable loadmask
     $('.auto-loadmask').click(function() {
         $('body').append('<div class="modal-backdrop"></div>');
