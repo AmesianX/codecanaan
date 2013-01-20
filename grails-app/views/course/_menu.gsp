@@ -1,3 +1,10 @@
+<button id="close-menu-button" type="button" class="close">×</button>
+<r:script>
+$('#close-menu-button').click(function() {
+    $('#menu-container').remove();
+    $('#content-container').removeClass('span9 padding-rightside').addClass('span12 padding-around');
+});
+</r:script>
 <ul class="nav nav-pills nav-stacked" style="font-size:10pt">
     <li class="disabled"><a href="#">${course?.title}</a></li>
     <li class="${!lesson?'active':''}">

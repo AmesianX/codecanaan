@@ -22,7 +22,7 @@
         </div>
         <div class="row-fluid justfont">
 
-            <div class="span9 padding-leftside">
+            <div class="span8 padding-leftside">
             
                 <section>
                     <h3>服務條款</h3>
@@ -45,6 +45,10 @@
                     </label>                
                 </section>
                 
+            </div>
+            
+            <div class="span4 padding-rightside">
+
                 <section>
                     <h3>免費課程</h3>
                     
@@ -60,9 +64,7 @@
                     </g:each>
                     
                 </section>
-            </div>
-            
-            <div class="span3 padding-rightside">
+                
                 <!--付費課程廣告-->
             </div>
         

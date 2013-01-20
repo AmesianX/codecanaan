@@ -163,39 +163,24 @@
             <g:set var="endIndex" value="${lastIndex}" />
         </g:if>
         
-        <!--上一頁-->
+        <!--上一題-->
         <g:if test="${content&&currentIndex>firstIndex}">
-            <li><g:link action="show" id="${lesson.contents[currentIndex-1]?.id}">«</g:link></li>
+            <li><g:link action="show" id="${lesson.contents[currentIndex-1]?.id}">« 上一題</g:link></li>
         </g:if>
         <g:else>
-            <li class="disabled"><span>«</span></li>
+            <li class="disabled"><span>« 上一題</span></li>
         </g:else>
-        <!--頁數-->
 
-        <g:set var="skip" value="${false}" />
-        
-        <g:each in="${lesson?.contents}" var="row" status="i">
-            <g:if test="${i>=beginIndex&&i<endIndex}">
-                <g:set var="skip" value="${false}" />
-                <li class="${row.id==content.id?'active':''}">
-                    <g:link action="show" id="${row.id}">${i+1}</g:link>
-                </li>
-            </g:if>
-            <g:elseif test="${!skip}">
-                <g:set var="skip" value="${true}" />
-                <li class="disabled">
-                    <a href="#">...</a>
-                </li>
-            </g:elseif>
-        </g:each>
-        <!--下一頁-->
+        <li class="active"><span>第 ${currentIndex + 1} 題 / 共 ${lastIndex + 1} 題</span></li>
+
+        <!--下一題-->
         <g:if test="${content&&currentIndex<lastIndex}">
             <li>
-                <g:link action="show" id="${lesson.contents[currentIndex+1]?.id}">»</g:link>
+                <g:link action="show" id="${lesson.contents[currentIndex+1]?.id}">下一題 »</g:link>
             </li>
         </g:if>
         <g:else>
-            <li class="disabled"><span>»</span></li>
+            <li class="disabled"><span>下一題 »</span></li>
         </g:else>
     </ul>
 </div>

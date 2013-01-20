@@ -38,7 +38,14 @@ class HomeController {
             courses: Course.list()
         ]
     }
-    
+ 
+    /**
+     * 「開始使用」步驟一、新會員註冊
+     */
+    def step1() {
+        []
+    }
+   
     /**
      * 「開始使用」步驟二、安裝 Java 軟體
      */

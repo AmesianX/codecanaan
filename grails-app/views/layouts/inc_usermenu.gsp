@@ -4,9 +4,8 @@
         <li>
             <g:link controller="login" action="auth">
                 <i class="icon icon-signin"></i>
-                <!--登入-->
-                <!--<g:message code="default.login.text" />-->
-                開始使用
+                <!--註冊或登入-->
+                <g:message code="default.login.or.signup.text" />
             </g:link>
         </li>
     </sec:ifNotLoggedIn>
