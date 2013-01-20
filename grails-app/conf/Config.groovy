@@ -90,13 +90,9 @@ environments {
     }
     production {
     
-        //CDN    
-        grails.resources.cdn.enabled = false
-        grails.resources.cdn.url = "http://static.codecanaan.com/static/"
-    
         grails.logging.jul.usebridge = false
-        // TODO: grails.serverURL = "http://www.changeme.com"
-        grails.serverURL = "http://codecanaan.com"
+        //grails.serverURL = "http://codecanaan.com"
+        grails.serverURL = "http://dev.codecanaan.com:8080"
     }
 }
 
