@@ -12,8 +12,8 @@
             <!--課程單元列表-->
             <g:render template="/course/menu" />
         </div>
-        <div id="content-container" class="span9 clearlook-wrapper">
-            <div class="padding-around justfont">
+        <div id="content-container" class="span9">
+            <div class="clearlook-wrapper padding-around justfont">
                 <g:if test="${authoring&&params.editor}">
                     <!--切換編輯介面-->
                     <g:render template="lesson_editor"/>

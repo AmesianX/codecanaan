@@ -14,7 +14,7 @@
             <g:render template="/course/menu" />
         </div>
         <div id="content-container" class="span9">
-            <div class="clearlook-wrapper padding-around">
+            <div class="clearlook-wrapper padding-around justfont">
                 <g:if test="${authoring&&params.editor}">
                     <!--切換編輯介面-->
                     <g:render template="content_editor"/>

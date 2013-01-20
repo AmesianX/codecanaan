@@ -95,8 +95,8 @@ environments {
     production {
     
         grails.logging.jul.usebridge = false
-        //grails.serverURL = "http://codecanaan.com"
-        grails.serverURL = "http://dev.codecanaan.com:8080"
+        grails.serverURL = "http://codecanaan.com"
+        //grails.serverURL = "http://dev.codecanaan.com:8080"
     }
 }
 
