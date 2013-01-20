@@ -45,12 +45,12 @@
 
 <!--主要內容-->
 <section>
+    
     <div class="page-header">
         <h1>${course.title}</h1>
     </div>
-    <div class="markdown-source">${course.description?.encodeAsHTML()}</div>
     
-    <hr />
+    <div class="markdown-source">${course.description?.encodeAsHTML()}</div>
     
     <h2>學習單元</h2>
     

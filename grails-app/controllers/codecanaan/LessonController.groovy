@@ -29,7 +29,8 @@ class LessonController {
             course: lesson.course,
             lesson: lesson,
             authoring: authoring,
-            stats: courseService.getLessonStats(lesson, user)
+            stats: courseService.getLessonStats(lesson, user),
+            records: courseService.getLessonRecords(lesson, user)
         ]
     }
 

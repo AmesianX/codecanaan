@@ -50,40 +50,32 @@
 <!--目錄-->
 <g:if test="${lesson.contents?.size() > 0}">
 
-    <section>
-        <h3>學習進度</h3>
-        <!--圖表-->
-        <g:render template="lesson_chart" />
-    </section>
+    <h2>學習進度</h2>
 
-    <section>
+    <!--統計圖表-->
+    <g:render template="lesson_chart" />
+
+    <h2>單元內容</h2>
     
-        <h3><g:message code="default.list.label" args="[message(code:'content.label')]" /></h3>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th width="30">#</th>
-                    <th width="40"><!--燈號--><g:message code="default.light.text" /></th>
-                    <th><!--標題--><g:message code="content.title.label" /></th>
-                    <th width="50"><!--瀏覽數--><g:message code="default.hits.text" /></th>
-                </tr>
-            </thead>
-            <tbody>
-                <g:each in="${lesson.contents}" var="row" status="i">
-                    <tr>
-                        <td>${i+1}</td>
-                        <td>
-                            <img src="${createLink(controller: 'content', action: 'light', id: row.id)}" alt="light" />
-                        </td>
-                        <td>
-                            <g:link controller="content" action="show" id="${row.id}">${row.title}</g:link>
-                        </td>
-                        <td>${row.hits}</td>
-                    </tr>
-                </g:each>
-            </tbody>
-        </table>
-    </div>
+    <ul class="icons">
+        <g:each in="${lesson.contents}" var="content" status="i">
+            <li>
+                <g:if test="${records[content]==null}">
+                    <i class="icon-check-empty"></i>
+                </g:if>
+                <g:elseif test="${records[content]?.passed}">
+                    <i class="icon-check"></i>
+                </g:elseif>
+                <g:else>
+                    <i class="icon-edit"></i>
+                </g:else>
+                <g:link controller="content" action="show" id="${content.id}">${content.title}</g:link>
+            </li>
+        </g:each>
+    </ul>
+
+    （狀態圖示：<i class="icon icon-check-empty"></i> 未作答、<i class="icon icon-edit"></i> 尚未完成、<i class="icon icon-check"></i> 已完成）
+
 </g:if>
 <g:else>
     <div class="alert alert-warning">

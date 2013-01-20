@@ -16,7 +16,6 @@
     
     //儲存記錄
     var fnSaveRecord = function(params, fncb) {
-        $('#ajaxmsg').html('<img src="'+__ajax_loader_image_src+'" alt="ajaxloader" />');
         $.ajax({
             type: 'post',
             url: __ajax_save_record_url,
@@ -25,7 +24,6 @@
                 if ($.isFunction(fncb)) {
                     fncb();
                 }
-                $('#ajaxmsg').html(data);
             }
         });
     };
@@ -191,11 +189,13 @@
         });
 
         $('#cmdSave').click(function() {
-            $('#cmdProgress').show();
+            $('.visible-while-save-progress').show();
+            $('.hidden-while-save-progress').hide();
             fnSaveRecord({
                 sourceCode: editor.getValue()
             }, function() {
-                $('#cmdProgress').hide();
+                $('.visible-while-save-progress').hide();
+                $('.hidden-while-save-progress').show();
             });
             return false;
         });

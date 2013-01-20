@@ -1,4 +1,4 @@
-<button id="close-menu-button" type="button" class="close">×</button>
+<button id="close-menu-button" type="button" class="close" title="不顯示選單">×</button>
 <r:script>
 $('#close-menu-button').click(function() {
     $('#menu-container').remove();

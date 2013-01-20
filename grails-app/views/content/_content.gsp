@@ -81,22 +81,30 @@
     <g:hiddenField name="answer" value="${content.answer}" />
 
     <g:if test="${content.type==codecanaan.ContentType.CODE}">
+
         <!--實作練習-->
-        <div class="navbar">
-            <div class="navbar-inner">
-                <ul class="nav">
-                    <li><a href="#" id="cmdPlay"><i class="icon icon-play"></i> 執行測試</a></li>
-                    <!--<li class="divider-vertical"></li>-->
-                    <li><a href="#" id="cmdSave"><i class="icon icon-hdd"></i> 儲存</a></li>
-                    <li><a href="#" id="cmdUndo"><i class="icon icon-undo"></i> 復原</a></li>
-                    <li><a href="#" id="cmdRedo"><i class="icon icon-repeat"></i> 取消復原</a></li>
-                    <li><a href="#" id="cmdReset"><i class="icon icon-magic"></i> 清除重做</a></li>
-                    <li id="cmdProgress" style="display:none"><a href="#"><g:img dir="images" file="ajax-loader-small.gif" /> 處理中...</span></a></li>
-                </ul>
+        <div class="btn-toolbar">
+            <div class="btn-group">
+                <a href="#" id="cmdPlay" class="btn"><i class="icon icon-play"></i> 執行測試</a>
+            </div>
+            <div class="btn-group">
+                <a href="#" id="cmdSave" class="btn">
+                    <span class="hide visible-while-save-progress"><i class="icon icon-spinner icon-spin"></i></span>
+                    <span class="hidden-while-save-progress"><i class="icon icon-save"></i></span>
+                    儲存
+                </a>
+                <a href="#" id="cmdUndo" class="btn"><i class="icon icon-undo"></i> 復原</a>
+                <a href="#" id="cmdRedo" class="btn"><i class="icon icon-repeat"></i> 取消復原</a>
+                <a href="#" id="cmdReset" class="btn"><i class="icon icon-magic"></i> 清除重做</a>
             </div>
         </div>
+
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab-editor" data-toggle="tab">編輯程式碼（${content.sourcePath}）</a></li>
+            <li class="active"><a href="#tab-editor" data-toggle="tab">
+                <span class="hide visible-while-save-progress"><i class="icon icon-spinner icon-spin"></i></span>
+                <span class="hidden-while-save-progress"><i class="icon icon-file"></i></span>
+                ${content.sourcePath}
+            </a></li>
             <li><a href="#tab-output" data-toggle="tab">執行結果</a></li>
             <li><a href="#tab-answer" data-toggle="tab">標準輸出</a></li>
             <g:if test="${authoring}">
@@ -127,9 +135,6 @@
             <button id="cmdSubmit" class="btn btn-primary">回答</button>
         </div>
     </g:elseif>
-
-    <!--伺服器回應訊息區-->
-    <div id="ajaxmsg"></div>
 
 </sec:ifLoggedIn>
 <sec:ifNotLoggedIn>

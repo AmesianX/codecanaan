@@ -45,4 +45,19 @@ class CourseService {
         
         return stats
     }
+
+    /**
+     * 取得單元下每題的練習記錄
+     */
+    def getLessonRecords(Lesson lesson, User user) {
+        def result = [:]
+
+        lesson.contents.each {
+            content->
+
+            result[content] = Record.findByContentAndUser(content, user)
+        }
+
+        return result
+    }
 }

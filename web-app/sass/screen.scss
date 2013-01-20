@@ -79,6 +79,22 @@ body {
     font-size: 16pt;
 }
 
+/*--------------------- Headings ---------------------------------------------*/
+
+h1, h2, h3, h4 {
+	@include text-shadow(0 0 1px transparent, #aaa 1pt 1pt 2pt);
+}
+
+h1 small, h2 small, h3 small, h4 small {
+	@include text-shadow(none);
+}
+
+.carousel {
+	h1, h2, h3, h4 {
+		@include text-shadow(none);
+	}
+}
+
 /*---------------------- Just Font -------------------------------------------*/
 
 .justfont {
@@ -89,8 +105,6 @@ body {
 	}
 	
 	h1, h2, h3, h4 {
-		//text-shadow: 0 0 1px transparent;
-		//text-shadow: 0 0 0 #f00, 0 0 1px transparent;
 	}
 	
 	p, li, blockquote {
@@ -284,18 +298,6 @@ iframe#attachment-frame {
 	}
 	.test-hint {
 		background-color: #77FF77;
-	}
-}
-
-/*--------------------- Headings ---------------------------------------------*/
-
-h1, h2, h3, h4 {
-	@include text-shadow(0 0 1px transparent, #aaa 1pt 1pt 2pt);
-}
-
-.carousel {
-	h1, h2, h3, h4 {
-		@include text-shadow(0 0 0 transparent);
 	}
 }
 
