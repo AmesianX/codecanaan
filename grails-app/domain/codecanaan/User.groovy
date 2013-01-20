@@ -64,6 +64,11 @@ class User {
      * 是否通過所有「開始使用」的步驟
      */
     boolean works = false
+
+    /**
+     * 是否接收電子郵件
+     */
+    boolean enableNews = true
     
     /**
      * 經驗值；

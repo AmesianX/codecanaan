@@ -28,8 +28,16 @@ body {
     padding: 20px;
 }
 
+.margin-around {
+    margin: 20px;
+}
+
+.textalign-center {
+    text-align: center;
+}
+
 .margin-below {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 .padding-leftside {
@@ -128,13 +136,20 @@ a.brand {
     color: #2d80b7;
 }
 
+.icon-red {
+	color: #ff0000;
+}
+
+.icon-yellow {
+	color: yellow;
+}
+
 .clearlook-wrapper {
     background-color: #fff;
     padding: 25px 0;
     @include border-radius(6px);
     border: 1px solid #dadada;
     @include single-box-shadow(rgba(0, 0, 0, 0.0745098), 0px, 1px, 2px, 0px);
-    margin-bottom: 36px;
 }
 
 ul.links {
@@ -389,7 +404,7 @@ h1, h2, h3, h4 {
 /* responsive object width */
 img, iframe, video, embed, object {
     max-width: 100% !important;
-	display: block;
+	display: inline-block;
 }
 
 

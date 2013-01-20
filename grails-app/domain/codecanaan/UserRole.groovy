@@ -28,8 +28,16 @@ class UserRole implements Serializable {
 			[userId: userId, roleId: roleId]
 	}
 
+    /**
+     * 建立使用者與角色群組關聯
+     *
+     * @param user 使用者
+     * @param role 角色
+     * @param flush 是否直接寫入資料庫
+     */
 	static UserRole create(User user, Role role, boolean flush = false) {
-		new UserRole(user: user, role: role).save(flush: flush, insert: true)
+	    def ur = UserRole.findOrCreateWhere(user: user, role: role)
+	    ur.save(flush: flush)
 	}
 
 	static boolean remove(User user, Role role, boolean flush = false) {

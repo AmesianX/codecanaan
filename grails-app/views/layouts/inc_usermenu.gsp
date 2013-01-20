@@ -2,7 +2,7 @@
     <sec:ifNotLoggedIn>
         <!--未登入-->
         <li>
-            <g:link controller="login">
+            <g:link controller="login" action="auth">
                 <i class="icon icon-signin"></i>
                 <!--登入-->
                 <!--<g:message code="default.login.text" />-->

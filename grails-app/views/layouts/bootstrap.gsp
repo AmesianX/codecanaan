@@ -14,7 +14,7 @@
 <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}" />
 <style type="text/css">body {padding-top: 60px;/*padding-bottom: 40px;*/} section {padding-top: 30px;}</style>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-<r:require modules="jquery, jquery-ui, jquery-plugins, common, bootswatch, bootstrap-ext, font-awesome, pagedown, webfont, compass, codemirror, highlightjs"/>
+<r:require modules="jquery, jquery-ui, jquery-plugins, modernizr, common, bootswatch, bootstrap-ext, font-awesome, pagedown, webfont, compass, codemirror, highlightjs"/>
 <g:layoutHead/>
 <r:layoutResources />
 <g:justfont />
@@ -61,6 +61,7 @@
 </div>
 
 <g:applyLayout name="inc_footer" />
+
 <g:javascript library="application"/>
 <r:layoutResources />
 </body>

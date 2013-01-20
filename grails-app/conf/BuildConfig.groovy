@@ -71,7 +71,7 @@ grails.project.dependency.resolution = {
         
         build ":svn:1.0.2"
         
-        compile ":spring-security-facebook:0.10.3rc"
+        compile ":spring-security-facebook:0.10.4"
         
         //build ":lesscss-resources:1.3.0.3"
 
@@ -83,6 +83,8 @@ grails.project.dependency.resolution = {
         compile ":cache-headers:1.1.5"
 
         compile ":browser-detection:0.4.3"
+
+		runtime ":modernizr:2.6.2"
 
 		// Google Chart Plugin
 		// 移除原因：功能不完整且效果不佳

@@ -11,7 +11,9 @@ import org.junit.*
 @TestFor(GoogleTagLib)
 class GoogleTagLibTests {
 
-    void testSomething() {
-        fail "Implement me"
+    void testAdsense() {
+		def result= applyTemplate("<google:adsense width=\"160\" height=\"160\" />")
+		assertNotNull result
     }
+
 }

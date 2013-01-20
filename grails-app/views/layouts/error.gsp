@@ -22,6 +22,8 @@
 <style type="text/css">
 body {padding-top:60px}
 section {padding-top:30px;}
+code.line { display:block; }
+h2 { font-size: 16pt; }
 .justfont h1, .justfont h2, .justfont h3 { font-weight: normal; }
 </style>
 <google:analytics />

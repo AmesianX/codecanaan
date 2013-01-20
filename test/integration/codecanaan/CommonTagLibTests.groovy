@@ -12,29 +12,10 @@ import org.junit.*
 
 class CommonTagLibTests extends GroovyPagesTestCase {
 
-    void testAnalyticsTag() {
-		assert applyTemplate('<g:analytics/>').contains("var _gaq = _gaq || [];")
-    }
 	
 	void testJustfontTag() {
-		
-		def attr=[
-			ct1:'.justfont pre',
-			ct2:".justfont p, .justfont li",
-			ct3:".justfont h2, .justfont h3, .justfont h4, .justfont h5, .justfont h6, .justfont h1 small",
-			ct4:".justfont h1",
-			ct5:".justfont blockquote"
-		]
-		
-		print attr.ct1
-		
-		def tagHtml='<g:justfont ct1="${ct1}" ct2="${ct2}" '+
-			' ct3="${ct3}" ct4="${ct4}" ct5="${ct5}" />'
-			
-		def result=applyTemplate(tagHtml,attr)
-		
-		
-		assert result.contains("{'ct1':'.justfont pre','ct2':{'0':'.justfont p','1':'.justfont li'}")
+		//因為容易發生 BUG，Justfont 已經停用參數化設計
+		assert applyTemplate('<g:justfont />').contains("justfont")
 
 	}
 }

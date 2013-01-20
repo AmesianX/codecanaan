@@ -8,25 +8,34 @@
 <!--Progress Tracker-->
 <g:render template="progress" model="[step: 3]" />
 
-<div class="row-fluid clearlook-wrapper justfont">
-
-    <p style="text-align:center">
-        已經接近完成！接下來，請立即執行「客戶端工具」程式。
-    </p>
+<div class="clearlook-wrapper">
+    <div class="row">
+        <div class="span12">
+            <p style="text-align:center">
+                已經接近完成！接下來，請立即執行「客戶端工具」程式。
+            </p>
+            <hr/>
+        </div>
+    </div>
     
-    <hr/>
-    
-    <div class="span12">
-
+    <div class="row-fluid justfont hidden-if-clienttools-started">
         <div class="span6 padding-leftside">
         
             <h3>立即啟動客戶端工具</h3>
             
             <p>壹學院需要在您的電腦上執行「客戶端工具」程式，此程式用於幫助您建立整合開發環境（IDE），以支援程式碼的自動化編譯與測試。當您不需要使用「客戶端工具」時，可以隨時將它關閉。</p>
             
-            <p><strong>防火牆設定</strong></p>
+            <p><strong>關於「安全警告」</strong></p>
             
-            <p><strong>安全設定</strong></p>
+            <p>客戶端工具需要您的允許，才能夠存取開發工具的編譯指令，因此請設定「我接受風險且欲執行此應用程式」，建議您也將「一律信任此發行者的內容」打勾，避免每次執行都出現警告。</p>
+            
+            <p><g:img dir="images/help" file="clienttools-ask.png" /></p>
+
+            <p><strong>關於「Windows 安全性警示」</strong></p>
+            
+            <p>看到這個訊息表示您已開啟「Windows 防火牆」設定，請選擇「解除封鎖」，因為客戶端工具需要連線到網際網路，才能為您下載教材所需的資料。</p>
+            
+            <p><g:img dir="images/help" file="firewall-ask-xp.png" /></p>
             
         </div>
         <div class="span6 padding-rightside">
@@ -48,18 +57,44 @@
             <p>瀏覽器出現「這種類型的檔案可能會損害您的電腦，您要保留 webstart.jnlp 這個檔案嗎？」請選擇「保留」。</p>
             
             <p>建議您設定「永遠開啟這類檔案」，以方便日後執行客戶端工具。</p>
+            
+            <p><strong>執行畫面</strong></p>
+            
+            <p>如果您看到「客戶端工具已執行」的訊息，就表示您的客戶端工具執行成功。</p>
+            
+            <p><g:img dir="images/help" file="clienttools-msg.png" /></p>
+            
+            <p><strong>如何關閉客戶端工具？</strong></p>
+            
+            <p>在系統常駐程式區（Windows 的右下方），找到客戶端工具的「<i class="icon icon-play"></i>」工具圖示，點擊滑鼠右鍵選擇「Exit」即可關閉客戶端工具。</p>
+            
+            <p><g:img dir="images/help" file="clienttools-tray.png" /></p>
+            
+            <p class="alert alert-info">每次</p>
         </div>
-    
     </div>
 
-    <hr style="clear:both" />
-    
-    <div style="text-align:center">
-        <g:link action="step4" class="btn btn-large btn-primary">繼續下一個步驟 »</g:link>
+    <div class="visible-if-clienttools-started hide">
+        
+        <!--<p class="textalign-center"><g:img dir="images/help" file="clienttools-msg.png" /></p>-->
+        
+        <p class="larger-font textalign-center margin-around padding-around"><i class="icon icon-ok icon-2x icon-green"></i> 客戶端工具已經啟動，您可以繼續下一個步驟！</p>
+        
+        <p class="textalign-center"><i class="icon icon-lightbulb"></i> 每次進行題庫練習前，請記得先啟動客戶端工具。</p>
+    </div>
+
+    <div class="row">
+        <div class="span12">
+            <hr style="clear:both" />
+            
+            <div style="text-align:center">
+                <g:link action="step4" class="btn btn-large btn-primary">繼續下一個步驟 »</g:link>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="padding-around justfont remove-if-success">
+<div class="padding-around justfont remove-if-success hidden-if-clienttools-started">
 
     <h3>如果無法順利以 Java Web Start 方式啟動？</h3>
     
@@ -82,6 +117,33 @@
     
     <p>執行方法：將下載的檔案解壓縮，再執行位於「bin」資料夾下的「ClientTool」程式。</p>
 </div>
+
+<r:script>
+(function() {
+
+    var pingClient = function() {
+        $.ajax({
+            type: 'post',
+            url: 'http://localhost:${clientPort}/',
+            data: {
+                action: 'versions'
+            },
+            timeout: 30*1000,
+            success: function(data) {
+                if (data && data.result && data.result.status=='success') {
+                    $('.hidden-if-clienttools-started').hide();
+                    $('.visible-if-clienttools-started').show();
+                }
+            },
+            error: function(data) {
+                setTimeout(pingClient, 5000);
+            }
+        });
+    };
+
+    pingClient();
+})();
+</r:script>
 
 </body>
 </html>

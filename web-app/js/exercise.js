@@ -65,7 +65,7 @@
     //比較兩個輸出並傳回比較結果
     var fnDiffAndReport = function(ans, std) {
         //force trim
-        std = std.rtrim();
+        std = rtrim(std);
     
         var report = $('<div class="test-report" />');
 
@@ -114,8 +114,8 @@
 
         $('#cmdPlay').click(function() {
         
-            var sourceType = $('#sourceType').val().trim();
-            var sourcePath = $('#sourcePath').val().trim();
+            var sourceType = trim($('#sourceType').val());
+            var sourcePath = trim($('#sourcePath').val());
             var sourceCode = editor.getValue();
             var correctOutput = $('#answer').val();
 
@@ -232,8 +232,8 @@
         //執行測試（教材編輯模式）
         $('#cmdDump').click(function() {
         
-            var sourceType = $('#sourceType').val().trim();
-            var sourcePath = $('#sourcePath').val().trim();
+            var sourceType = trim($('#sourceType').val());
+            var sourcePath = trim($('#sourcePath').val());
             var sourceCode = editor.getValue();
             
             if (sourcePath=='') {
@@ -262,7 +262,7 @@
 
                         bootbox.alert('<pre><code>'+output+'</code></pre>');
                         
-                        editors['answer'].setValue(output.rtrim());
+                        editors['answer'].setValue(rtrim(output));
                     }); 
                 });
             }
