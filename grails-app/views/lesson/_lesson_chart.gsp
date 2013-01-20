@@ -1,4 +1,4 @@
-<div id="chart_div" style="width: 100%; height: 320px;"></div>
+<div id="chart_div" style="width: 100%; height: 280px;"></div>
 <r:script>
 google.load("visualization", "1", {packages:["corechart"]});
 google.setOnLoadCallback(drawChart);
@@ -6,7 +6,7 @@ function drawChart() {
     var data = google.visualization.arrayToDataTable([
         ['Status', 'Count'],
         ['未練習', ${stats.empty}],
-        ['練習中', ${stats.error}],
+        ['尚未完成', ${stats.error}],
         ['已完成', ${stats.ok}]
     ]);
     var options = {
