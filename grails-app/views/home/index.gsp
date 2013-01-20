@@ -76,7 +76,7 @@
     
     <div class="span4">
 
-        <div class="margin-below">
+        <div class="margin-around">
             <google:adsense width="250" height="250" />
         </div>
 
@@ -102,19 +102,14 @@
             <li><i class="icon-ok icon-2x icon-green"></i> 完美結合 TQC+ 軟體設計領域認證題庫與教材</li>
             <li><i class="icon-ok icon-2x icon-green"></i> 大量強調手腦並用的程式碼實作練習題</li>
             <li><i class="icon-ok icon-2x icon-green"></i> 雲端教室數位學習服務，教學零負擔</li>
-
             <li><i class="icon-ok icon-2x icon-green"></i> 創新的網頁式整合開發環境，支援自動化編譯與測試</li>
         </ul>
-        
         <div class="controls">
             <g:link controller="course" action="show" id="9" class="btn btn-large btn-primary">開始使用 »</g:link>
-            
             <p class="rights">即使起開放免費申請，會員登入後即可獲得免費致贈的線上課程</p>
         </div>
     </div>
-    
     <div class="span6 product-preview">
-
         <div id="preview-carousel" class="carousel slide">
             <div class="carousel-inner">
                 <div class="active item">
@@ -146,7 +141,6 @@
             <a class="carousel-control right" href="#preview-carousel" data-slide="next">&rsaquo;</a>
         </div>
         <r:script>$('#preview-carousel').carousel();</r:script>
-
     </div>
 </div>
 
@@ -154,17 +148,14 @@
     <r:img dir="images/logoset" file="logoset.png" />
 </div>
 
-<div class="row">
-    <div class="span12 clearlook-wrapper">
-        
-        <div class="span8">
+<div class="clearlook-wrapper padding-around">
+    <div class="row-fluid">
+        <div class="span9">
             <p class="larger-font" style="text-align:center">立即開始體驗！歡迎使用 Facebook 帳號直接登入。</p>
         </div>
-        
-        <div>
+        <div class="span3">
             <facebookAuth:connect permissions="email,user_about_me" />
         </div>
-        
     </div>
 </div>
 

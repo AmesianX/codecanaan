@@ -12,7 +12,10 @@
 <div class="row-fluid clearlook-wrapper justfont">
     <div class="span12">
 
-        <p class="textalign-center">您的帳號已經通過驗證。接下來，請為您的電腦安裝 Java 軟體！</p>        
+        <div class="padding-around textalign-center">
+            <p>您的帳號已經通過驗證。接下來，請為您的電腦安裝 Java 軟體！</p>
+        </div>
+        
         <hr/>
 
         <div class="padding-around margin-around">
@@ -79,11 +82,8 @@
             
         <hr/>
             
-        <div class="padding-around">
-                        
-            <div style="text-align:center">
-                <g:link action="step3" class="btn btn-large btn-primary">繼續下一個步驟 »</g:link>
-            </div>
+        <div class="padding-around textalign-center">
+            <g:link action="step3" class="btn btn-large btn-primary">繼續下一個步驟 »</g:link>
         </div>
     </div>
 </div>

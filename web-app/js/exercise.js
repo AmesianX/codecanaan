@@ -311,10 +311,4 @@
             bootbox.alert('答錯了，請再試一次！');
         }
     });
-
-    $('#cmdResizeFont').toggle(function() {
-        $('.justfont').addClass('larger-font');
-    }, function() {
-        $('.justfont').removeClass('larger-font');
-    });
 })();

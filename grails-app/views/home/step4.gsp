@@ -11,15 +11,12 @@
 <g:form controller="home" action="works" method="post">
 
     <div class="clearlook-wrapper">
-        <div class="row">
-            <div class="span12">
-                <p style="text-align:center">
-                    恭喜您已完成所有步驟！現在您即將展開數位學習的奇幻漂流。
-                </p>
-                
-                <hr/>
-            </div>
+        <div class="padding-around textalign-center">
+            <p>恭喜您已完成所有步驟！現在您即將展開數位學習的奇幻漂流。</p>
         </div>
+        
+        <hr/>
+        
         <div class="row-fluid justfont">
 
             <div class="span8 padding-leftside">
@@ -70,14 +67,10 @@
         
         </div>
 
-        <div class="row">
-            <div class="span12">
-                <hr style="clear:both" />
-                
-                <div style="text-align:center">
-                    <button type="submit" class="btn btn-large btn-primary">開始使用課程 »</button>
-                </div>
-            </div>
+        <hr />
+        
+        <div class="padding-around textalign-center">
+            <button type="submit" class="btn btn-large btn-primary">開始使用課程 »</button>
         </div>
     </div>
 

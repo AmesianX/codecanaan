@@ -1,13 +1,25 @@
 <!--檢查作者權限-->
 <g:if test="${authoring}">
+
     <div class="btn-toolbar pull-right">
 
-        <a href="#" class="btn" id="cmdResizeFont">
-            <i class="icon icon-font"></i>
-            <!--縮放字體-->
-            <g:message code="default.resizefont.text" />
-        </a>
-
+        <!--字型調整按鈕-->
+        <div class="btn-group">
+            <a class="btn" id="jfontsize-m" href="#"><i class="icon icon-minus"></i></a>
+            <a class="btn" id="jfontsize-d" href="#"><i class="icon icon-font"></i></a>
+            <a class="btn" id="jfontsize-p" href="#"><i class="icon icon-plus"></i></a>
+        </div>
+        <r:script type="text/javascript" language="javascript">
+            $('.font-resizable').jfontsize({
+                btnMinusClasseId: '#jfontsize-m',
+                btnDefaultClasseId: '#jfontsize-d',
+                btnPlusClasseId: '#jfontsize-p',
+                btnMinusMaxHits: 5,
+                btnPlusMaxHits: 8,
+                sizeChange: 5
+            });
+        </r:script>
+        
         <!--新增內容選單-->
         <g:render template="/content/addmenu" />
 
@@ -47,11 +59,9 @@
             <h1>${content.title} <small><g:message code="content.contentType.${content.type}" default="Content" /></small></h1>
         </div>
         <!--講義或練習-->
-        <div class="markdown-source">${content.description?.encodeAsHTML()}</div>
+        <div class="markdown-source font-resizable">${content.description?.encodeAsHTML()}</div>
     </g:else>
 </section>
-
-<hr />
 
 <sec:ifLoggedIn>
     <!--程式碼區塊-->
@@ -68,10 +78,12 @@
         </g:if>
     </g:if>
     
-    <h3>
-        <!--開始練習--><g:message code="content.exercise.start.text" />
+    <h2>
+        <!--開始練習-->
+        <g:message code="content.exercise.start.text" />
+        <!--tagline-->
         <small><g:message code="content.exercise.start.tagline" /></small>    
-    </h3>
+    </h2>
 
     <!--隱藏變數-->
     <g:hiddenField name="sourcePath" value="${content.sourcePath}" />

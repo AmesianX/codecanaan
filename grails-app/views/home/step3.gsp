@@ -9,13 +9,8 @@
 <g:render template="progress" model="[step: 3]" />
 
 <div class="clearlook-wrapper">
-    <div class="row">
-        <div class="span12">
-            <p style="text-align:center">
-                已經接近完成！接下來，請立即執行「客戶端工具」程式。
-            </p>
-            <hr/>
-        </div>
+    <div class="padding-around textalign-center">
+        <p>已經接近完成！接下來，請立即執行「客戶端工具」程式。</p>
     </div>
     
     <div class="row-fluid justfont hidden-if-clienttools-started">
@@ -83,14 +78,10 @@
         <p class="textalign-center"><i class="icon icon-lightbulb"></i> 每次進行題庫練習前，請記得先啟動客戶端工具。</p>
     </div>
 
-    <div class="row">
-        <div class="span12">
-            <hr style="clear:both" />
+    <hr />
             
-            <div style="text-align:center">
-                <g:link action="step4" class="btn btn-large btn-primary">繼續下一個步驟 »</g:link>
-            </div>
-        </div>
+    <div class="padding-around textalign-center">
+        <g:link action="step4" class="btn btn-large btn-primary">繼續下一個步驟 »</g:link>
     </div>
 </div>
 

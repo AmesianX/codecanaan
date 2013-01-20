@@ -60,7 +60,8 @@ grails.project.dependency.resolution = {
         // HTML resource management enhancements
         // to replace g.resource etc.
         // Note: keep upgrade to latest version.
-        runtime ":resources:1.2.RC2"
+        //runtime ":resources:1.2.RC2"
+        runtime ":resources:1.1.6"
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"

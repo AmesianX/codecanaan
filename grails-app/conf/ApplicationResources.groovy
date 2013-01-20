@@ -2,6 +2,8 @@ def _bundleName = 'optimized'
 
 modules = {
     'jquery-ui' {
+        defaultBundle 'jquery'
+
         resource url: 'jquery-ui/css/smoothness/jquery-ui-1.9.1.custom.min.css'
 		resource url: 'jquery-ui/js/jquery-ui-1.9.1.custom.min.js'
     }
@@ -9,6 +11,7 @@ modules = {
     // Using jQuery File Upload Plug-in
     'jquery-fileupload' {
         dependsOn 'jquery'
+        defaultBundle 'jquery'
         
         resource url: 'jquery-fileupload/css/jquery.fileupload-ui.css'
         resource url: 'jquery-fileupload/css/jquery.fileupload-ui-noscript.css',
@@ -22,17 +25,19 @@ modules = {
     
     'jquery-cslider' {
         dependsOn 'jquery'
+        defaultBundle 'jquery'
         
         resource url: 'jquery-cslider/parallax-slider.css'
-        
         resource url: 'jquery-cslider/jquery.cslider.js'
         resource url: 'jquery-cslider/slider.js'
     }
     
     'jquery-plugins' {
         dependsOn 'jquery'
+        defaultBundle 'jquery'
         
         resource url: 'jquery-plugins/jquery.textarea.min.js'
+        resource url: 'jquery-plugins/jquery.jfontsize.js'
     }
 
     common {
@@ -53,7 +58,8 @@ modules = {
     }
 
     webfont {
-    	resource url: 'js/webfont.js', disposition: 'head'
+        //use built-in fonts first
+    	//resource url: 'js/webfont.js', disposition: 'head'
     }
 
     ie6 {
@@ -138,7 +144,8 @@ modules = {
     
     compass {
         dependsOn 'bootswatch'
-        
+        defaultBundle 'bootstrap'
+
         resource url: 'stylesheets/screen.css'
         resource url: 'stylesheets/print.css',
             attrs: [media: 'print'],
