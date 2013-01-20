@@ -42,7 +42,8 @@ modules = {
 
     common {
         dependsOn 'jquery, jquery-ui, jquery-plugins'
-        
+        defaultBundle 'common'
+
         resource url: 'js/common.js'
     }
 
@@ -54,6 +55,8 @@ modules = {
     
     application {
         dependsOn 'common'
+        defaultBundle 'common'
+
         resource url: 'js/application.js'
     }
 
@@ -89,6 +92,7 @@ modules = {
 
     highlightjs {
         defaultBundle 'coding-tools'
+
         resource url: 'highlightjs/styles/vs.css'
         resource url: 'highlightjs/highlight.pack.js', disposition: 'head'
     }
@@ -156,6 +160,6 @@ modules = {
     
     biwascheme {
         //resource url: 'biwascheme/biwascheme.js'
-        resource url: 'biwascheme/biwascheme-min.js'
+        resource url: 'biwascheme/biwascheme.min.js'
     }
 }

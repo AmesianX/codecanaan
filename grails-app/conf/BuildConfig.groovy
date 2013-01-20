@@ -60,14 +60,19 @@ grails.project.dependency.resolution = {
         // HTML resource management enhancements
         // to replace g.resource etc.
         // Note: keep upgrade to latest version.
-        //runtime ":resources:1.2.RC2"
-        runtime ":resources:1.1.6"
+        runtime ":resources:1.2.RC2"
+        //runtime ":resources:1.1.6"
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
-        //runtime ":zipped-resources:1.0"
+        runtime ":zipped-resources:1.0"
         //runtime ":cached-resources:1.0"
         //runtime ":yui-minify-resources:0.1.4"
-        
+
+        //Google Closure Compiler plugin for Grails
+        //This plugin compiles/optimizes your javascript resources with the Google Closure Compiler.
+        //It provides three compilation levels. WHITESPACE_ONLY, SIMPLE_OPTIMIZATIONS and ADVANCED_OPTIMIZATIONS.
+        compile ":closure-compiler:0.9.1"
+
         build ":tomcat:$grailsVersion"
         
         build ":svn:1.0.2"

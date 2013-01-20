@@ -46,7 +46,7 @@ grails.mime.types = [
 //grails.urlmapping.cache.maxsize = 1000
 
 // What URL patterns should be processed by the resources plugin
-grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*', '*.js', '*.css']
+grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*', '*.js', '*.css', '*.zip']
 
 // Perhaps some reason we want to prevent bundling on CSS files: for "less"
 grails.resources.bundle.excludes = ['**/*.less']
@@ -125,7 +125,14 @@ log4j = {
 }
 
 // LessCSS Compiller
-grails.lesscss.resources.compress = true
+//grails.lesscss.resources.compress = true
+
+//The default level is SIMPLE_OPTIMIZATIONS, options ADVANCED_OPTIMIZATIONS
+//grails.resources.mappers.googleclosurecompiler.compilation_level='SIMPLE_OPTIMIZATIONS'
+grails.resources.mappers.googleclosurecompiler.compilation_level='ADVANCED_OPTIMIZATIONS'
+//grails.resources.mappers.googleclosurecompiler.compilerOptions = [
+//    languageIn: CompilerOptions.LanguageMode.ECMASCRIPT5
+//]
 
 // Twitter Bootstrap
 grails.plugins.twitterbootstrap.fixtaglib = true
