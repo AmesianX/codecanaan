@@ -51,6 +51,10 @@ grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*',
 // Perhaps some reason we want to prevent bundling on CSS files: for "less"
 grails.resources.bundle.excludes = ['**/*.less']
 
+//baseurl feature
+grails.resources.mappers.baseurl.enabled = true
+grails.resources.mappers.baseurl.default = "http://static.codecanaan.com/static"
+
 // The default codec used to encode data with ${}
 grails.views.default.codec = "none" // none, html, base64
 grails.views.gsp.encoding = "UTF-8"
@@ -128,15 +132,19 @@ log4j = {
 //grails.lesscss.resources.compress = true
 
 //The default level is SIMPLE_OPTIMIZATIONS, options ADVANCED_OPTIMIZATIONS
-//grails.resources.mappers.googleclosurecompiler.compilation_level='SIMPLE_OPTIMIZATIONS'
-grails.resources.mappers.googleclosurecompiler.compilation_level='ADVANCED_OPTIMIZATIONS'
+grails.resources.mappers.googleclosurecompiler.compilation_level='SIMPLE_OPTIMIZATIONS'
+//grails.resources.mappers.googleclosurecompiler.compilation_level='ADVANCED_OPTIMIZATIONS'
 //grails.resources.mappers.googleclosurecompiler.compilerOptions = [
 //    languageIn: CompilerOptions.LanguageMode.ECMASCRIPT5
 //]
 
+//grails.cached.resources.flatten = false
+//grails.cached.resources.shortlinks = false
+//grails.cached.resources.shorten = true
+
 // Twitter Bootstrap
 grails.plugins.twitterbootstrap.fixtaglib = true
-grails.plugins.twitterbootstrap.defaultBundle = 'bundle_bootstrap'
+grails.plugins.twitterbootstrap.defaultBundle = 'bootstrap'
 
 // JustFont
 grails.justfont.appId = '04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY='

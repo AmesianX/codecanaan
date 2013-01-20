@@ -124,20 +124,26 @@ class BootStrap {
 
 
                 //自動產生文章 read rss from google news
-                def url = 'https://news.google.com/news/feeds?pz=1&cf=all&ned=tw&hl=zh-TW&output=rss'
-                def xml = new XmlParser().parse(url)
-                def i = 0
-                xml.channel[0].item.each {
-                    item->
-                    
-                    new Post(
-                        name: "post-${i++}",
-                        title: item.title[0].value().first(),
-                        content: item.description[0].value().first().replaceAll("<(.|\n)*?>", ''),
-                        type: PostType.ANNOUNCE,
-                        tag: 'tag1, tag2',
-                        creator: user1
-                    ).save()
+                try {
+                    def url = 'https://news.google.com/news/feeds?pz=1&cf=all&ned=tw&hl=zh-TW&output=rss'
+                    def xml = new XmlParser().parse(url)
+                    def i = 0
+                    xml.channel[0].item.each {
+                        item->
+                        
+                        new Post(
+                            name: "post-${i++}",
+                            title: item.title[0].value().first(),
+                            content: item.description[0].value().first().replaceAll("<(.|\n)*?>", ''),
+                            type: PostType.ANNOUNCE,
+                            tag: 'tag1, tag2',
+                            creator: user1
+                        ).save()
+                    }
+                }
+                catch (e) {
+                    //no network
+                    log.warn "Can't fetch data from google new."
                 }
             }
         }
