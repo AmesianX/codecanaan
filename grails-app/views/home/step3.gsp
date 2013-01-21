@@ -65,7 +65,6 @@
             
             <p><g:img dir="images/help" file="clienttools-tray.png" /></p>
             
-            <p class="alert alert-info">每次</p>
         </div>
     </div>
 
