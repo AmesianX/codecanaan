@@ -51,10 +51,6 @@ grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*',
 // Perhaps some reason we want to prevent bundling on CSS files: for "less"
 grails.resources.bundle.excludes = ['**/*.less']
 
-//baseurl feature
-grails.resources.mappers.baseurl.enabled = true
-grails.resources.mappers.baseurl.default = "http://static.codecanaan.com/static"
-
 // The default codec used to encode data with ${}
 grails.views.default.codec = "none" // none, html, base64
 grails.views.gsp.encoding = "UTF-8"
@@ -87,6 +83,9 @@ environments {
         //disable resource path hash ?_debugResources=y
         grails.resource.debug = true
         grails.resources.mapper.hashandcache.excludes = ['**/*']
+		
+		// Don't enable CDN for development
+		grails.resources.mappers.baseurl.enabled = false
     }
     test {
         // dirty fix "Cannot create a bundle from resource" warning
@@ -97,6 +96,10 @@ environments {
         grails.logging.jul.usebridge = false
         grails.serverURL = "http://codecanaan.com"
         //grails.serverURL = "http://dev.codecanaan.com:8080"
+
+		// Using baseurl feature to enable CDN deployment
+		grails.resources.mappers.baseurl.enabled = true
+		grails.resources.mappers.baseurl.default = "http://static.codecanaan.com/static"
     }
 }
 

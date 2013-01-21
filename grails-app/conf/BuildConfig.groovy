@@ -7,11 +7,15 @@ grails.project.source.level = 1.6
 grails.project.war.file = "target/${appName}.war"
 
 // Enable tomcat fork run
-// grails.project.fork.run = true
+//grails.project.fork.run = true
 // uncomment (and adjust settings) to fork the JVM to isolate classpaths
-//grails.project.fork = [
-//   run: [maxMemory:1024, minMemory:64, debug:true, maxPerm:256]
-//]
+/*
+grails.project.fork = [
+	run: [maxMemory:1024, minMemory:64, debug:false, maxPerm:256],
+	war: [maxMemory:1024, minMemory:64, debug:false, maxPerm:256],
+	console: [maxMemory:1024, minMemory:64, debug:false, maxPerm:256]
+]
+*/
 
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
@@ -43,7 +47,7 @@ grails.project.dependency.resolution = {
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
-        runtime 'mysql:mysql-connector-java:5.1.20'
+        runtime 'mysql:mysql-connector-java:5.1.22'
 
         compile 'org.springframework.social:spring-social-core:1.0.0.RELEASE'
         compile 'org.springframework.social:spring-social-facebook:1.0.0.RELEASE'
