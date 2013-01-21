@@ -46,7 +46,8 @@ grails.mime.types = [
 //grails.urlmapping.cache.maxsize = 1000
 
 // What URL patterns should be processed by the resources plugin
-grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*', '*.js', '*.css', '*.zip']
+//grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*', '*.js', '*.css', '*.zip']
+grails.resources.adhoc.patterns = ["/images/*", "*.css", "*.js"]
 
 // Perhaps some reason we want to prevent bundling on CSS files: for "less"
 grails.resources.bundle.excludes = ['**/*.less']
