@@ -23,4 +23,14 @@ class CommonTagLib {
             }
         }
     }
+
+	def compact = { attr, body ->
+		def c = body()?.trim()
+
+		if (c) {
+			c = (c =~ /\n+/).replaceAll('\n')
+		}
+
+		out << c
+	}
 }

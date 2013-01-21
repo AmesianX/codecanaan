@@ -1,8 +1,25 @@
-def _bundleName = 'optimized'
+def __bundleName = 'codecanaan'
 
 modules = {
+
+	overrides {
+		jquery {
+			// Overriding jquery bundle name
+			defaultBundle __bundleName
+		}
+
+		bootstrap {
+			defaultBundle __bundleName
+		}
+
+		modernizr {
+			defaultBundle __bundleName
+		}
+	}
+
     'jquery-ui' {
-        defaultBundle 'jquery'
+        //defaultBundle 'jquery'
+		defaultBundle __bundleName
 
         resource url: 'jquery-ui/css/smoothness/jquery-ui-1.9.1.custom.min.css'
 		resource url: 'jquery-ui/js/jquery-ui-1.9.1.custom.min.js'
@@ -11,7 +28,8 @@ modules = {
     // Using jQuery File Upload Plug-in
     'jquery-fileupload' {
         dependsOn 'jquery'
-        defaultBundle 'jquery'
+        //defaultBundle 'jquery'
+		defaultBundle __bundleName
         
         resource url: 'jquery-fileupload/css/jquery.fileupload-ui.css'
         resource url: 'jquery-fileupload/css/jquery.fileupload-ui-noscript.css',
@@ -25,7 +43,8 @@ modules = {
     
     'jquery-cslider' {
         dependsOn 'jquery'
-        defaultBundle 'jquery'
+        //defaultBundle 'jquery'
+		defaultBundle __bundleName
         
         resource url: 'jquery-cslider/parallax-slider.css'
         resource url: 'jquery-cslider/jquery.cslider.js'
@@ -34,7 +53,8 @@ modules = {
     
     'jquery-plugins' {
         dependsOn 'jquery'
-        defaultBundle 'jquery'
+        //defaultBundle 'jquery'
+		defaultBundle __bundleName
         
         resource url: 'jquery-plugins/jquery.textarea.min.js'
         resource url: 'jquery-plugins/jquery.jfontsize.js'
@@ -42,25 +62,31 @@ modules = {
 
     common {
         dependsOn 'jquery, jquery-ui, jquery-plugins'
-        defaultBundle 'common'
+        //defaultBundle 'common'
+		defaultBundle __bundleName
 
         resource url: 'js/common.js'
     }
 
+	//測驗專用功能
     exercise {
         dependsOn 'jquery, common'
+
+		defaultBundle __bundleName
         
         resource url: 'js/exercise.js'
     }
     
     application {
         dependsOn 'common'
-        defaultBundle 'common'
+        //defaultBundle 'common'
+		defaultBundle __bundleName
 
         resource url: 'js/application.js'
     }
 
     webfont {
+		//defaultBundle __bundleName
         //use built-in fonts first
     	//resource url: 'js/webfont.js', disposition: 'head'
     }
@@ -71,7 +97,8 @@ modules = {
     }
 
     pagedown {
-        defaultBundle 'coding-tools'
+        //defaultBundle 'coding-tools'
+		defaultBundle __bundleName
         
         resource url: 'pagedown/pagedown.css'
         resource url: 'pagedown/Markdown.Converter.js', disposition: 'head'
@@ -80,7 +107,8 @@ modules = {
     }
 
     codemirror {
-        defaultBundle 'coding-tools'
+        //defaultBundle 'coding-tools'
+		defaultBundle __bundleName
         
         resource url: 'codemirror/lib/codemirror.css'
         resource url: 'codemirror/lib/codemirror.js', disposition: 'head'
@@ -91,7 +119,8 @@ modules = {
     }
 
     highlightjs {
-        defaultBundle 'coding-tools'
+        //defaultBundle 'coding-tools'
+		defaultBundle __bundleName
 
         resource url: 'highlightjs/styles/vs.css'
         resource url: 'highlightjs/highlight.pack.js', disposition: 'head'
@@ -99,7 +128,8 @@ modules = {
    
     bootswatch {
         dependsOn 'bootstrap-js'
-        defaultBundle 'bootstrap'
+        //defaultBundle 'bootstrap'
+		defaultBundle __bundleName
         
         //resource url: [dir: 'swatchmaker', file: 'swatchmaker.less'],
         //    attrs: [rel: 'stylesheet/less', type: 'css'],
@@ -116,7 +146,8 @@ modules = {
     
     'bootstrap-ext' {
         dependsOn 'bootswatch'
-        defaultBundle 'bootstrap'
+        //defaultBundle 'bootstrap'
+		defaultBundle __bundleName
 
         resource url: 'bootstrap-ext/bootbox/bootbox.min.js'
 
@@ -132,7 +163,8 @@ modules = {
     
     'font-awesome' {
         dependsOn 'bootswatch'
-        defaultBundle 'bootstrap'
+        //defaultBundle 'bootstrap'
+		defaultBundle __bundleName
         
         //resource url: [dir: 'font-awesome/less', file: 'font-awesome.less'],
         //    attrs: [rel: 'stylesheet/less', type:'css'], bundle: _bundleName
@@ -148,7 +180,8 @@ modules = {
     
     compass {
         dependsOn 'bootswatch'
-        defaultBundle 'bootstrap'
+        //defaultBundle 'bootstrap'
+		defaultBundle __bundleName
 
         resource url: 'stylesheets/screen.css'
         resource url: 'stylesheets/print.css',

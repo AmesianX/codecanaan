@@ -13,16 +13,18 @@
 <r:layoutResources />
 <google:analytics />
 <style type="text/css">
-html, body {
-    background: transparent;
-}
+html, body { background: transparent; }
 </style>
 </head>
 <body>
+
+<!--main contents-->
 <div class="container" role="main">
-<!--主畫面內容-->
 <g:layoutBody/>
 </div>
+
+<!--defer resources-->
 <r:layoutResources />
+
 </body>
 </html>

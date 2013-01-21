@@ -3,6 +3,7 @@
 <head>
 <meta name="layout" content="bootstrap">
 <title>${lesson.title}</title>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 </head>
 <body>
 
