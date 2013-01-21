@@ -59,10 +59,10 @@
     
         m.modal({show: false});
 	
-		$(m).on('shown', function() {
+		$(m).on('show', function() {
 			$('.blur-after-modal-shown').addClass('effect-blur');
 		});
-		$(m).on('hidden', function() {
+		$(m).on('hide', function() {
 			$('.blur-after-modal-shown').removeClass('effect-blur');
 		});
 

@@ -22,51 +22,48 @@
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
 <facebookAuth:init/>
 
-<!--visible region wrapper-->
-<div class="blur-after-modal-shown">
-
-	<!--header-->
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
-				<g:link controller="home" action="index" class="brand logo-font">CodeCanaan</g:link>
-				<div class="nav-collapse collapse">
-					<g:applyLayout name="inc_sysmenu" />
-					<!--使用者選單-->
-					<g:applyLayout name="inc_usermenu" />
-				</div><!--/.nav-collapse -->
-			</div>
+<!--header-->
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<g:link controller="home" action="index" class="brand logo-font">CodeCanaan</g:link>
+			<div class="nav-collapse collapse">
+				<g:applyLayout name="inc_sysmenu" />
+				<!--使用者選單-->
+				<g:applyLayout name="inc_usermenu" />
+			</div><!--/.nav-collapse -->
 		</div>
 	</div>
-
-	<div class="container" role="main">
-		
-		<!--GoogleChromeFrame-->
-		<g:render template="/layouts/alert_chromeframe" />
-
-		<!--ClientTools-->
-		<g:render template="/layouts/alert_clienttools" />
-		
-		<!--快閃訊息-->
-		<g:if test="${flash.message}">
-			<div class="alert" role="status">
-				<button type="button" class="close" data-dismiss="alert">×</button>
-				<strong><g:message code="default.new.message.text" />!</strong> ${flash.message}
-			</div>
-		</g:if>
-		<!--主畫面內容-->
-		<g:layoutBody/>
-	</div>
-
-	<!--footer begin-->
-	<g:applyLayout name="inc_footer" />
-
 </div>
+
+<div class="container blur-after-modal-shown" role="main">
+	
+	<!--GoogleChromeFrame-->
+	<g:render template="/layouts/alert_chromeframe" />
+
+	<!--ClientTools-->
+	<g:render template="/layouts/alert_clienttools" />
+	
+	<!--快閃訊息-->
+	<g:if test="${flash.message}">
+		<div class="alert" role="status">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<strong><g:message code="default.new.message.text" />!</strong> ${flash.message}
+		</div>
+	</g:if>
+	<!--主畫面內容-->
+	<g:layoutBody/>
+</div>
+
+<!--footer begin-->
+<footer class="footer">
+	<g:applyLayout name="inc_footer" />
+</footer>
 
 <!--defer resources-->
 <r:layoutResources />
