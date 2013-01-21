@@ -51,7 +51,7 @@ grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*',
 // Perhaps some reason we want to prevent bundling on CSS files: for "less"
 grails.resources.bundle.excludes = ['**/*.less']
 
-
+// Belows not works
 //grails.resources.mappers.cached.excludes = ['**/*']
 //grails.resources.mappers.googleclosurecompiler.excludes = ['**/*']
 
@@ -109,8 +109,11 @@ environments {
         //grails.serverURL = "http://dev.codecanaan.com:8080"
 
 		// Using baseurl feature to enable CDN deployment
-		grails.resources.mappers.baseurl.enabled = true
-		grails.resources.mappers.baseurl.default = "http://static.codecanaan.com/static"
+		//grails.resources.mappers.baseurl.enabled = true
+		grails.resources.mappers.baseurl.enabled = false
+		//grails.resources.mappers.baseurl.default = "http://static.codecanaan.com/static"
+		//This not works
+		//grails.resources.mappers.baseurl.excludes = ['biwascheme/*']
     }
 }
 
