@@ -4,14 +4,14 @@
         <title>CodeCanaan</title>
         <vendor>lyhcode</vendor>
         <homepage href="http://codecanaan.com/" />
-        <description>CodeCanaan Agent</description>
+        <description>CodeCanaan ClientTools</description>
     </information>
     <security>
         <all-permissions/>
     </security>
     <resources>
         <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se" />
-        <jar href="http://assets.codecanaan.com/webstart/ClientTools.jar" />
+        <jar href="http://assets1.codecanaan.com/webstart/ClientTools.jar" />
         <property name="core.client.port" value="${clientPort}" />
         <property name="core.http.origin" value="*" />
         <property name="core.toolkits.url" value="http://assets.codecanaan.com/webstart/toolkits.zip" />

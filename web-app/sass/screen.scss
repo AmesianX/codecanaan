@@ -460,3 +460,7 @@ video {
 	@include single-box-shadow(#999999, 3px, 3px, 3px);
 }
 
+.effect-blur {
+	-webkit-filter: blur(5px) grayscale(50%);
+	//-webkit-transform: scale(0.9);
+}

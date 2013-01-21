@@ -19,6 +19,18 @@ Get onto the #codecanaan IRC channel on FreeNode chat server.
 
 http://jenkins.teamcollab.org/
 
+### 網域清單 ###
+
+* codecanaan.com (web)
+* jenkins.codecanaan.com (jenkins)
+* s3.codecanaan.com (s3, broken)
+* secure.codecanaan.com (s3, secured contents)
+* assets.codecanaan.com (s3)
+* assets1.codecanaan.com (cloudfront)
+* assets2.codecanaan.com (cloudfront)
+* assets3.codecanaan.com (cloudfront)
+
+
 ### 開發文件 ###
 
 JavaDoc API Document http://jenkins.teamcollab.org/job/codecanaan/javadoc/

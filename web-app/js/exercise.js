@@ -57,7 +57,16 @@
         
         m.append('<div class="modal-footer"><small style="padding-right:20px">按「ESC」關閉視窗</small><button class="btn" data-dismiss="modal" aria-hidden="true">關閉</button></div>');
     
-        m.modal();
+        m.modal({show: false});
+	
+		$(m).on('shown', function() {
+			$('.blur-after-modal-shown').addClass('effect-blur');
+		});
+		$(m).on('hidden', function() {
+			$('.blur-after-modal-shown').removeClass('effect-blur');
+		});
+
+		$(m).modal('show');
     };
     
     //比較兩個輸出並傳回比較結果
