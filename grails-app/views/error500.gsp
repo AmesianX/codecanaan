@@ -26,7 +26,7 @@
 	</div>
 </div>
 
-<script type="text/javascript">
+<r:script>
 (function() {
 	$('.show-detail').toggle(function() {
 		$('.details').show();
@@ -34,6 +34,6 @@
 		$('.details').hide();
 	});
 })();
-</script>
+</r:script>
 </body>
 </html>

@@ -13,7 +13,6 @@ class HomeController {
      * 首頁
      */
     def index() {
-    
         // 如果已經登入
         // 先檢查 User.works（是否已經通過「開始使用」步驟）
         // 如果 User.works == FALSE 則先跳到步驟 II

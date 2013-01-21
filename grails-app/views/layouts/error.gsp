@@ -25,10 +25,14 @@ section {padding-top:30px;}
 code.line { display:block; }
 h2 { font-size: 16pt; }
 .justfont h1, .justfont h2, .justfont h3 { font-weight: normal; }
+h1,h2,h3,p,li,blockquote,pre { line-height: 200%; }
 </style>
+<g:layoutHead/>
+<r:layoutResources />
 <google:analytics />
 </head>
 <body>
 <g:layoutBody/>
+<r:layoutResources />
 </body>
 </html>
