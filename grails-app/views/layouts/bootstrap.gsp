@@ -22,8 +22,10 @@
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
 <facebookAuth:init/>
 
+<!--begin visible--><div class="blur-after-modal-shown">
+
 <!--header-->
-<div class="navbar navbar-inverse navbar-fixed-top">
+<header class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
 			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -39,9 +41,9 @@
 			</div><!--/.nav-collapse -->
 		</div>
 	</div>
-</div>
+</header>
 
-<div class="container blur-after-modal-shown" role="main">
+<div class="container" role="main">
 	
 	<!--GoogleChromeFrame-->
 	<g:render template="/layouts/alert_chromeframe" />
@@ -65,7 +67,10 @@
 	<g:applyLayout name="inc_footer" />
 </footer>
 
+<!--end visible--></div>
+
 <!--defer resources-->
 <r:layoutResources />
+
 </body>
 </html>

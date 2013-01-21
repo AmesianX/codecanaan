@@ -26,29 +26,28 @@ h3 code {
 /* Tweak navbar brand link to be super sleek
 -------------------------------------------------- */
 
-body > .navbar {
-  font-size: 11pt;
-}
+body header.navbar {
+		font-size: 11pt;
 
-/* Change the docs' brand */
-body > .navbar .brand {
-  padding-right: 0;
-  padding-left: 0;
-  margin-left: 20px;
-  float: right;
-  font-size: 18pt;
-  font-weight: normal;
-  color: #fff;
+		/* Change the docs' brand */
+		.brand {
+				padding-right: 0;
+				padding-left: 0;
+				margin-left: 20px;
+				float: right;
+				font-size: 18pt;
+				font-weight: normal;
+				color: #fff;
+				@include text-shadow(#333 1pt 1pt 2pt);
+				-webkit-transition: all .2s linear;
+				-moz-transition: all .2s linear;
+				transition: all .2s linear;
+		}
 
-  @include text-shadow(#333 1pt 1pt 2pt);
-
-  -webkit-transition: all .2s linear;
-     -moz-transition: all .2s linear;
-          transition: all .2s linear;
-}
-body > .navbar .brand:hover {
-  text-decoration: none;
-  @include text-shadow(#ffff00 1pt 1pt 2pt);
+		.brand:hover {
+				text-decoration: none;
+				@include text-shadow(#ffff00 1pt 1pt 2pt);
+		}
 }
 
 

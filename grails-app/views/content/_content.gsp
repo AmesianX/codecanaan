@@ -97,17 +97,17 @@
         <!--實作練習-->
         <div class="btn-toolbar">
             <div class="btn-group">
-                <a href="#" id="cmdPlay" class="btn"><i class="icon icon-play"></i> 執行測試</a>
+                <a href="#" id="cmdPlay" class="btn btn-large btn-success"><i class="icon icon-play"></i> 執行測試</a>
             </div>
             <div class="btn-group">
-                <a href="#" id="cmdSave" class="btn">
+                <a href="#" id="cmdSave" class="btn btn-large">
                     <span class="hide visible-while-save-progress"><i class="icon icon-spinner icon-spin"></i></span>
                     <span class="hidden-while-save-progress"><i class="icon icon-save"></i></span>
                     儲存
                 </a>
-                <a href="#" id="cmdUndo" class="btn"><i class="icon icon-undo"></i> 復原</a>
-                <a href="#" id="cmdRedo" class="btn"><i class="icon icon-repeat"></i> 取消復原</a>
-                <a href="#" id="cmdReset" class="btn"><i class="icon icon-magic"></i> 清除重做</a>
+                <a href="#" id="cmdUndo" class="btn btn-large"><i class="icon icon-undo"></i> 復原</a>
+                <a href="#" id="cmdRedo" class="btn btn-large"><i class="icon icon-repeat"></i> 取消復原</a>
+                <a href="#" id="cmdReset" class="btn btn-large"><i class="icon icon-magic"></i> 清除重做</a>
             </div>
         </div>
 
