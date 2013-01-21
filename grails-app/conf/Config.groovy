@@ -213,10 +213,11 @@ grails.plugins.springsecurity.facebook.appId='--appid--'
 grails.plugins.springsecurity.facebook.secret='--secret--'
 
 aws {
+    //domain="s3.amazonaws.com"
     domain="s3.amazonaws.com"
     accessKey="-accessKey-"
     secretKey="-secretKey-"
-    bucketName="-bucketName-"
+    bucketName="secure.codecanaan.com"
 }
 
 google {

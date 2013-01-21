@@ -99,9 +99,9 @@
     <p>當您仍然無法執行時，請使用我們提供的「ClientTools」手動下載版本。</p>
     
     <ul>
-        <li>適用於 Windows XP / 7 作業系統（包含 32 及 64 位元） <a href="${resource(dir:'standalone',file:'ClientTools.zip')}" target="_blank">點此下載</a></li>
-        <li>適用於 Mac OS X 作業系統（包含 32 及 64 位元） <a href="${resource(dir:'standalone',file:'ClientTools.zip')}" target="_blank">點此下載</a></li>
-        <li>適用於 Linux 作業系統（包含 32 及 64 位元） <a href="${resource(dir:'standalone',file:'ClientTools.zip')}" target="_blank">點此下載</a></li>
+        <li>適用於 Windows XP / 7 作業系統（包含 32 及 64 位元） <a href="http://assets.codecanaan.com/standalone/ClientTools.zip" target="_blank">點此下載</a></li>
+        <li>適用於 Mac OS X 作業系統（包含 32 及 64 位元） <a href="http://assets.codecanaan.com/standalone/ClientTools.zip" target="_blank">點此下載</a></li>
+        <li>適用於 Linux 作業系統（包含 32 及 64 位元） <a href="http://assets.codecanaan.com/standalone/ClientTools.zip" target="_blank">點此下載</a></li>
     </ul>
     
     <p>所有提供下載的檔案，已通過防毒軟體檢測為 100% 安全，請放心下載執行。</p>

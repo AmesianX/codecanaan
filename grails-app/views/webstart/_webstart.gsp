@@ -11,10 +11,10 @@
     </security>
     <resources>
         <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se" />
-        <jar href="lib/ClientTools.jar" />
+        <jar href="http://s3.codecanaan.com/webstart/ClientTools.jar" />
         <property name="core.client.port" value="${clientPort}" />
         <property name="core.http.origin" value="*" />
-        <property name="core.toolkits.url" value="${resource(dir:'webstart',file:'toolkits.zip',absolute:true)}" />
+        <property name="core.toolkits.url" value="http://s3.codecanaan.com/webstart/toolkits.zip" />
         <property name="core.script.type" value="groovy" />
         <property name="core.script.url" value="${createLink(controller:'webstart',action:'script',absolute:true)}" />
     </resources>

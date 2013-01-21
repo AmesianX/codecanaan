@@ -11,3 +11,5 @@ target
 /web-app/.sass-cache
 /web-app/WEB-INF/classes
 /target-eclipse
+/client/webstart/build
+/client/standalone/build
