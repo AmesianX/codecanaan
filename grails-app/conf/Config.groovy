@@ -51,7 +51,9 @@ grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*',
 // Perhaps some reason we want to prevent bundling on CSS files: for "less"
 grails.resources.bundle.excludes = ['**/*.less']
 
-grails.resources.closurecompiler.excludes = ['**/biwascheme.*']
+
+//grails.resources.mappers.cached.excludes = ['**/*']
+//grails.resources.mappers.googleclosurecompiler.excludes = ['**/*']
 
 // The default codec used to encode data with ${}
 grails.views.default.codec = "none" // none, html, base64
