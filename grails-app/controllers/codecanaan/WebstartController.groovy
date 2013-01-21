@@ -44,14 +44,18 @@ class WebstartController {
         //response.contentType = 'text/xml'
         //response.contentType = 'application/x-java-jnlp-file'
         response.addHeader('Content-disposition', 'inline; filename=webstart.jnlp')
-        
+
+		def serverIds = [1 ,2 ,3]
+		Collections.shuffle(serverIds)
+
         render(
             //contentType: 'text/xml',
             contentType: 'application/x-java-jnlp-file',
             template: "webstart",
             model: [
                 baseURL: grailsLinkGenerator.serverBaseURL,
-                clientPort: user?.clientPort?user?.clientPort:1337
+                clientPort: user?.clientPort?user?.clientPort:1337,
+				serverId: serverIds[0]
             ]
         )
     }
