@@ -192,7 +192,9 @@ modules = {
     }
     
     biwascheme {
+		// BiwaScheme contains it's own jQuery lib,
+		// don't bundle other js file.
         //resource url: 'biwascheme/biwascheme.js'
-        resource url: 'biwascheme/biwascheme.min.js'
+        resource url: 'biwascheme/biwascheme.min.js', bundle: 'biwascheme'
     }
 }
