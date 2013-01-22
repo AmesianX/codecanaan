@@ -1,14 +1,21 @@
 package codecanaan
 
+/**
+ * 課程服務
+ */
 class CourseService {
 
     /**
      * 檢查使用者是否有作者（編輯）權限
      */
     def isAuthor(Course course, User user) {
-    	if (!user) return false
-        def link = UserCourse.findByUserAndCourse(user, course)
-        return link && link.regType == RegType.AUTHOR
+        
+        //課程和使用者不存在就跳過檢查
+    	if (!course || !user) return false
+        
+        def link = UserCourse.get(user, course)
+        
+        (link && link.regType == RegType.AUTHOR)
     }
     
     /**

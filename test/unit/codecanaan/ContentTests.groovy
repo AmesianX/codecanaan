@@ -1,61 +1,51 @@
 package codecanaan
 
-
-
 import grails.test.mixin.*
 import org.junit.*
 
 /**
- * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
+ * 學習內容單元測試
  */
 @TestFor(Content)
 class ContentTests {
 
+    Content _c;
 
-    void testSaveContent() {
-        assertNotNull new Content(
-            type: ContentType.TUTORIAL,
-            title: 'title1',
-            source: "### this is contents\n\ndescriptions",
-            output: 'output1',
-            question: 'question1',
-            answer: 'ans1',
-            partial: 'partial1',
-            description: "description1"
-        ).save(failOnError: true, flush: true)
-
- 
+    /**
+     * 初始資料設定
+     */
+    void setUp() {
+        _c = new Content(
+            type:           ContentType.TUTORIAL,
+            title:          'title1',
+            description:    'description1'
+        )
     }
 
-    void testDeleteContent() {
-        def testContent= new Content(
-            type: ContentType.TUTORIAL,
-            title: 'title1',
-            source: "### this is contents\n\ndescriptions",
-            answer: 'ans1',
-            partial: 'partial1',
-            description: "description1"
-        ).save()
-        
-        testContent.delete()
-        assertNull Content.findById(testContent.id)
+    void "test save a new content"() {
+        assertNotNull _c.save(flush: true)
+        assertNotNull _c.id
+        assertNotNull Content.get(_c.id)
+        assert Content.findAllByTitle('title1').size()>0
     }
 
-    void testUpdateContentTitle() {
-        def testContent= new Content(
-            type: ContentType.TUTORIAL,
-            title: 'title1',
-            source: "### this is contents\n\ndescriptions",
-            answer: 'ans1',
-            partial: 'partial1',
-            description: "description1"
-        ).save()
+    void "test delete a content after save"() {
+        assertNotNull _c.save(flush: true)
+        assertNotNull Content.get(_c.id)
+        _c.delete(flush: true)
+        assertNull Content.get(_c.id)
+    }
+
+    void "test content fields update"() {
+        assertNotNull _c.save(flush: true)
         
-		testContent.title="title2"
-		testContent.save()
-		
-		def getTestContent=Content.findById(testContent.id);
-		
-        assert getTestContent.title=="title2" 
+        assertNotNull Content.findByTitle('title1')
+        assertNull Content.findByTitle('bible1')
+
+        _c.title = "bible1"
+        _c.save(flush: true)
+        
+        assertNull Content.findByTitle('title1')
+        assertNotNull Content.findByTitle('bible1')
     }
 }

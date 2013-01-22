@@ -15,17 +15,42 @@ public enum RegType {
  * 使用者和課程的關聯
  */
 class UserCourse {
-    
-    String regInfo = ""                 //註冊資訊
-    RegType regType = RegType.GUEST     //註冊類型
+   
+    /**
+     * 註冊訊息（在使用者註冊課程建立時寫入備註於此欄位）
+     */
+    String regInfo
 
-    Date dateCreated    //建立日期
-    Date lastUpdated    //修改日期
+    /**
+     * 註冊類型（學生？教師？）
+     */
+    RegType regType = RegType.GUEST
 
+
+    /**
+     * 建立日期
+     */
+    Date dateCreated
+
+    /**
+     * 修改日期
+     */
+    Date lastUpdated
+
+    /**
+     * 關聯到使用者與課程
+     */
     static belongsTo = [user: User, course: Course]
 
     static constraints = {
         regInfo nullable: true, empty: true
+    }
+
+    /**
+     * 取得使用者與課程的關聯
+     */
+    static UserCourse get(User user, Course course) {
+        UserCourse.findByUserAndCourse(user, course)
     }
 
     /**

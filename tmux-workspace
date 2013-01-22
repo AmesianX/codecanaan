@@ -1,0 +1,8 @@
+#!/bin/bash
+
+tmux split-window -h
+tmux split-window -v
+tmux set-window-option main-pane-width 88
+# tmux set-window-option main-pane-height 24
+tmux select-layout main-vertical
+# tmux select-layout main-horizontal
