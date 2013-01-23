@@ -31,14 +31,14 @@ upload:
 	s3cmd put -P target/codecanaan.war s3://s3.lyhdev.com/apps/
 
 upload-secret:
-	s3cmd put -P ~/.grails/codecanaan-config.groovy s3://s3.lyhdev.com/apps/
+	s3cmd put ~/.grails/codecanaan-config.groovy s3://s3.lyhdev.com/apps/
 
 download:
 	[ -d target ] || mkdir target
 	wget -O target/codecanaan.war http://s3.lyhdev.com/apps/codecanaan.war
 
 download-secret:
-	wget -O ~/.grails/codecanaan-config.groovy http://s3.lyhdev.com/apps/codecanaan-config.groovy
+	s3cmd get s3://s3.lyhdev.com/apps/codecanaan-config.groovy ~/.grails/codecanaan-config.groovy
 
 done:
 	make clean war upload && make remote-deploy

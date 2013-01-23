@@ -28,15 +28,31 @@
         });
     };
     
-    //暫存程式碼
-    var fnSaveTemp = function(params, fncb) {
+    /**
+     * 暫存程式碼
+     * @param params POST DATA
+     * @param fncb Callback for SUCCESS
+     * @param fncberr Callback for ERROR
+     */
+    var fnSaveTemp = function(params, fncb, fncberr) {
         $.ajax({
             type: 'post',
             url: __ajax_savetemp_url,
             data: params,
-            success: function(data) {
+            success: function(data, textStatus, jqXHR) {
                 if ($.isFunction(fncb)) {
-                    fncb();
+                    //callback
+                    fncb(data);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                if ($.isFunction(fncberr)) {
+                    //callback
+                    fncberr(jqXHR, textStatus, errorThrown);
+                }
+                else {
+                    //show message
+                    bootbox.alert(textStatu);
                 }
             }
         });
@@ -120,14 +136,14 @@
         var editor = editors['sourceEdit'];
 
         $('#cmdPlay').click(function() {
-        
+            
             var sourceType = trim($('#sourceType').val());
             var sourcePath = trim($('#sourcePath').val());
             var sourceCode = editor.getValue();
             var correctOutput = $('#answer').val();
 
             if (sourceType=='SCHEME') {
-            
+                
                 //先暫存程式碼再執行
                 fnSaveTemp({
                     sourceType: sourceType,

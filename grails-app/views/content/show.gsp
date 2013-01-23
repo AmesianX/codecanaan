@@ -28,9 +28,9 @@
 </div>
 
 <!--練習模式變數設定-->
-<g:hiddenField name="__ajax_save_record_url" value="${createLink(controller: 'content', action: 'ajaxSaveRecord', id: content?.id, absolute: true)}" />
-<g:hiddenField name="__ajax_biwascheme_url" value="${createLink(controller: 'content', action: 'biwascheme', absolute: true)}" />
-<g:hiddenField name="__ajax_savetemp_url" value="${createLink(controller: 'content', action: 'ajaxSaveTemp', absolute: true)}" />
+<g:hiddenField name="__ajax_save_record_url" value="${createLink(controller: 'content', action: 'ajaxSaveRecord', id: content?.id)}" />
+<g:hiddenField name="__ajax_biwascheme_url" value="${createLink(controller: 'content', action: 'biwascheme')}" />
+<g:hiddenField name="__ajax_savetemp_url" value="${createLink(controller: 'content', action: 'ajaxSaveTemp')}" />
 <g:hiddenField name="__ajax_loader_image_src" value="${resource(dir: '/images', file: 'ajax-loader.gif')}" />
 <g:hiddenField name="__ajax_client_port" value="${clientPort}" />
 
