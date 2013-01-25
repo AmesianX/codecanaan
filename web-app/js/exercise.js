@@ -140,7 +140,7 @@
             var sourceType = trim($('#sourceType').val());
             var sourcePath = trim($('#sourcePath').val());
             var sourceCode = editor.getValue();
-            var correctOutput = $('#answer').val();
+            var correctOutput = $('#output').val();
 
             if (sourceType=='SCHEME') {
                 
@@ -167,7 +167,7 @@
 
                         fnSaveRecord({
                             passed: passed,
-                            answer: output,
+                            output: output,
                             sourceCode: sourceCode
                         });
                     }); 
@@ -195,7 +195,7 @@
 
                             fnSaveRecord({
                                 passed: passed,
-                                answer: output,
+                                output: output,
                                 sourceCode: sourceCode
                             });
                         }
@@ -287,7 +287,7 @@
 
                         bootbox.alert('<pre><code>'+output+'</code></pre>');
                         
-                        editors['answer'].setValue(rtrim(output));
+                        editors['output'].setValue(rtrim(output));
                     }); 
                 });
             }
@@ -306,7 +306,7 @@
                         //alert("程式執行完畢");
 
                         if (data) {
-                            editors['answer'].setValue(data.result.data.dump);
+                            editors['output'].setValue(data.result.data.dump);
                         }
                     },
                     error: function(data) {

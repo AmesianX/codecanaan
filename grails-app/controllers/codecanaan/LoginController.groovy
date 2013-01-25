@@ -39,7 +39,7 @@ class LoginController {
 	}
 
 	/**
-	 * Show the login page.
+	 * 登入頁面
 	 */
 	def auth = {
 
@@ -50,11 +50,17 @@ class LoginController {
 			return
 		}
 
+        String methodKey = '${controllerName}.${actionName}.method'
+	    String method = session[methodKey] = params.method?:session[methodKey]?:'builtin'
+		
 		String view = 'auth'
 		String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
-		
-		render view: view, model: [postUrl: postUrl,
-		                           rememberMeParameter: config.rememberMe.parameter]
+
+		render view: view, model: [
+            method: method,
+            postUrl: postUrl,
+            rememberMeParameter: config.rememberMe.parameter
+        ]
 	}
 
 	/**

@@ -59,7 +59,7 @@
             </ul>
         </div>
 
-        <g:if test="${params.method=='builtin'}">
+        <g:if test="${method=='builtin'}">
 	        <g:render template="builtin" />
         </g:if>
         <g:else>

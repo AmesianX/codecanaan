@@ -1,5 +1,6 @@
 package codecanaan
 
+import grails.plugins.springsecurity.Secured
 import org.springframework.dao.DataIntegrityViolationException
 
 class ContentController {
@@ -49,43 +50,50 @@ class ContentController {
     /**
      * 直接建立內容後回到瀏覽頁面
      */
+    @Secured(['ROLE_USER'])
     def create() {
         def user = springSecurityService.currentUser
 
-        //計算流水號
-        def seq = 0
-        def lesson = Lesson.get(params.lesson.id)
-        if (lesson && lesson.contents) {
-            seq = lesson.contents?.size()
+        //參數未指定單元不予建立
+        if (!params.lesson || !params.lesson.id) {
+            response.sendError 404
+            return
         }
+
+        def lesson = Lesson.get(params.lesson?.id)
+
+        //單元無法找到不予建立
+        if (!lesson) {
+            response.sendError 404
+            return
+        }
+        
 
         def content = new Content(params)
 
-        //套用預設值
+        //預設為講義
         if (!content.type) {
             content.type = ContentType.TUTORIAL
         }
-
-        //println lesson
-        //println seq
-
-        content.title = "${content.type} ${seq+1}"
-        content.description = '''請使用 Markdown 語法編輯內容\nWrite contents here using **Markdown** syntax.'''
-
-        if (content.type == ContentType.CODE) {
-            content.sourceCode = "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello World\");\n    }\n}\n"
+        //預設為 JAVA 語言
+        if (!content.sourceType) {
             content.sourceType = SourceType.JAVA
-            content.sourcePath = 'Main.java'
-            content.partialCode = "public class Main {\n    public static void main(String[] args) {\n        //write here\n    }\n}\n"
-            content.answer = 'Hello World'
         }
 
-        content.priority = seq
+        //從範本讀取內容設定
+        courseService.createContentFromTemplate(content)
+
+        //內容建立者
         content.creator = user
 
+        //儲存
         content.save(flush: true)
 
-        redirect(action: 'show', id: content.id, params: [editor: true])
+        //訊息
+        flash.message = "內容已經建立"
+
+        //編輯模式
+        redirect action: 'show', id: content.id, params: [editor: true]
     }
 
     /**

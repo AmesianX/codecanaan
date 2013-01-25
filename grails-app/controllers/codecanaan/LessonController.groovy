@@ -1,5 +1,6 @@
 package codecanaan
 
+import grails.plugins.springsecurity.Secured
 import org.springframework.dao.DataIntegrityViolationException
 
 class LessonController {
@@ -37,28 +38,43 @@ class LessonController {
     /**
      * 建立新單元（建立後直接回到單元顯示頁面）
      */
+    @Secured(['ROLE_USER'])
     def create() {
+
         def user = springSecurityService.currentUser
         
-        //計算流水號
-        def seq = 0
-        def course = Course.get(params.course.id)
-        if (course && course.lessons) {
-            seq = course.lessons?.size()
+        //檢查必要參數
+        if (!params.course || !params.course?.id) {
+            response.sendError 404
+            return
         }
         
+        //從參數找出指定的課程
+        def course = Course.get(params.course?.id)
+
+        //單元必須設定在某個課程下
+        if (!course) {
+            response.sendError 404
+            return
+        }
+
+        //建立單元
         def lesson = new Lesson(params)
         
-        //套用預設值
-        lesson.name = "lesson-${seq+1}"
-        lesson.title = "單元標題 Lesson ${seq+1}"
-        lesson.description = "請編輯單元說明內容\nWrite lesson description here."
+        //從範本套用預設值
+        courseService.createLessonFromTemplate(lesson)
+
+        //設定擁有者
         lesson.creator = user
-        lesson.priority = seq
 
-        lesson.save(flush: true)
+        //儲存
+        lesson.save flush: true
 
-        redirect(action: 'show', id: lesson.id, params: [editor: true])
+        //訊息
+        flash.message = "新單元 ${lesson.title} 已經建立"
+
+        //進入編輯模式
+        redirect action: 'show', id: lesson.id, params: [editor: true]
     }
 
     /**

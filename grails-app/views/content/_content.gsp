@@ -90,6 +90,7 @@
     <g:hiddenField name="sourceType" value="${content.sourceType}" />
     <g:hiddenField name="sourceCode" value="${content.sourceCode}" />
     <g:hiddenField name="partialCode" value="${content.partialCode}" />
+    <g:hiddenField name="output" value="${content.output}" />
     <g:hiddenField name="answer" value="${content.answer}" />
 
     <g:if test="${content.type==codecanaan.ContentType.CODE}">
@@ -117,8 +118,8 @@
                 <span class="hidden-while-save-progress"><i class="icon icon-file"></i></span>
                 ${content.sourcePath}
             </a></li>
-            <li><a href="#tab-output" data-toggle="tab">執行結果</a></li>
-            <li><a href="#tab-answer" data-toggle="tab">標準輸出</a></li>
+            <li><a href="#tab-myoutput" data-toggle="tab">執行結果</a></li>
+            <li><a href="#tab-output" data-toggle="tab">標準輸出</a></li>
             <g:if test="${authoring}">
                 <li><a href="#tab-source" data-toggle="tab">解答程式碼</a></li>
             </g:if>
@@ -128,8 +129,8 @@
             <div class="tab-pane active" id="tab-editor">
                 <g:textArea name="sourceEdit" value="${(record?.sourceCode)?record.sourceCode:content.partialCode}" data-mode="${cmmode(type:content.sourceType)}" data-height="500" cols="40" rows="20" class="codemirror-auto" />
             </div>
-            <div class="tab-pane" id="tab-output"><pre id="program-output" style="height:500px;overflow:auto">${record?.answer}</pre></div>
-            <div class="tab-pane" id="tab-answer"><pre style="height:500px;overflow:auto">${content.answer}</pre></div>
+            <div class="tab-pane" id="tab-myoutput"><pre id="program-output" style="height:500px;overflow:auto">${record?.output}</pre></div>
+            <div class="tab-pane" id="tab-output"><pre style="height:500px;overflow:auto">${content.output}</pre></div>
             <g:if test="${authoring}">
                 <div class="tab-pane" id="tab-source"><pre style="height:500px;overflow:auto"><code class="code-font">${content.sourceCode?.encodeAsHTML()}</code></pre></div>
             </g:if>

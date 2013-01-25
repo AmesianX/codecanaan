@@ -116,9 +116,10 @@ class CourseController {
      */
     def create() {
         def course = new Course(params)
-        course.name = "course-${Course.count()+1}"
-        course.title = "請填寫此課程顯示的標題名稱"
-        course.description = "在這裡撰寫課程說明\nWrite your course description here."
+
+        //從範本產生新課程
+        courseService.createCourseFromTemplate(course)
+
         [course: course]
     }
 

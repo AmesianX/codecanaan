@@ -13,9 +13,21 @@
             <i class="icon icon-pencil"></i>
             <g:message code="content.contentType.SLIDE" />
         </g:link></li>
-        <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'CODE']" class="auto-loadmask">
+        <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'CODE', sourceType: 'JAVA']" class="auto-loadmask">
             <i class="icon icon-pencil"></i>
-            <g:message code="content.contentType.CODE" />
+            <g:message code="content.contentType.CODE" /> Java
+        </g:link></li>
+        <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'CODE', sourceType: 'C']" class="auto-loadmask">
+            <i class="icon icon-pencil"></i>
+            <g:message code="content.contentType.CODE" /> C
+        </g:link></li>
+        <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'CODE', sourceType: 'CPP']" class="auto-loadmask">
+            <i class="icon icon-pencil"></i>
+            <g:message code="content.contentType.CODE" /> C++
+        </g:link></li>
+        <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'CODE', sourceType: 'SCHEME']" class="auto-loadmask">
+            <i class="icon icon-pencil"></i>
+            <g:message code="content.contentType.CODE" /> Scheme
         </g:link></li>
         <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'QUIZ']" class="auto-loadmask">
             <i class="icon icon-pencil"></i>

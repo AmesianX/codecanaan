@@ -55,7 +55,7 @@
 	<g:if test="${flash.message}">
 		<div class="alert" role="status">
 			<button type="button" class="close" data-dismiss="alert">×</button>
-			<strong><g:message code="default.new.message.text" />!</strong> ${flash.message}
+            <p>${flash.message}</p>
 		</div>
 	</g:if>
 	<!--主畫面內容-->

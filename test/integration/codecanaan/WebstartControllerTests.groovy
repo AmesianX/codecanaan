@@ -1,7 +1,5 @@
 package codecanaan
 
-
-
 import grails.test.mixin.*
 import org.junit.*
 import org.codehaus.groovy.grails.commons.GrailsApplication

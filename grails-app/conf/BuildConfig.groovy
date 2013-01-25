@@ -82,7 +82,7 @@ grails.project.dependency.resolution = {
         
         build ":svn:1.0.2"
         
-        compile ":spring-security-facebook:0.10.4"
+        compile ":spring-security-facebook:0.10.4-rc"
         
         //build ":lesscss-resources:1.3.0.3"
 

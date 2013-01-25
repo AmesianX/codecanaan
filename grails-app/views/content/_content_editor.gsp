@@ -1,6 +1,8 @@
 <!--編輯課程-->
 <g:form controller="content" action="ajaxSave" method="post">
 
+    <legend><g:message code="content.contentType.${content.type}" /></legend>
+
     <p class="pull-right">標記 <span class="required-mark">*</span> 為必填欄位</p>
     
     <div class="control-group">
@@ -97,6 +99,21 @@
         </div>
     </div>
 
+    <!--測驗題-->
+
+    <!--TODO: 選項與測驗類型 -->
+
+    <div class="control-group">
+        <label class="control-label" for="answer">
+            <!--標準答案-->
+            <g:message code="content.answer.label" />
+        </label>
+        </label>
+        <div class="controls">
+            <g:textArea name="answer" value="${content.answer}" class="input input-xlarge" />
+        </div>
+    </div>
+
     <!--實作練習-->
     <div class="btn-group pull-right">
         <a href="#" id="cmdDump" class="btn"><i class="icon icon-play"></i> <!--執行測試--><g:message code="default.execution.text" /></a>
@@ -110,9 +127,9 @@
             <!--填空程式碼-->
             <g:message code="content.partialCode.label" />
         </a></li>
-        <li><a href="#tab-answer" data-toggle="tab">
+        <li><a href="#tab-output" data-toggle="tab">
             <!--標準輸出-->
-            <g:message code="content.answer.label" />
+            <g:message code="content.output.label" />
         </a></li>
     </ul>
     <div class="tab-content">
@@ -124,9 +141,9 @@
             <!--部分答案-->
             <g:textArea name="partialCode" value="${content.partialCode}" data-mode="${cmmode(type:content.sourceType)}" data-height="500" cols="40" rows="20" class="codemirror-auto" />
         </div>
-        <div class="tab-pane" id="tab-answer">
+        <div class="tab-pane" id="tab-output">
             <!--標準輸出-->
-            <g:textArea name="answer" value="${content.answer}" data-mode="text/plain" data-height="500" cols="40" rows="20" class="codemirror-auto" />
+            <g:textArea name="output" value="${content.output}" data-mode="text/plain" data-height="500" cols="40" rows="20" class="codemirror-auto" />
         </div>
     </div>
     <section>
