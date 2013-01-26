@@ -106,6 +106,10 @@ h1 small, h2 small, h3 small, h4 small {
 	
 	h1, h2, h3, h4 {
 	}
+
+	h2, h3 {
+	    margin-top: 20px;
+    }
 	
 	p, li, blockquote {
 		font-size: 12pt;
@@ -163,6 +167,13 @@ a.brand {
     @include border-radius(6px);
     border: 1px solid #dadada;
     @include single-box-shadow(rgba(0, 0, 0, 0.0745098), 0px, 1px, 2px, 0px);
+}
+
+#menu-container {
+
+    a {
+        line-height: 150%;
+    }
 }
 
 ul.links {
