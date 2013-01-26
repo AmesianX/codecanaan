@@ -20,7 +20,7 @@ class FacebookUser {
 	/**
 	 * Access Token 有效期時間
 	 */
-    //Date accessTokenExpires
+    Date accessTokenExpires
 
     static belongsTo = [user: User]
 
