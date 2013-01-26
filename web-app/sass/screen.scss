@@ -117,6 +117,10 @@ h1 small, h2 small, h3 small, h4 small {
 		letter-spacing: 1px;
 	}
 	
+	p, ul {
+	    margin-bottom: 20px;
+    }
+
 	pre, code, textarea {
 		font-size: 11pt;
 		line-height: 150%;
