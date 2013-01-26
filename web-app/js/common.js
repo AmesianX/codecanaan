@@ -191,12 +191,18 @@ function winHeight() {
             matchBrackets: true,
             mode: mode,
             indentUnit: 4,
+            smartIndent: true,
+            tabSize: 4,
+            indentWithTabs: false,
             extraKeys: {
                 "F11": function(cm) {
                     //setFullScreen(cm, !isFullScreen(cm));
                 },
                 "Esc": function(cm) {
                     //if (isFullScreen(cm)) setFullScreen(cm, false);
+                },
+                "Tab": function(cm) {
+                    cm.replaceSelection("    ", "end");
                 }
             }
         });
