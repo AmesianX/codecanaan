@@ -20,8 +20,8 @@
 <!--[if lte IE 7]><link href="//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome-ie7.css" rel="stylesheet"><![endif]-->
 <g:justfont />
 <style type="text/css">
-body {padding-top:60px}
-section {padding-top:30px;}
+body { padding-top:60px;padding-bottom:80px; }
+section { padding-top:30px; }
 code.line { display:block; }
 h2 { font-size: 16pt; }
 .justfont h1, .justfont h2, .justfont h3 { font-weight: normal; }
