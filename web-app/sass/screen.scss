@@ -178,6 +178,11 @@ a.brand {
     a {
         line-height: 150%;
     }
+
+    #close-menu-button {
+        position: relative;
+        right: -20px;
+    }
 }
 
 ul.links {
