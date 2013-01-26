@@ -51,7 +51,7 @@ class LoginController {
 		}
 
         String methodKey = '${controllerName}.${actionName}.method'
-	    String method = session[methodKey] = params.method?:session[methodKey]?:'builtin'
+	    String method = session[methodKey] = params.method?:session[methodKey]?:'facebook'
 		
 		String view = 'auth'
 		String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
