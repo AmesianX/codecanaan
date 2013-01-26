@@ -5,12 +5,11 @@ $('#close-menu-button').click(function() {
     $('#content-container').removeClass('span9 padding-rightside').addClass('span12 padding-around');
 });
 </r:script>
-<ul class="nav nav-pills nav-stacked" style="font-size:10pt">
-    <li class="disabled"><a href="#">${course?.title}</a></li>
+<ul class="nav nav-pills nav-stacked" style="font-size:11pt">
     <li class="${!lesson?'active':''}">
         <g:link controller="course" action="show" id="${course?.id}">
             <!--課程首頁-->
-            <g:message code="course.index.text" />
+            <i class="icon icon-book"></i> ${course?.title}</a>
         </g:link>
     </li>
     <g:each in="${course?.lessons}" var="${row}" status="i">

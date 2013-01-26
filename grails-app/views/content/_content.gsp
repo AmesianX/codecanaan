@@ -53,12 +53,34 @@
         <div class="page-header">
             <g:link controller="content" action="deckjs" id="${content.id}" params="[fullscreen: true]" class="btn pull-right element-request-fullscreen" data-element="deckjs-iframe" target="_blank"><i class="icon icon-fullscreen"></i></g:link>
             <h1>${content.title} <small><g:message code="content.contentType.${content.type}" default="Content" /></small></h1>
+            <g:if test="${content.subtitle}">
+                <p><small>${content.subtitle}</small></p>
+            </g:if>
+            <g:if test="${content.authors}">
+                <p><small>作者：${content.authors}</small></p> 
+            </g:if>
+            <g:if test="${content.level}">
+                <p><small>難易度：${content.level}</small></p> 
+            </g:if>
         </div>
         <iframe id="deckjs-iframe" width="100%" height="400" src="${createLink(controller:'content', action:'deckjs', id:content.id)}" style="width:100%;height:480px;border:none"></iframe>
     </g:if>
     <g:else>
         <div class="page-header">
             <h1>${content.title} <small><g:message code="content.contentType.${content.type}" default="Content" /></small></h1>
+            <g:if test="${content.subtitle}">
+                <p><small>${content.subtitle}</small></p> 
+            </g:if>
+            <g:if test="${content.authors}">
+                <p><small>作者：
+                    ${content.authors}
+                </small></p> 
+            </g:if>
+            <g:if test="${content.level}">
+                <p><small>難易度：
+                    <g:each in="${1..content.level}"><i class="icon icon-star"></i></g:each><g:each in="${1..5-content.level}"><i class="icon icon-star-empty"></i></g:each>
+                </small></p> 
+            </g:if>
         </div>
         <!--講義或練習-->
         <div class="markdown-source font-resizable">${content.description?.encodeAsHTML()}</div>

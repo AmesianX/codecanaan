@@ -16,6 +16,7 @@
             <g:textField name="title" value="${content.title}" class="input input-xlarge" />
         </div>
     </div>
+
     <div class="control-group">
         <label class="control-label" for="subtitle">
             <!--副標題-->
@@ -25,6 +26,7 @@
             <g:textField name="subtitle" value="${content.subtitle}" class="input input-xlarge" />
         </div>
     </div>
+    
     <div class="control-group">
         <label class="control-label" for="authors">
             <!--作者-->
@@ -34,6 +36,7 @@
             <g:textField name="authors" value="${content.authors}" class="input input-xlarge" />
         </div>
     </div>
+    
     <div class="control-group">
         <label class="control-label" for="alias">
             <!--別名-->
@@ -43,6 +46,18 @@
             <g:textField name="alias" value="${content.alias}" class="input input-medium" />
         </div>
     </div>
+
+     <div class="control-group">
+        <label class="control-label" for="level">
+            <!--別名-->
+            <g:message code="content.level.label" />
+        </label>
+        <div class="controls">
+            <g:select name="level" from="${1..5}" value="${content.level}" />
+        </div>
+    </div>
+
+
 
     <!--教材內容-->
     <ul class="nav nav-tabs">

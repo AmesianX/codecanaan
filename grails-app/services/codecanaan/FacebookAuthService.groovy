@@ -34,4 +34,12 @@ class FacebookAuthService {
     void afterCreate(FacebookUser user, FacebookAuthToken token) {
         log.info("User created: $user for fb user: $token.uid")
     }
+
+    /*
+    void updateToken(Object facebookUser, FacebookAuthToken token) {
+        log.error "--- debug start ---"
+        log.error facebookUser
+        log.error token
+    }
+    */
 }

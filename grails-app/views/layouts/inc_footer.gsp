@@ -12,18 +12,9 @@
 				<li><g:link url="/page/partner">合作夥伴</g:link></li>
 				<li><g:link url="/page/about">關於我們</g:link></li>
 				<li><g:link url="/page/contact">聯絡我們</g:link></li>
-				<li><a href="#"><small class="muted">|</small></a></li>
+				<li class="disabled"><a href="#"><small class="muted"> | </small></a></li>
 				<li><g:link url="/?lang=zh_TW">中文版</g:link></li>
 				<li><g:link url="/?lang=en">English</g:link></li>
-				<!--<li class="dropdown">
-					<g:link class="dropdown-toggle" data-toggle="dropdown" url="#">
-						Languages
-						<b class="caret"></b>
-					</g:link>
-					<ul class="dropdown-menu">
-
-					</ul>
-				</li>-->
 			</ul>
 		</div>
 		<div class="span3">

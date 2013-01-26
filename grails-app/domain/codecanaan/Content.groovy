@@ -28,6 +28,11 @@ class Content {
     String authors
 
     /**
+     * 難度設定（1-5，預設為 3）
+     */
+    int level = 3
+
+    /**
      * 主要內容敘述（以 Markdown 原始格式保存）
      */
     String description

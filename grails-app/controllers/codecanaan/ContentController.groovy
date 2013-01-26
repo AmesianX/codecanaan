@@ -68,7 +68,6 @@ class ContentController {
             return
         }
         
-
         def content = new Content(params)
 
         //預設為講義
@@ -85,6 +84,9 @@ class ContentController {
 
         //內容建立者
         content.creator = user
+
+        //預設作者為建立者
+        content.authors = user.fullName
 
         //儲存
         content.save(flush: true)
