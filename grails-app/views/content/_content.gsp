@@ -65,6 +65,11 @@
     </g:else>
 </section>
 
+<g:if test="${content.hint}">
+    <h2>提示</h2>
+    <div class="markdown-source font-resizable">${content.hint?.encodeAsHTML()}</div>
+</g:if>
+
 <sec:ifLoggedIn>
     <!--程式碼區塊-->
     <g:if test="${content.type!=codecanaan.ContentType.CODE}">

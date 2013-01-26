@@ -43,6 +43,8 @@
             <g:textField name="alias" value="${content.alias}" class="input input-medium" />
         </div>
     </div>
+
+    <!--教材內容-->
     <ul class="nav nav-tabs">
         <li class="active">
             <a href="#tab-editor" data-toggle="tab">
@@ -65,7 +67,7 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="tab-editor">
-            <div class="wmd-panel">
+            <div class="wmd-panel wmd-editor">
                 <div id="wmd-button-bar"></div>
                 <g:textArea name="description" cols="40" rows="20" value="${content.description}" class="wmd-input enable-tabkey" id="wmd-input" />
             </div>
@@ -77,6 +79,32 @@
             <iframe id="attachment-frame" src="${createLink(action:'attachmentList', id: content?.id)}"></iframe>
         </div>
     </div>
+
+    <!--提示內容-->
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#tab-hint-editor" data-toggle="tab">
+                提示內容
+            </a>
+        </li>
+        <li>
+            <a href="#tab-hint-preview" data-toggle="tab">
+                提示預覽
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab-hint-editor">
+            <div class="wmd-panel wmd-editor" data-suffix="-hint">
+                <div id="wmd-button-bar-hint"></div>
+                <g:textArea name="hint" cols="40" rows="20" value="${content.hint}" class="wmd-input enable-tabkey" id="wmd-input-hint" />
+            </div>
+        </div>
+        <div class="tab-pane" id="tab-hint-preview">
+            <div id="wmd-preview-hint" class="wmd-panel wmd-preview"></div>
+        </div>
+    </div>
+
 
     <!--測驗題-->
 

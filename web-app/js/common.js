@@ -151,11 +151,11 @@ function winHeight() {
     });
     
     //Markdown 編輯處理
-    if ($('.wmd-panel').size() > 0) {
-        var converter1 = Markdown.getSanitizingConverter();
-        var editor1 = new Markdown.Editor(converter1);
-        editor1.run();
-    }
+    $('.wmd-editor').each(function(index) {
+        var converter = Markdown.getSanitizingConverter();
+        var editor = new Markdown.Editor(converter, $(this).data('suffix'));
+        editor.run();
+    });
   
 	// Hightlight.js only support MSIE 9+ and other modern browsers
 	if (!$.browser.msie || ($.browser.msie && $.browser.version.slice(0,1)>8)) {

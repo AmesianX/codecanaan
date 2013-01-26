@@ -15,7 +15,7 @@
         </div>
         <div class="span9 padding-rightside justfont">
             <div class="page-header">
-                <h2>${post?.title}</h2>
+                <h1>${post?.title}</h1>
             </div>
             
             <div class="markdown-source">${post?.content?.encodeAsHTML()}</div>
