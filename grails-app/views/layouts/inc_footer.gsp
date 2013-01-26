@@ -23,7 +23,7 @@
 	</div>
 	<div role="contentinfo">
 		<p>Copyright &copy; CodeCanaan Software R&amp;D All rights reserved.</p>
-		<p>迦南地軟體設計壹學院，本網站由思創軟體版權所有</p>
+		<p>零壹學院網站由思創軟體版權所有</p>
 	</div>
 	<div id="spinner" class="spinner" style="display:none;"><p class="text-info"><g:message code="spinner.alt" default="Loading&hellip;"/></p></div>
 </div>

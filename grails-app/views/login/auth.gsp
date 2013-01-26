@@ -32,7 +32,7 @@
                 </li>
             </ul>
             
-            <p>壹學院目前開放會員使用 <a href="http://facebook.com/" target="_blank">Facebook</a> 帳號直接登入，免除麻煩的註冊手續！</p>
+            <p>零壹學院目前開放會員使用 <a href="http://facebook.com/" target="_blank">Facebook</a> 帳號直接登入，免除麻煩的註冊手續！</p>
         </div>
     </div>
     <div class="span8 padding-rightside">

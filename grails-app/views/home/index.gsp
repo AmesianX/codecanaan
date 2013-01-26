@@ -13,13 +13,13 @@
             <div id="da-slider" class="da-slider justfont">
                 <div class="da-slide">
                     <h2>動手，學會寫程式</h2>
-                    <p class="justfont-force">只有讓學習者自己動手練習撰寫程式，才能獲得最好的學習效果。「壹學院」提供的豐富學習教材，提供比一般書籍題庫更大量的實作練習。</p>
+                    <p class="justfont-force">只有讓學習者自己動手練習撰寫程式，才能獲得最好的學習效果。「零壹學院」提供的豐富學習教材，提供比一般書籍題庫更大量的實作練習。</p>
                     <!--<a href="#" class="da-link">連結</a>-->
                     <div class="da-img"><img src="http://lyhcode.com/assets/themes/gravis/img/parallax-slider/imac.png" alt="image01" /></div>
                 </div>
                 <div class="da-slide">
                     <h2>閱讀，享受高品質</h2>
-                    <p class="justfont-force">「壹學院」比傳統 e-Learning 平台更重視教材閱讀品質，採用更完美的「信黑體」專業級中文網頁字型，並支援高解析度的平板閱讀器，提供媲美印刷等級的無障礙舒適閱讀。</p>
+                    <p class="justfont-force">「零壹學院」比傳統 e-Learning 平台更重視教材閱讀品質，採用更完美的「信黑體」專業級中文網頁字型，並支援高解析度的平板閱讀器，提供媲美印刷等級的無障礙舒適閱讀。</p>
                     <!--<a href="#" class="da-link">Read more</a>-->
                     <div class="da-img"><img src="http://lyhcode.com/assets/themes/gravis/img/parallax-slider/ipad-mini.png" alt="image02" /></div>
                 </div>
