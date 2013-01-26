@@ -80,7 +80,7 @@
     <hr />
             
     <div class="padding-around textalign-center">
-        <g:link action="step4" class="btn btn-large btn-primary">繼續下一個步驟 »</g:link>
+        <g:link action="step4" class="btn btn-large btn-primary"><i class="icon icon-double-angle-right"></i> 繼續下一個步驟</g:link>
     </div>
 </div>
 

@@ -1,6 +1,8 @@
+<%@ page import="codecanaan.*" %>
+
 <!--檢查作者權限-->
 <g:if test="${authoring}">
-
+    
     <div class="btn-toolbar pull-right">
 
         <!--字型調整按鈕-->
@@ -127,7 +129,7 @@
         <div class="tab-content">
         
             <div class="tab-pane active" id="tab-editor">
-                <g:textArea name="sourceEdit" value="${(record?.sourceCode)?record.sourceCode:content.partialCode}" data-mode="${cmmode(type:content.sourceType)}" data-height="500" cols="40" rows="20" class="codemirror-auto" />
+                <g:textArea name="sourceEdit" value="${record?.sourceCode?:content.partialCode}" data-mode="${cmmode(type:content.sourceType)}" data-height="500" cols="40" rows="20" class="codemirror-auto" />
             </div>
             <div class="tab-pane" id="tab-myoutput"><pre id="program-output" style="height:500px;overflow:auto">${record?.output}</pre></div>
             <div class="tab-pane" id="tab-output"><pre style="height:500px;overflow:auto">${content.output}</pre></div>
@@ -142,11 +144,42 @@
     </g:elseif>
     <g:elseif test="${content.type==codecanaan.ContentType.QUIZ}">
         <!--隨堂測驗-->
-        <p>請在方框內填寫你的答案</p>
-        <div style="padding:.5em">
-            <g:textArea name="myanswer" value="${record?.answer}" class="input input-xlarge" rows="5" /><br/>
-            <button id="cmdSubmit" class="btn btn-primary">回答</button>
-        </div>
+
+        <g:if test="${content.quizType==QuizType.SHORT_ANSWER}">
+            <!--簡答題-->
+            <p>請在方框內填寫你的答案。</p>
+            <div class="margin-around">
+                <g:textArea name="myanswer" value="${record?.answer?.trim()?:content.quizOption?.trim()}" class="input input-xlarge" rows="5" /><br/>
+            </div>
+        </g:if>
+        <g:elseif test="${content.quizType==QuizType.SINGLE_CHOICE}">
+            <p>請選擇合適的答案（單選）。</p>
+            <div class="margin-around">
+                <g:radioGroup name="myanswer" labels="${content.quizOption?.trim().split('\n')?.collect{it?.trim()}}" values="${content.quizOption?.trim().split('\n')?.collect{it?.trim()}}" value="${record?.answer?.trim()}" >
+                    <label>${it.radio} ${it.label}</label>
+                </g:radioGroup>
+            </div>
+        </g:elseif>
+        <g:elseif test="${content.quizType==QuizType.MULTIPLE_CHOICE}">
+            <p>請選擇合適的答案（多選題）。</p>
+            <div class="margin-around">
+                <g:set var="stdAnswers" value="${content?.answer?.split('\n').collect{it?.trim()}}" />
+                <g:set var="lastAnswers" value="${record?.answer?.split('\n').collect{it?.trim()}}" />
+                <g:each in="${content.quizOption?.trim().split('\n')?.collect{it?.trim()}}" var="label" status="i">
+                    <label><g:checkBox name="myanswer" value="${label}" checked="${lastAnswers?.contains(label)}" data-answer="${stdAnswers?.contains(label)}" /> ${label}</label>
+                </g:each>
+            </div>
+        </g:elseif>
+        <g:elseif test="${content.quizType==QuizType.TRUE_FALSE}">
+            <p>是非題。</p>
+            <div class="margin-around">
+                <g:radioGroup name="myanswer" labels="['True', 'False']" values="['TRUE', 'FALSE']" value="${record?.answer?.trim().toUpperCase()}" >
+                    <label>${it.radio} ${it.label}</label>
+                </g:radioGroup>
+            </div>
+        </g:elseif>
+
+        <button id="cmdSubmit" data-type="${content.quizType}" class="btn btn-primary">回答</button>
     </g:elseif>
 
 </sec:ifLoggedIn>

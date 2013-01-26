@@ -75,7 +75,7 @@ class CourseService {
         content.title       = "填寫內容標題"
         content.description = """請撰寫教學內容（以下格式僅供參考）。
 
-### 內容子標題 ###
+## 內容子標題 ##
 
 * 項目1
 * 項目2

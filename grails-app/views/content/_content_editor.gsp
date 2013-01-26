@@ -78,6 +78,42 @@
         </div>
     </div>
 
+    <!--測驗題-->
+
+    <!--TODO: 選項與測驗類型 -->
+    
+    <div class="control-group">
+        <label class="control-label" for="quizType">
+            <!--測驗類型-->
+            <g:message code="content.quizType.label" />
+        </label>
+        <div class="controls">
+            <g:select name="quizType" from="${codecanaan.QuizType?.values()}" keys="${codecanaan.QuizType.values()*.name()}" required="" value="${content.quizType?.name()}" />
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="quizOption">
+            <!--測驗選項-->
+            <g:message code="content.quizOption.label" />
+        </label>
+        </label>
+        <div class="controls">
+            <g:textArea name="quizOption" value="${content.quizOption}" class="input input-xlarge" rows="5" />
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="answer">
+            <!--標準答案-->
+            <g:message code="content.answer.label" />
+        </label>
+        </label>
+        <div class="controls">
+            <g:textArea name="answer" value="${content.answer}" class="input input-xlarge" rows="5" />
+        </div>
+    </div>
+
     <div class="control-group">
         <label class="control-label" for="sourceType">
             <!--程式碼類型-->
@@ -96,21 +132,6 @@
         </label>
         <div class="controls">
             <g:textField name="sourcePath" value="${content.sourcePath}" class="input input-xlarge" />
-        </div>
-    </div>
-
-    <!--測驗題-->
-
-    <!--TODO: 選項與測驗類型 -->
-
-    <div class="control-group">
-        <label class="control-label" for="answer">
-            <!--標準答案-->
-            <g:message code="content.answer.label" />
-        </label>
-        </label>
-        <div class="controls">
-            <g:textArea name="answer" value="${content.answer}" class="input input-xlarge" />
         </div>
     </div>
 

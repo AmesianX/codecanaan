@@ -1,26 +1,6 @@
 package codecanaan
 
 /**
- * 內容類型
- */
-public enum ContentType {
-    TUTORIAL,   //講義
-    SLIDE,      //簡報
-    QUIZ,       //測驗題（學科）
-    CODE;       //實作題（術科）
-}
-
-/**
- * 原始碼語言類型
- */
-public enum SourceType {
-    JAVA,       // Java
-    C,          // C
-    CPP,        // C++
-    SCHEME;     // Scheme
-}
-
-/**
  * 學習內容
  */
 class Content {
@@ -53,24 +33,31 @@ class Content {
     String description
 
     /**
+     * 提示（Markdown）
+     */
+    String hint
+
+    /**
      * 內容別名（如有設定可顯示友善網址）
      */
     String alias
 
     //---------- 測驗題專用欄位 ----------
 
-    //TODO Options 預設選項, AnswertType 測驗類型（單選、多選、）
+    /**
+     * 測驗類型
+     */
+    QuizType quizType
 
     /**
      * 選項（以換行分隔多個選項）
      */
-    String options
+    String quizOption
 
     /**
      * 標準答案
      */
     String answer
-
 
     //---------- 實作題專用欄位 ----------
 
@@ -137,19 +124,21 @@ class Content {
 
     static constraints = {
         //基本欄位
-        title blank: false
-        subtitle nullable: true, blank: true
-        authors nullable: true, blank: true
+        title       blank: false
+        subtitle    nullable: true, blank: true
+        authors     nullable: true, blank: true
         description blank: true, maxSize: 1024*1024
-        alias nullable: true
+        hint        nullable: true, blank: true, maxSize: 1024*1024
+        alias       nullable: true
 
         //測驗題
-        options nullable: true, empty: true, maxSize: 1024
-        answer  nullable: true, empty: true, maxSize: 255
+        quizType    nullable: true, empty: true
+        quizOption  nullable: true, empty: true, maxSize: 1024
+        answer      nullable: true, empty: true, maxSize: 255
 
         //實作題
-        sourceCode  nullable: true, empty: true, maxSize: 1024*1024
         sourceType  nullable: true, empty: true
+        sourceCode  nullable: true, empty: true, maxSize: 1024*1024
         sourcePath  nullable: true, empty: true, maxSize: 128
         partialCode nullable: true, empty: true, maxSize: 1024*1024
         output      nullable: true, empty: true, maxSize: 1024*1024

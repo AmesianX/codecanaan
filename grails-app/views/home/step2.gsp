@@ -76,14 +76,14 @@
                 
             </div>
 
-            <button class="show-details btn">顯示每個步驟的畫面</button>
+            <button class="show-details btn"><i class="icon icon-picture"></i> 顯示或隱藏步驟畫面</button>
             
         </div>
             
         <hr/>
             
         <div class="padding-around textalign-center">
-            <g:link action="step3" class="btn btn-large btn-primary">繼續下一個步驟 »</g:link>
+            <g:link action="step3" class="btn btn-large btn-primary"><i class="icon icon-double-angle-right"></i> 繼續下一個步驟</g:link>
         </div>
     </div>
 </div>

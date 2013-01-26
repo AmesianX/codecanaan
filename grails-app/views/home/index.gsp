@@ -148,16 +148,19 @@
     <r:img dir="images/logoset" file="logoset.png" />
 </div>
 
-<div class="clearlook-wrapper padding-around">
-    <div class="row-fluid">
-        <div class="span9">
-            <p class="larger-font" style="text-align:center">立即開始體驗！歡迎使用 Facebook 帳號直接登入。</p>
-        </div>
-        <div class="span3">
-            <facebookAuth:connect permissions="email,user_about_me" />
+<sec:ifNotLoggedIn>
+    <!--快速登入-->
+    <div class="clearlook-wrapper padding-around">
+        <div class="row-fluid">
+            <div class="span9">
+                <p class="larger-font" style="text-align:center">立即開始體驗！歡迎使用 Facebook 帳號直接登入。</p>
+            </div>
+            <div class="span3">
+                <facebookAuth:connect permissions="email,user_about_me" />
+            </div>
         </div>
     </div>
-</div>
+</sec:ifNotLoggedIn>
 
 </body>
 </html>

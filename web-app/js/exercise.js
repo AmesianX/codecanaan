@@ -323,17 +323,61 @@
     });
 
     $('#cmdSubmit').click(function() {
-        var ans = $('#myanswer').val();
-        var passed = fnCheckAnswer(ans);
+        var type = $(this).data('type');
+
+        var ans = '';
+        var passed = false;
+        
+        if (!type || type == 'SHORT_ANSWER') {
+            //簡答題
+            ans = $('#myanswer').val();
+            passed = trim($('#answer').val())==trim(ans);
+            bootbox.alert(passed?'恭喜你答對了！':'答錯了，請再試一次！');
+        }
+        else if (type == 'SINGLE_CHOICE') {
+            //單選題
+            ans = $("input[name='myanswer']:checked").val();
+            passed = trim($('#answer').val())==trim(ans);
+            bootbox.alert(passed?'恭喜你答對了！':'答錯了，請再試一次！');
+        }
+        else if (type == 'MULTIPLE_CHOICE') {
+            //多選題
+            var aans = new Array();
+            var checkOptions = $("input[name='myanswer']:checked");
+            var answerOptions = $("input[name='myanswer'][data-answer='true']");
+
+            if (checkOptions.size() != answerOptions.size()) {
+                bootbox.alert('請選擇 '+answerOptions.size()+' 個項目！');
+            }
+
+            //正確答案全部必選
+            var check1 = $("input[name='myanswer'][data-answer='true']:not(:checked)").size();
+            //錯誤答案全部不選
+            var check2 = $("input[name='myanswer'][data-answer!='true']:checked").size();
+
+            passed = (check1 == 0 && check2 == 0);
+            bootbox.alert(passed?'恭喜你答對了！':'答錯了，請再試一次！');
+
+            //重新組成作答結果
+            checkOptions.each(function(index) {
+                aans.push($(this).val());
+            });
+            ans = aans.join('\n');
+        }
+        else if (type == 'TRUE_FALSE') {
+            //是非題
+            
+            //讀取使用者選擇的答案
+            ans = $("input[name='myanswer']:checked").val();
+            
+            //判斷結果
+            passed = ($("#answer").val().toUpperCase() == ans);
+            bootbox.alert(passed?'恭喜你答對了！':'答錯了，請再試一次！');
+        }
+
         fnSaveRecord({
             passed: passed,
             answer: ans
         });
-        if (passed) {
-            bootbox.alert('恭喜你答對了！');
-        }
-        else {
-            bootbox.alert('答錯了，請再試一次！');
-        }
     });
 })();

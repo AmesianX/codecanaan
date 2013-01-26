@@ -70,7 +70,10 @@
         <hr />
         
         <div class="padding-around textalign-center">
-            <button type="submit" class="btn btn-large btn-primary">開始使用課程 »</button>
+            <button type="submit" class="btn btn-large btn-primary">
+                <i class="icon icon-double-angle-right"></i>
+                繼續開始使用課程
+            </button>
         </div>
     </div>
 
