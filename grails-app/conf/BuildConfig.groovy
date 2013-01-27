@@ -49,8 +49,8 @@ grails.project.dependency.resolution = {
 
         runtime 'mysql:mysql-connector-java:5.1.22'
 
-        compile 'org.springframework.social:spring-social-core:1.0.0.RELEASE'
-        compile 'org.springframework.social:spring-social-facebook:1.0.0.RELEASE'
+        compile 'org.springframework.social:spring-social-core:1.1.0.RELEASE'
+        compile 'org.springframework.social:spring-social-facebook:1.0.2.RELEASE'
 
         runtime 'net.java.dev.jets3t:jets3t:0.9.0'
         
