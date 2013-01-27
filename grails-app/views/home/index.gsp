@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<div class="row margin-below">
+<div class="row margin-below hidden-phone">
     <div class="span12 clearlook-wrapper">
         <!-- start: Slider -->
         <div class="slider-wrapper">
