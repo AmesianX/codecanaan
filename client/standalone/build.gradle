@@ -57,7 +57,7 @@ jar {
 
 startScripts {
 	doLast {
-		String opts = '-Dcore.client.port=1337 -Dcore.http.origin=* -Dcore.toolkits.url="http://codecanaan.com/webstart/toolkits.zip" -Dcore.script.type=groovy -Dcore.script.url="http://codecanaan.com/webstart/script"'
+		String opts = '-Dcore.client.port=1337 -Dcore.http.origin=* -Dcore.toolkits.url="http://assets.codecanaan.com/webstart/toolkits.zip" -Dcore.script.type=groovy -Dcore.script.url="http://codecanaan.com/webstart/script"'
 
 		windowsScript.text = windowsScript.text.replace('%CC_OPTS%', opts)
 		unixScript.text = unixScript.text.replace('$CC_OPTS', opts)
