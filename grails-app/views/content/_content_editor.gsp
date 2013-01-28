@@ -57,8 +57,6 @@
         </div>
     </div>
 
-
-
     <!--教材內容-->
     <ul class="nav nav-tabs">
         <li class="active">
@@ -120,6 +118,30 @@
         </div>
     </div>
 
+    <!--教案內容-->
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#tab-material-editor" data-toggle="tab">
+                教案內容
+            </a>
+        </li>
+        <li>
+            <a href="#tab-material-preview" data-toggle="tab">
+                教案預覽
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab-material-editor">
+            <div class="wmd-panel wmd-editor" data-suffix="-material">
+                <div id="wmd-button-bar-material"></div>
+                <g:textArea name="material" cols="40" rows="20" value="${content.material}" class="wmd-input enable-tabkey" id="wmd-input-material" />
+            </div>
+        </div>
+        <div class="tab-pane" id="tab-material-preview">
+            <div id="wmd-preview-material" class="wmd-panel wmd-preview"></div>
+        </div>
+    </div>
 
     <!--測驗題-->
     <legend>以下為測驗題專用欄位</legend>

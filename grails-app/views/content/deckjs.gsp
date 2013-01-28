@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="${resource(dir: 'deckjs/extensions/navigation', file: 'deck.navigation.css')}">
 <link rel="stylesheet" href="${resource(dir: 'deckjs/extensions/status', file: 'deck.status.css')}">
 <link rel="stylesheet" href="${resource(dir: 'deckjs/extensions/hash', file: 'deck.hash.css')}">
+<link rel="stylesheet" href="${resource(dir: 'deckjs/extensions/scale', file: 'deck.scale.css')}">
 <!-- Theme CSS files (menu swaps these out) -->
 <link rel="stylesheet" id="style-theme-link" href="${resource(dir: 'deckjs/themes/style', file: 'web-2.0.css')}">
 <link rel="stylesheet" id="transition-theme-link" href="${resource(dir: 'deckjs/themes/transition', file: 'horizontal-slide.css')}">
@@ -29,28 +30,11 @@
 </head>
 <body class="deck-container justfont">
 
-<!--<div class="theme-menu">
-	<h2>Themes</h2>	
-	
-	<label for="style-themes">Style:</label>
-	<select id="style-themes">
-		<option selected value="themes/style/web-2.0.css">Web 2.0</option>
-		<option value="themes/style/swiss.css">Swiss</option>
-		<option value="themes/style/neon.css">Neon</option>
-		<option value="">None</option>
-	</select>
-	
-	<label for="transition-themes">Transition:</label>
-	<select id="transition-themes">
-		<option selected value="themes/transition/horizontal-slide.css">Horizontal Slide</option>
-		<option value="themes/transition/vertical-slide.css">Vertical Slide</option>
-		<option value="themes/transition/fade.css">Fade</option>
-		<option value="">None</option>
-	</select>
-</div>-->
-
 <section class="slide no-md" id="title-slide">
-	<h1>${content?.title}</h1>
+    <h1>
+        ${content?.title}
+        <small>${content?.subtitle}</small>
+    </h1>
 </section>
 
 <g:each var="section" status="i" in="${content?.description?.split('----------')}">
@@ -84,6 +68,7 @@
 <script src="${resource(dir: 'deckjs/extensions/status', file: 'deck.status.js')}"></script>
 <script src="${resource(dir: 'deckjs/extensions/navigation', file: 'deck.navigation.js')}"></script>
 <script src="${resource(dir: 'deckjs/extensions/hash', file: 'deck.hash.js')}"></script>
+<script src="${resource(dir: 'deckjs/extensions/scale', file: 'deck.scale.js')}"></script>
 <script src="${resource(dir: 'deckjs/extensions/markdown', file: 'Markdown.Converter.js')}"></script>
 <script src="${resource(dir: 'deckjs/extensions/markdown', file: 'deck.markdown.js')}"></script>
 
@@ -100,7 +85,8 @@ $(function() {
     }
 
 	// Turn on slides
-	$.deck('.slide');
+    $.deck('.slide');
+    $.deck('enableScale');
 });
 </script>
 </body>

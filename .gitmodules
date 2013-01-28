@@ -10,3 +10,6 @@
 [submodule "web-app/codemirror"]
 	path = web-app/codemirror
 	url = git://github.com/marijnh/CodeMirror.git
+[submodule "web-app/deckjs"]
+	path = web-app/deckjs
+	url = git@github.com:codecanaan/deck.js.git

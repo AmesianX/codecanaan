@@ -43,6 +43,11 @@ class Content {
     String hint
 
     /**
+     * 教案（Markdown）
+     */
+    String material
+
+    /**
      * 內容別名（如有設定可顯示友善網址）
      */
     String alias
@@ -134,12 +139,13 @@ class Content {
         authors     nullable: true, blank: true
         description blank: true, maxSize: 1024*1024
         hint        nullable: true, blank: true, maxSize: 1024*1024
+        material    nullable: true, blank: true, maxSize: 1024*1024
         alias       nullable: true
 
         //測驗題
         quizType    nullable: true, empty: true
         quizOption  nullable: true, empty: true, maxSize: 1024
-        answer      nullable: true, empty: true, maxSize: 255
+        answer      nullable: true, empty: true, maxSize: 1024
 
         //實作題
         sourceType  nullable: true, empty: true
