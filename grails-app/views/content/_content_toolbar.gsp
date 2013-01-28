@@ -1,6 +1,7 @@
-<div class="btn-toolbar pull-right">
+<%@ page import="codecanaan.*" %>
 
-    <g:if test="content.type==ContentType.SLIDE">
+<div class="btn-toolbar pull-right">
+    <g:if test="${content.type==ContentType.SLIDE}">
         <!--簡報全螢幕按鈕-->
         <g:link controller="content" action="deckjs" id="${content.id}" params="[fullscreen: true]" class="btn element-request-fullscreen" data-element="deckjs-iframe" target="_blank">
             <i class="icon icon-fullscreen"></i>
