@@ -6,21 +6,11 @@
     <div class="btn-toolbar pull-right">
 
         <!--字型調整按鈕-->
-        <div class="btn-group">
+        <div class="btn-group hidden-phone">
             <a class="btn" id="jfontsize-m" href="#"><i class="icon icon-minus"></i></a>
             <a class="btn" id="jfontsize-d" href="#"><i class="icon icon-font"></i></a>
             <a class="btn" id="jfontsize-p" href="#"><i class="icon icon-plus"></i></a>
         </div>
-        <r:script type="text/javascript" language="javascript">
-            $('.font-resizable').jfontsize({
-                btnMinusClasseId: '#jfontsize-m',
-                btnDefaultClasseId: '#jfontsize-d',
-                btnPlusClasseId: '#jfontsize-p',
-                btnMinusMaxHits: 5,
-                btnPlusMaxHits: 8,
-                sizeChange: 5
-            });
-        </r:script>
         
         <!--新增內容選單-->
         <g:render template="/content/addmenu" />
@@ -89,7 +79,7 @@
 
 <g:if test="${content.hint}">
     <h2>提示</h2>
-    <div class="markdown-source font-resizable">${content.hint?.encodeAsHTML()}</div>
+    <div class="markdown-source">${content.hint?.encodeAsHTML()}</div>
 </g:if>
 
 <sec:ifLoggedIn>
@@ -182,7 +172,7 @@
         <g:elseif test="${content.quizType==QuizType.SINGLE_CHOICE}">
             <p>請選擇合適的答案（單選）。</p>
             <div class="margin-around">
-                <g:radioGroup name="myanswer" labels="${content.quizOption?.trim().split('\n')?.collect{it?.trim()}}" values="${content.quizOption?.trim().split('\n')?.collect{it?.trim()}}" value="${record?.answer?.trim()}" >
+                <g:radioGroup name="myanswer" labels="${content.quizOption?.trim()?.split('\n')?.collect{it?.trim()}}" values="${content.quizOption?.trim()?.split('\n')?.collect{it?.trim()}}" value="${record?.answer?.trim()}" >
                     <label>${it.radio} ${it.label}</label>
                 </g:radioGroup>
             </div>
@@ -190,9 +180,9 @@
         <g:elseif test="${content.quizType==QuizType.MULTIPLE_CHOICE}">
             <p>請選擇合適的答案（多選題）。</p>
             <div class="margin-around">
-                <g:set var="stdAnswers" value="${content?.answer?.split('\n').collect{it?.trim()}}" />
-                <g:set var="lastAnswers" value="${record?.answer?.split('\n').collect{it?.trim()}}" />
-                <g:each in="${content.quizOption?.trim().split('\n')?.collect{it?.trim()}}" var="label" status="i">
+                <g:set var="stdAnswers" value="${content?.answer?.trim()?.split('\n').collect{it?.trim()}}" />
+                <g:set var="lastAnswers" value="${record?.answer?.trim()?.split('\n').collect{it?.trim()}}" />
+                <g:each in="${content.quizOption?.trim()?.split('\n')?.collect{it?.trim()}}" var="label" status="i">
                     <label><g:checkBox name="myanswer" value="${label}" checked="${lastAnswers?.contains(label)}" data-answer="${stdAnswers?.contains(label)}" /> ${label}</label>
                 </g:each>
             </div>

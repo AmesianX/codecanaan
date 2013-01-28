@@ -134,12 +134,22 @@ h1 small, h2 small, h3 small, h4 small {
 
 /* 投影用大字型 */
 .justfont.larger-font {
-	p, li {
-		font-size: 18pt;
+	p, li, blockquote {
+		font-size: 16pt;
 	}
-	pre, code {
-	    font-size: 16pt;
+	pre, code, textarea {
+	    font-size: 14pt;
 	}
+}
+
+/* 縮小字型 */
+.justfont.smaller-font {
+    p, li, blockquote {
+        font-size: 11pt;
+    }
+    pre, code, textarea {
+        font-size: 9pt;
+    }
 }
 
 /*------------------- Theming ---------------------------*/

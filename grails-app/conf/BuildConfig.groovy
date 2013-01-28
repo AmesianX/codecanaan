@@ -17,6 +17,14 @@ grails.project.fork = [
 ]
 */
 
+// Exclude files from a generated war
+grails.war.resources = { stagingDir, args ->
+    //delete (file: "${stagingDir}/WEB-INF/lib/hibernate-core-3.3.1.GA.jar")
+    delete { fileset(dir: "${stagingDir}/bootswatch", includes: '*') }
+    delete { fileset(dir: "${stagingDir}/font-awesome", includes: '*') }
+    delete { fileset(dir: "${stagingDir}/images", includes: '*.psd') }
+};
+
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
