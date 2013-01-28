@@ -122,9 +122,8 @@
 
 
     <!--測驗題-->
+    <legend>以下為測驗題專用欄位</legend>
 
-    <!--TODO: 選項與測驗類型 -->
-    
     <div class="control-group">
         <label class="control-label" for="quizType">
             <!--測驗類型-->
@@ -157,6 +156,9 @@
         </div>
     </div>
 
+    <!--實作題-->
+    <legend>以下為實作題專用欄位</legend>
+
     <div class="control-group">
         <label class="control-label" for="sourceType">
             <!--程式碼類型-->
@@ -180,7 +182,11 @@
 
     <!--實作練習-->
     <div class="btn-group pull-right">
-        <a href="#" id="cmdDump" class="btn"><i class="icon icon-play"></i> <!--執行測試--><g:message code="default.execution.text" /></a>
+        <a href="#" id="cmdDump" class="btn btn-success">
+            <i class="icon icon-play"></i> 
+            <!--執行測試-->
+            <g:message code="default.execution.text" />
+        </a>
     </div>
     <ul class="nav nav-tabs">
         <li class="active"><a href="#tab-sourceCode" data-toggle="tab">

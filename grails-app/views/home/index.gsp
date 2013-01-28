@@ -49,7 +49,14 @@
 <div class="row-fluid clearlook-wrapper margin-below">
     <div class="span8 padding-around">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#announce-tab" data-toggle="tab" class="effect-text-shadow larger-font"><g:message code="postType.ANNOUNCE.label" /></a></li>
+            <li class="active">
+                <a href="#announce-tab" data-toggle="tab" class="effect-text-shadow">
+                    <small>
+                        <i class="icon icon-bell"></i>
+                        <g:message code="postType.ANNOUNCE.label" />
+                    </small>
+                </a>
+            </li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="announce-tab">
@@ -64,7 +71,10 @@
                         </g:each>
                     </ul>
                     <div style="text-align:right">
-                        <g:link controller="post" action="list" class="btn"><g:message code="default.more.label" args="[message(code:'postType.ANNOUNCE.label')]" /></g:link>
+                        <g:link controller="post" action="list" class="btn">
+                            <!--閱讀更多-->
+                            <g:message code="default.more.text" />
+                        </g:link>
                     </div>
                 </g:if>
                 <g:else>
