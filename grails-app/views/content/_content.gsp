@@ -239,7 +239,7 @@
             <li class="disabled"><span>« 上一題</span></li>
         </g:else>
 
-        <li class="active"><span>第 ${currentIndex + 1} 題 / 共 ${lastIndex + 1} 題</span></li>
+        <li class="disabled hidden-phone"><span>第 ${currentIndex + 1} 題 / 共 ${lastIndex + 1} 題</span></li>
 
         <!--下一題-->
         <g:if test="${content&&currentIndex<lastIndex}">
