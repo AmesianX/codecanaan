@@ -390,7 +390,7 @@ iframe#attachment-frame {
 
     /*border-top: 3px solid #dadada;*/
     border-top: 1px solid #000000;
-    @include single-box-shadow(#252525, 0, 0, 10px, 3px);
+    @include single-box-shadow(#505050, 0, 0, 5px, 1px);
     
     a {
         color: #bdbdbd;
