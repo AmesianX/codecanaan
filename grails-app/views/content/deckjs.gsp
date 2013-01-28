@@ -90,9 +90,15 @@
 <!-- Initialize the deck. You can put this in an external file if desired. -->
 <script javascript="text/javascript">
 $(function() {
-	//Pretty Code with Highlight.js
-    hljs.initHighlightingOnLoad();
-    
+    // Hightlight.js only support MSIE 9+ and other modern browsers
+	if (!$.browser.msie || ($.browser.msie && $.browser.version.slice(0,1)>8)) {
+		//Pretty Code with Highlight.js
+        if (hljs) {
+            hljs.tabReplace = '    '; //4 spaces
+            hljs.initHighlightingOnLoad();
+        }
+    }
+
 	// Turn on slides
 	$.deck('.slide');
 });

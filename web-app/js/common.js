@@ -144,18 +144,20 @@ function winHeight() {
     $('[rel=tooltip]').tooltip();
 
     //Markdown 顯示處理
-    var converter = new Markdown.Converter();
-    $('.markdown-source').each(function(index) {
-        $(this).html(converter.makeHtml($(this).text()));
-        $(this).show();
-    });
-    
-    //Markdown 編輯處理
-    $('.wmd-editor').each(function(index) {
-        var converter = Markdown.getSanitizingConverter();
-        var editor = new Markdown.Editor(converter, $(this).data('suffix'));
-        editor.run();
-    });
+    if (Markdown) {
+        var converter = new Markdown.Converter();
+        $('.markdown-source').each(function(index) {
+            $(this).html(converter.makeHtml($(this).text()));
+            $(this).show();
+        });
+        
+        //Markdown 編輯處理
+        $('.wmd-editor').each(function(index) {
+            var converter = Markdown.getSanitizingConverter();
+            var editor = new Markdown.Editor(converter, $(this).data('suffix'));
+            editor.run();
+        });
+    }
  
     // 字型調整按鈕，允許變更 justfont 區域的字型大小
     $('#jfontsize-m').click(function() {
@@ -171,7 +173,10 @@ function winHeight() {
 	// Hightlight.js only support MSIE 9+ and other modern browsers
 	if (!$.browser.msie || ($.browser.msie && $.browser.version.slice(0,1)>8)) {
 		//Pretty Code with Highlight.js
-	    hljs.initHighlightingOnLoad();
+        if (hljs) {
+            hljs.tabReplace = '    '; //4 spaces
+            hljs.initHighlightingOnLoad();
+        }
 	}
 
     //Affix Sidebar
@@ -191,8 +196,9 @@ function winHeight() {
     */
 
     //init codemirror
-    $('.codemirror-auto').each(function() {
-    
+    if (CodeMirror) $('.codemirror-auto').each(function() {
+   
+        // retrieve editor config from html5 data attributes
         var id = $(this).prop('id');
         var mode = $(this).data('mode');
         var height = $(this).data('height');
@@ -231,5 +237,17 @@ function winHeight() {
             }
         });
     });
+    
+    if (CodeMirror) $('.codemirror-auto-runmode').each(function() {
+        var _this = $(this);
 
+        // retrieve editor config from html5 data attributes
+        var mode = _this.data('mode');
+
+        // 模擬成 document.getElementById 的物件（為了通過 runmode 檢查）
+        var node = _this.get(0);
+        node.nodeType = 1;
+
+        CodeMirror.runMode(_this.text(), mode, node);
+    });
 })();

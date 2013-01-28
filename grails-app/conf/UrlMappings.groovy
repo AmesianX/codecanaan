@@ -39,13 +39,21 @@ class UrlMappings {
 			}
 		}
 		
-		"/content/file/$id/$file" {
+		"/content/$id/files/$file" {
 		    controller = "content"
 		    action = "attachment"
 		    constraints {
 		        id(matches:/\d+/)
 		    }
 		}
+
+		"/content/$id/src/$file" {
+		    controller = "content"
+		    action = "downloadSource"
+		    constraints {
+		        id(matches:/\d+/)
+            }
+        }
 		
 		"/page/$name" {
 			controller = "post"

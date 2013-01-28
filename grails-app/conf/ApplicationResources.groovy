@@ -61,7 +61,7 @@ modules = {
     }
 
     common {
-        dependsOn 'jquery, jquery-ui, jquery-plugins'
+        dependsOn 'jquery, jquery-ui, jquery-plugins, codemirror, pagedown, bootstrap-ext'
         //defaultBundle 'common'
 		defaultBundle __bundleName
 
@@ -99,23 +99,28 @@ modules = {
     pagedown {
         //defaultBundle 'coding-tools'
 		defaultBundle __bundleName
-        
+       
+        //css
         resource url: 'pagedown/pagedown.css'
-        resource url: 'pagedown/Markdown.Converter.js', disposition: 'head'
-        resource url: 'pagedown/Markdown.Sanitizer.js', disposition: 'head'
-        resource url: 'pagedown/Markdown.Editor.js', disposition: 'head'
+        
+        //js
+        resource url: 'pagedown/Markdown.Converter.js'
+        resource url: 'pagedown/Markdown.Sanitizer.js'
+        resource url: 'pagedown/Markdown.Editor.js'
     }
 
     codemirror {
         //defaultBundle 'coding-tools'
 		defaultBundle __bundleName
         
+        //css
         resource url: 'codemirror/lib/codemirror.css'
-        resource url: 'codemirror/lib/codemirror.js', disposition: 'head'
-        resource url: 'codemirror/mode/clike/clike.js', disposition: 'head'
-        resource url: 'codemirror/mode/scheme/scheme.js', disposition: 'head'
-        resource url: 'codemirror/lib/util/runmode-standalone.js', disposition: 'head'
-        //resource url: 'codemirror/lib/util/jquery.codemirror.js', disposition: 'head'
+
+        //js
+        resource url: 'codemirror/lib/codemirror.js'
+        resource url: 'codemirror/mode/clike/clike.js'
+        resource url: 'codemirror/mode/scheme/scheme.js'
+        resource url: 'codemirror/addon/runmode/runmode.js'
     }
 
     highlightjs {
