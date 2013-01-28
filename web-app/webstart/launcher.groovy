@@ -184,50 +184,52 @@ UIManager.put('swing.boldMetal', Boolean.FALSE)
 
 /*----------- 顯示工作列圖示 ------------*/
 
-def iconFile = new File(tempdir, 'play-icon.png').absolutePath
+if(SystemTray.isSupported()) {
 
-if (isWindows || isLinux) {
-    iconFile = new File(tempdir, 'play-icon-16.png').absolutePath
-}
+    //讀取 Tray Icon 圖示檔
+    def iconFile = new File(tempdir, 'play-icon.png').absolutePath
 
-//if(!SystemTray.isSupported())	  	
-def popup = new PopupMenu()
-def trayIcon = new java.awt.TrayIcon(Toolkit.defaultToolkit.getImage(iconFile))
-def tray = SystemTray.systemTray
-
-// Create a popup menu components
-MenuItem aboutItem = new MenuItem('About')
-MenuItem exitItem = new MenuItem('Exit')
-
-//Add components to popup menu
-popup.add(aboutItem)
-popup.add(exitItem)
-
-trayIcon.setPopupMenu(popup)
-
-try {
-    tray.add(trayIcon)
-} catch (Exception e) {
-    println 'TrayIcon could not be added.'
-	println e.message
-}
-
-def aboutAction = new ActionListener() {
-    public void actionPerformed(ActionEvent e) {
-        JOptionPane.showMessageDialog null, 'CodeCanaan Client Tools'
+    if (isWindows || isLinux) {
+        iconFile = new File(tempdir, 'play-icon-16.png').absolutePath
     }
-}
 
-trayIcon.addActionListener(aboutAction)
-aboutItem.addActionListener(aboutAction)
+    def popup = new PopupMenu()
+    def trayIcon = new java.awt.TrayIcon(Toolkit.defaultToolkit.getImage(iconFile))
+    def tray = SystemTray.systemTray
 
-exitItem.addActionListener(new ActionListener() {
-    public void actionPerformed(ActionEvent e) {
-        tray.remove(trayIcon)
-        System.exit(0)
+    // Create a popup menu components
+    MenuItem aboutItem = new MenuItem('About')
+    MenuItem exitItem = new MenuItem('Exit')
+
+    //Add components to popup menu
+    popup.add(aboutItem)
+    popup.add(exitItem)
+
+    trayIcon.setPopupMenu(popup)
+
+    try {
+        tray.add(trayIcon)
+    } catch (Exception e) {
+        println 'TrayIcon could not be added.'
+        println e.message
     }
-})
 
+    def aboutAction = new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            JOptionPane.showMessageDialog null, 'CodeCanaan Client Tools'
+        }
+    }
+
+    trayIcon.addActionListener(aboutAction)
+    aboutItem.addActionListener(aboutAction)
+
+    exitItem.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            tray.remove(trayIcon)
+            System.exit(0)
+        }
+    })
+}
 
 /*---------- 關閉已執行服務 -----------*/
 

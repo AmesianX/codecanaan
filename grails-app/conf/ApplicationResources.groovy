@@ -114,7 +114,7 @@ modules = {
         resource url: 'codemirror/lib/codemirror.js', disposition: 'head'
         resource url: 'codemirror/mode/clike/clike.js', disposition: 'head'
         resource url: 'codemirror/mode/scheme/scheme.js', disposition: 'head'
-        resource url: 'codemirror/lib/util/runmode.js', disposition: 'head'
+        resource url: 'codemirror/lib/util/runmode-standalone.js', disposition: 'head'
         //resource url: 'codemirror/lib/util/jquery.codemirror.js', disposition: 'head'
     }
 
