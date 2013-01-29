@@ -19,15 +19,15 @@
             
             <ul class="icons">
                 <li>
-                    <i class="icon-ok icon-2x icon-green"></i>
+                    <i class="icon-ok icon-green"></i>
                     更多的教材內容
                 </li>
                 <li>
-                    <i class="icon-ok icon-2x icon-green"></i>
+                    <i class="icon-ok icon-green"></i>
                     完整的課程功能
                 </li>
                 <li>
-                    <i class="icon-ok icon-2x icon-green"></i>
+                    <i class="icon-ok icon-green"></i>
                     個人學習記錄雲端儲存
                 </li>
             </ul>

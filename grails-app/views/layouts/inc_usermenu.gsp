@@ -14,11 +14,17 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="icon icon-user"></i>
-                <!--<sec:username />-->
                 <g:displayUserName />
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
+                <li>
+                    <g:link controller="home" action="client">
+                        <i class="icon icon-download"></i>
+                        <!--客戶端工具-->
+                        <g:message code="default.client.tools.text" />
+                    </g:link>
+                </li>
                 <li>
                     <g:link controller="user" action="profile">
                         <i class="icon icon-user-md"></i>
@@ -44,20 +50,15 @@
                         </g:link>
                     </li>
                 </sec:ifAnyGranted>
-                <li>
-                    <g:link controller="home" action="client">
-                        <i class="icon icon-download"></i>
-                        <!--客戶端工具-->
-                        <g:message code="default.client.tools.text" />
-                    </g:link>
-                </li>
-                <li>
-                    <g:link uri="/j_spring_security_logout">
-                        <i class="icon icon-off"></i>
-                        <!--登出-->
-                        <g:message code="default.logout.text" />
-                    </g:link>
-                </li>
+                <sec:ifNotSwitched>
+                    <li>
+                        <g:link uri="/j_spring_security_logout">
+                            <i class="icon icon-off"></i>
+                            <!--登出-->
+                            <g:message code="default.logout.text" />
+                        </g:link>
+                    </li>
+                </sec:ifNotSwitched>
                 <sec:ifSwitched>
                     <li>
                         <a href='${request.contextPath}/j_spring_security_exit_user'>

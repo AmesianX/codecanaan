@@ -103,8 +103,12 @@ class HomeController {
                 
                 //先檢查課程是否真的是開放式課程
                 if (oc) {
-                    //設定為課程的註冊學生
-                    UserCourse.create(user, c, RegType.STUDENT)
+                    //只處理使用者尚未註冊的課程，避免重複註冊
+                    def exists = UserCourse.findByUserAndCourse(user, c)
+                    if (!exists) {
+                        //設定為課程的註冊學生
+                        UserCourse.create(user, c, RegType.STUDENT)
+                    }
                 }
             }
             
@@ -115,7 +119,11 @@ class HomeController {
             //註冊到系統使用手冊課程
             def shc = Course.findByName('system-help')
             if (shc) {
-                UserCourse.create(user, shc, RegType.STUDENT)
+                //只處理使用者尚未註冊的課程，避免重複註冊
+                def exists = UserCourse.findByUserAndCourse(user, shc)
+                if (!exists) {
+                    UserCourse.create(user, shc, RegType.STUDENT)
+                }
             }
             
             if (shc) {

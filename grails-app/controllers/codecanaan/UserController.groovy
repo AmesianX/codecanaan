@@ -9,6 +9,22 @@ class UserController {
     def s3Service
 
     /**
+     * 顯示使用者個人資料
+     */
+    def show(Long id) {
+        def user = User.get(id)
+
+        if (!user) {
+            response.sendError 404
+            return
+        }
+
+        def editable = springSecurityService.currentUser==user
+
+        [user: user, editable: editable]
+    }
+
+    /**
      * 個人資料
      */
     @Secured(['ROLE_USER'])
@@ -21,7 +37,10 @@ class UserController {
             user.save(flush: true)
         }
 
-        [user: user]
+        [
+            user: user,
+            fbuser: FacebookUser.findByUser(user)
+        ]
     }
 
     /**

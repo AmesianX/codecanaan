@@ -21,8 +21,10 @@ grails.project.fork = [
 grails.war.resources = { stagingDir, args ->
     //delete (file: "${stagingDir}/WEB-INF/lib/hibernate-core-3.3.1.GA.jar")
     delete { fileset(dir: "${stagingDir}/bootswatch", includes: '*') }
+    delete { fileset(dir: "${stagingDir}/swatchmaker", includes: '*') }
     delete { fileset(dir: "${stagingDir}/font-awesome", includes: '*') }
     delete { fileset(dir: "${stagingDir}/images", includes: '*.psd') }
+    delete { fileset(dir: "${stagingDir}/sass", includes: '*') }
 };
 
 grails.project.dependency.resolution = {

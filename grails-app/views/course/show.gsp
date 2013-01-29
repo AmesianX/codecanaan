@@ -13,6 +13,9 @@
         </div>
         <div id="content-container" class="span9">
             <div class="clearlook-wrapper padding-around justfont">
+                <!--Breadcrumb-->
+                <g:render template="/course/breadcrumb" />
+
                 <g:if test="${authoring&&params.editor}">
                     <!--切換編輯介面-->
                     <g:render template="course_editor"/>

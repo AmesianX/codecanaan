@@ -108,11 +108,11 @@
     <div class="span6 product-marketing">
         <p class="slogan">專業程式語言認證教學平台，首創雲端教室讓您的學習如虎添翼</p>
         <ul class="features icons">
-            <li><i class="icon-ok icon-2x icon-green"></i> 整合 Facebook 帳號登入</li>
-            <li><i class="icon-ok icon-2x icon-green"></i> 完美結合 TQC+ 軟體設計領域認證題庫與教材</li>
-            <li><i class="icon-ok icon-2x icon-green"></i> 大量強調手腦並用的程式碼實作練習題</li>
-            <li><i class="icon-ok icon-2x icon-green"></i> 雲端教室數位學習服務，教學零負擔</li>
-            <li><i class="icon-ok icon-2x icon-green"></i> 創新的網頁式整合開發環境，支援自動化編譯與測試</li>
+            <li><i class="icon-ok icon-green"></i> 整合 Facebook 帳號登入</li>
+            <li><i class="icon-ok icon-green"></i> 完美結合 TQC+ 軟體設計領域認證題庫與教材</li>
+            <li><i class="icon-ok icon-green"></i> 大量強調手腦並用的程式碼實作練習題</li>
+            <li><i class="icon-ok icon-green"></i> 雲端教室數位學習服務，教學零負擔</li>
+            <li><i class="icon-ok icon-green"></i> 創新的網頁式整合開發環境，支援自動化編譯與測試</li>
         </ul>
         <div class="controls">
             <g:link controller="course" action="show" id="9" class="btn btn-large btn-primary">開始使用 »</g:link>

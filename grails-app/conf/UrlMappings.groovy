@@ -15,6 +15,14 @@ class UrlMappings {
         
         "404" (controller: 'error', action: 'notFound')
 
+		"/user/$id?" {
+			controller = "user"
+			action = "show"
+			constraints {
+				id(matches:/\d+/)
+			}
+		}
+
 		"/course/$id?" {
 			controller = "course"
 			action = "show"
