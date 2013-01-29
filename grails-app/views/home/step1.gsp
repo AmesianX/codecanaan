@@ -16,7 +16,7 @@
     </div>
 
     <div class="row-fluid clearlook-wrapper justfont">
-        <div class="span4 padding-leftside" style="padding-top:60px;padding-left:40px">
+        <div class="span4 padding-leftside">
             
             <p>登入後享有會員權利...</p>
             

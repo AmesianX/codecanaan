@@ -70,6 +70,9 @@
                     <i class="icon-edit"></i>
                 </g:else>
                 <g:link controller="content" action="show" id="${content.id}">${content.title}</g:link>
+                <g:each in="${1..content.level}">
+                    <g:img dir="images" file="star-16.png" />
+                </g:each>
             </li>
         </g:each>
     </ul>
