@@ -121,6 +121,8 @@ modules = {
         resource url: 'codemirror/mode/clike/clike.js'
         resource url: 'codemirror/mode/scheme/scheme.js'
         resource url: 'codemirror/addon/runmode/runmode.js'
+        //resource url: 'codemirror/addon/fold/collapserange.js'
+        resource url: 'codemirror/addon/fold/foldcode.js'
     }
 
     highlightjs {

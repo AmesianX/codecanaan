@@ -203,7 +203,10 @@ function winHeight() {
         var mode = $(this).data('mode');
         var height = $(this).data('height');
         
-        editors[id] = CodeMirror.fromTextArea(this, {
+        // folding support
+        var foldFunc = CodeMirror.newFoldFunction(CodeMirror.braceRangeFinder);
+
+        var editor = editors[id] = CodeMirror.fromTextArea(this, {
             lineNumbers: true,
             matchBrackets: true,
             mode: mode,
@@ -220,20 +223,26 @@ function winHeight() {
                 },
                 "Tab": function(cm) {
                     cm.replaceSelection("    ", "end");
+                },
+                "Ctrl-Q": function(cm) {
+                    foldFunc(cm, cm.getCursor().line);
                 }
             }
         });
-        editors[id].setSize(null, height);
-        
+        editor.on("gutterClick", foldFunc);
+        editor.setSize(null, height);
+
         $('.CodeMirror').resizable({
             handles: 's',
             grid: 50,
             maxHeight: 1000,
             minHeight: 300,
-            stop: function() { editors[id].refresh(); },
+            stop: function() {
+                editor.refresh();
+            },
             resize: function() {
-                editors[id].setSize($(this).width(), $(this).height());
-                editors[id].refresh();
+                editor.setSize($(this).width(), $(this).height());
+                editor.refresh();
             }
         });
     });
