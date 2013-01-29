@@ -17,4 +17,8 @@ class CourseControllerTests extends GroovyTestCase {
         //controller = new CourseController()
     }
 
+    void test1() {
+        //nothing
+        assert true
+    }
 }
