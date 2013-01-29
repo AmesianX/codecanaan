@@ -137,7 +137,7 @@ class Content {
         title       blank: false
         subtitle    nullable: true, blank: true
         authors     nullable: true, blank: true
-        description blank: true, maxSize: 1024*1024
+        description nullable: true, blank: true, maxSize: 1024*1024
         hint        nullable: true, blank: true, maxSize: 1024*1024
         material    nullable: true, blank: true, maxSize: 1024*1024
         alias       nullable: true

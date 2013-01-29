@@ -263,26 +263,33 @@ class CourseController {
         }
 
         //建立使用者連結
-        if (params.create) {
-            def user = User.findByUsernameOrEmail(params.username, params.username)
+        if (params.create != null) {
+            if (params.email) {
+                def user = User.findByEmail(params.email)
 
-            if (user) {
-                def link = UserCourse.findOrCreateWhere(user: user, course: course)
+                if (user) {
+                    def link = UserCourse.findOrCreateWhere(user: user, course: course)
 
-                //已有"作者"權限就不進行權限變更
-                if (link.regType != RegType.AUTHOR) {
-                    link.regType = RegType.USER
+                    //已有"作者"權限就不進行權限變更
+                    if (link.regType != RegType.AUTHOR) {
+                        link.regType = RegType.USER
+                    }
+
+                    //儲存連結
+                    if (link.save(flush: true)) {
+                        //連結成功
+                        flash.message = message(code: 'default.created.message', args: [user?.fullName, message(code: 'user.label')])
+                    }
                 }
-
-                //儲存連結
-                if (link.save(flush: true)) {
-                    //連結成功
-                    flash.message = message(code: 'default.created.message', args: [1, message(code: 'user.label')])
+                else {
+                    flash.message = "無法找到使用者，請重新輸入一次。"
                 }
             }
-
+            else {
+                flash.message = "請輸入正確的電子郵件信箱。"
+            }
         }
-        else if (params.delete) {
+        else if (params.delete != null) {
             def ok = 0
 
             params.list('selected').each {

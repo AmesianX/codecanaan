@@ -146,8 +146,11 @@ class HomeController {
      */
     def client() {
         def user = springSecurityService.currentUser
-        
+       
+        def section = 'client_'+(params.section?:'execute')
+
         [
+            section: section,
             clientPort: user?.clientPort?:1337
         ]
     }

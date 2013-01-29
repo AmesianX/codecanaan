@@ -43,21 +43,23 @@
 	</div>
 </header>
 
-<div class="container" role="main">
-	
-	<!--GoogleChromeFrame-->
-	<g:render template="/layouts/alert_chromeframe" />
+<div role="main">
+    <div class="container">	
+        <!--GoogleChromeFrame-->
+        <g:render template="/layouts/alert_chromeframe" />
 
-	<!--ClientTools-->
-	<g:render template="/layouts/alert_clienttools" />
-	
-	<!--快閃訊息-->
-	<g:if test="${flash.message}">
-		<div class="alert" role="status">
-			<button type="button" class="close" data-dismiss="alert">×</button>
-            <p>${flash.message}</p>
-		</div>
-	</g:if>
+        <!--ClientTools-->
+        <g:render template="/layouts/alert_clienttools" />
+        
+        <!--快閃訊息-->
+        <g:if test="${flash.message}">
+            <div class="alert" role="status">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <p>${flash.message}</p>
+            </div>
+        </g:if>
+    </div>
+
 	<!--主畫面內容-->
 	<g:layoutBody/>
 </div>

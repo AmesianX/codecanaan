@@ -23,6 +23,13 @@ class UrlMappings {
 			}
 		}
 
+		"/client/$section?" {
+		    controller = "home"
+		    action = "client"
+		    constraints {
+            }
+        }
+
 		"/course/$id?" {
 			controller = "course"
 			action = "show"
