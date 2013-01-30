@@ -182,6 +182,7 @@
                         width           : '100%',
                         height          : '100%',
                         autoScale       : false,
+                        autoSize        : false,
                         transitionIn    : 'none',
                         transitionOut   : 'none',
                         type            : 'iframe'
@@ -350,6 +351,7 @@
                         width           : '100%',
                         height          : '100%',
                         autoScale       : false,
+                        autoSize        : false,
                         transitionIn    : 'none',
                         transitionOut   : 'none',
                         type            : 'iframe'
