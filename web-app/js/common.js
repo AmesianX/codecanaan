@@ -205,13 +205,21 @@ function winHeight() {
         // folding support
         var foldFunc = CodeMirror.newFoldFunction(CodeMirror.braceRangeFinder);
 
+        var tabWidth = 4;
+        var tabString = "     ";
+
+        if (mode == 'text/html') {
+            tabWidth = 2;
+            tabString = "   ";
+        }
+
         var editor = editors[id] = CodeMirror.fromTextArea(this, {
             lineNumbers: true,
             matchBrackets: true,
             mode: mode,
-            indentUnit: 4,
+            indentUnit: tabWidth,
             smartIndent: true,
-            tabSize: 4,
+            tabSize: tabWidth,
             indentWithTabs: false,
             extraKeys: {
                 "F11": function(cm) {
@@ -221,7 +229,7 @@ function winHeight() {
                     //if (isFullScreen(cm)) setFullScreen(cm, false);
                 },
                 "Tab": function(cm) {
-                    cm.replaceSelection("    ", "end");
+                    cm.replaceSelection(tabString, "end");
                 },
                 "Ctrl-Q": function(cm) {
                     foldFunc(cm, cm.getCursor().line);
