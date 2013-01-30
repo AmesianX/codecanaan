@@ -205,11 +205,15 @@ function winHeight() {
         
         // folding support
         var foldFunc = CodeMirror.newFoldFunction(CodeMirror.braceRangeFinder);
+        var foldFunc_html = CodeMirror.newFoldFunction(CodeMirror.tagRangeFinder);
 
         var tabWidth = 4;
         var tabString = "     ";
 
+        var isHTML = false;
+
         if (mode == 'text/html') {
+            isHTML = true;
             tabWidth = 2;
             tabString = "   ";
         }
@@ -234,10 +238,18 @@ function winHeight() {
                 },
                 "Ctrl-Q": function(cm) {
                     foldFunc(cm, cm.getCursor().line);
+                    if (isHTML) {
+                        foldFunc_html(cm, cm.getCursor().line);
+                    }
                 }
             }
         });
-        editor.on("gutterClick", foldFunc);
+        editor.on("gutterClick", function(cm, line) {
+            foldFunc(cm, line);
+            if (isHTML) {
+                foldFunc_html(cm, line);
+            }
+        });
         editor.setSize(null, height);
 
         $('.CodeMirror').resizable({

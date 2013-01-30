@@ -48,20 +48,20 @@
     <!--實作練習-->
     <div class="btn-toolbar">
         <div class="btn-group">
-            <a href="${createLink(controller:'content',action:'source',id:content?.id,params: [file: content.sourcePath])}" id="cmdPlay" class="btn btn-large btn-success">
+            <a href="${createLink(controller:'content',action:'source',id:content?.id,params: [file: content.sourcePath])}" id="cmdPlay" class="btn btn-success">
                 <i class="icon icon-play"></i>
                 執行測試
             </a>
         </div>
         <div class="btn-group">
-            <a href="#" id="cmdSave" class="btn btn-large">
+            <a href="#" id="cmdSave" class="btn btn-small">
                 <span class="hide visible-while-save-progress"><i class="icon icon-spinner icon-spin"></i></span>
                 <span class="hidden-while-save-progress"><i class="icon icon-save"></i></span>
                 儲存
             </a>
-            <a href="#" id="cmdUndo" class="btn btn-large"><i class="icon icon-undo"></i> 復原</a>
-            <a href="#" id="cmdRedo" class="btn btn-large"><i class="icon icon-repeat"></i> 取消復原</a>
-            <a href="#" id="cmdReset" class="btn btn-large"><i class="icon icon-magic"></i> 清除重做</a>
+            <a href="#" id="cmdUndo" class="btn btn-small"><i class="icon icon-undo"></i> 復原</a>
+            <a href="#" id="cmdRedo" class="btn btn-small"><i class="icon icon-repeat"></i> 取消復原</a>
+            <a href="#" id="cmdReset" class="btn btn-small"><i class="icon icon-magic"></i> 清除重做</a>
         </div>
     </div>
 
