@@ -2,9 +2,28 @@
 <button id="close-menu-button" type="button" class="close" title="不顯示選單">×</button>
 <r:script>
 $('#close-menu-button').click(function() {
+
+    var _backup = $('#menu-container').clone(true);
+    var _parent = $('#menu-container').parent();
+
     $('#menu-container').remove();
     $('#content-container').removeClass('span9 padding-rightside').addClass('span12 padding-around');
+
+    $.cookie('_clsm', '1');
+
+    var a = $('<a href="#"><i class="icon icon-list" style="position:absolute;left:0;top:100px;"></i></a>');
+    a.appendTo('body');
+    a.click(function() {
+        _parent.prepend(_backup);
+        $('#content-container').addClass('span9 padding-rightside').removeClass('span12 padding-around');
+        a.remove();
+        $.removeCookie('_clsm');
+    });
 });
+
+if ($.cookie('_clsm')) {
+    $('#close-menu-button').click();
+}
 </r:script>
 <ul class="nav nav-pills nav-stacked" style="font-size:11pt">
     <li class="${!lesson?'active':''}">

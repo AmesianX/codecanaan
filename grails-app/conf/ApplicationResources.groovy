@@ -58,6 +58,7 @@ modules = {
         
         resource url: 'jquery-plugins/jquery.textarea.min.js'
         resource url: 'jquery-plugins/jquery.jfontsize.js'
+        resource url: 'jquery-plugins/jquery.cookie.js'
     }
 
     common {
