@@ -164,19 +164,41 @@ class ContentController {
     /**
      * 下載原始碼
      */
-    def downloadSource(Long id) {
+    def source(Long id) {
+        
+        def user = springSecurityService.currentUser
+        
         def content = Content.get(id)
+        
         if (!content) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'content.label', default: 'Content'), id])
             redirect(url: '/')
             return
         }
 
-        //fixme: 資料夾斜線處理
-        def filename = content.sourcePath?content.sourcePath:'untitled.txt'
-        response.addHeader('Content-disposition', "attachment; filename=${filename}")
+        if (params.attachment != null) {
+            //fixme: 資料夾斜線處理
+            def filename = content.sourcePath?content.sourcePath:'untitled.txt'
+            
+            response.addHeader('Content-disposition', "attachment; filename=${filename}")
+        }
 
-        render(text: content.sourceCode, contentType:"text/plain", encoding:"UTF-8")
+        def contentType = 'text/plain'
+
+        //TODO: mime support
+        if (content.sourceType==SourceType.HTML) {
+            contentType = 'text/html'
+        }
+
+        def text = content.partialCode
+        
+        def record = Record.findByUserAndContent(user, content)
+
+        if (record) {
+            text = record.sourceCode
+        }
+
+        render text: text, contentType: contentType, encoding: "UTF-8"
     }
 
     /**

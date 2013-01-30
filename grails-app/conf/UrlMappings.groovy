@@ -64,7 +64,7 @@ class UrlMappings {
 
 		"/content/$id/src/$file" {
 		    controller = "content"
-		    action = "downloadSource"
+		    action = "source"
 		    constraints {
 		        id(matches:/\d+/)
             }

@@ -45,5 +45,9 @@
             <i class="icon icon-beaker"></i>
             <g:message code="content.contentType.CODE" /> Scheme
         </g:link></li>
+        <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'CODE', sourceType: 'HTML']" class="auto-loadmask">
+            <i class="icon icon-beaker"></i>
+            <g:message code="content.contentType.CODE" /> HTML
+        </g:link></li>
     </ul>
 </div>

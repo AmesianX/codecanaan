@@ -142,7 +142,24 @@
             var sourceCode = editor.getValue();
             var correctOutput = $('#output').val();
 
-            if (sourceType=='SCHEME') {
+            if (sourceType=='HTML') {
+
+                var __codecanaan_html = window.open("/loading.html", '__codecanaan_html','fullscreen=yes,top=0,left=0,width='+screen.width+',height='+screen.height+',location=no,menubar=no,resizable=no,scrollbars=no,titlebar=no,toolbar=no,status=no',false);
+                __codecanaan_html.moveTo(0, 0);
+                __codecanaan_html.focus();
+
+                var __href = $(this).attr('href') + '?_t=' + new Date().getTime();
+
+                //先暫存程式碼再執行
+                fnSaveRecord({
+                    sourceType: sourceType,
+                    sourcePath: sourcePath,
+                    sourceCode: sourceCode
+                }, function() {
+                    __codecanaan_html.location = __href;
+                });
+            }
+            else if (sourceType=='SCHEME') {
                 
                 //先暫存程式碼再執行
                 fnSaveTemp({
@@ -247,7 +264,13 @@
             var type = $('#sourceType').val();
             
             //Simple detect, only support scheme and c-like this time
-            var cmmode = (type=='SCHEME'?'text/x-scheme':'text/x-csrc');
+            var cmmode = 'text/x-csrc';
+            if (type=='SCHEME') {
+                cmmode = 'text/x-scheme';
+            }
+            else if (type=='HTML') {
+                cmmode = 'text/html';
+            }
             
             editors['sourceCode'].setOption("mode", cmmode);
             editors['partialCode'].setOption("mode", cmmode);

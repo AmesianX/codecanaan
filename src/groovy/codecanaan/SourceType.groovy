@@ -7,6 +7,7 @@ public enum SourceType {
     JAVA,       // Java
     C,          // C
     CPP,        // C++
-    SCHEME;     // Scheme
+    SCHEME,     // Scheme
+    HTML;       // HTML
 }
 

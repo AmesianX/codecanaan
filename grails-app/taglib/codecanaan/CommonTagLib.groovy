@@ -16,7 +16,10 @@ class CommonTagLib {
     def cmmode = { attr, body ->
         if (attr && attr.type) {
             if (attr.type.toString().toLowerCase()=='scheme') {
-               out << 'text/x-scheme'
+                out << 'text/x-scheme'
+            }
+            else if (attr.type.toString().toLowerCase()=='html') {
+                out << 'text/html'
             }
             else {
                 out << 'text/x-csrc'

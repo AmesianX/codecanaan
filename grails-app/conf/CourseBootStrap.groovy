@@ -159,6 +159,22 @@ class CourseBootStrap {
                 lesson: tl
             ).save(flush: true)
         }
+
+        def c4_5 = Content.findByLessonAndTypeAndSourceType(tl, ContentType.CODE, SourceType.HTML)
+        if (!c4_5) {
+            new Content(
+                type: ContentType.CODE,
+                title: '實作題 HTML',
+                description: '請參考網頁顯示結果',
+                level: 3,
+                sourceType: SourceType.HTML,
+                sourceCode: "<html>\n<head>\n<title>title</title>\n</head>\n<body>\n</body>\n</html>",
+                sourcePath: "index.html",
+                partialCode: "<html>\n<head>\n</head>\n<body>\n</body>\n</html>",
+                output: "",
+                lesson: tl
+            ).save(flush: true)
+        }
     }
 
     def destroy = {
