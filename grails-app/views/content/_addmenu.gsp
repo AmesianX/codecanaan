@@ -13,9 +13,21 @@
             <i class="icon icon-picture"></i>
             <g:message code="content.contentType.SLIDE" />
         </g:link></li>
-        <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'QUIZ']" class="auto-loadmask">
+        <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'QUIZ', quizType: 'SINGLE_CHOICE']" class="auto-loadmask">
             <i class="icon icon-edit"></i>
-            <g:message code="content.contentType.QUIZ" />
+            <g:message code="content.quizType.SINGLE_CHOICE" />
+        </g:link></li>
+        <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'QUIZ', quizType: 'MULTIPLE_CHOICE']" class="auto-loadmask">
+            <i class="icon icon-edit"></i>
+            <g:message code="content.quizType.MULTIPLE_CHOICE" />
+        </g:link></li>
+        <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'QUIZ', quizType: 'TRUE_FALSE']" class="auto-loadmask">
+            <i class="icon icon-edit"></i>
+            <g:message code="content.quizType.TRUE_FALSE" />
+        </g:link></li>
+        <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'QUIZ', quizType: 'SHORT_ANSWER']" class="auto-loadmask">
+            <i class="icon icon-edit"></i>
+            <g:message code="content.quizType.SHORT_ANSWER" />
         </g:link></li>
         <li><g:link controller="content" action="create" params="['lesson.id': lesson?.id, type: 'CODE', sourceType: 'JAVA']" class="auto-loadmask">
             <i class="icon icon-beaker"></i>
