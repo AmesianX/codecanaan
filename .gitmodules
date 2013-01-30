@@ -13,3 +13,6 @@
 [submodule "web-app/deckjs"]
 	path = web-app/deckjs
 	url = git@github.com:codecanaan/deck.js.git
+[submodule "web-app/fancybox"]
+	path = web-app/fancybox
+	url = git://github.com/fancyapps/fancyBox.git

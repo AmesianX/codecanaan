@@ -144,10 +144,6 @@
 
             if (sourceType=='HTML') {
 
-                var __codecanaan_html = window.open("/loading.html", '__codecanaan_html','fullscreen=yes,top=0,left=0,width='+screen.width+',height='+screen.height+',location=no,menubar=no,resizable=no,scrollbars=no,titlebar=no,toolbar=no,status=no',false);
-                __codecanaan_html.moveTo(0, 0);
-                __codecanaan_html.focus();
-
                 var __href = $(this).attr('href') + '?_t=' + new Date().getTime();
 
                 //先暫存程式碼再執行
@@ -156,7 +152,11 @@
                     sourcePath: sourcePath,
                     sourceCode: sourceCode
                 }, function() {
-                    __codecanaan_html.location = __href;
+                    var link = $('<a/>');
+                    link.data('fancybox-type', 'iframe');
+                    link.attr('href', __href);
+                    link.fancybox();
+                    link.click();
                 });
             }
             else if (sourceType=='SCHEME') {
@@ -378,6 +378,7 @@
 
             //正確答案全部必選
             var check1 = $("input[name='myanswer'][data-answer='true']:not(:checked)").size();
+            
             //錯誤答案全部不選
             var check2 = $("input[name='myanswer'][data-answer!='true']:checked").size();
 

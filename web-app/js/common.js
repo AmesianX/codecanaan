@@ -132,8 +132,9 @@ function winHeight() {
 	});
 
     // Enable loadmask
-    $('.auto-loadmask').click(function() {
-        $('body').append('<div class="modal-backdrop"></div>');
+    $('a.auto-loadmask, .auto-loadmask a').click(function() {
+        //$('body').append('<div class="modal-backdrop"></div>');
+        $('<div class="modal"><div class="modal-body"><i class="icon-spinner icon-spin"></i> Loading...</p></div></div>').modal();
     });
     
     // Fix for textarea "TAB" keydown

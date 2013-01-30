@@ -10,7 +10,7 @@
     </ol>
     
     <!--登入按鈕-->
-    <div style="padding:30px">
+    <div class="padding-around auto-loadmask">
 	    <facebookAuth:connect permissions="email,user_about_me" />
     </div>
     

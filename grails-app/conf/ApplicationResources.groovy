@@ -129,6 +129,14 @@ modules = {
         resource url: 'codemirror/addon/fold/foldcode.js'
     }
 
+    fancybox {
+        dependsOn 'jquery'
+        defaultBundle __bundleName
+
+        resource url: 'fancybox/source/jquery.fancybox.js'
+        resource url: 'fancybox/source/jquery.fancybox.css'
+    }
+
     highlightjs {
         //defaultBundle 'coding-tools'
 		defaultBundle __bundleName

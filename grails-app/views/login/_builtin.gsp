@@ -23,7 +23,13 @@
         <button class="btn btn-primary btn-large">
             <i class="icon icon-signin"></i>
             ${message(code: "springSecurity.login.button")}
-        </button>
-        
+        </button>        
     </form>
 </section>
+<r:script>
+<!--
+(function() {
+	document.forms['loginForm'].elements['j_username'].focus();
+})();
+// -->
+</r:script>

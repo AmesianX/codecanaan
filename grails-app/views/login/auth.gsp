@@ -68,12 +68,5 @@
         </div>
     </div>
 </div>
-<r:script>
-<!--
-(function() {
-	document.forms['loginForm'].elements['j_username'].focus();
-})();
-// -->
-</r:script>
 </body>
 </html>
