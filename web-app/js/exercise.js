@@ -289,7 +289,10 @@
                 return false;
             }
             
-            if (sourceType=='SCHEME') {
+            if (sourceType=='HTML') {
+                alert('不支援 HTML 測試');
+            }
+            else if (sourceType=='SCHEME') {
                 //alert(sourceCode);
                 //window.open('/content/biwascheme','biwascheme','width=640,height=480,location=no,menubar=no,resizable=no,scrollbars=no,titlebar=no,toolbar=no,status=no,top=0,left=0');
                 
