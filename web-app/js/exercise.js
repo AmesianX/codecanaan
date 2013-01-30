@@ -1,21 +1,28 @@
 (function () {
 
-    //切換頁籤重新整理 CodeMirror
+    // 切換頁籤時重新整理所有 CodeMirror 編輯器
+    // 很暴力！但可以確保編輯器功能正常
     $('a[data-toggle="tab"]').on('shown', function (e) {
         $.each(editors, function(index, val) {
             editors[index].refresh();
         });
     });
 
-    //generate params
-    var __ajax_save_record_url = $('input[name="__ajax_save_record_url"]').val();
-    var __ajax_client_port = $('input[name="__ajax_client_port"]').val();
+    // 從隱藏欄位讀取參數資料
+    var __ajax_save_record_url  = $('input[name="__ajax_save_record_url"]').val();
+    var __ajax_client_port      = $('input[name="__ajax_client_port"]').val();
     var __ajax_loader_image_src = $('input[name="__ajax_loader_image_src"]').val();
-    var __ajax_biwascheme_url = $('input[name="__ajax_biwascheme_url"]').val();
-    var __ajax_savetemp_url = $('input[name="__ajax_savetemp_url"]').val();
+    var __ajax_biwascheme_url   = $('input[name="__ajax_biwascheme_url"]').val();
+    var __ajax_savetemp_url     = $('input[name="__ajax_savetemp_url"]').val();
     
-    //儲存記錄
-    var fnSaveRecord = function(params, fncb) {
+    /**
+     * 將記錄上傳至伺服器儲存
+     *
+     * @param params POST FORM DATA
+     * @param fncb Callback for SUCCESS
+     * @param fncberr Callback for ERROR
+     */
+    var fnSaveRecord = function(params, fncb, fncberr) {
         $.ajax({
             type: 'post',
             url: __ajax_save_record_url,
@@ -24,12 +31,21 @@
                 if ($.isFunction(fncb)) {
                     fncb();
                 }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                if ($.isFunction(fncberr)) {
+                    fncberr(jqXHR, textStatus, errorThrown);
+                }
+                else {
+                    bootbox.alert(textStatu);
+                }
             }
         });
     };
     
     /**
      * 暫存程式碼
+     *
      * @param params POST DATA
      * @param fncb Callback for SUCCESS
      * @param fncberr Callback for ERROR
@@ -52,19 +68,17 @@
                 }
                 else {
                     //show message
-                    bootbox.alert(textStatu);
+                    bootbox.alert(textStatus);
                 }
             }
         });
     };
 
-    //互動按鈕
-    var fnCheckAnswer = function(ans) {
-        var std = $('#answer').val();
-        return trim(std)==trim(ans);
-    };
-
-    //顯示結果報表
+    /**
+     * 顯示結果報表
+     *
+     * @param msg 報表內容
+     */
     var fnShowResult = function(msg) {
         var m = $('<div class="modal hide fade" tabindex="-1" role="dialog" />');
         
@@ -73,19 +87,31 @@
         
         m.append('<div class="modal-footer"><small style="padding-right:20px">按「ESC」關閉視窗</small><button class="btn" data-dismiss="modal" aria-hidden="true">關閉</button></div>');
     
-        m.modal({show: false});
+        // 產生 Model 物件
+        m.modal({
+            show: false
+        });
 	
+	    // 顯示報表時將背景霧化
 		$(m).on('show', function() {
 			$('.blur-after-modal-shown').addClass('effect-blur');
 		});
+	    
+	    // 關閉報表時清除背景霧化
 		$(m).on('hide', function() {
 			$('.blur-after-modal-shown').removeClass('effect-blur');
 		});
 
+        // 顯示報表
 		$(m).modal('show');
     };
     
-    //比較兩個輸出並傳回比較結果
+    /**
+     * 比較兩個輸出並傳回比較結果
+     *
+     * @param ans 執行結果
+     * @param std 標準輸出
+     */
     var fnDiffAndReport = function(ans, std) {
         //force trim
         std = rtrim(std);
@@ -96,6 +122,7 @@
         var lines2 = ans.split("\n");
         var linec = 0;
         var linec2 = 0;
+
         for (i=0; i<lines.length; i++) {
             linec++;
             if (i < lines2.length) {
@@ -121,10 +148,7 @@
             report.append('<font color="red"><i class="icon icon-error"></i> 無法通過測試，請修正程式碼再重新執行一次。</font>');
         }
 
-        //report.append('<pre>'+ans+'</pre>');
-        //report.append('<h4>標準執行結果</h4>');
-        //report.append('<pre>'+std+'</pre>');
-
+        // 以 Modal 方式顯示報表
         fnShowResult(report);
         
         return passed;
@@ -146,7 +170,7 @@
 
                 var __href = $(this).attr('href') + '?_t=' + new Date().getTime();
 
-                //先暫存程式碼再執行
+                //先上傳程式碼再執行
                 fnSaveRecord({
                     sourceType: sourceType,
                     sourcePath: sourcePath,
@@ -155,7 +179,10 @@
                     var link = $('<a/>');
                     link.data('fancybox-type', 'iframe');
                     link.attr('href', __href);
-                    link.fancybox();
+                    link.fancybox({
+                        width: '100%',
+                        height: '100%'
+                    });
                     link.click();
                 });
             }
@@ -191,6 +218,7 @@
                 });
             }
             else {
+                // 將資料傳給 Client Tools 測試伺服器
                 $.ajax({
                     type: 'post',
                     url: 'http://localhost:'+__ajax_client_port+'/',
@@ -230,15 +258,23 @@
             return false;
         });
 
+        // 按下儲存按鈕
         $('#cmdSave').click(function() {
+
+            // 顯示儲存中
             $('.visible-while-save-progress').show();
             $('.hidden-while-save-progress').hide();
+
+            // 上傳記錄
             fnSaveRecord({
                 sourceCode: editor.getValue()
             }, function() {
+
+                // 上傳成功就解除狀態顯示
                 $('.visible-while-save-progress').hide();
                 $('.hidden-while-save-progress').show();
             });
+            
             return false;
         });
 
@@ -246,10 +282,12 @@
             editor.setValue($('#partialCode').val());
             return false;
         });
+
         $('#cmdUndo').click(function() {
             editor.undo();
             return false;
         });
+
         $('#cmdRedo').click(function() {
             editor.redo();
             return false;
@@ -257,14 +295,17 @@
     }
 
     if (editors && editors['sourceCode']) {
-        var editor = editors['sourceCode'];
+    
+        // 作者寫作模式
         
+        var editor = editors['sourceCode'];
         
         $('#sourceType').change(function() {
             var type = $('#sourceType').val();
             
             //Simple detect, only support scheme and c-like this time
             var cmmode = 'text/x-csrc';
+
             if (type=='SCHEME') {
                 cmmode = 'text/x-scheme';
             }
@@ -274,25 +315,42 @@
             
             editors['sourceCode'].setOption("mode", cmmode);
             editors['partialCode'].setOption("mode", cmmode);
-            
         });
 
-        //執行測試（教材編輯模式）
+        // 執行測試（教材編輯模式）
         $('#cmdDump').click(function() {
         
             var sourceType = trim($('#sourceType').val());
             var sourcePath = trim($('#sourcePath').val());
             var sourceCode = editor.getValue();
-            
-            if (sourcePath=='') {
-                bootbox.alert('請設定「程式碼路徑」欄位');
+           
+            // 檢查欄位
+            if (sourcePath == '') {
+                bootbox.alert('請先設定「程式碼路徑」欄位');
                 return false;
             }
             
-            if (sourceType=='HTML') {
-                alert('不支援 HTML 測試');
+            if (sourceType == 'HTML') {
+                
+                var __href = $(this).attr('href') + '?_t=' + new Date().getTime();
+                
+                //先暫存程式碼
+                fnSaveTemp({
+                    sourceType: sourceType,
+                    sourcePath: sourcePath,
+                    sourceCode: sourceCode
+                }, function() {
+                    var link = $('<a/>');
+                    link.data('fancybox-type', 'iframe');
+                    link.attr('href', __href);
+                    link.fancybox({
+                        width: '100%',
+                        height: '100%'
+                    });
+                    link.click();
+                });
             }
-            else if (sourceType=='SCHEME') {
+            else if (sourceType == 'SCHEME') {
                 //alert(sourceCode);
                 //window.open('/content/biwascheme','biwascheme','width=640,height=480,location=no,menubar=no,resizable=no,scrollbars=no,titlebar=no,toolbar=no,status=no,top=0,left=0');
                 

@@ -342,6 +342,23 @@ class ContentController {
             success: true
         ]}
     }
+
+    /**
+     * 顯示暫存程式碼
+     */
+    def temp() {
+        def sourceType = session['__tempSourceType']
+        def sourcePath = session['__tempSourcePath']
+        def sourceCode = session['__tempSourceCode']
+
+        def contentType = 'text/plain'
+
+        if (sourceType == 'HTML') {
+            contentType = 'text/html'
+        }
+
+        render contentType: contentType, text: sourceCode
+    }
     
     /**
      * BiwaScheme

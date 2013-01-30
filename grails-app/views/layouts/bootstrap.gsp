@@ -39,7 +39,7 @@
 </header>
 
 <div role="main">
-    <div class="container">	
+    <div class="container-fluid">	
         <%--GoogleChromeFrame--%>
         <g:render template="/layouts/alert_chromeframe" />
 
@@ -50,7 +50,7 @@
         <g:if test="${flash.message}">
             <div class="alert" role="status">
                 <button type="button" class="close" data-dismiss="alert">×</button>
-                <p>${flash.message}</p>
+                ${flash.message}
             </div>
         </g:if>
     </div>
