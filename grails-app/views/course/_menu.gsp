@@ -1,3 +1,4 @@
+<%--關閉側邊選單按鈕--%>
 <button id="close-menu-button" type="button" class="close" title="不顯示選單">×</button>
 <r:script>
 $('#close-menu-button').click(function() {
@@ -8,7 +9,7 @@ $('#close-menu-button').click(function() {
 <ul class="nav nav-pills nav-stacked" style="font-size:11pt">
     <li class="${!lesson?'active':''}">
         <g:link controller="course" action="show" id="${course?.id}">
-            <!--課程首頁-->
+            <%--課程首頁--%>
             <i class="icon icon-book"></i> ${course?.title}</a>
         </g:link>
     </li>

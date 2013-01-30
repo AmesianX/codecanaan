@@ -1,13 +1,9 @@
-//pre-defined functions
-var trim = function(stringToTrim) {return stringToTrim.replace(/^\s+|\s+$/g,"");};
-var ltrim = function(stringToTrim) {return stringToTrim.replace(/^\s+/,"");};
-var rtrim = function(stringToTrim) {return stringToTrim.replace(/\s+$/,"");};
+// 常用字串處理函式
+var trim  = function(s) { return typeof(s)=='string'?s.replace(/^\s+|\s+$/g,""):s; };
+var ltrim = function(s) { return typeof(s)=='string'?s.replace(/^\s+/,""):s;       };
+var rtrim = function(s) { return typeof(s)=='string'?s.replace(/\s+$/,""):s;       };
 
-//CodeMirror editors
-var editors = {};
-
-
-// Request FullScreen Mode
+// 全螢幕模式切換 Request FullScreen Mode
 var requestNativeFullScreen = function(element) {
 	if (!element) {
 		element = document.documentElement;
@@ -26,7 +22,7 @@ var requestNativeFullScreen = function(element) {
     return result;
 };
 
-// Cancel FullScreen Mode
+// 全螢幕模式切換 Cancel FullScreen Mode
 var cancelNativeFullScreen = function(element) {
 	if (!element) {
 		element = document.documentElement;
@@ -45,7 +41,10 @@ var cancelNativeFullScreen = function(element) {
     return result;
 };
 
-//CodeMirror Fullscreen
+// CodeMirror 編輯器保存於全域變數
+var editors = {};
+
+// CodeMirror 編輯器的全螢幕模式
 function setFullScreen(cm, full) {
     var wrap = cm.getWrapperElement();
     if (full) {

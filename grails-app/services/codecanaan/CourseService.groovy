@@ -1,9 +1,13 @@
 package codecanaan
 
+import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+
 /**
  * 課程服務
  */
 class CourseService {
+
+    def springSecurityService
 
     /**
      * 從範本建立新課程
@@ -72,43 +76,51 @@ class CourseService {
 
         content.priority    = seq
         content.alias       = "content-${seq+1}"
-        content.title       = "填寫內容標題"
-        content.description = """請撰寫教學內容（以下格式僅供參考）。
 
-## 內容子標題 ##
+        // 預設值
+        if (!content.type) {
+            content.type = ContentType.TUTORIAL
+        }
+        if (!content.quizType) {
+            content.quizType = QuizType.SINGLE_CHOICE
+        }
+        if (!content.sourceType) {
+            content.sourceType = SourceType.JAVA
+        }
 
-* 項目1
-* 項目2
-* 項目3
-"""
+        def sc = Course.findByName('system')
+        def tl = Lesson.findByCourseAndName(sc, 'template')
 
-        //實作題
+        def _t = new Content()
+
+        // 從系統範本讀取內容
+        if (content.type == ContentType.TUTORIAL) {
+            _t = Content.findByLessonAndType(tl, ContentType.TUTORIAL)
+        }
+        else if (content.type == ContentType.SLIDE) {
+            _t = Content.findByLessonAndType(tl, ContentType.SLIDE)
+        }
+        else if (content.type == ContentType.QUIZ) {
+            _t = Content.findByLessonAndTypeAndQuizType(tl, ContentType.QUIZ, content.quizType)
+        }
+        else if (content.type == ContentType.CODE) {
+            _t = Content.findByLessonAndTypeAndSourceType(tl, ContentType.CODE, content.sourceType)
+        }
+        
+        content.title       = _t.title
+        content.subtitle    = _t.subtitle
+        content.description = _t.description
+
+        if (content.type == ContentType.QUIZ) {
+            content.quizOption  = _t.quizOption
+            content.answer      = _t.answer
+        }
+
         if (content.type == ContentType.CODE) {
-            if (!content.sourceType || content.sourceType == SourceType.JAVA) {
-                content.sourceType = SourceType.JAVA
-                content.sourceCode = "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello World\");\n    }\n}\n"
-                content.sourcePath = "Main.java"
-                content.partialCode = "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"__________\");\n    }\n}\n"
-                content.output = "Hello World"
-            }
-            else if (content.sourceType == SourceType.C) {
-                content.sourceCode = "#include <stdio.h>\n\nint main(void) {\n    printf(\"Hello World\");\n    return 0;\n}\n"
-                content.sourcePath = "main.c"
-                content.partialCode = "#include <stdio.h>\n\nint main(void) {\n    printf(\"__________\");\n    return 0;\n}\n"
-                content.output = "Hello World"
-            }
-            else if (content.sourceType == SourceType.CPP) {
-                content.sourceCode = "#include <iostream.h>\n\nmain() {\n    cout << \"Hello World!\" << endl;\n    return 0;\n}\n"
-                content.sourcePath = "main.cpp"
-                content.partialCode = "#include <iostream.h>\n\nmain() {\n    cout << \"__________\" << endl;\n    return 0;\n}\n"
-                content.output = "Hello World"
-            }
-            else if (content.sourceType == SourceType.SCHEME) {
-                content.sourceCode = "(display \"Hello World\")(newline)"
-                content.sourcePath = "main.scm"
-                content.partialCode = "(display \"__________\")(newline)"
-                content.output = "Hello World"
-            }
+            content.sourceCode  = _t.sourceCode
+            content.sourcePath  = _t.sourcePath
+            content.partialCode = _t.partialCode
+            content.output      = _t.output
         }
     }
 
@@ -117,9 +129,16 @@ class CourseService {
      */
     def isAuthor(Course course, User user) {
         
-        //課程和使用者不存在就跳過檢查
-    	if (!course || !user) return false
-        
+        // 課程和使用者不存在就跳過檢查
+    	if (!course || !user) {
+    	    return false
+        }
+
+        // 使用者是管理員就給予權限
+        if (SpringSecurityUtils.ifAllGranted('ROLE_ADMIN')) {
+            return true
+        }
+
         def link = UserCourse.get(user, course)
         
         (link && link.regType == RegType.AUTHOR)

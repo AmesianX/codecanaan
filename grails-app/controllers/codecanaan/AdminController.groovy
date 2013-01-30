@@ -12,6 +12,18 @@ class AdminController {
     	
     }
 
+    def courseTemplate() {
+        def sc = Course.findByName('system')
+        def tl = Lesson.findByCourseAndName(sc, 'template')
+
+        if (!tl) {
+            response.sendError 404
+            return
+        }
+
+        redirect controller: 'lesson', action: 'show', id: tl.id
+    }
+
     def userList(Integer max) {
         def statistics = [:]
 

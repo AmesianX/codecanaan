@@ -44,6 +44,12 @@
                         課程序號管理
                     </g:link>
                 </li>
+                <li>
+                    <g:link controller="admin" action="courseTemplate">
+                        <i class="icon-book"></i>
+                        教學內容範本維護
+                    </g:link>
+                </li>
             </ul>
         </div>
         <div class="span3">

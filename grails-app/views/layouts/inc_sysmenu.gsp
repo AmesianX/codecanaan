@@ -10,16 +10,16 @@
             <g:message code="default.home.label" default="Home" />
         </g:link>
     </li>
-    <!--已登入才顯示功能表-->
+    <%--已登入才顯示功能表--%>
     <sec:ifLoggedIn>
-        <!--課程-->
+        <%--課程--%>
         <li class="${controllerName=='course'?'active':''}">
             <g:link controller="course">
                 <i class="icon icon-book"></i>
                 <g:message code="course.label" default="Course" />
             </g:link>
         </li>
-        <!--學習進度-->
+        <%--學習進度--%>
         <li class="${controllerName=='schedule'?'active':''}">
             <g:link controller="schedule">
                 <i class="icon icon-tasks"></i>

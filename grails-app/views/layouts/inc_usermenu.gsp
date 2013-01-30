@@ -1,16 +1,16 @@
 <ul class="nav pull-right">
     <sec:ifNotLoggedIn>
-        <!--未登入-->
+        <%--未登入--%>
         <li>
             <g:link controller="login" action="auth">
                 <i class="icon icon-signin"></i>
-                <!--註冊或登入-->
+                <%--註冊或登入--%>
                 <g:message code="default.login.or.signup.text" />
             </g:link>
         </li>
     </sec:ifNotLoggedIn>
     <sec:ifLoggedIn>
-        <!--已登入-->
+        <%--已登入--%>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="icon icon-user"></i>
@@ -21,14 +21,14 @@
                 <li>
                     <g:link controller="home" action="client">
                         <i class="icon icon-download"></i>
-                        <!--客戶端工具-->
+                        <%--客戶端工具--%>
                         <g:message code="default.client.tools.text" />
                     </g:link>
                 </li>
                 <li>
                     <g:link controller="user" action="profile">
                         <i class="icon icon-user-md"></i>
-                        <!--個人資料-->
+                        <%--個人資料--%>
                         <g:message code="default.user.preferences.text" />
                     </g:link>
                 </li>
@@ -36,7 +36,7 @@
                     <li>
                         <g:link controller="admin">
                             <i class="icon icon-wrench"></i>
-                            <!-系統管理-->
+                            <%--系統管理--%>
                             <g:message code="default.administration.text" />
                         </g:link>
                     </li>
@@ -45,7 +45,7 @@
                     <li>
                         <g:link controller="user" action="file">
                             <i class="icon icon-file"></i>
-                            <!--檔案管理-->
+                            <%--檔案管理--%>
                             <g:message code="default.file.management.text" />
                         </g:link>
                     </li>
@@ -54,7 +54,7 @@
                     <li>
                         <g:link uri="/j_spring_security_logout">
                             <i class="icon icon-off"></i>
-                            <!--登出-->
+                            <%--登出--%>
                             <g:message code="default.logout.text" />
                         </g:link>
                     </li>
@@ -63,7 +63,7 @@
                     <li>
                         <a href='${request.contextPath}/j_spring_security_exit_user'>
                             <i class="icon icon-off"></i>
-                            <!--回復身分-->
+                            <%--回復身分--%>
                             Resume as <sec:switchedUserOriginalUsername/>
                         </a>
                     </li>

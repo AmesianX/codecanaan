@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -22,9 +18,8 @@
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
 <facebookAuth:init/>
 
-<!--begin visible--><div class="blur-after-modal-shown">
+<%--畫面可視區域：起點--%><div class="blur-after-modal-shown">
 
-<!--header-->
 <header class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
@@ -36,22 +31,22 @@
 			<g:link controller="home" action="index" class="brand logo-font">CodeCanaan</g:link>
 			<div class="nav-collapse collapse">
 				<g:applyLayout name="inc_sysmenu" />
-				<!--使用者選單-->
+				<%--使用者選單--%>
 				<g:applyLayout name="inc_usermenu" />
-			</div><!--/.nav-collapse -->
+			</div><%--/.nav-collapse --%>
 		</div>
 	</div>
 </header>
 
 <div role="main">
     <div class="container">	
-        <!--GoogleChromeFrame-->
+        <%--GoogleChromeFrame--%>
         <g:render template="/layouts/alert_chromeframe" />
 
-        <!--ClientTools-->
+        <%--ClientTools--%>
         <g:render template="/layouts/alert_clienttools" />
         
-        <!--快閃訊息-->
+        <%--快閃訊息--%>
         <g:if test="${flash.message}">
             <div class="alert" role="status">
                 <button type="button" class="close" data-dismiss="alert">×</button>
@@ -60,18 +55,16 @@
         </g:if>
     </div>
 
-	<!--主畫面內容-->
+	<%--主畫面內容--%>
 	<g:layoutBody/>
 </div>
 
-<!--footer begin-->
 <footer class="footer">
 	<g:applyLayout name="inc_footer" />
 </footer>
 
-<!--end visible--></div>
+<%--畫面可視區域：終點--%></div>
 
-<!--defer resources-->
 <r:layoutResources />
 
 </body>

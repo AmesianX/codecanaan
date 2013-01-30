@@ -2,7 +2,7 @@
 <section>
     <!--標題-->
     <div class="page-header">
-        <h1>${content.title} <small><g:message code="content.contentType.${content.type}" default="Content" /></small></h1>
+        <h1>${content.title}</h1>
         <g:if test="${content.subtitle}">
             <p><small>${content.subtitle}</small></p> 
         </g:if>
