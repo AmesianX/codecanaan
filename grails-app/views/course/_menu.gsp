@@ -9,7 +9,7 @@ $('#close-menu-button').click(function() {
     $('#menu-container').remove();
     $('#content-container').removeClass('span9 padding-rightside').addClass('span12 padding-around');
 
-    $.cookie('_clsm', '1');
+    $.cookie('_clsm', '1', { path: '/' });
 
     var a = $('<a href="#"><i class="icon icon-list" style="position:absolute;left:0;top:100px;"></i></a>');
     a.appendTo('body');
@@ -17,7 +17,7 @@ $('#close-menu-button').click(function() {
         _parent.prepend(_backup);
         $('#content-container').addClass('span9 padding-rightside').removeClass('span12 padding-around');
         a.remove();
-        $.removeCookie('_clsm');
+        $.removeCookie('_clsm', { path: '/' });
     });
 });
 
