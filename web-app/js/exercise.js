@@ -177,11 +177,14 @@
                     sourceCode: sourceCode
                 }, function() {
                     var link = $('<a/>');
-                    link.data('fancybox-type', 'iframe');
                     link.attr('href', __href);
                     link.fancybox({
-                        width: '100%',
-                        height: '100%'
+                        width           : '100%',
+                        height          : '100%',
+                        autoScale       : false,
+                        transitionIn    : 'none',
+                        transitionOut   : 'none',
+                        type            : 'iframe'
                     });
                     link.click();
                 });
@@ -344,8 +347,12 @@
                     link.data('fancybox-type', 'iframe');
                     link.attr('href', __href);
                     link.fancybox({
-                        width: '100%',
-                        height: '100%'
+                        width           : '100%',
+                        height          : '100%',
+                        autoScale       : false,
+                        transitionIn    : 'none',
+                        transitionOut   : 'none',
+                        type            : 'iframe'
                     });
                     link.click();
                 });
