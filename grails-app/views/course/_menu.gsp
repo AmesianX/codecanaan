@@ -9,9 +9,11 @@ $('#close-menu-button').click(function() {
     $('#menu-container').remove();
     $('#content-container').removeClass('span9 padding-rightside').addClass('span12 padding-around');
 
-    $.cookie('_clsm', '1', { path: '/' });
+    if ($.cookie) {
+        $.cookie('_clsm', '1', { path: '/' });
+    }
 
-    var a = $('<a href="#"><i class="icon icon-list" style="position:absolute;left:0;top:100px;"></i></a>');
+    var a = $('<a href="#" class="hidden-phone"><i class="icon icon-list" style="position:absolute;left:0;top:100px;"></i></a>');
     a.appendTo('body');
     a.click(function() {
         _parent.prepend(_backup);
@@ -21,7 +23,7 @@ $('#close-menu-button').click(function() {
     });
 });
 
-if ($.cookie('_clsm')) {
+if ($.cookie && $.cookie('_clsm')) {
     $('#close-menu-button').click();
 }
 </r:script>

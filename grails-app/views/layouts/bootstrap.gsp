@@ -20,7 +20,7 @@
 
 <%--畫面可視區域：起點--%><div class="blur-after-modal-shown">
 
-<header class="navbar navbar-inverse navbar-fixed-top">
+<header class="navbar navbar-inverse navbar-fixed-top hide">
 	<div class="navbar-inner">
 		<div class="container">
 			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -65,7 +65,9 @@
 
 <%--畫面可視區域：終點--%></div>
 
+<r:script>
+$('header.navbar').show();
+</r:script>
 <r:layoutResources />
-
 </body>
 </html>

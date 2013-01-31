@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="layout" content="error"/>
 <title>Error 500</title>
 </head>
 <body>
-
 <div class="container">
 	<section class="justfont">
 		<h1>網站發生無法抹滅的錯誤</h1>
@@ -21,11 +19,10 @@
 </div>
 <div class="container">
 	<button class="show-detail btn btn-small">詳細檢視 / Details</button>
-	<div class="details justfont" style="display:none;margin-top:60px">
+	<div class="well details justfont" style="display:none;margin-top:60px">
 		<g:renderException exception="${exception}" />
 	</div>
 </div>
-
 <r:script>
 (function() {
 	$('.show-detail').toggle(function() {

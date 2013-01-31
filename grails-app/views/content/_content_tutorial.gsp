@@ -18,22 +18,8 @@
         </g:if>
     </div>
 
-    <!--內容-->
-    <g:if test="${content.description}">
-        <div class="markdown-source font-resizable">${content.description?.encodeAsHTML()}</div>
-    </g:if>
-
-    <!--提示-->
-    <g:if test="${content.hint}">
-        <h2>提示</h2>
-        <div class="markdown-source">${content.hint?.encodeAsHTML()}</div>
-    </g:if>
-
-    <!--教案-->
-    <g:if test="${content.material}">
-        <h2>教案</h2>
-        <div class="markdown-source">${content.material?.encodeAsHTML()}</div>
-    </g:if>
+    <%--內容顯示--%>
+    <g:render template="content_display" />
 
 </section>
 

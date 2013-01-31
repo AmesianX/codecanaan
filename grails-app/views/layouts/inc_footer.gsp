@@ -2,9 +2,10 @@
 	<div class="row">
 		<div class="span9">
 		
-			<p><span class="logo logo-font effect-text-shadow-black">CodeCanaan</span></p>
-			
-			<p class="visions">程式設計數位學習方舟計畫</p>
+            <p class="hidden-phone">
+                <span class="logo logo-font effect-text-shadow-black">CodeCanaan</span><br/>
+                <span class="visions">程式設計數位學習方舟計畫</span>
+            </p>
 			
 			<ul class="nav nav-pills">
 				<li><g:link url="/page/help">使用手冊</g:link></li>
@@ -22,7 +23,7 @@
 		</div>
 	</div>
 	<div role="contentinfo">
-		<p>Copyright &copy; CodeCanaan Software R&amp;D All rights reserved.</p>
+		<p>Copyright &copy; CodeCanaan All rights reserved.</p>
 		<p>軟體壹學院網站由思創軟體版權所有</p>
 	</div>
 	<div id="spinner" class="spinner" style="display:none;"><p class="text-info"><g:message code="spinner.alt" default="Loading&hellip;"/></p></div>

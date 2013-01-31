@@ -87,7 +87,8 @@
         <div class="span4">
 
             <div class="margin-around">
-                <google:adsense width="250" height="250" />
+                <%--這個區塊未來放置廣告--%>
+                <%--<google:adsense width="250" height="250" />--%>
             </div>
 
             <div class="margin-below">

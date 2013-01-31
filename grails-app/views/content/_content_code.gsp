@@ -18,23 +18,9 @@
         </g:if>
     </div>
 
-    <!--內容-->
-    <g:if test="${content.description}">
-        <div class="markdown-source font-resizable">${content.description?.encodeAsHTML()}</div>
-    </g:if>
+    <%--內容顯示--%>
+    <g:render template="content_display" />
     
-    <!--提示-->
-    <g:if test="${content.hint}">
-        <h2>提示</h2>
-        <div class="markdown-source">${content.hint?.encodeAsHTML()}</div>
-    </g:if>
-
-    <!--教案-->
-    <g:if test="${content.material}">
-        <h2>教案</h2>
-        <div class="markdown-source">${content.material?.encodeAsHTML()}</div>
-    </g:if>
-
 </section>
 
 <h2>
@@ -80,7 +66,7 @@
     <div class="tab-content">
     
         <div class="tab-pane active" id="tab-editor">
-            <g:textArea name="sourceEdit" value="${record?.sourceCode?:content.partialCode}" data-mode="${cmmode(type:content.sourceType)}" data-height="500" cols="40" rows="20" class="codemirror-auto" />
+            <g:textArea name="sourceEdit" value="${record?.sourceCode?:content.partialCode}" data-mode="${cmmode(type:content.sourceType)}" data-height="500" cols="60" rows="20" class="codemirror-auto" style="height:500px" />
         </div>
         <div class="tab-pane" id="tab-myoutput"><pre id="program-output" style="height:500px;overflow:auto">${record?.output}</pre></div>
         <div class="tab-pane" id="tab-output"><pre style="height:500px;overflow:auto">${content.output}</pre></div>

@@ -1,4 +1,4 @@
-<div class="btn-group pull-right">
+<div class="btn-group pull-right hidden-phone">
     <g:link action="show" id="${course.id}" params="[editor: true]" class="btn btn-mini">
         <i class="icon-edit"></i>
         <%--修改課程--%>

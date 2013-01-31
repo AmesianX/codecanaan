@@ -353,29 +353,6 @@ iframe#attachment-frame {
 	}
 }
 
-/*-------------------- CodeMirror ----------------------*/
-
-.CodeMirror {
-	border: 1px solid #dadada;
-	font-family: 'Droid Sans Mono', monospace;
-	font-size: 11pt;
-	background: white;
-}
-
-.CodeMirror-lines, .CodeMirror-gutter {
-	font-family: 'Droid Sans Mono', monospace;
-	line-height: 1.5em;
-}
-
-/*.CodeMirror-fullscreen {
-    display: block;
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    z-index: 9999;
-}*/
-
-
 .widget {
 	padding: 5px;
 	margin: 0;

@@ -116,7 +116,7 @@ modules = {
         
         //css
         resource url: 'codemirror/lib/codemirror.css'
-
+        resource url: 'stylesheets/codemirror.css'
         //js
         resource url: 'codemirror/lib/codemirror.js'
         resource url: 'codemirror/mode/clike/clike.js'

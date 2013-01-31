@@ -1,4 +1,4 @@
-<div class="btn-toolbar pull-right">
+<div class="btn-toolbar pull-right hidden-phone">
     <%--新增內容選單--%>
     <g:render template="/content/addmenu" />
 
