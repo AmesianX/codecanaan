@@ -164,9 +164,9 @@
         <div class="clearlook-wrapper padding-around">
             <div class="row-fluid">
                 <div class="span9">
-                    <p class="larger-font" style="text-align:center">立即開始體驗！歡迎使用 Facebook 帳號直接登入。</p>
+                    <p class="larger-font textalign-center">立即開始體驗！歡迎使用 Facebook 帳號直接登入。</p>
                 </div>
-                <div class="span3">
+                <div class="span3 textalign-center">
                     <facebookAuth:connect permissions="email,user_about_me" />
                 </div>
             </div>

@@ -75,8 +75,9 @@ body {
 	font-size: 11pt;
 }
 
-.larger-font {
+p.larger-font {
     font-size: 16pt;
+    line-height: 150%;
 }
 
 /*--------------------- Headings ---------------------------------------------*/
@@ -127,10 +128,6 @@ h1 small, h2 small, h3 small, h4 small {
 		font-family: 'Droid Sans Mono', monospace;
 	}
 	
-	.larger-font {
-	    font-size: 16pt;
-	}
-
     .page-header {
         p {
             line-height: 100%;
