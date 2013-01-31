@@ -3,6 +3,8 @@ package codecanaan
 import grails.test.mixin.*
 import org.junit.*
 
+import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+
 /**
  * 課程服務單元測試
  */

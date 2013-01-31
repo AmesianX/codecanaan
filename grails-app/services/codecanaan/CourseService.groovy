@@ -135,7 +135,8 @@ class CourseService {
         }
 
         // 使用者是管理員就給予權限
-        if (SpringSecurityUtils.ifAllGranted('ROLE_ADMIN')) {
+        // 先檢查服務函式是否存在避免 Null 錯誤
+        if (SpringSecurityUtils?.hasProperty('ifAllGranted') && SpringSecurityUtils.ifAllGranted('ROLE_ADMIN')) {
             return true
         }
 
