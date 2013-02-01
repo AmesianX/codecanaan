@@ -51,6 +51,21 @@ class CourseServiceTests {
     }
 
     void "test isAuthor"() {
+
+        /*
+        SpringSecurityUtils.metaClass.static.ifAllGranted = {
+            String roles ->
+            return false
+        }
+        */
+
+        def control = mockFor(org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils.class)
+        control.demand.static.ifAllGranted = {
+            ->
+            return false
+        }
+
+
         //建立新課程與使用者
         def course = new Course()
         def user = new User()

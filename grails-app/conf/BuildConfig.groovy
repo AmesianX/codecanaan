@@ -65,6 +65,8 @@ grails.project.dependency.resolution = {
         runtime 'net.java.dev.jets3t:jets3t:0.9.0'
         
         compile 'commons-codec:commons-codec:1.7'
+
+        test 'com.googlecode.jmockit:jmockit:1.0'
     }
 
     plugins {
