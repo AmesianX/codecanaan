@@ -65,7 +65,6 @@ class CourseServiceTests {
             return false
         }
 
-
         //建立新課程與使用者
         def course = new Course()
         def user = new User()
