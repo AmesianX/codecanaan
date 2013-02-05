@@ -5,9 +5,9 @@
 <title><g:message code="default.administration.text" /></title>
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row-fluid clearlook-wrapper padding-around justfont">
-        <div class="span3">
+<div class="container-fluid margin-below">
+    <div class="row-fluid clearlook-wrapper justfont">
+        <div class="span3 padding-around">
             <h3>內容維護</h3>
             <ul class="icons">
                 <li>
@@ -18,7 +18,7 @@
                 </li>
             </ul>
         </div>
-        <div class="span3">
+        <div class="span3 padding-around">
             <h3>會員資料維護</h3>
             <ul class="icons">
                 <li>
@@ -35,7 +35,7 @@
                 </li>
             </ul>
         </div>
-        <div class="span3">
+        <div class="span3 padding-around">
             <h3>課程資料維護</h3>
             <ul class="icons">
                 <li>
@@ -52,8 +52,15 @@
                 </li>
             </ul>
         </div>
-        <div class="span3">
+        <div class="span3 padding-around">
             <h3>系統維護</h3>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row-fluid clearlook-wrapper">
+        <div class="span12 textalign-center padding-around">
+            <g:img dir="images" file="admin_fake.png" />
         </div>
     </div>
 </div>

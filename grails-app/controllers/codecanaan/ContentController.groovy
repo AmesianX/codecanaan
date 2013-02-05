@@ -258,13 +258,37 @@ class ContentController {
             response.sendError 404
             return
         }
+
+        def file = params.file
+
+        log.info "request.format = ${request.format}"
+        log.info "response.format = ${response.format}"
+        log.info "request.forwardURI = ${request.forwardURI}"
+
+
+        /*
+        if (response.format == 'all') {
+        }
+        else if (response.format == 'xml') {
+            file = "${file}.xml"
+        }
+        else if (response.format == 'json') {
+            file = "${file}.json"
+        }
+        */
+
+        // 重 HTTP REQUEST URI 網址重新取回檔案名稱
+        file = request.forwardURI.split('/').last()
+
+        def obj_path = "attachment/${content.lesson?.course?.id}/${content.lesson?.id}/${content.id}/${file}"
         
         try {
-            def object = s3Service.getObject("attachment/${content.lesson?.course?.id}/${content.lesson?.id}/${content.id}/${params.file}")
-            
+            log.info "Try to get ${obj_path}"
+            def object = s3Service.getObject(obj_path)
             response.outputStream << object.dataInputStream
         }
         catch (e) {
+            log.error "Could not read ${file} from s3 object ${obj_path}"
             e.printStackTrace()
             response.sendError 404
         }
