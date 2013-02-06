@@ -280,6 +280,9 @@ class ContentController {
         // 重 HTTP REQUEST URI 網址重新取回檔案名稱
         file = request.forwardURI.split('/').last()
 
+        // 將已編碼 URL 還原
+        file = URLDecoder.decode(file)
+
         def obj_path = "attachment/${content.lesson?.course?.id}/${content.lesson?.id}/${content.id}/${file}"
         
         try {
