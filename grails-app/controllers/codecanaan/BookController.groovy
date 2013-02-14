@@ -12,7 +12,7 @@ class BookController {
      * 書目查詢
      */
     def list() {
-        params.max = params.max?:25
+        params.max = params.max?:100
 
         [
             books: Book.list(params),
@@ -24,14 +24,26 @@ class BookController {
      * 詳細檢視
      */
     def show(Long id) {
+
+        def book
+
+        if (id) {
+            book = Book.get(id)
+        }
+        else if (params.isbn) {
+            book = Book.findByIsbn(params.isbn)
+        }
+
         [
-            book: Book.get(id)
+            book: book
         ]
     }
 
     def syncTaazeApi() {
-    
-        def json_url = 'http://m.taaze.tw/api/data/GetProductByCat.ashx?startNum=0&endNum=500'
+   
+        def num = params.num?:100
+
+        def json_url = "http://m.taaze.tw/api/data/GetProductByCat.ashx?startNum=0&endNum=${num}"
 
         def json_text = new URL(json_url).text
 

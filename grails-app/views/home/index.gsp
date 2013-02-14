@@ -96,7 +96,7 @@
                         <ul class="links">
                             <g:each in="${books}" var="book" status="i">
                                 <li class="${i==0?'first':'show-lines'}">
-                                    <g:link controller="book" action="show" id="${book.id}">${book.title}</g:link>
+                                    <g:link controller="book" action="show" params="[isbn: book.isbn]">${book.title}</g:link>
                                     <div class="pull-right">
                                         <small class="muted"><g:formatDate date="${book.publishDate}" type="date" style="SHORT" /></small>
                                     </div>

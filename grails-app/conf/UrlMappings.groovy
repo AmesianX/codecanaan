@@ -15,6 +15,13 @@ class UrlMappings {
         
         "404" (controller: 'error', action: 'notFound')
 
+        "/book/isbn/$isbn" {
+            controller = "book"
+            action = "show"
+            constraints {
+            }
+        }
+
 		"/user/$id?" {
 			controller = "user"
 			action = "show"
