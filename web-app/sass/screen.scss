@@ -474,3 +474,29 @@ video {
 	-webkit-filter: blur(5px) grayscale(50%);
 	//-webkit-transform: scale(0.9);
 }
+
+/*------------------- PinStrap Block Layout ---------------------*/
+
+.pin-block {
+    width: 180px;
+    margin: 5px;
+    padding: 5px;
+    float: left;
+	
+	@include single-box-shadow(rgba(34, 25, 25, 0.4), 0, 1px, 3px);
+
+    background: white;
+
+    .title {
+        width: 100%;
+        font-size: 10pt;
+        display: inline-block;
+        color: gray;
+    }
+
+    .image {
+        display: inline-block;
+        height: 240px;
+        overflow: hidden;
+    }
+}

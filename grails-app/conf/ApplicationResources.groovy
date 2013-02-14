@@ -56,9 +56,10 @@ modules = {
         //defaultBundle 'jquery'
 		defaultBundle __bundleName
         
-        resource url: 'jquery-plugins/jquery.textarea.min.js'
+        resource url: 'jquery-plugins/jquery.textarea.js'
         resource url: 'jquery-plugins/jquery.jfontsize.js'
         resource url: 'jquery-plugins/jquery.cookie.js'
+        resource url: 'jquery-plugins/jquery.masonry.js'
     }
 
     common {

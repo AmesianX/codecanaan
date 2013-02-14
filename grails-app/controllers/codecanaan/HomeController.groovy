@@ -32,8 +32,14 @@ class HomeController {
             type == PostType.ANNOUNCE
         }
 
+        // 取得新書資料
+        def books = Book.findAll(max: 10, sort: 'publishDate', order: 'desc') {
+            title != null
+        }
+
         [
             posts: posts,
+            books: books,
             courses: Course.list()
         ]
     }

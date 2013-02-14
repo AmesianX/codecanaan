@@ -72,7 +72,10 @@ grails.project.dependency.resolution = {
     plugins {
         runtime ":hibernate:$grailsVersion"
         runtime ":jquery:1.8.3"
-        
+       
+        // Twitter Bootstrap
+        runtime ":twitter-bootstrap:2.3.0"
+
         // HTML resource management enhancements
         // to replace g.resource etc.
         // Note: keep upgrade to latest version.
@@ -94,7 +97,7 @@ grails.project.dependency.resolution = {
         
         build ":svn:1.0.2"
         
-        compile ":spring-security-facebook:0.11"
+        compile ":spring-security-facebook:0.12"
         
         //build ":lesscss-resources:1.3.0.3"
 

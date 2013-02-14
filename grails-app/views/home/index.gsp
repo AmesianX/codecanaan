@@ -50,10 +50,18 @@
         <div class="span8 padding-around">
             <ul class="nav nav-tabs">
                 <li class="active">
-                    <a href="#announce-tab" data-toggle="tab" class="effect-text-shadow">
+                    <a href="#announce-tab" data-toggle="tab">
                         <small>
                             <i class="icon icon-bell"></i>
                             <g:message code="postType.ANNOUNCE.label" />
+                        </small>
+                    </a>
+                </li>
+                <li>
+                    <a href="#book-tab" data-toggle="tab">
+                        <small>
+                            <i class="icon icon-book"></i>
+                            新書
                         </small>
                     </a>
                 </li>
@@ -65,13 +73,38 @@
                             <g:each in="${posts}" var="post" status="i">
                                 <li class="${i==0?'first':'show-lines'}">
                                     <g:link controller="post" action="show" params="[name: post.name]">${post.title}</g:link>
-                                    <div class="pull-right"><small style="font-family:Georgia"><em>${post.hits}</em></small>
-                                    <small class="muted"><g:formatDate date="${post.dateCreated}" type="date" style="SHORT" /></small></div>
+                                    <div class="pull-right">
+                                        <small style="font-family:Georgia"><em>${post.hits}</em></small>
+                                        <small class="muted"><g:formatDate date="${post.dateCreated}" type="date" style="SHORT" /></small>
+                                    </div>
                                 </li>
                             </g:each>
                         </ul>
                         <div style="text-align:right">
                             <g:link controller="post" action="list" class="btn">
+                                <!--閱讀更多-->
+                                <g:message code="default.more.text" />
+                            </g:link>
+                        </div>
+                    </g:if>
+                    <g:else>
+                        <g:message code="default.empty.description" />
+                    </g:else>
+                </div>
+                <div class="tab-pane" id="book-tab">
+                    <g:if test="${books?.size()>0}">
+                        <ul class="links">
+                            <g:each in="${books}" var="book" status="i">
+                                <li class="${i==0?'first':'show-lines'}">
+                                    <g:link controller="book" action="show" id="${book.id}">${book.title}</g:link>
+                                    <div class="pull-right">
+                                        <small class="muted"><g:formatDate date="${book.publishDate}" type="date" style="SHORT" /></small>
+                                    </div>
+                                </li>
+                            </g:each>
+                        </ul>
+                        <div style="text-align:right">
+                            <g:link controller="book" action="list" class="btn">
                                 <!--閱讀更多-->
                                 <g:message code="default.more.text" />
                             </g:link>
