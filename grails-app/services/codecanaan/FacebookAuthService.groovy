@@ -31,7 +31,7 @@ class FacebookAuthService {
 		        
 		            sendMail {
                         to user.email
-                        subject "熱烈歡迎 ${user.fullName} 成為壹學院會員"
+                        subject "歡迎 ${user.fullName} 成為壹學院會員"
                         html groovyPageRenderer.render(template: "/email/welcome", model: [user: user])
                     }
 		        }
