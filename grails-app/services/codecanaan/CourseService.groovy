@@ -222,15 +222,23 @@ class CourseService {
 
                 log.info "包含 ${tasks.size()} 項內容"
 
-                def lesson = new Lesson(
-                    course: course
-                )
+                // 先嘗試找到已經存在的單元
+                def lesson = Lesson.findByCourseAndTitle(course, title)
 
-                createLessonFromTemplate(lesson)
+                // 如果找不到就建立新的
+                if (!lesson) {
+                    lesson = new Lesson(
+                        course: course
+                    )
 
-                lesson.title = title
+                    createLessonFromTemplate(lesson)
 
-                lesson.save()
+                    lesson.title = title
+
+                    lesson.save()
+                }
+
+                def seqnum = 0
 
                 tasks.each {
                     task ->
@@ -238,7 +246,7 @@ class CourseService {
 
                     log.info "匯入內容：${task_title}"
 
-                    def ExName = tasks.property.find {it.key.text()=='ExName'}.value.text()
+                    def ExName = task.property.find {it.key.text()=='ExName'}.value.text()
 
                     def file_main = "${ExName}.${lang}" //主程式碼
                     def file_part = "${ExName}.part" //部分程式碼
@@ -276,21 +284,32 @@ class CourseService {
                         sourceType = SourceType.SCHEME
                     }
 
-                    def content = new Content(
-                        lesson: lesson,
-                        title: task_title,
-                        description: file_html_c,
-                        type: ContentType.CODE,
-                        sourcePath: "${ExName}.${lang}",
-                        sourceType: sourceType,
-                        sourceCode: file_main_c,
-                        partialCode: file_part_c,
-                        output: file_cond_c
-                    )
+                    def content = null
+
+                    if (lesson.contents && lesson.contents.size() > seqnum) {
+                        content = lesson.contents[seqnum]
+                    }
+
+                    if (!content) {
+                        content = new Content()
+                    }
+
+                    content.lesson = lesson
+                    content.title = task_title
+                    content.description = file_html_c
+                    content.type = ContentType.CODE
+                    content.sourcePath = "${ExName}.${lang}"
+                    content.sourceType = sourceType
+                    content.sourceCode = file_main_c
+                    content.partialCode = file_part_c
+                    content.output = file_cond_c
+                    content.priority = seqnum
 
                     if (content.save(flush: true)) {
                         log.info "${content.title} 儲存成功"
                     }
+
+                    seqnum ++
                 }
             }
         }
