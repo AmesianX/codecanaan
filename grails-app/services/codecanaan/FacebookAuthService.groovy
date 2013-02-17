@@ -1,5 +1,7 @@
 package codecanaan
 
+import grails.gsp.PageRenderer
+
 import com.the6hours.grails.springsecurity.facebook.FacebookAuthToken
 import org.springframework.security.core.authority.GrantedAuthorityImpl
 import org.springframework.security.core.GrantedAuthority
@@ -9,6 +11,9 @@ import org.springframework.social.facebook.api.impl.*
 import org.springframework.social.facebook.api.*
 
 class FacebookAuthService {
+    
+    PageRenderer groovyPageRenderer
+
     void onCreate(FacebookUser fbuser, FacebookAuthToken token) {
         log.info("Creating user: $fbuser for fb user: $token.uid")
 
@@ -23,6 +28,12 @@ class FacebookAuthService {
 		        	user.fullName = fbProfile.name
 		        	user.email = fbProfile.email
 		        	user.merge(flush: true)
+		        
+		            sendMail {
+                        to user.email
+                        subject "誠摯歡迎 ${user.fullName} 成為壹學院會員"
+                        html groovyPageRenderer.render(template: "/email/welcome", model: [user: user])
+                    }
 		        }
 	        }
         }

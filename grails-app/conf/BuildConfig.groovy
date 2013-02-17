@@ -72,7 +72,10 @@ grails.project.dependency.resolution = {
     plugins {
         runtime ":hibernate:$grailsVersion"
         runtime ":jquery:1.8.3"
-       
+      
+        // Mail Support
+        compile ":mail:1.0.1"
+
         // Twitter Bootstrap
         runtime ":twitter-bootstrap:2.3.0"
 
