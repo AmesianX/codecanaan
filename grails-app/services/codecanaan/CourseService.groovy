@@ -194,4 +194,112 @@ class CourseService {
 
         return result
     }
+
+    /**
+     * 從 PLWeb 資料庫匯入課程資料
+     * 
+     * @param cid 課程代碼
+     * @param lang 語言代碼（java, c, scm）
+     */
+    def importFromPlweb(Course course, String cid, String lang) {
+        log.info "正在從 PLWeb (course_id = ${cid}) 匯入資料至 ${course.title}"
+
+        def sql = groovy.sql.Sql.newInstance('jdbc:mysql://oradb2.plweb.org/plweb?useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull', 'sta', 'stastasta', 'com.mysql.jdbc.Driver')
+
+        try {
+            sql.eachRow("select TEXT_XML from COURSE_FILE where COURSE_ID=? and VISIBLED='y' order by SEQNUM", [cid]) {
+                row1 ->
+
+                log.info "處理 XML 資料（${row1.TEXT_XML?.size()} bytes）"
+
+                def xml = new XmlParser().parseText(row1.TEXT_XML)
+
+                def title = xml.title[0].value()[0]
+
+                log.info "單元：${title}"
+
+                def tasks = xml.task
+
+                log.info "包含 ${tasks.size()} 項內容"
+
+                def lesson = new Lesson(
+                    course: course
+                )
+
+                createLessonFromTemplate(lesson)
+
+                lesson.title = title
+
+                lesson.save()
+
+                tasks.each {
+                    task ->
+                    def task_title = task.title[0].text()
+
+                    log.info "匯入內容：${task_title}"
+
+                    def ExName = tasks.property.find {it.key.text()=='ExName'}.value.text()
+
+                    def file_main = "${ExName}.${lang}" //主程式碼
+                    def file_part = "${ExName}.part" //部分程式碼
+                    def file_cond = "${ExName}.cond" //標準輸出
+                    def file_html = "${ExName}.html" //說明
+
+                    def file_main_e = xml.file.find {it.path.text()==file_main}?.content?.text()
+                    def file_part_e = xml.file.find {it.path.text()==file_part}?.content?.text()
+                    def file_cond_e = xml.file.find {it.path.text()==file_cond}?.content?.text()
+                    def file_html_e = xml.file.find {it.path.text()==file_html}?.content?.text()
+
+                    def file_main_c = new String(file_main_e?.bytes.decodeBase64())
+                    def file_part_c = file_part_e?new String(file_part_e.bytes.decodeBase64()):''
+                    def file_cond_c = new String(file_cond_e?.bytes.decodeBase64(), "MS950")
+                    def file_html_c = new String(file_html_e?.bytes.decodeBase64())
+
+                    int body_s = file_html_c.indexOf('<body>') + 6
+                    int body_e = file_html_c.indexOf('</body>')
+
+                    if (body_s >= 0 && body_e >= 0) {
+                        file_html_c = file_html_c.substring(body_s, body_e)
+                    }
+
+                    file_cond_c = "${file_cond_c}".replace('請按任意鍵繼續 . . .', '').trim()
+                   
+                    def sourceType = SourceType.JAVA
+
+                    if (lang=='java') {
+                        sourceType = SourceType.JAVA
+                    }
+                    else if (lang=='c') {
+                        sourceType = SourceType.C
+                    }
+                    else if (lang=='scm') {
+                        sourceType = SourceType.SCHEME
+                    }
+
+                    def content = new Content(
+                        lesson: lesson,
+                        title: task_title,
+                        description: file_html_c,
+                        type: ContentType.CODE,
+                        sourcePath: "${ExName}.${lang}",
+                        sourceType: sourceType,
+                        sourceCode: file_main_c,
+                        partialCode: file_part_c,
+                        output: file_cond_c
+                    )
+
+                    if (content.save(flush: true)) {
+                        log.info "${content.title} 儲存成功"
+                    }
+                }
+            }
+        }
+        catch (e) {
+            log.error e.message
+        }
+
+        sql.close()
+
+
+    }
 }

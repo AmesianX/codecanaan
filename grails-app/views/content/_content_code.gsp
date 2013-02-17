@@ -34,7 +34,7 @@
     <!--實作練習-->
     <div class="btn-toolbar">
         <div class="btn-group">
-            <a href="${createLink(controller:'content',action:'source',id:content?.id,params: [file: content.sourcePath])}" id="cmdPlay" class="btn btn-success">
+            <a href="${createLink(controller:'content',action:'source',id:content?.id,params: [file: "${content.sourcePath}"])}" id="cmdPlay" class="btn btn-success">
                 <i class="icon icon-play"></i>
                 執行測試
             </a>

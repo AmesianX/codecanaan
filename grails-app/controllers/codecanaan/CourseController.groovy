@@ -314,4 +314,28 @@ class CourseController {
     def explore() {
         [courses: Course.findAllByName('tqc-plus-java6')]
     }
+
+    /**
+     * 從 PLWeb 匯入課程資料
+     *
+     * /course/importFromPlweb/$ID?cid=$PL_COURSE_ID&lang=java|c|scm
+     *
+     */
+    def importFromPlweb(Long id) {
+        def course = Course.get(id)
+
+        if (params.cid && params.lang) {
+            def cid = params.cid
+            def lang = params.lang
+
+            courseService.importFromPlweb(course, cid, lang)
+        }
+       
+        // 以 JSON 格式回傳
+        render(contentType: 'application/json') {
+            [
+                success: true
+            ]
+        }
+    }
 }
