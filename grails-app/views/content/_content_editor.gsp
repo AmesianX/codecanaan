@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div class="control-group">
+    <div class="control-group hide advanced-region">
         <label class="control-label" for="subtitle">
             <%--副標題--%>
             <g:message code="content.subtitle.label" />
@@ -29,7 +29,7 @@
         </div>
     </div>
     
-    <div class="control-group">
+    <div class="control-group hide advanced-region">
         <label class="control-label" for="authors">
             <%--作者--%>
             <g:message code="content.authors.label" />
@@ -39,7 +39,7 @@
         </div>
     </div>
     
-    <div class="control-group">
+    <div class="control-group hide advanced-region">
         <label class="control-label" for="alias">
             <%--別名--%>
             <g:message code="content.alias.label" />
@@ -51,11 +51,21 @@
 
      <div class="control-group">
         <label class="control-label" for="level">
-            <%--別名--%>
+            <%--難易度--%>
             <g:message code="content.level.label" />
         </label>
         <div class="controls">
             <g:select name="level" from="${1..5}" value="${content.level}" />
+        </div>
+    </div>
+
+    <div class="control-group hide advanced-region">
+        <label class="control-label" for="type">
+            <%--內容類型--%>
+            <g:message code="content.type.label" />
+        </label>
+        <div class="controls">
+            <g:select name="type" from="${ContentType?.values()}" keys="${ContentType.values()*.name()}" required="" value="${content.type?.name()}" />
         </div>
     </div>
 
@@ -259,18 +269,22 @@
         <g:message code="default.button.cancel.label" />
     </g:link>
 
-    <button id="show-advanced" class="btn pull-right">
-        開關進階編輯模式
-    </button>
+    <label class="pull-right">
+        <input type="checkbox" id="show-advanced" />
+        顯示進階設定
+    </label>
 </g:form>
 <r:script>
-$('#show-advanced').toggle(function() {
-    //on
-    $('.advanced-region').show();
-    return false;
-}, function() {
-    //off
-    $('.advanced-region').hide();
-    return false;
+$('#show-advanced').change(function() {
+    if ($(this).attr('checked')) {
+        //on
+        $('.advanced-region').show();
+        return false;
+    }
+    else {
+        //off
+        $('.advanced-region').hide();
+        return false;
+    }
 });
 </r:script>

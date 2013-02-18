@@ -13,7 +13,7 @@ $('#close-menu-button').click(function() {
         $.cookie('_clsm', '1', { path: '/' });
     }
 
-    var a = $('<a href="#" class="hidden-phone"><i class="icon icon-list" style="position:absolute;left:0;top:100px;"></i></a>');
+    var a = $('<a href="#" class="hidden-phone" style="position:absolute;left:5px;top:100px;color:#888888;font-size:10pt;"><i class="icon icon-list"></i><br/>顯<br/>示<br/>選<br/>單</a>');
     a.appendTo('body');
     a.click(function() {
         _parent.prepend(_backup);
@@ -27,7 +27,7 @@ if ($.cookie && $.cookie('_clsm')) {
     $('#close-menu-button').click();
 }
 </r:script>
-<ul class="nav nav-pills nav-stacked" style="font-size:11pt">
+<ul class="nav nav-pills nav-stacked" style="font-size:10pt">
     <li class="${!lesson?'active':''}">
         <g:link controller="course" action="show" id="${course?.id}">
             <%--課程首頁--%>
