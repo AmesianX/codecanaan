@@ -72,12 +72,13 @@
 
                 <!--個人簡介-->
                 <div class="control-group ${hasErrors(bean: user, field: 'description', 'error')} ">
-                    <label class="control-label" for="title">
-                        <g:message code="user.description.label" />				
-                    </label>
                     <div class="controls">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tab-editor" data-toggle="tab">單元說明</a></li>
+                            <li class="active">
+                                <a href="#tab-editor" data-toggle="tab">
+                                    <g:message code="user.description.label" />				
+                                </a>
+                            </li>
                             <li><a href="#tab-preview" data-toggle="tab">預覽</a></li>
                         </ul>
                         <div class="tab-content">

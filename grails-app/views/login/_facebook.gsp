@@ -15,7 +15,7 @@
     </div>
     
     <hr />
-    
-    <p>如果您真的沒有 Facebook 帳號，也沒有意願申請一組，那麼您可以填寫傳統的註冊表單，並使用<g:link controller="login" action="auth" params="[method: 'builtin']">一般會員</g:link>帳號登入。</p>
+
+    <g:img dir="images" file="login-bottom.png" />
     
 </section>

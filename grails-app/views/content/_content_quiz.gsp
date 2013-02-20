@@ -68,7 +68,7 @@
     <g:elseif test="${content.quizType==QuizType.TRUE_FALSE}">
         <p>是非題。</p>
         <div class="margin-around">
-            <g:radioGroup name="myanswer" labels="['True', 'False']" values="['TRUE', 'FALSE']" value="${record?.answer?.trim().toUpperCase()}" >
+            <g:radioGroup name="myanswer" labels="['True', 'False']" values="['TRUE', 'FALSE']" value="${record?.answer?.trim()?.toUpperCase()}" >
                 <label>${it.radio} ${it.label}</label>
             </g:radioGroup>
         </div>

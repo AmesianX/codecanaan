@@ -208,7 +208,15 @@ class ContentController {
         //tell browsers do not cache this
         cache false
 
-        def user = springSecurityService.currentUser
+        def user 
+        
+        if (params.uid) {
+            user = User.get(params.uid)
+        }
+        else {
+            user = springSecurityService.currentUser
+        }
+
         def content = Content.get(id)
         def record = Record.findByUserAndContent(user, content)
 

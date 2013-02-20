@@ -107,6 +107,20 @@ class ScheduleController {
     }
 
     /**
+     * 報表
+     */
+    @Secured(['ROLE_USER'])
+    def report(Long id) {
+        def scheduleLesson = ScheduleLesson.get(id)
+        def schedule = scheduleLesson.schedule
+        [
+            schedule: schedule,
+            users: UserSchedule.findAllBySchedule(schedule)*.user,
+            lesson: scheduleLesson.lesson
+        ]
+    }
+
+    /**
      * 教學進度修改
      */
     @Secured(['ROLE_TEACHER'])
@@ -347,31 +361,40 @@ class ScheduleController {
     }
 
     /**
-     * 建立新單元（建立後直接回到單元顯示頁面）
+     * 建立新的學習進度
      */
     @Secured(['ROLE_TEACHER'])
     def create() {
-        def user = springSecurityService.currentUser
         
+        def user = springSecurityService.currentUser
+
         def schedule = new Schedule(params)
 
-        //套用預設值
-        schedule.name = new Date().format('yyyyMMdd-HHmmss')
-        schedule.title = "Untitled Schedule"
-        schedule.creator = user
+        if (params.save != null) {
+            // 套用預設值
+            schedule.name = new Date().format('yyyyMMdd-HHmmss')
+            schedule.creator = user
 
-        schedule.save(flush: true)
+            if (schedule.save(flush: true)) {
 
-        //建立使用者與群組關連
-        def link = UserSchedule.create(user, schedule, true)
-        if (link) {
-        	link.roleType = ScheduleRoleType.OWNER
-        	link.save(flush: true)
+                // 建立使用者與群組關連
+                def link = UserSchedule.create(user, schedule, true)
+                if (link) {
+                    link.roleType = ScheduleRoleType.OWNER
+                    link.save(flush: true)
+                }
+                
+                // 儲存成功進入
+                redirect action: 'show', id: schedule.id
+            }
+        }
+        else {
+            schedule.title = "${user.fullName}的教學進度"
         }
 
-        redirect(
-            action: 'list'
-        )
+        [
+            schedule: schedule
+        ]
     }
 
     /**

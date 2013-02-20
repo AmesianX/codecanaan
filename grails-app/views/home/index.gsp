@@ -73,7 +73,7 @@
                             <g:each in="${posts}" var="post" status="i">
                                 <li class="${i==0?'first':'show-lines'}">
                                     <g:link controller="post" action="show" params="[name: post.name]">${post.title}</g:link>
-                                    <div class="pull-right">
+                                    <div class="hidden-phone pull-right">
                                         <small style="font-family:Georgia"><em>${post.hits}</em></small>
                                         <small class="muted"><g:formatDate date="${post.dateCreated}" type="date" style="SHORT" /></small>
                                     </div>
@@ -97,7 +97,7 @@
                             <g:each in="${books}" var="book" status="i">
                                 <li class="${i==0?'first':'show-lines'}">
                                     <g:link controller="book" action="show" params="[isbn: book.isbn]">${book.title}</g:link>
-                                    <div class="pull-right">
+                                    <div class="hidden-phone pull-right">
                                         <small class="muted"><g:formatDate date="${book.publishDate}" type="date" style="SHORT" /></small>
                                     </div>
                                 </li>
@@ -188,7 +188,7 @@
         </div>
     </div>
 
-    <div class="padding-around margin-around textalign-center">
+    <div class="textalign-center" style="margin:60px 0">
         <r:img dir="images/logoset" file="logoset.png" />
     </div>
 

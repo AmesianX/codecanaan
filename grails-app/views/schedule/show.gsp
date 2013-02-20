@@ -81,13 +81,17 @@
                             <tr>
                                 <td>${i+1}</td>
                                 <td>
-                                    <schedule:answerAvailable test="${link}">
-                                        <!--觀看解答-->
-                                        <g:link action="answer" id="${link.id}" class="btn pull-right">
-                                            <i class="icon icon-eye-open"></i>
-                                            <g:message code="schedule.answer.text" />
+                                    <div class="btn-group pull-right">
+                                        <schedule:answerAvailable test="${link}">
+                                            <!--觀看解答-->
+                                            <g:link action="answer" id="${link.id}" class="btn">
+                                                <g:message code="schedule.answer.text" />
+                                            </g:link>
+                                        </schedule:answerAvailable>
+                                        <g:link action="report" id="${link.id}" class="btn">
+                                            報表
                                         </g:link>
-                                    </schedule:answerAvailable>
+                                    </div>
 
                                     <g:if test="${today >= link.begin && today <= link.end}">
                                         <g:link controller="lesson" action="show" id="${link.lesson.id}">${link.lesson?.title}</g:link>

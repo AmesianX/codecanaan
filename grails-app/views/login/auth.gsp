@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
-            <p class="larger-font textalign-center padding-around margin-around">第一次使用嗎？請<g:link controller="home" action="step1">由此進入</g:link>啟用流程！</p>
+            <p class="larger-font textalign-center padding-around">第一次使用嗎？</span>請<g:link controller="home" action="step1">由此進入</g:link>啟用流程！</p>
         </div>
     </div>
     <div class="row-fluid clearlook-wrapper justfont">
