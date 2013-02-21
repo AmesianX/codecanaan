@@ -16,7 +16,6 @@
 <google:analytics />
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
-<facebookAuth:init/>
 
 <%--畫面可視區域：起點--%><div class="blur-after-modal-shown">
 
