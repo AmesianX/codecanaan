@@ -29,11 +29,11 @@ class FacebookAuthService {
 		        	user.email = fbProfile.email
 		        	user.merge(flush: true)
 		        
-		            sendMail {
+		            /*sendMail {
                         to user.email
                         subject "歡迎 ${user.fullName} 成為壹學院會員"
                         html groovyPageRenderer.render(template: "/email/welcome", model: [user: user])
-                    }
+                    }*/
 		        }
 	        }
         }

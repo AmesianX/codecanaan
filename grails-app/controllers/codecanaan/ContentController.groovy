@@ -26,9 +26,9 @@ class ContentController {
             return
         }
 
-        //點擊次數 +1
-        content.hits ++
-        content.save(flush: true)
+        // 點擊次數 +1
+        // content.hits ++
+        // content.save(flush: true)
 
         //取得記錄
         def record = Record.findByUserAndContent(user, content)
