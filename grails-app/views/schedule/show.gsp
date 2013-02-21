@@ -59,6 +59,15 @@
                 <dl class="dl-horizontal">
                     <dt><g:message code="schedule.name.label" /></dt>
                     <dd>${schedule.name}</dd>
+
+                    <dt><g:message code="schedule.school.label" /></dt>
+                    <dd>${schedule.school}</dd>
+
+                    <dt><g:message code="schedule.department.label" /></dt>
+                    <dd>${schedule.department}</dd>
+
+                    <dt>人數</dt>
+                    <dd>${userSize}</dd>
                 </dl>
 
                 <table class="table table-bordered">

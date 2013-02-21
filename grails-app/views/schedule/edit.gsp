@@ -52,6 +52,26 @@
                         <g:passwordField name="password" value="${schedule.password}" class="input input-medium" />
                     </div>
                 </div>
+                
+                <%--學校--%>
+                <div class="control-group ${hasErrors(bean: schedule, field: 'school', 'error')} ">
+                    <label class="control-label" for="school">
+                        <g:message code="schedule.school.label" />
+                    </label>
+                    <div class="controls">
+                        <g:textField name="school" value="${schedule?.school}" class="input input-large" />
+                    </div>
+                </div>
+
+                <%--系所--%>
+                <div class="control-group ${hasErrors(bean: schedule, field: 'department', 'error')} ">
+                    <label class="control-label" for="department">
+                        <g:message code="schedule.department.label" />
+                    </label>
+                    <div class="controls">
+                        <g:textField name="department" value="${schedule?.department}" class="input input-large" />
+                    </div>
+                </div>
 
                 <table class="table table-bordered">
                     <thead>
@@ -116,7 +136,7 @@
                     </tbody>
                 </table>
 
-                <div class="btn-toolbar">
+                <div class="form-actions">
                     <!--更新-->
                     <g:submitButton name="actionUpdate" value="${message(code:'default.button.update.label')}" class="btn btn-primary" />
 

@@ -31,7 +31,17 @@ class User {
 	int clientPort = 1337
 
     /**
-     * 登入帳號
+     * 學校（或公司）
+     */
+    String school
+
+    /**
+     * 系所（或部門）
+     */
+    String department
+
+    /**
+     * 登入帳號名稱（系統欄位）
      */
 	String username
 	
@@ -95,6 +105,8 @@ class User {
 		username blank: false, unique: true
 		password blank: false
 		clientPort range: 1000..65535
+		school nullable: true
+		department nullable: true
 	}
 
 	static mapping = {

@@ -53,33 +53,60 @@
                     </div>
                 </g:else>
 
+                <%--姓名--%>
                 <div class="control-group ${hasErrors(bean: user, field: 'fullName', 'error')} ">
                     <label class="control-label" for="fullName">
-                        <g:message code="user.fullName.label" default="Full Name" />
+                        <g:message code="user.fullName.label" />
                     </label>
                     <div class="controls">
                         <g:textField name="fullName" value="${user?.fullName}" class="input input-medium" />
                     </div>
                 </div>
+
+                <%--電子郵件--%>
                 <div class="control-group ${hasErrors(bean: user, field: 'email', 'error')} ">
                     <label class="control-label" for="email">
-                        <g:message code="user.email.label" default="Email" />
+                        <g:message code="user.email.label" />
                     </label>
                     <div class="controls">
                         <g:textField name="email" value="${user?.email}" class="input input-xlarge" disabled="" />
                     </div>
                 </div>
 
-                <!--個人簡介-->
+                <%--學校--%>
+                <div class="control-group ${hasErrors(bean: user, field: 'school', 'error')} ">
+                    <label class="control-label" for="school">
+                        <g:message code="user.school.label" />
+                    </label>
+                    <div class="controls">
+                        <g:textField name="school" value="${user?.school}" class="input input-large" />
+                    </div>
+                </div>
+
+                <%--系所--%>
+                <div class="control-group ${hasErrors(bean: user, field: 'department', 'error')} ">
+                    <label class="control-label" for="department">
+                        <g:message code="user.department.label" />
+                    </label>
+                    <div class="controls">
+                        <g:textField name="department" value="${user?.department}" class="input input-large" />
+                    </div>
+                </div>
+
+                <%--個人簡介--%>
                 <div class="control-group ${hasErrors(bean: user, field: 'description', 'error')} ">
                     <div class="controls">
                         <ul class="nav nav-tabs">
                             <li class="active">
                                 <a href="#tab-editor" data-toggle="tab">
-                                    <g:message code="user.description.label" />				
+                                    <small><g:message code="user.description.label" /></small>
                                 </a>
                             </li>
-                            <li><a href="#tab-preview" data-toggle="tab">預覽</a></li>
+                            <li>
+                                <a href="#tab-preview" data-toggle="tab">
+                                    <small><g:message code="default.preview.text" /></small>
+                                </a>
+                            </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab-editor">
@@ -98,7 +125,7 @@
                 <!--客戶端工具連接埠-->
                 <div class="control-group ${hasErrors(bean: user, field: 'clientPort', 'error')} ">
                     <label class="control-label" for="clientPort">
-                        <g:message code="user.clientPort.label" default="Client Port" />
+                        <g:message code="user.clientPort.label" />
                     </label>
                     <div class="controls">
                         <div class="input-prepend input-append">
@@ -126,11 +153,9 @@
                 </div>
                 
                 <!--按鈕區-->
-                <div class="control-group">
-                    <div class="controls">
-                        <g:submitButton name="save" value="${message(code: 'default.button.update.label', default: 'Update')}" class="btn btn-primary" />
-                            <g:link action="show" id="${user?.id}" class="btn">檢視個人資料</g:link>
-                    </div>
+                <div class="form-actions">
+                    <g:submitButton name="save" value="${message(code: 'default.button.update.label')}" class="btn btn-primary" />
+                    <g:link action="show" id="${user?.id}" class="btn">檢視個人資料</g:link>
                 </div>
             </g:form>
         </div>

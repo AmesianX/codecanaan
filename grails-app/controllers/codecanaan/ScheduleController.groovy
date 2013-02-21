@@ -72,6 +72,7 @@ class ScheduleController {
         }
 
         [
+            userSize: UserSchedule.countBySchedule(schedule),
             schedule: schedule,
             scheduleLessons: scheduleLessons,
             editable: editable,
@@ -370,6 +371,12 @@ class ScheduleController {
 
         def schedule = new Schedule(params)
 
+        def stageValues = []
+
+        stageValues << '101學年度下學期'
+        stageValues << '101學年度上學期'
+        stageValues << '認證研習班'
+        
         if (params.save != null) {
             // 套用預設值
             schedule.name = new Date().format('yyyyMMdd-HHmmss')
@@ -386,13 +393,20 @@ class ScheduleController {
                 
                 // 儲存成功進入
                 redirect action: 'show', id: schedule.id
+                return
             }
         }
         else {
             schedule.title = "${user.fullName}的教學進度"
+
+            schedule.school = user.school
+            schedule.department = user.department
+            schedule.stage = stageValues.first()
         }
 
+
         [
+            stageValues: stageValues,
             schedule: schedule
         ]
     }
@@ -402,21 +416,36 @@ class ScheduleController {
      */
     @Secured(['ROLE_USER'])
     def register() {
+
         def user = springSecurityService.currentUser
 
         def schedule = Schedule.findByName(params.name)
 
-        if (schedule && schedule.password == params.password) {
-            
-            def link = UserSchedule.findOrCreateWhere(user: user, schedule: schedule)
+        if (user && schedule) {
+            // 檢查密碼
+            if (schedule.password == params.password) {
 
-            //防呆：擁有者重新註冊一次不改變權限
-            if (link.roleType != ScheduleRoleType.OWNER) {
-                link.roleType = ScheduleRoleType.MEMBER
+                // 先檢查是否已經有連結
+                def link = UserSchedule.findByUserAndSchedule(user, schedule)
+
+                // 建立新的連結
+                if (!link) {
+                    link = new UserSchedule(user: user, schedule: schedule)
+
+                    // 預設的角色是一般成員（MEMBER）
+                    link.roleType = ScheduleRoleType.MEMBER
+                
+                    // 儲存
+                    if (link.save(flush: true)) {
+                        flash.message = "您已經參與學習進度：${schedule.title}"
+                    }
+                    else {
+                        flash.message = "無法加入學習進度。"
+                    }
+                }
             }
-
-            link.save(flush: true)
         }
+
         redirect action: 'list'
     }
 }

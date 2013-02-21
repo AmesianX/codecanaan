@@ -15,7 +15,7 @@ class CourseController {
         redirect(action: "list", params: params)
     }
 
-    /*
+    /**
      * 課程列表：只列出已選修課程
      */
     @Secured(['ROLE_USER'])
@@ -23,29 +23,13 @@ class CourseController {
         def user = springSecurityService.currentUser
 
         if (!user) {
-            redirect(url: '/')
+            response.sendError 404
             return
         }
 
-        def links = UserCourse.findAllByUser(user)
-
-        def courses = []
-
-        links.each {
-            link ->
-            courses << link.course
-        }
-
-        links = UserSchedule.findAllByUser(user)
-
-        def schedules = []
-
-        links.each {
-            link ->
-            schedules << link.schedule
-        }
-
-        [courses: courses, schedules: schedules]
+        [
+            courses: UserCourse.findAllByUser(user)*.course
+        ]
     }
 
     /**
@@ -65,6 +49,7 @@ class CourseController {
 
         [
             course: course,
+            isOpenCourse: OpenCourse.findByCourse(course),
             authoring: authoring
         ]
     }
@@ -74,6 +59,32 @@ class CourseController {
      */
     def register() {
         def user = springSecurityService.currentUser
+
+        def serialCode = params.serialCode?.trim()
+
+        // 先找 Open Course
+        def c = Course.findByName(serialCode)
+        if (c) {
+            def oc = OpenCourse.findByCourse(c)
+
+            if (oc) {
+                def uc = UserCourse.findByUserAndCourse(user, c)
+
+                if (!uc) {
+                    uc = new UserCourse(user: user, course: c)
+                    uc.regInfo = "register for open course using ${serialCode}"
+                    uc.regType = RegType.USER
+                    uc.save flush: true
+                }
+
+                flash.message = "已註冊課程：${c.title}（開放式課程）"
+                redirect action: 'list'
+                return
+            }
+        }
+
+
+        // 尋找課程兌換券
 
         def coupon = Coupon.findBySerialCode(params.serialCode)
 
@@ -197,6 +208,20 @@ class CourseController {
         course.properties = params
         def success = course.save(flush: true)
         
+        if (success) {
+
+            // 新增或移除開放式課程
+            if (params.boolean('isOpenCourse')) {
+                log.info "Add ${course.title} to Open Course List"
+                OpenCourse.openTheCourse(course)
+            }
+            else {
+                log.info "Remove ${course.title} from Open Course List"
+                def oc = OpenCourse.findByCourse(course)
+                oc.delete(flush: true)
+            }
+        }
+
         render(contentType: 'application/json') {
             [
                 success: success,
