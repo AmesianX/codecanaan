@@ -156,9 +156,7 @@ class ScheduleController {
         if (params.actionUpdate) {
 
             //更新基本資料
-            schedule.title = params.title
-            schedule.name = params.name
-            schedule.password = params.password
+            schedule.properties = params
             schedule.save(flush: true)
 
             //更新課程單元連結

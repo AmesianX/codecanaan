@@ -20,28 +20,28 @@
                                 <g:link controller="schedule" action="edit" id="${schedule.id}">
                                     <i class="icon icon-edit"></i>
                                     <!--修改學習進度-->
-                                    <g:message code="default.edit.label" default="Delete {0}" args="[message(code: 'schedule.label', default: 'Schedule')]" />
-                                </g:link>
-                            </li>
-                            <li>
-                                <g:link controller="schedule" action="delete" id="${schedule.id}" onclick="return confirm('Are you sure???')">
-                                    <i class="icon icon-remove"></i>
-                                    <!--刪除學習進度-->
-                                    <g:message code="default.delete.label" default="Delete {0}" args="[message(code: 'schedule.label', default: 'Schedule')]" />
+                                    修改進度設定
                                 </g:link>
                             </li>
                             <li>
                                 <g:link controller="schedule" action="join" id="${schedule.id}">
                                     <i class="icon icon-book"></i>
                                     <!--加入單元-->
-                                    <g:message code="default.add.label" default="Join {0}" args="[message(code: 'lesson.label', default: 'Lesson')]" />
+                                    增加授課內容
                                 </g:link>
                             </li>
                             <li>
                                 <g:link controller="schedule" action="user" id="${schedule.id}">
                                     <i class="icon icon-user"></i>
                                     <!--加入使用者-->
-                                    <g:message code="default.add.remove.label" args="[message(code: 'user.label')]" />
+                                    學員名單維護
+                                </g:link>
+                            </li>
+                            <li>
+                                <g:link controller="schedule" action="delete" id="${schedule.id}" onclick="return confirm('Are you sure???')">
+                                    <i class="icon icon-remove"></i>
+                                    <!--刪除學習進度-->
+                                    刪除學習進度
                                 </g:link>
                             </li>
                         </ul>
@@ -52,20 +52,22 @@
                     <h1>
                         <i class="icon icon-tasks"></i>
                         ${schedule?.title}
-                        <small><g:message code="schedule.label" default="Schedule" /></small>
                     </h1>
                 </div>
 
                 <dl class="dl-horizontal">
                     <dt><g:message code="schedule.name.label" /></dt>
                     <dd>${schedule.name}</dd>
-
+                </dl>
+                <dl class="dl-horizontal">
                     <dt><g:message code="schedule.school.label" /></dt>
                     <dd>${schedule.school}</dd>
-
+                </dl>
+                <dl class="dl-horizontal">
                     <dt><g:message code="schedule.department.label" /></dt>
                     <dd>${schedule.department}</dd>
-
+                </dl>
+                <dl class="dl-horizontal">
                     <dt>人數</dt>
                     <dd>${userSize}</dd>
                 </dl>

@@ -82,6 +82,14 @@ p.larger-font {
 
 /*--------------------- Headings ---------------------------------------------*/
 
+/* 重設標題字型大小 */
+h1 { font-size: 22pt; }
+h2 { font-size: 20pt; }
+h3 { font-size: 18pt; }
+h4 { font-size: 16pt; }
+h5 { font-size: 14pt; }
+h6 { font-size: 12pt; }
+
 h1, h2, h3, h4 {
 	@include text-shadow(0 0 1px transparent, #aaa 1pt 1pt 2pt);
 }
