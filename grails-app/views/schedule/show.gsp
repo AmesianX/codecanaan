@@ -99,9 +99,12 @@
                                                 <g:message code="schedule.answer.text" />
                                             </g:link>
                                         </schedule:answerAvailable>
-                                        <g:link action="report" id="${link.id}" class="btn">
-                                            報表
-                                        </g:link>
+
+                                        <sec:ifAllGranted roles="ROLE_TEACHER">
+                                            <g:link action="report" id="${link.id}" class="btn">
+                                                報表
+                                            </g:link>
+                                        </sec:ifAllGranted>
                                     </div>
 
                                     <g:if test="${today >= link.begin && today <= link.end}">
