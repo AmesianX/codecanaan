@@ -4,7 +4,7 @@ title CodeCanaan
 
 cd %CC_CLIENT_CWD%
 
-g++ -o %CC_CLIENT_FILEBASE%.exe %CC_CLIENT_FILE%
+g++ -fexec-charset=big5 -o %CC_CLIENT_FILEBASE%.exe %CC_CLIENT_FILE%
 
 if not %ERRORLEVEL%==0 goto End
 

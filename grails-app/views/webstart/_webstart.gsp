@@ -14,7 +14,7 @@
         <jar href="http://assets${serverId}.codecanaan.com/webstart/ClientTools.jar" />
         <property name="core.client.port" value="${clientPort}" />
         <property name="core.http.origin" value="*" />
-        <property name="core.toolkits.url" value="http://assets${serverId}.codecanaan.com/webstart/toolkits.zip" />
+        <property name="core.toolkits.url" value="http://assets.codecanaan.com/webstart/toolkits.zip" />
         <property name="core.script.type" value="groovy" />
         <property name="core.script.url" value="${createLink(controller:'webstart',action:'script',absolute:true)}" />
     </resources>
