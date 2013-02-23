@@ -150,6 +150,13 @@ class AdminController {
     }
 
     /**
+     *
+     */
+    def memoryUsage() {
+        [beans: java.lang.management.ManagementFactory.memoryPoolMXBeans]
+    }
+
+    /**
      * 序號管理
      */
     def couponList(Integer max) {

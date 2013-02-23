@@ -54,6 +54,14 @@
         </div>
         <div class="span3 padding-around">
             <h3>系統維護</h3>
+            <ul class="icons">
+                <li>
+                    <g:link action="memoryUsage">
+                        <i class="icon-ok"></i>
+                        顯示記憶體使用量
+                    </g:link>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
