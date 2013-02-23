@@ -25,6 +25,7 @@ grails.war.resources = { stagingDir, args ->
     delete { fileset(dir: "${stagingDir}/font-awesome", includes: '*') }
     delete { fileset(dir: "${stagingDir}/images", includes: '*.psd') }
     delete { fileset(dir: "${stagingDir}/sass", includes: '*') }
+    delete { fileset(dir: "${stagingDir}/fancybox", includes: '*') }
 };
 
 grails.project.dependency.resolution = {

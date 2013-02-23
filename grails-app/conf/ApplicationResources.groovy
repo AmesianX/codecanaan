@@ -135,8 +135,8 @@ modules = {
         dependsOn 'jquery'
         defaultBundle __bundleName
 
-        resource url: 'fancybox/source/jquery.fancybox.js'
-        resource url: 'fancybox/source/jquery.fancybox.css'
+        resource url: 'jquery-plugins/jquery.fancybox.min.js'
+        resource url: 'jquery-plugins/jquery.fancybox.css'
     }
 
     highlightjs {
