@@ -229,20 +229,26 @@
                 <g:message code="default.execution.text" />
             </a>
         </div>
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab-sourceCode" data-toggle="tab">
-                <%--程式原始碼--%>
-                <g:message code="content.sourceCode.label" />
-                <span class="required-mark">*</span>
-            </a></li>
-            <li><a href="#tab-partialCode" data-toggle="tab">
-                <%--填空程式碼--%>
-                <g:message code="content.partialCode.label" />
-            </a></li>
-            <li><a href="#tab-output" data-toggle="tab">
-                <%--標準輸出--%>
-                <g:message code="content.output.label" />
-            </a></li>
+        <ul class="nav nav-tabs" id="editorTab">
+            <li class="active">
+                <a href="#tab-sourceCode" data-toggle="tab">
+                    <%--程式原始碼--%>
+                    <g:message code="content.sourceCode.label" />
+                    <span class="required-mark">*</span>
+                </a>
+            </li>
+            <li>
+                <a href="#tab-partialCode" data-toggle="tab">
+                    <%--填空程式碼--%>
+                    <g:message code="content.partialCode.label" />
+                </a>
+            </li>
+            <li>
+                <a href="#tab-output" data-toggle="tab">
+                    <%--標準輸出--%>
+                    <g:message code="content.output.label" />
+                </a>
+            </li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="tab-sourceCode">
@@ -255,7 +261,12 @@
             </div>
             <div class="tab-pane" id="tab-output">
                 <%--標準輸出--%>
-                <g:textArea name="output" value="${content.output}" data-mode="text/plain" data-height="500" cols="40" rows="20" class="codemirror-auto" />
+                <g:if test="${content.sourceType==SourceType.HTML}">
+                    <iframe id="output" src="${createLink(controller:'content',action:'source',id:content.id, params: [source: true])}" width="100%" height="500" border="0" style="border:none"></iframe>
+                </g:if>
+                <g:else>
+                    <g:textArea name="output" value="${content.output}" data-mode="text/plain" data-height="500" cols="40" rows="20" class="codemirror-auto" />
+                </g:else>
             </div>
         </div>
     </section>

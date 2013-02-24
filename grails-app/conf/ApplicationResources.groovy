@@ -56,10 +56,12 @@ modules = {
         //defaultBundle 'jquery'
 		defaultBundle __bundleName
         
+        resource url: 'jquery-plugins/jquery.migrate.min.js'
         resource url: 'jquery-plugins/jquery.textarea.js'
         resource url: 'jquery-plugins/jquery.jfontsize.js'
         resource url: 'jquery-plugins/jquery.cookie.js'
         resource url: 'jquery-plugins/jquery.masonry.js'
+        resource url: 'jquery-plugins/jquery.lazyload.min.js'
     }
 
     common {
@@ -135,8 +137,8 @@ modules = {
         dependsOn 'jquery'
         defaultBundle __bundleName
 
-        resource url: 'jquery-plugins/jquery.fancybox.min.js'
-        resource url: 'jquery-plugins/jquery.fancybox.css'
+        resource url: 'fancybox/source/jquery.fancybox.pack.js'
+        resource url: 'fancybox/source/jquery.fancybox.css'
     }
 
     highlightjs {

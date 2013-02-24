@@ -176,18 +176,8 @@
                     sourcePath: sourcePath,
                     sourceCode: sourceCode
                 }, function() {
-                    var link = $('<a/>');
-                    link.attr('href', __href);
-                    link.fancybox({
-                        width           : '100%',
-                        height          : '100%',
-                        autoScale       : false,
-                        autoSize        : false,
-                        transitionIn    : 'none',
-                        transitionOut   : 'none',
-                        type            : 'iframe'
-                    });
-                    link.click();
+                    $('#output').attr('src', __href);
+                    $('#editorTab a[href="#tab-output"]').tab('show');
                 });
             }
             else if (sourceType=='SCHEME') {
@@ -344,19 +334,8 @@
                     sourcePath: sourcePath,
                     sourceCode: sourceCode
                 }, function() {
-                    var link = $('<a/>');
-                    link.data('fancybox-type', 'iframe');
-                    link.attr('href', __href);
-                    link.fancybox({
-                        width           : '100%',
-                        height          : '100%',
-                        autoScale       : false,
-                        autoSize        : false,
-                        transitionIn    : 'none',
-                        transitionOut   : 'none',
-                        type            : 'iframe'
-                    });
-                    link.click();
+                    $('#output').attr('src', __href);
+                    $('#editorTab a[href="#tab-output"]').tab('show');
                 });
             }
             else if (sourceType == 'SCHEME') {

@@ -191,11 +191,17 @@ class ContentController {
         }
 
         def text = content.partialCode
-        
-        def record = Record.findByUserAndContent(user, content)
+       
+        // ?source=true 查詢原始碼
+        if (params.boolean('source')) {
+            text = content.sourceCode
+        }
+        else {
+            def record = Record.findByUserAndContent(user, content)
 
-        if (record) {
-            text = record.sourceCode
+            if (record) {
+                text = record.sourceCode
+            }
         }
 
         render text: text, contentType: contentType, encoding: "UTF-8"

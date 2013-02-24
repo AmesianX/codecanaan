@@ -51,14 +51,14 @@
         </div>
     </div>
 
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs" id="editorTab">
         <li class="active"><a href="#tab-editor" data-toggle="tab">
             <span class="hide visible-while-save-progress"><i class="icon icon-spinner icon-spin"></i></span>
             <span class="hidden-while-save-progress"><i class="icon icon-file"></i></span>
             ${content.sourcePath}
         </a></li>
-        <li><a href="#tab-myoutput" data-toggle="tab">執行結果</a></li>
-        <li><a href="#tab-output" data-toggle="tab">標準輸出</a></li>
+        <li><a href="#tab-output" data-toggle="tab">執行結果</a></li>
+        <li><a href="#tab-stdoutput" data-toggle="tab">標準輸出</a></li>
         <g:if test="${authoring}">
             <li><a href="#tab-source" data-toggle="tab">解答程式碼</a></li>
         </g:if>
@@ -68,8 +68,22 @@
         <div class="tab-pane active" id="tab-editor">
             <g:textArea name="sourceEdit" value="${record?.sourceCode?:content.partialCode}" data-mode="${cmmode(type:content.sourceType)}" data-height="500" cols="60" rows="20" class="codemirror-auto" style="height:500px" />
         </div>
-        <div class="tab-pane" id="tab-myoutput"><pre id="program-output" style="height:500px;overflow:auto">${record?.output}</pre></div>
-        <div class="tab-pane" id="tab-output"><pre style="height:500px;overflow:auto">${content.output}</pre></div>
+        <div class="tab-pane" id="tab-output">
+            <g:if test="${content.sourceType==SourceType.HTML}">
+                <iframe id="output" src="${createLink(controller:'content',action:'source',id:content.id)}" width="100%" height="500" border="0" style="border:none"></iframe>
+            </g:if>
+            <g:else>
+                <pre id="program-output" style="height:500px;overflow:auto">${record?.output}</pre>
+            </g:else>
+        </div>
+        <div class="tab-pane" id="tab-stdoutput">
+            <g:if test="${content.sourceType==SourceType.HTML}">
+                <iframe src="${createLink(controller:'content',action:'source',id:content.id, params: [source: true])}" width="100%" height="500" border="0" style="border:none"></iframe>
+            </g:if>
+            <g:else>
+                <pre style="height:500px;overflow:auto">${content.output}</pre>
+            </g:else>
+        </div>
         <g:if test="${authoring}">
             <div class="tab-pane" id="tab-source"><pre style="height:500px;overflow:auto"><code class="no-highlight code-font codemirror-auto-runmode cm-s-default" data-mode="${cmmode(type:content.sourceType)}">${content.sourceCode?.encodeAsHTML()}</code></pre></div>
         </g:if>

@@ -13,6 +13,8 @@ class BookController {
      */
     def list() {
         params.max = params.max?:100
+        params.sort = 'publishDate'
+        params.order = 'desc'
 
         [
             books: Book.list(params),
