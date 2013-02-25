@@ -12,9 +12,7 @@
             </small></p> 
         </g:if>
         <g:if test="${content.level}">
-            <p><small>難易度：
-                <g:each in="${1..content.level}"><i class="icon icon-star"></i></g:each><g:each in="${1..5-content.level}"><i class="icon icon-star-empty"></i></g:each>
-            </small></p> 
+            <p><small>難易度：<g:starLabel rank="${content.level}" /></small></p> 
         </g:if>
     </div>
 

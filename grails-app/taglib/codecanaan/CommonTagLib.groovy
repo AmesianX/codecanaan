@@ -36,4 +36,16 @@ class CommonTagLib {
 
 		out << c
 	}
+
+    def starLabel = { attr, body ->
+        if (attr.rank) {
+            def rank = attr.rank
+            for (def i=0; i<rank; i++) {
+                out << '<i class="icon icon-star"></i>'
+            }
+            for (def j=0; j<(5-rank); j++) {
+                out << '<i class="icon icon-star-empty"></i>'
+            }
+        }
+    }
 }
