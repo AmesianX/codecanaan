@@ -32,3 +32,5 @@ zip:
 upload:
 	s3cmd -P put toolkits.zip s3://assets.codecanaan.com/webstart/
 	s3cmd -P put lib/ClientTools.jar s3://assets.codecanaan.com/webstart/
+	scp toolkits.zip kyle@codecanaan.com:/var/www/assets/webstart/
+	scp lib/ClientTools.jar kyle@codecanaan.com:/var/www/assets/webstart/
