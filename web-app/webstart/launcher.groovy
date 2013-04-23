@@ -20,18 +20,21 @@ System.getenv().each {
 k,v->
 println "${k} = ${v}"
 }
-println "-----"
-System.properties.each {
-k,v->
-println "${k} = ${v}"
-}
 */
+
+println "-----=[ System Properties ]=-----"
+System.properties.each {
+    k, v->
+    println "${k} = ${v}"
+}
 
 def osname = System.properties['os.name']
 def isWindows = osname.toLowerCase().startsWith('windows')
 def isMac = osname.toLowerCase().startsWith('mac')
 def isLinux = osname.toLowerCase().startsWith('linux')
 
+def clientMode = System.properties['core.client.mode']
+def examUrl = System.properties['core.exam.url']
 
 def env = [:]   //Map
 def envp = []   //List
@@ -242,11 +245,56 @@ catch (e) {
 }
 
 
+/*--------------------=[ 測驗模式 ]=--------------------------*/
+
+def quickCmd = {
+    cmd ->
+    try {
+        if (isWindows) {
+            cmd = "cmd /C ${cmd}"
+        }
+        def proc = cmd.execute(envp, null)
+        proc.waitForOrKill(10*1000)
+        return proc.exitValue()
+    }
+    catch (e) {
+        println "Error: ${e.message}"
+    }
+    return -1
+}
+
+if (isWindows && clientMode=='exam') {
+    // 關閉非必要系統服務
+    quickCmd("taskkill /f /im explorer.exe")
+
+    // 關閉其他應用程式
+    quickCmd("taskkill /f /im iexplore.exe")
+    quickCmd("taskkill /f /im chrome.exe")
+    quickCmd("taskkill /f /im firefox.exe")
+    quickCmd("taskkill /f /im msnmsgr.exe")
+    quickCmd("taskkill /f /im notepad.exe")
+    quickCmd("taskkill /f /im WINWORD.EXE")
+    quickCmd("taskkill /f /im Skype.exe")
+    quickCmd("taskkill /f /im wordpad.exe")
+    quickCmd("taskkill /f /im taskmgr.exe")
+    quickCmd("taskkill /f /im YahooMessenger.exe")
+    quickCmd("taskkill /f /im DrScheme.exe")
+
+    // 移除非系統磁碟機
+    quickCmd("mountvol D: /d")
+
+    // 重新啟動瀏覽器
+    def pathToPF = System.getenv('ProgramFiles')
+
+    quickCmd("\"${pathToPF}\\Google\\Chrome\\Application\\chrome.exe\" ${examUrl} --kiosk --incognito --disable-plugins --user-agent=CodeCanaan --no-default-browser-check")
+}
+
 /*--------- 主動通知使用者 ------------*/
 
 //彈出訊息
-JOptionPane.showMessageDialog(null, "<html>客戶端工具已執行！<br/>Client Tools executed.")
-
+Thread.start {
+    JOptionPane.showMessageDialog(null, "<html>客戶端工具已執行！<br/>Client Tools executed.")
+}
 
 /*---------- 軟體版本檢查 -------------*/
 

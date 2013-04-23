@@ -17,6 +17,8 @@
         <property name="core.toolkits.url" value="http://assets${serverId}.codecanaan.com/webstart/toolkits.zip" />
         <property name="core.script.type" value="groovy" />
         <property name="core.script.url" value="${createLink(controller:'webstart',action:'script',absolute:true)}" />
+        <property name="core.client.mode" value="${mode}" />
+        <property name="core.exam.url" value="${createLink(controller:'home',action:'exam',absolute:true)}" />
     </resources>
     <application-desc main-class="com.codecanaan.ScriptLoader" />
 </jnlp>

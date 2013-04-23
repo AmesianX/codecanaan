@@ -55,7 +55,8 @@ class WebstartController {
             model: [
                 baseURL: grailsLinkGenerator.serverBaseURL,
                 clientPort: user?.clientPort?user?.clientPort:1337,
-				serverId: 0 //serverIds[0]
+				serverId: 0, //serverIds[0]
+				mode: params.mode
             ]
         )
     }

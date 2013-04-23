@@ -160,4 +160,14 @@ class HomeController {
             clientPort: user?.clientPort?:1337
         ]
     }
+
+    /**
+     * 測驗模式專頁
+     */
+    @Secured(['ROLE_USER'])
+    def exam() {
+        def user = springSecurityService.currentUser
+
+        []
+    }
 }
