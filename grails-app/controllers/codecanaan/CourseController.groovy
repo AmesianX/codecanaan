@@ -218,7 +218,9 @@ class CourseController {
             else {
                 log.info "Remove ${course.title} from Open Course List"
                 def oc = OpenCourse.findByCourse(course)
-                oc.delete(flush: true)
+                if (oc) {
+                    oc.delete(flush: true)
+                }
             }
         }
 

@@ -287,6 +287,8 @@ if (isWindows && clientMode=='exam') {
     def pathToPF = System.getenv('ProgramFiles')
 
     quickCmd("\"${pathToPF}\\Google\\Chrome\\Application\\chrome.exe\" ${examUrl} --kiosk --incognito --disable-plugins --user-agent=CodeCanaan --no-default-browser-check")
+
+    // Program Files (x86)
 }
 
 /*--------- 主動通知使用者 ------------*/
