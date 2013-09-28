@@ -26,7 +26,7 @@
     <g:if test="${content.sourceCode}">
         <h2>程式碼</h2>
         <g:if test="${content.sourcePath}">
-            <g:link controller="content" action="source" id="${content.id}" params="[file: content.sourcePath, attachment: true]" target="_blank" rel="tooltip" data-placement="right" title="點擊右鍵將檔案下載到指定位置">
+            <g:link controller="content" action="source" id="${content.id}" params="[file: content.sourcePath, attachment: true, source: true]" target="_blank" rel="tooltip" data-placement="right" title="點擊右鍵將檔案下載到指定位置">
                 <i class="icon icon-file"></i> ${content.sourcePath}
             </g:link>
             （檔案下載）
