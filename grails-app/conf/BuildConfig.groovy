@@ -99,7 +99,7 @@ grails.project.dependency.resolution = {
         compile ":mail:1.0.1"
 
         // Twitter Bootstrap
-        runtime ":twitter-bootstrap:2.3.0"
+        runtime ":twitter-bootstrap:3.0.0"
 
         //Google Closure Compiler plugin for Grails
         //This plugin compiles/optimizes your javascript resources with the Google Closure Compiler.
