@@ -23,7 +23,7 @@ class Course {
     /**
      * 課程包含的單元
      */
-	Collection lessons
+	//Collection lessons
     
     /*---------- 系統欄位 ----------*/
 	
@@ -42,7 +42,12 @@ class Course {
      */
 	User creator
 	
-	static hasMany = [lessons: Lesson]
+	/**
+	 * 課程擁有多個單元（one-to-many）
+	 */
+	static hasMany = [
+	    lessons: Lesson
+	]
 	
 	static mapping = {
 		lessons sort: 'priority'
@@ -50,7 +55,7 @@ class Course {
 
     static constraints = {
     	name unique: true
-    	description blank: true, maxSize: 1024*1024
+    	description nullable: true, blank: true, maxSize: 1024*1024
     	title blank: false
     	creator nullable: true
     }

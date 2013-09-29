@@ -1,4 +1,3 @@
-<browser:isMsie versionLower="9">
 <!--[if lt IE 9]>
 <div class="ie-alert">
 	<p class="textalign-center">
@@ -7,4 +6,3 @@
 	</p>
 </div>
 <![endif]-->
-</browser:isMsie>

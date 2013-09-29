@@ -13,7 +13,7 @@ class Lesson {
 
 	int priority = 0    //排序
 
-	Collection contents
+	//Collection contents
 
 	static hasMany = [contents: Content]
 
@@ -21,11 +21,16 @@ class Lesson {
 		contents sort: 'priority'
 	}
 
-	static belongsTo = [course: Course]
+    /**
+     * 單元必須依附課程存在
+     */
+	static belongsTo = [
+	    course: Course
+	]
 
     static constraints = {
     	course nullable: true
-    	description blank: true, maxSize: 1024*1024
+    	description nullable: true, blank: true, maxSize: 1024*1024
     	title blank: false
     	creator nullable: true
     }
