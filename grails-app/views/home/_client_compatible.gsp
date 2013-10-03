@@ -1,8 +1,8 @@
 <section id="compatible">
     <div class="page-header">
-        <h1>相容性檢查</h1>
+        <h3>相容性檢查</h3>
     </div>
-    <table class="table">
+    <table class="table table-bordered table-hover table-striped">
         <thead>
             <tr>
                 <th width="180">軟體名稱</th>
@@ -52,3 +52,9 @@
     </table>
 </section>
 
+<r:script>
+(function() {
+    $('#jre-version').html(deployJava.versionCheck('1.6+')?'<font color="green">Installed</a>':'<font color="red">Missing</font>'+'<br/><strong>'+deployJava.getJREs()+'</strong>');
+    $('#jws-version').html(deployJava.isWebStartInstalled('1.6')?'<font color="green">Installed</a>':'<font color="red">Missing</font>');
+})();
+</r:script>

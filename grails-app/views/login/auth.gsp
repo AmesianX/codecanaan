@@ -1,72 +1,79 @@
 <html>
 <head>
-<meta name="layout" content="bootstrap"/>
-<title><g:message code="springSecurity.login.title"/></title>
+    <title><g:message code="springSecurity.login.title"/></title>
+
+    <meta name="layout" content="baseadmin"/>
+    <meta name="display.footer" content="disable" />
+
+    <r:require modules="baseadmin-signin" />
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span12">
-            <p class="larger-font textalign-center padding-around">第一次使用嗎？</span>請<g:link controller="home" action="step1">由此進入</g:link>啟用流程！</p>
-        </div>
-    </div>
-    <div class="row-fluid clearlook-wrapper justfont">
-        <div class="span4 padding-leftside">
 
-            <div class="padding-around">
-                <p>登入後享有會員權利...</p>
+<div class="account-container stacked">
+    <div class="content clearfix">
+        <form action="${postUrl}" method="post">
+            <h1>Sign In</h1>
+            
+            <div class="login-fields">
                 
-                <ul class="icons">
-                    <li>
-                        <i class="icon-ok icon-green"></i>
-                        更多的教材內容
-                    </li>
-                    <li>
-                        <i class="icon-ok icon-green"></i>
-                        完整的課程功能
-                    </li>
-                    <li>
-                        <i class="icon-ok icon-green"></i>
-                        個人學習記錄雲端儲存
-                    </li>
-                </ul>
+                <p>Sign in using your registered account:</p>
+
+                <div class="field">
+                    <label for="username">
+                        <g:message code="springSecurity.login.username.label"/>:
+                    </label>
+                    <input type="text" id="username" name="j_username" value="" placeholder="Username" class="form-control input-lg username-field" />
+                </div> <!-- /username -->
                 
-                <p>軟體壹學院目前開放會員使用 <a href="http://facebook.com/" target="_blank">Facebook</a> 帳號直接登入，免除麻煩的註冊手續！</p>
+                <div class="field">
+                    <label for="password">
+                        <g:message code="springSecurity.login.password.label"/>:
+                    </label>
+                    <input type="password" id="password" name="j_password" value="" placeholder="Password" class="form-control input-lg password-field"/>
+                </div> <!-- /password -->
+                
+            </div> <!-- /login-fields -->
+            
+            <div class="login-actions">
+
+                <span class="login-checkbox">
+                    <g:checkBox id="RememberMe" name="${rememberMeParameter}" checked="${hasCookie}" />
+                    <label class="choice" for="RememberMe">
+                        Keep me signed in
+                    </label>
+                </span>
+
+                <button class="login-action btn btn-primary">Sign In</button>
+                
+            </div> <!-- .actions -->
+            
+            <div class="login-social">
+                <p>Sign in using social network:</p>
+                
+                <div class="fb">
+                    <g:link url="/j_spring_security_facebook_redirect" class="btn_1">Login with Facebook</g:link>
+                </div>
+
+                <div class="twitter">
+                    <a href="#" class="btn_2" onclick="alert('Twitter not supported.');">Login with Twitter</a>
+                </div>
+
             </div>
-        </div>
-        <div class="span8 padding-rightside">
+        </form>
+    </div> <!-- /content -->
+</div> <!-- /account-container -->
 
-            <div class="btn-group pull-right">
-                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                    登入方式
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <!-- dropdown menu links -->
-                    <li>
-                        <g:link action="auth" params="[method:'facebook']">
-                            <i class="icon icon-facebook-sign"></i>
-                            Facebook
-                        </g:link>
-                    </li>
-                    <li>
-                        <g:link action="auth" params="[method:'builtin']">
-                            <i class="icon icon-signin"></i>
-                            一般會員
-                        </g:link>
-                    </li>
-                </ul>
-            </div>
+<!-- Text Under Box -->
+<div class="login-extra">
+    Don't have an account? <g:link action="signup">Sign Up</g:link><br/>
+    Remind <a href="#">Password</a>
+</div> <!-- /login-extra -->
 
-            <g:if test="${method=='builtin'}">
-                <g:render template="builtin" />
-            </g:if>
-            <g:else>
-                <g:render template="facebook" />
-            </g:else>
+<r:script>
+(function() {
+    document.forms['loginForm'].elements['j_username'].focus();
+})();
+</r:script>
 
-        </div>
-    </div>
-</div>
 </body>
 </html>

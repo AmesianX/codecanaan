@@ -19,23 +19,24 @@
 
 <%--畫面可視區域：起點--%><div class="blur-after-modal-shown">
 
-<header class="navbar navbar-inverse navbar-fixed-top hide">
-	<div class="navbar-inner">
-		<div class="container-fluid">
-			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
-			</a>
-			<g:link controller="home" action="index" class="brand logo-font">CodeCanaan</g:link>
-			<div class="nav-collapse collapse">
-				<g:applyLayout name="inc_sysmenu" />
-				<%--使用者選單--%>
-				<g:applyLayout name="inc_usermenu" />
-			</div><%--/.nav-collapse --%>
+			</button>
+			<g:link controller="home" action="index" class="navbar-brand logo-font">CodeCanaan</g:link>
+		</div>
+		<div class="collapse navbar-collapse">
+			<%--System Menu--%>
+			<g:applyLayout name="inc_sysmenu" />
+			<%--使用者選單--%>
+			<g:applyLayout name="inc_usermenu" />
 		</div>
 	</div>
-</header>
+</div>
 
 <div role="main">
     <div class="container-fluid">	

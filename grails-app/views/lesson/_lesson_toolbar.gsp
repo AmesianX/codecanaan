@@ -3,12 +3,12 @@
     <g:render template="/content/addmenu" />
 
     <div class="btn-group">
-        <g:link action="show" id="${lesson.id}" params="[editor: true]" class="btn btn-mini">
+        <g:link action="show" id="${lesson.id}" params="[editor: true]" class="btn btn-default">
             <i class="icon icon-edit"></i>
             <%--修改單元--%>
             <g:message code="default.button.edit.label" />
         </g:link>
-        <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
             <span class="caret"></span>
         </a>
         <ul class="dropdown-menu pull-right">

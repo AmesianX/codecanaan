@@ -1,4 +1,4 @@
-<ul class="nav">
+<ul class="nav navbar-nav">
     <li class="visible-desktop">
         <a href="#" class="document-request-fullscreen">
             <i class="icon icon-fullscreen"></i>

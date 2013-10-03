@@ -1,7 +1,7 @@
 <html>
 <head>
-<meta name="layout" content="bootstrap"/>
-<title><g:message code="springSecurity.login.title"/></title>
+    <meta name="layout" content="baseadmin"/>
+    <title><g:message code="springSecurity.login.title"/></title>
 </head>
 <body>
 

@@ -1,34 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="layout" content="bootstrap">
-<title>${lesson.title}</title>
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <title>${lesson.title}</title>
+
+    <meta name="layout" content="baseadmin" />
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 </head>
 <body>
 
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div id="menu-container" class="span3 hidden-phone">
-            <%--課程單元列表--%>
-            <g:render template="/course/menu" />
-        </div>
-        <div id="content-container" class="span9">
-            <div class="clearlook-wrapper padding-around justfont">
-                <%--Breadcrumb--%>
-                <g:render template="/course/breadcrumb" />
-                    
-                <g:if test="${authoring&&params.editor}">
-                    <%--切換編輯介面--%>
-                    <g:render template="lesson_editor"/>
-                </g:if>
-                <g:else>
-                    <g:render template="lesson"/>
-                </g:else>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="main">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-3">
+                <div class="widget stacked">
+                    <div class="widget-content">
+                        <%--課程單元列表--%>
+                        <g:render template="/course/menu" />
+                    </div>
+                </div> <!-- /.widget -->
+            </div> <!-- /.col -->
+
+            <div class="col-md-9">
+                <div class="widget stacked">
+                    <div class="widget-content">
+
+                        <!-- Breadcrumbs -->
+                        <g:render template="/course/breadcrumb" />
+                            
+                        <g:if test="${authoring&&params.editor}">
+                            <g:render template="lesson_editor"/>
+                        </g:if>
+                        <g:else>
+                            <g:render template="lesson"/>
+                        </g:else>
+                    </div>
+                </div> <!-- /.widget -->
+            </div> <!-- /.col -->
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+</div> <!-- /.main -->
 
 </body>
 </html>

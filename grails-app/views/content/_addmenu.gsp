@@ -1,5 +1,5 @@
 <div class="btn-group">
-    <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">
         <%--新增內容--%>
         <g:message code="default.add.label" args="[message(code:'content.label')]" />
         <span class="caret"></span>

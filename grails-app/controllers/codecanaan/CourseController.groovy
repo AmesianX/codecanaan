@@ -11,15 +11,11 @@ class CourseController {
 
     static allowedMethods = [save: "POST", update: "POST"]
 
-    def index() {
-        redirect(action: "list", params: params)
-    }
-
     /**
      * 課程列表：只列出已選修課程
      */
     @Secured(['ROLE_USER'])
-    def list() {
+    def index() {
         def user = springSecurityService.currentUser
 
         if (!user) {
@@ -40,7 +36,7 @@ class CourseController {
 
         if (!course) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'course.label', default: 'Course'), id])
-            redirect(action: "list")
+            redirect(action: 'index')
             return
         }
 
@@ -78,7 +74,7 @@ class CourseController {
                 }
 
                 flash.message = "已註冊課程：${c.title}（開放式課程）"
-                redirect action: 'list'
+                redirect action: 'index'
                 return
             }
         }
@@ -119,7 +115,7 @@ class CourseController {
 
         flash.message = msg
 
-        redirect(action: 'list')
+        redirect(action: 'index')
     }
 
     /**
@@ -240,7 +236,7 @@ class CourseController {
         def course = Course.get(id)
         if (!course) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'course.label', default: 'Course'), id])
-            redirect(action: "list")
+            redirect(action: 'index')
             return
         }
 
@@ -253,7 +249,7 @@ class CourseController {
 
             course.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'course.label', default: 'Course'), id])
-            redirect(action: "list")
+            redirect(action: 'index')
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'course.label', default: 'Course'), id])

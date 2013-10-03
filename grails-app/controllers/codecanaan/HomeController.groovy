@@ -28,12 +28,12 @@ class HomeController {
         }
 
         // 取得首頁公告資料    
-        def posts = Post.findAll(max: 10, sort: 'dateCreated', order: 'desc') {
+        def posts = Post.findAll(max: 5, sort: 'dateCreated', order: 'desc') {
             type == PostType.ANNOUNCE
         }
 
         // 取得新書資料
-        def books = Book.findAll(max: 10, sort: 'publishDate', order: 'desc') {
+        def books = Book.findAll(max: 5, sort: 'publishDate', order: 'desc') {
             title != null
         }
 
@@ -168,6 +168,13 @@ class HomeController {
     def exam() {
         def user = springSecurityService.currentUser
 
+        []
+    }
+
+    /**
+     * A simple static page for template testing
+     */
+    def test() {
         []
     }
 }

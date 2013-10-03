@@ -3,33 +3,55 @@ def __bundleName = 'codecanaan'
 modules = {
 
 	overrides {
+        /*
 		jquery {
 			// Overriding jquery bundle name
-			defaultBundle __bundleName
+			//defaultBundle __bundleName
 		}
-
 		bootstrap {
-			defaultBundle __bundleName
+			//defaultBundle __bundleName
 		}
-
 		modernizr {
-			defaultBundle __bundleName
+			//defaultBundle __bundleName
 		}
+        */
+        /*'font-awesome' {
+            dependsOn 'bootstrap'
+        }*/
 	}
 
-    'jquery-ui' {
-        //defaultBundle 'jquery'
-		defaultBundle __bundleName
+    // jQuery
+    jquery {
+        resource url: 'jquery/jquery-1.10.2.min.js'
+    }
 
-        resource url: 'jquery-ui/css/smoothness/jquery-ui-1.9.1.custom.min.css'
-		resource url: 'jquery-ui/js/jquery-ui-1.9.1.custom.min.js'
+    // Flot is a pure JavaScript plotting library for jQuery,
+    // with a focus on simple usage, attractive looks and interactive features.
+    // http://www.flotcharts.org/
+    'jquery-flot' {
+        dependsOn 'jquery'
+
+        resource url: 'baseadmin/js/plugins/flot/jquery.flot.js'
+        resource url: 'baseadmin/js/plugins/flot/jquery.flot.pie.js'
+        resource url: 'baseadmin/js/plugins/flot/jquery.flot.resize.js'
+        resource url: 'baseadmin/js/charts/area.js'
+        resource url: 'baseadmin/js/charts/donut.js'
+    }
+
+    'jquery-ui' {
+        dependsOn 'jquery'
+
+        // jQuery UI with Lightness theme
+        resource url: 'jquery-ui/js/jquery-ui.min.js'
+        resource url: 'jquery-ui/themes/ui-lightness/jquery-ui.min.css'
     }
 
     // Using jQuery File Upload Plug-in
     'jquery-fileupload' {
         dependsOn 'jquery'
+
         //defaultBundle 'jquery'
-		defaultBundle __bundleName
+		//defaultBundle __bundleName
         
         resource url: 'jquery-fileupload/css/jquery.fileupload-ui.css'
         resource url: 'jquery-fileupload/css/jquery.fileupload-ui-noscript.css',
@@ -43,8 +65,6 @@ modules = {
     
     'jquery-cslider' {
         dependsOn 'jquery'
-        //defaultBundle 'jquery'
-		defaultBundle __bundleName
         
         resource url: 'jquery-cslider/parallax-slider.css'
         resource url: 'jquery-cslider/jquery.cslider.js'
@@ -53,10 +73,8 @@ modules = {
     
     'jquery-plugins' {
         dependsOn 'jquery'
-        //defaultBundle 'jquery'
-		defaultBundle __bundleName
         
-        resource url: 'jquery-plugins/jquery.migrate.min.js'
+        resource url: 'jquery-plugins/jquery-migrate-1.2.1.min.js'
         resource url: 'jquery-plugins/jquery.textarea.js'
         resource url: 'jquery-plugins/jquery.jfontsize.js'
         resource url: 'jquery-plugins/jquery.cookie.js'
@@ -64,10 +82,35 @@ modules = {
         resource url: 'jquery-plugins/jquery.lazyload.min.js'
     }
 
+    // Twitter Bootstrap
+    bootstrap {
+        resource url: 'bootstrap/css/bootstrap.min.css'
+        resource url: 'bootstrap/css/bootstrap-theme.min.css'
+        resource url: 'bootstrap/js/bootstrap.min.js'
+    }
+
+    // Base Aadmin 3.0
+    baseadmin {
+        dependsOn 'bootstrap,jquery,font-awesome'
+
+        resource url: 'baseadmin/css/base-admin-3.css'
+        resource url: 'baseadmin/css/base-admin-3-responsive.css'
+        resource url: 'baseadmin/css/pages/dashboard.css'
+        resource url: 'baseadmin/css/custom.css'
+
+        resource url: 'baseadmin/js/Application.js'
+    }
+
+    'baseadmin-signin' {
+        dependsOn 'baseadmin'
+
+        resource url: 'baseadmin/css/pages/signin.css'
+    }
+
     common {
         dependsOn 'jquery, jquery-ui, jquery-plugins, codemirror, pagedown, bootstrap-ext'
         //defaultBundle 'common'
-		defaultBundle __bundleName
+		//defaultBundle __bundleName
 
         resource url: 'js/common.js'
     }
@@ -76,7 +119,7 @@ modules = {
     exercise {
         dependsOn 'jquery, common'
 
-		defaultBundle __bundleName
+		//defaultBundle __bundleName
         
         resource url: 'js/exercise.js'
     }
@@ -84,7 +127,7 @@ modules = {
     application {
         dependsOn 'common'
         //defaultBundle 'common'
-		defaultBundle __bundleName
+		//defaultBundle __bundleName
 
         resource url: 'js/application.js'
     }
@@ -102,7 +145,7 @@ modules = {
 
     pagedown {
         //defaultBundle 'coding-tools'
-		defaultBundle __bundleName
+		//defaultBundle __bundleName
        
         //css
         resource url: 'pagedown/pagedown.css'
@@ -115,7 +158,7 @@ modules = {
 
     codemirror {
         //defaultBundle 'coding-tools'
-		defaultBundle __bundleName
+		//defaultBundle __bundleName
         
         //css
         resource url: 'codemirror/lib/codemirror.css'
@@ -135,7 +178,7 @@ modules = {
 
     fancybox {
         dependsOn 'jquery'
-        defaultBundle __bundleName
+        //defaultBundle __bundleName
 
         resource url: 'fancybox/source/jquery.fancybox.pack.js'
         resource url: 'fancybox/source/jquery.fancybox.css'
@@ -143,16 +186,16 @@ modules = {
 
     highlightjs {
         //defaultBundle 'coding-tools'
-		defaultBundle __bundleName
+		//defaultBundle __bundleName
 
         resource url: 'highlightjs/styles/vs.css'
         resource url: 'highlightjs/highlight.pack.js', disposition: 'head'
     }
    
     bootswatch {
-        dependsOn 'bootstrap-js'
+        //dependsOn 'bootstrap-js'
         //defaultBundle 'bootstrap'
-		defaultBundle __bundleName
+		//defaultBundle __bundleName
         
         //resource url: [dir: 'swatchmaker', file: 'swatchmaker.less'],
         //    attrs: [rel: 'stylesheet/less', type: 'css'],
@@ -162,15 +205,14 @@ modules = {
         //    attrs: [rel: 'stylesheet/less', type: 'css'],
         //    bundle: _bundleName
 
-        resource url: 'stylesheets/bootstrap.min.css'
-        resource url: 'stylesheets/bootstrap-responsive.min.css'
-        resource url: 'stylesheets/docs.css'
+        //resource url: 'stylesheets/bootstrap.min.css'
+        //resource url: 'stylesheets/bootstrap-responsive.min.css'
+        //resource url: 'stylesheets/docs.css'
     }
     
     'bootstrap-ext' {
-        dependsOn 'bootswatch'
-        //defaultBundle 'bootstrap'
-		defaultBundle __bundleName
+        dependsOn 'bootstrap'
+		//defaultBundle __bundleName
 
         resource url: 'bootstrap-ext/bootbox/bootbox.min.js'
 
@@ -184,10 +226,10 @@ modules = {
         resource url: 'bootstrap-ext/bootstrap-lightbox.js'
     }
     
-    'font-awesome' {
-        dependsOn 'bootswatch'
+    //'font-awesome' {
+        //dependsOn 'bootswatch'
         //defaultBundle 'bootstrap'
-		defaultBundle __bundleName
+		//defaultBundle __bundleName
         
         //resource url: [dir: 'font-awesome/less', file: 'font-awesome.less'],
         //    attrs: [rel: 'stylesheet/less', type:'css'], bundle: _bundleName
@@ -196,15 +238,15 @@ modules = {
         //    attrs: [rel: 'stylesheet/less', type:'css'],
         //    wrapper: { s -> "<!--[if lte IE 7]>$s<![endif]-->" }
 
-        resource url: 'stylesheets/font-awesome.css'
-        resource url: 'stylesheets/font-awesome-ie7.css',
-            wrapper: { s -> "<!--[if lte IE 7]>$s<![endif]-->" }
-    }
+        //resource url: 'stylesheets/font-awesome.css'
+        //resource url: 'stylesheets/font-awesome-ie7.css',
+        //    wrapper: { s -> "<!--[if lte IE 7]>$s<![endif]-->" }
+    //}
     
     compass {
         dependsOn 'bootswatch'
         //defaultBundle 'bootstrap'
-		defaultBundle __bundleName
+		//defaultBundle __bundleName
 
         resource url: 'stylesheets/screen.css'
         resource url: 'stylesheets/print.css',
@@ -218,6 +260,11 @@ modules = {
 		// BiwaScheme contains it's own jQuery lib,
 		// don't bundle other js file.
         //resource url: 'biwascheme/biwascheme.js'
-        resource url: 'biwascheme/biwascheme.min.js', bundle: 'biwascheme'
+        resource url: 'biwascheme/biwascheme.min.js'
+    }
+
+    // Java deployment script from oracle
+    deployJava {
+        resource url: 'js/deployJava.js'
     }
 }

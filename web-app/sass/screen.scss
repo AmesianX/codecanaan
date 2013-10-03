@@ -65,6 +65,9 @@ body {
 //Droid Sans Mono for Code Block
 @include font-face("Droid Sans Mono", font-files("../../font/DroidSansMono-webfont.woff", "../../font/DroidSansMono-webfont.eot", "../../font/DroidSansMono-webfont.ttf", "../../font/DroidSansMono-webfont.svg"));
 
+//Open Sans
+@include font-face("Open Sans", font-files("../../font/OpenSans-Regular-webfont.woff", "../../font/OpenSans-Regular-webfont.eot", "../../font/OpenSans-Regular-webfont.ttf", "../../font/OpenSans-Regular-webfont.svg"));
+
 .logo-font {
 	font-family: Allura, sans-serif;
 	cursor: pointer;
@@ -184,13 +187,6 @@ a.brand {
 .icon-red { color: #ff0000; }
 .icon-yellow { color: yellow; }
 .icon-gray { color: gray; }
-
-.clearlook-wrapper {
-    background-color: #fff;
-    @include border-radius(6px);
-    border: 1px solid #dadada;
-    @include single-box-shadow(rgba(0, 0, 0, 0.0745098), 0px, 1px, 2px, 0px);
-}
 
 #menu-container {
 
@@ -359,6 +355,7 @@ iframe#attachment-frame {
 	}
 }
 
+/*
 .widget {
 	padding: 5px;
 	margin: 0;
@@ -388,6 +385,7 @@ iframe#attachment-frame {
 		line-height: 150%;
 	}
 }
+*/
 
 /*----------------------- Footer --------------------*/
 

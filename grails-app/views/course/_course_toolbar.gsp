@@ -1,10 +1,10 @@
 <div class="btn-group pull-right hidden-phone">
-    <g:link action="show" id="${course.id}" params="[editor: true]" class="btn btn-mini">
+    <g:link action="show" id="${course.id}" params="[editor: true]" class="btn btn-default">
         <i class="icon-edit"></i>
         <%--修改課程--%>
         <g:message code="default.button.edit.label" />
     </g:link>
-    <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
         <span class="caret"></span>
     </button>
     <ul class="dropdown-menu pull-right">

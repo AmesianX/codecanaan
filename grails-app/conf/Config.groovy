@@ -164,7 +164,7 @@ grails.resources.mappers.googleclosurecompiler.compilation_level='SIMPLE_OPTIMIZ
 grails.plugins.twitterbootstrap.fixtaglib = true
 //grails.plugins.twitterbootstrap.defaultBundle = 'bootstrap'
 // Bundle all resources to codecanaan
-grails.plugins.twitterbootstrap.defaultBundle = 'codecanaan'
+//grails.plugins.twitterbootstrap.defaultBundle = 'codecanaan'
 
 // JustFont
 grails.justfont.appId = '04a33145MnLiu8AI4KNCkfQQX18d_e3RX0f8GVpfG1diW5LYhaoiIuChsq61MXXmmv1-DTv5O0x8Q-M6wDVACDJxtEeI-_zEH2erPVBnvn_O0rNYUxTAysJ7bMYsPVRNRtxxKcR7LU_kpdARwG4Q_xXHkyzrSTEhAPHewUyTug7fj48gBxY='

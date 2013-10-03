@@ -70,11 +70,12 @@ grails.project.dependency.resolution = {
         compile 'org.springframework.social:spring-social-core:1.0.3.RELEASE'
         compile 'org.springframework.social:spring-social-facebook:1.0.3.RELEASE'
 
+        // JetS3t Amazon S3
         runtime 'net.java.dev.jets3t:jets3t:0.9.0'
         
         compile 'commons-codec:commons-codec:1.8'
 
-        // test 'com.googlecode.jmockit:jmockit:1.0'
+        //test 'com.googlecode.jmockit:jmockit:1.0'
     }
 
     plugins {
@@ -88,23 +89,26 @@ grails.project.dependency.resolution = {
         // plugins needed at runtime but not for compilation
         runtime ":hibernate:3.6.10.1" // or ":hibernate4:4.1.11.1"
         runtime ":database-migration:1.3.6"
-        runtime ":jquery:1.10.2"
+        //runtime ":jquery:1.10.2"
         runtime ":resources:1.2.1"
         // Uncomment these (or add new ones) to enable additional resources capabilities
-        runtime ":zipped-resources:1.0.1"
-        runtime ":cached-resources:1.1"
+        //runtime ":zipped-resources:1.0.1"
+        //runtime ":cached-resources:1.1"
         //runtime ":yui-minify-resources:0.1.5"
 
         // Mail Support
         compile ":mail:1.0.1"
 
         // Twitter Bootstrap
-        runtime ":twitter-bootstrap:3.0.0"
+        //compile ":twitter-bootstrap:3.0.0"
 
-        //Google Closure Compiler plugin for Grails
-        //This plugin compiles/optimizes your javascript resources with the Google Closure Compiler.
-        //It provides three compilation levels. WHITESPACE_ONLY, SIMPLE_OPTIMIZATIONS and ADVANCED_OPTIMIZATIONS.
-        compile ":closure-compiler:0.9.1"
+        // Font Awesome
+        compile ":font-awesome-resources:3.2.1.3"
+
+        // Google Closure Compiler plugin for Grails
+        // This plugin compiles/optimizes your javascript resources with the Google Closure Compiler.
+        // It provides three compilation levels. WHITESPACE_ONLY, SIMPLE_OPTIMIZATIONS and ADVANCED_OPTIMIZATIONS.
+        //compile ":closure-compiler:0.9.1"
 
         //build ":svn:1.0.2"
       
@@ -122,7 +126,7 @@ grails.project.dependency.resolution = {
 
         compile ":browser-detection:0.4.3"
 
-		runtime ":modernizr:2.6.2"
+		compile ":modernizr:2.6.2"
 
         compile ":codenarc:0.19"
 
