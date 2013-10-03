@@ -105,27 +105,25 @@
 </div> <!-- /.main -->
 
 <r:script>
-$(function() {
-    $('a#create-course').click(function() {
-        bootbox.prompt("請輸入新課程名稱?", function(title) {                
-            if (title) {
-                $.ajax({
-                    type: "POST",
-                    url: "${createLink(action:'ajaxCreate')}",
-                    data: { title: title }
-                })
-                .done(function( result ) {
-                    if (result.success) {
-                        location.href = result.redirectUrl;
-                    }
-                    else {
-                        bootbox.alert(result.errors);
-                    }
-                });
-            }
-        });
+$('a#create-course').click(function() {
+    bootbox.prompt("請輸入新課程名稱?", function(title) {                
+        if (title) {
+            $.ajax({
+                type: "POST",
+                url: "${createLink(action:'ajaxCreate')}",
+                data: { title: title }
+            })
+            .done(function( result ) {
+                if (result.success) {
+                    location.href = result.redirectUrl;
+                }
+                else {
+                    bootbox.alert(result.errors);
+                }
+            });
+        }
     });
-})();
+});
 </r:script>
 </body>
 </html>

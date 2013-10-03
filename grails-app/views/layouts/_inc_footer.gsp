@@ -42,7 +42,7 @@
                 &copy; 2012-13 CodeCanaan Project.</p>
             </div>
             <div id="footer-terms" class="col-md-6">
-                本系統由思創軟體設計研發
+                思創軟體．研發．設計
             </div>
         </div>
     </div>
