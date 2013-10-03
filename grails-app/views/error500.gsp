@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="layout" content="bootstrap"/>
+<meta name="layout" content="baseadmin"/>
 <title>Error 500</title>
 </head>
 <body>
@@ -19,7 +19,7 @@
 	</section>
 </div>
 <div class="container">
-	<button class="show-detail btn btn-small">詳細檢視 / Details</button>
+	<button class="show-detail btn btn-default">詳細檢視 / Details</button>
 	<div class="well details justfont" style="display:none;margin-top:60px">
 		<g:renderException exception="${exception}" />
 	</div>

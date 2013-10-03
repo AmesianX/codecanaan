@@ -1,36 +1,47 @@
-<!DOCTYPE html>
 <html>
 <head>
-<meta name="layout" content="bootstrap">
-<title>${content.title}</title>
-<r:require modules="exercise" />
+    <title>${content.title}</title>
+    <meta name="layout" content="baseadmin">
+    <r:require modules="exercise" />
 </head>
 <body>
 
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div id="menu-container" class="span3 hidden-phone">
-            <%--課程單元列表--%>
-            <g:render template="/course/menu" />
-        </div>
-        <div id="content-container" class="span9">
-            <div class="clearlook-wrapper padding-around justfont">
-                <%--Breadcrumb--%>
-                <g:render template="/course/breadcrumb" />
+<div class="main">
+    <div class="container">
+        <div class="row">
 
-                <g:if test="${authoring&&params.editor}">
-                    <%--切換編輯介面--%>
-                    <g:render template="content_editor"/>
-                </g:if>
-                <g:else>
-                    <g:render template="content"/>
-                </g:else>
-            </div>  
-        </div>
-    </div>
-</div>
+            <div class="col-md-3">
+                <div class="widget stacked">
+                    <div class="widget-content">
+                        <!-- Course, Table of Contents -->
+                        <g:render template="/course/menu" />
+                    </div>
+                </div> <!-- /.widget -->
+            </div> <!-- /.col -->
 
-<%--練習模式變數設定--%>
+            <div class="col-md-9">
+                <div class="widget stacked">
+                    <div class="widget-content">
+
+                        <!-- Breadcrumbs -->
+                        <g:render template="/course/breadcrumb" />
+
+                        <g:if test="${authoring&&params.editor}">
+                            <g:render template="content_editor"/>
+                        </g:if>
+                        <g:else>
+                            <g:render template="content"/>
+                        </g:else>
+
+                    </div>
+                </div> <!-- /.widget -->
+            </div> <!-- /.col -->
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+</div> <!-- /.main -->
+
+<!-- JavaScript -->
 <g:hiddenField name="__ajax_save_record_url" value="${createLink(controller: 'content', action: 'ajaxSaveRecord', id: content?.id)}" />
 <g:hiddenField name="__ajax_biwascheme_url" value="${createLink(controller: 'content', action: 'biwascheme')}" />
 <g:hiddenField name="__ajax_savetemp_url" value="${createLink(controller: 'content', action: 'ajaxSaveTemp')}" />

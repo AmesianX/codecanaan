@@ -7,8 +7,6 @@
 </head>
 <body>
 
-<br />
-
 <g:form controller="home" action="works" method="post">
 
     <div class="main">

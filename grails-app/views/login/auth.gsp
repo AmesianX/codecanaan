@@ -11,7 +11,7 @@
 
 <div class="account-container stacked">
     <div class="content clearfix">
-        <form action="${postUrl}" method="post">
+        <form name="loginForm" action="${postUrl}" method="post">
             <h1>Sign In</h1>
             
             <div class="login-fields">

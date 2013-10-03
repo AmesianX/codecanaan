@@ -22,20 +22,14 @@
             </div> <!-- /.col -->
 
             <div class="col-md-9">
-                <div class="widget stacked">
-                    <div class="widget-content">
 
-                        <!-- Breadcrumbs -->
-                        <g:render template="/course/breadcrumb" />
-                            
-                        <g:if test="${authoring&&params.editor}">
-                            <g:render template="lesson_editor"/>
-                        </g:if>
-                        <g:else>
-                            <g:render template="lesson"/>
-                        </g:else>
-                    </div>
-                </div> <!-- /.widget -->
+                <g:if test="${authoring&&params.editor}">
+                    <g:render template="lesson_editor"/>
+                </g:if>
+                <g:else>
+                    <g:render template="lesson"/>
+                </g:else>
+
             </div> <!-- /.col -->
 
         </div> <!-- /.row -->

@@ -2,19 +2,20 @@
 <section>
     <!--標題區-->
     <div class="page-header">
-        <h1>${content.title}</h1>
-        <g:if test="${content.subtitle}">
-            <p><small>${content.subtitle}</small></p> 
-        </g:if>
-        <g:if test="${content.authors}">
-            <p><small>作者：
-                ${content.authors}
-            </small></p> 
-        </g:if>
-        <g:if test="${content.level}">
-            <p><small>難易度：<g:starLabel rank="${content.level}" /></small></p> 
-        </g:if>
+        <h2>${content.title}</h2>
     </div>
+
+    <g:if test="${content.subtitle}">
+        <p><small>${content.subtitle}</small></p> 
+    </g:if>
+    <g:if test="${content.authors}">
+        <p><small>作者：
+            ${content.authors}
+        </small></p> 
+    </g:if>
+    <g:if test="${content.level}">
+        <p><small>難易度：<g:starLabel rank="${content.level}" /></small></p> 
+    </g:if>
 
     <%--內容顯示--%>
     <g:render template="content_display" />
@@ -35,7 +36,7 @@
     </g:if>
 
     <!--練習-->
-    <h2>動手時間</h2>
+    <h3>動手時間</h3>
     <label class="checkbox"><g:checkBox name="cmdCheck" value="YES" checked="${record?.passed}" /> 打勾代表你已經閱讀完畢</label>
 </sec:ifLoggedIn>
 

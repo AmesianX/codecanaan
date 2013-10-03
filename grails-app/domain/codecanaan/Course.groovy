@@ -23,7 +23,7 @@ class Course {
     /**
      * 課程包含的單元
      */
-	//Collection lessons
+	Collection lessons
     
     /*---------- 系統欄位 ----------*/
 	
@@ -54,9 +54,9 @@ class Course {
 	}
 
     static constraints = {
-    	name unique: true
+    	name nullable: false, blank: false, unique: true
+        title nullable: false, blank: false
     	description nullable: true, blank: true, maxSize: 1024*1024
-    	title blank: false
     	creator nullable: true
     }
 }

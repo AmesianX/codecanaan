@@ -38,6 +38,9 @@
     <sec:ifLoggedIn>
         <g:applyLayout name="_inc_subnavbar" />
     </sec:ifLoggedIn>
+    <sec:ifNotLoggedIn>
+        <br/>
+    </sec:ifNotLoggedIn>
 </g:if>
 
 <%--Main Content--%>

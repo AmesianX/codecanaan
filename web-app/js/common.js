@@ -162,6 +162,8 @@ function winHeight() {
     $('[rel=tooltip]').tooltip();
  
     // 字型調整按鈕，允許變更 justfont 區域的字型大小
+    // Remove jFontSize
+    /*
     $('#jfontsize-m').click(function() {
         $('.justfont').addClass('smaller-font').removeClass('larger-font');
     });
@@ -171,11 +173,12 @@ function winHeight() {
     $('#jfontsize-p').click(function() {
         $('.justfont').removeClass('smaller-font').addClass('larger-font');
     });
+    */
 
 	// Hightlight.js only support MSIE 9+ and other modern browsers
 	if (!$.browser.msie || ($.browser.msie && $.browser.version.slice(0,1)>8)) {
 		//Pretty Code with Highlight.js
-        if (hljs) {
+        if (typeof hljs != 'undefined') {
             hljs.tabReplace = '    '; //4 spaces
             hljs.initHighlightingOnLoad();
         }
@@ -281,4 +284,12 @@ function winHeight() {
 
         CodeMirror.runMode(_this.text(), mode, node);
     });
+
+    // CodeMirror auto refresh after tab index changed
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        for (var id in editors) {
+            editors[id].refresh();
+        }
+    });
+
 })();

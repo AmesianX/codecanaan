@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="widget stacked">
                     <div class="widget-header">
                         <i class="icon icon-pencil"></i>
@@ -32,9 +32,15 @@
 
                     </div>
                 </div> <!-- /.widget -->
+
+                <div class="well">
+                    <h4>Extra Info</h4>
+                    <p>如果您想加入新課程，但沒有課程序號，請先向授課教師索取。</p>
+                </div>
+
             </div> <!-- /.col -->
 
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="widget stacked">
                     <div class="widget-header">
                         <i class="icon icon-book"></i>
@@ -55,15 +61,19 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <g:link controller="course" action="create">
+                                        <a href="#" id="create-course">
                                             <i class="icon icon-book"></i>
                                             <!--新增課程-->
                                             <g:message code="default.add.label" default="Add {0}" args="[message(code: 'course.label', default: 'Course')]" />
-                                        </g:link>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
                         </sec:ifAnyGranted>
+
+                        <div class="page-header">
+                            <h2>所有課程列表</h2>
+                        </div>
 
                         <table class="table table-bordered table-hover table-striped">
                             <thead>
@@ -94,5 +104,28 @@
     </div> <!-- /.container -->
 </div> <!-- /.main -->
 
+<r:script>
+$(function() {
+    $('a#create-course').click(function() {
+        bootbox.prompt("請輸入新課程名稱?", function(title) {                
+            if (title) {
+                $.ajax({
+                    type: "POST",
+                    url: "${createLink(action:'ajaxCreate')}",
+                    data: { title: title }
+                })
+                .done(function( result ) {
+                    if (result.success) {
+                        location.href = result.redirectUrl;
+                    }
+                    else {
+                        bootbox.alert(result.errors);
+                    }
+                });
+            }
+        });
+    });
+})();
+</r:script>
 </body>
 </html>

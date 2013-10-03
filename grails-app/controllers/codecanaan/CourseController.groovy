@@ -156,6 +156,44 @@ class CourseController {
     }
 
     /**
+     * Ajax call for create a course
+     */
+    def ajaxCreate() {
+
+        def user = springSecurityService.currentUser
+
+        // New course form request params
+        def course = new Course(params)
+
+        // Create a course from template
+        courseService.createCourseFromTemplate(course)
+
+        // Customize course properties
+        course.title = params.title
+
+        // Set current user as creator
+        course.creator = user
+
+        // Just save
+        def success = course.save(flush: true)!=null
+
+        if (success) {
+            def link = UserCourse.findOrCreateByUserAndCourse(user, course)
+            link.regInfo = "first creator"
+            link.regType = RegType.AUTHOR    //登記為作者
+            link.save(flush: true)
+        }
+
+        render(contentType: 'application/json') {
+            [
+                success: success,
+                errors: renderErrors(bean: course, as: 'list'),
+                redirectUrl: createLink(action: "show", id: course.id, params: [editor: true])
+            ]
+        }
+    }
+
+    /**
      * 重新排序單元清單
      */
     def sort(Long id) {

@@ -13,11 +13,11 @@
     <g:render template="/content/addmenu" />
 
     <div class="btn-group">
-        <g:link action="show" id="${content.id}" params="[editor: true]" class="btn btn-mini">
+        <g:link action="show" id="${content.id}" params="[editor: true]" class="btn btn-default">
             <i class="icon icon-edit"></i>
             <g:message code="default.edit.label" default="Edit {0}" args="[message(code: 'content.label', default: 'Content')]" />
         </g:link>
-        <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
             <span class="caret"></span>
         </a>
         <ul class="dropdown-menu pull-right">

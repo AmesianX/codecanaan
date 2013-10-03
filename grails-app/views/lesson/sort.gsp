@@ -1,31 +1,61 @@
 <html>
 <head>
-<meta name="layout" content="bootstrap" />
-<title>Sort</title>
+    <title>調整內容排序</title>
+    <meta name="layout" content="baseadmin" />
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span3">
-            <div class="alert alert-info"><g:message code="default.ordering.description" /></div>
-        </div>
-        <div class="span9 clearlook-wrapper padding-around">
-            <g:form controller="lesson" action="sortUpdate" id="${lesson.id}" method="post">
-                <legend>${lesson.title}</legend>
-                <ul id="sortable" class="nav nav-tabs nav-stacked">
-                    <g:each in="${lesson.contents}" var="content" status="i">
-                        <li><a href="#"><i class="icon icon-sort"></i> ${content.title}<g:hiddenField name="priority" value="${content.id}" /></a></li>
-                    </g:each>
-                </ul>
 
-                <hr/>
+<div class="main">
+    <div class="container">
+        <div class="row">
 
-                <g:submitButton name="save" value="${message(code: 'default.button.update.label', default: 'Update')}" class="btn btn-primary" />
-                <g:link action="show" id="${lesson.id}" class="btn"><g:message code="default.button.cancel.label" default="Cancel" /></g:link>
-            </g:form>
-        </div>
-    </div>
-</div>
+            <div class="col-md-3">
+                <div class="well">
+                    <h4>Extra Info</h4>
+                    <g:message code="default.ordering.description" />
+                </div>
+            </div> <!-- /.col -->
+
+            <div class="col-md-9">
+                <div class="widget stacked">
+                    <div class="widget-header">
+                        <i class="icon icon-pencil"></i>
+                        <h3>${lesson.title}</h3>
+                    </div>
+                    <div class="widget-content">
+
+                        <g:form controller="lesson" action="sortUpdate" id="${lesson.id}" method="post">
+                            <ul id="sortable" class="nav nav-pills nav-stacked">
+                                <g:each in="${lesson.contents}" var="content" status="i">
+                                    <li>
+                                        <a href="#" style="cursor:move">
+                                            <i class="icon icon-sort"></i>&nbsp;
+                                            ${content.title}
+                                            <g:hiddenField name="priority" value="${content.id}" />
+                                        </a>
+                                    </li>
+                                </g:each>
+                            </ul>
+
+                            <hr />
+
+                            <!-- Submit -->
+                            <g:submitButton name="save" value="${message(code: 'default.button.update.label', default: 'Update')}" class="btn btn-primary" />
+
+                            <!-- Cancel -->
+                            <g:link action="show" id="${lesson.id}" class="btn btn-default">
+                                <g:message code="default.button.cancel.label" />
+                            </g:link>
+
+                        </g:form>
+                    </div>
+                </div> <!-- /.widget -->
+            </div> <!-- /.col -->
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+</div> <!-- /.main -->
+
 <r:script>
 $(function() {
     $( "#sortable" ).sortable();

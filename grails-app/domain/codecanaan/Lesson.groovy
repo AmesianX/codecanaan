@@ -13,7 +13,10 @@ class Lesson {
 
 	int priority = 0    //排序
 
-	//Collection contents
+    /**
+     * Contents
+     */
+	Collection contents
 
 	static hasMany = [contents: Content]
 

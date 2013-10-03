@@ -33,8 +33,8 @@
 </sec:ifNotLoggedIn>
 
 <!--內容換頁機制-->
-<div class="pagination pagination-centered pagination-large">
-    <ul>
+<div class="textalign-center">
+    <ul class="pagination pagination-md">
         <g:set var="currentIndex" value="${lesson.contents.indexOf(content)}" />
         <g:set var="firstIndex" value="${0}" />
         <g:set var="lastIndex" value="${lesson.contents.size()-1}" />
@@ -47,7 +47,7 @@
             <li class="disabled"><span>« 上一題</span></li>
         </g:else>
 
-        <li class="disabled hidden-phone"><span>第 ${currentIndex + 1} 題 / 共 ${lastIndex + 1} 題</span></li>
+        <li class="disabled"><span>第 ${currentIndex + 1} 題 / 共 ${lastIndex + 1} 題</span></li>
 
         <!--下一題-->
         <g:if test="${content&&currentIndex<lastIndex}">

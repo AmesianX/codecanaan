@@ -21,31 +21,26 @@
     
 </section>
 
-<h2>
-    <!--開始練習-->
-    <g:message code="content.exercise.start.text" />
-    <!--tagline-->
-    <small><g:message code="content.exercise.start.tagline" /></small>    
-</h2>
+<hr />
 
 <sec:ifLoggedIn>
     <!--實作練習-->
-    <div class="btn-toolbar">
+    <div class="form-group">
         <div class="btn-group">
             <a href="${createLink(controller:'content',action:'source',id:content?.id,params: [file: "${content.sourcePath}"])}" id="cmdPlay" class="btn btn-success">
-                <i class="icon icon-play"></i>
+                <i class="icon icon-play"></i><br/>
                 執行測試
             </a>
         </div>
         <div class="btn-group">
-            <a href="#" id="cmdSave" class="btn btn-small">
-                <span class="hide visible-while-save-progress"><i class="icon icon-spinner icon-spin"></i></span>
-                <span class="hidden-while-save-progress"><i class="icon icon-save"></i></span>
-                儲存
+            <a href="#" id="cmdSave" class="btn btn-default">
+                <span class="hide visible-while-save-progress"><i class="icon icon-spinner icon-spin"></i><br/></span>
+                <span class="hidden-while-save-progress"><i class="icon icon-save"></i><br/></span>
+                儲存上傳
             </a>
-            <a href="#" id="cmdUndo" class="btn btn-small"><i class="icon icon-undo"></i> 復原</a>
-            <a href="#" id="cmdRedo" class="btn btn-small"><i class="icon icon-repeat"></i> 取消復原</a>
-            <a href="#" id="cmdReset" class="btn btn-small"><i class="icon icon-magic"></i> 清除重做</a>
+            <a href="#" id="cmdUndo" class="btn btn-default"><i class="icon icon-undo"></i><br/>復原動作</a>
+            <a href="#" id="cmdRedo" class="btn btn-default"><i class="icon icon-repeat"></i><br/>取消復原</a>
+            <a href="#" id="cmdReset" class="btn btn-default"><i class="icon icon-magic"></i><br/>清除重做</a>
         </div>
     </div>
 
