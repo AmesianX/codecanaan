@@ -226,11 +226,9 @@ modules = {
         resource url: 'bootstrap-ext/bootstrap-lightbox.js'
     }
     
-    //'font-awesome' {
-        //dependsOn 'bootswatch'
-        //defaultBundle 'bootstrap'
-		//defaultBundle __bundleName
-        
+    'font-awesome' {
+        dependsOn 'bootstrap'
+
         //resource url: [dir: 'font-awesome/less', file: 'font-awesome.less'],
         //    attrs: [rel: 'stylesheet/less', type:'css'], bundle: _bundleName
 
@@ -238,10 +236,10 @@ modules = {
         //    attrs: [rel: 'stylesheet/less', type:'css'],
         //    wrapper: { s -> "<!--[if lte IE 7]>$s<![endif]-->" }
 
-        //resource url: 'stylesheets/font-awesome.css'
-        //resource url: 'stylesheets/font-awesome-ie7.css',
-        //    wrapper: { s -> "<!--[if lte IE 7]>$s<![endif]-->" }
-    //}
+        resource url: 'stylesheets/font-awesome.css'
+        resource url: 'stylesheets/font-awesome-ie7.css',
+            wrapper: { s -> "<!--[if lte IE 7]>$s<![endif]-->" }
+    }
     
     compass {
         dependsOn 'bootswatch'
