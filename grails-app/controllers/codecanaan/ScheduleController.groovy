@@ -131,6 +131,85 @@ class ScheduleController {
     }
 
     /**
+     * Modify schedule details
+     */
+    @Secured(['ROLE_TEACHER'])
+    def modify(Long id) {
+
+        def schedule = Schedule.get(id)
+
+        def scheduleLessons = ScheduleLesson.findAllBySchedule(schedule)
+
+        [schedule: schedule, scheduleLessons: scheduleLessons]
+    }
+
+    /**
+     * Save schedule details modification
+     */
+    @Secured(['ROLE_TEACHER'])
+    def modifySave(Long id) {
+
+        def schedule = Schedule.get(id)
+
+        if (params.actionUpdate) {
+
+            //更新基本資料
+            //schedule.properties = params
+            schedule.save(flush: true)
+
+            // IDs from check box
+            def itemIdList = params.list('itemId')
+
+            //更新課程單元連結
+            def linkIdList = params.list('linkId')
+
+            def beginDate = params.list('beginDate')
+            def beginTime = params.list('beginTime')
+
+            def endDate = params.list('endDate')
+            def endTime = params.list('endTime')
+
+            def deadlineDate = params.list('deadlineDate')
+            def deadlineTime = params.list('deadlineTime')
+
+            int i = 0;
+            linkIdList.each {
+                linkId ->
+
+                if (itemIdList.contains(linkId)) {
+
+                    def link = ScheduleLesson.get(linkId)
+
+                    try {
+                        link.begin = Date.parse('yyyy/MM/dd HH:mm:ss', "${beginDate[i]} ${beginTime[i]}")
+                    }
+                    catch (e) { /* nothing */ }
+
+                    try {
+                        link.end = Date.parse('yyyy/MM/dd HH:mm:ss', "${endDate[i]} ${endTime[i]}")
+                    }
+                    catch (e) { /* nothing */ }
+
+                    try {
+                        link.deadline = Date.parse('yyyy/MM/dd HH:mm:ss', "${deadlineDate[i]} ${deadlineTime[i]}")
+                    }
+                    catch (e) { /* nothing */ }
+
+                    link.save(flush: true)
+                }
+                else {
+                    def link = ScheduleLesson.get(linkId)
+                    link.delete(flush: true)
+                }
+
+                i++
+            }
+        }
+        
+        redirect(action: 'show', id: schedule.id)
+    }
+
+    /**
      * 資料維護處理
      */
     @Secured(['ROLE_TEACHER'])

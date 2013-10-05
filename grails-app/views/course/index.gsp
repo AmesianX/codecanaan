@@ -22,7 +22,6 @@
                                 <g:textField name="serialCode" value="" class="form-control" placeholder="${message(code:'course.registration.placeholder.text')}" />
                                 <span class="input-group-btn">
                                     <button type="submit" name="coupon" class="btn btn-default">
-                                        <i class="icon icon-chevron-right"></i>
                                         <!--註冊-->
                                         <g:message code="default.register.text" />
                                     </button>

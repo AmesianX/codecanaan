@@ -41,13 +41,13 @@
                                             <div class="btn-group pull-right">
                                                 <schedule:answerAvailable test="${link}">
                                                     <!--觀看解答-->
-                                                    <g:link action="answer" id="${link.id}" class="btn">
+                                                    <g:link action="answer" id="${link.id}" class="btn btn-default">
                                                         <g:message code="schedule.answer.text" />
                                                     </g:link>
                                                 </schedule:answerAvailable>
 
                                                 <sec:ifAllGranted roles="ROLE_TEACHER">
-                                                    <g:link action="report" id="${link.id}" class="btn">
+                                                    <g:link action="report" id="${link.id}" class="btn btn-default">
                                                         報表
                                                     </g:link>
                                                 </sec:ifAllGranted>
@@ -66,15 +66,15 @@
                                         </td>
                                         <td>
                                             <g:formatDate date="${link.begin}" type="date" style="SHORT" /><br/>
-                                            <g:formatDate date="${link.begin}" type="time" style="SHORT" />
+                                            <g:formatDate date="${link.begin}" type="time" timeStyle="SHORT" />
                                         </td>
                                         <td>
                                             <g:formatDate date="${link.end}" type="date" style="SHORT" /><br/>
-                                            <g:formatDate date="${link.end}" type="time" style="SHORT" />
+                                            <g:formatDate date="${link.end}" type="time" timeStyle="SHORT" />
                                         </td>
                                         <td>
                                             <g:formatDate date="${link.deadline}" type="date" style="SHORT" /><br/>
-                                            <g:formatDate date="${link.deadline}" type="time" style="SHORT" />
+                                            <g:formatDate date="${link.deadline}" type="time" timeStyle="SHORT" />
                                         </td>
                                     </tr>
                                 </g:each>
@@ -83,10 +83,16 @@
                                 <tfoot>
                                     <tr>
                                         <td colspan="5" class="text-right">
-                                            <g:link controller="schedule" action="join" id="${schedule.id}">
+                                            <g:link action="join" id="${schedule.id}">
                                                 <i class="icon-plus"></i>&nbsp;
-                                                增加新單元
+                                                <g:message code="default.button.add.label" />
                                             </g:link>
+                                            <span class="text-muted">&nbsp;|&nbsp;</span>
+                                            <g:link action="modify" id="${schedule.id}">
+                                                <i class="icon-pencil"></i>&nbsp;
+                                                <g:message code="default.button.modify.label" />
+                                            </g:link>
+
                                         </td>
                                     </tr>
                                 </tfoot>
@@ -128,10 +134,16 @@
                                         <g:message code="schedule.user.count.text" />
                                     </th>
                                     <td>
-                                        <g:link action="user" id="${schedule.id}">
+                                        <g:if test="${editable}">
+                                            <g:link action="user" id="${schedule.id}">
+                                                ${userSize}&nbsp;
+                                                <i class="icon-user"></i>
+                                            </g:link>
+                                        </g:if>
+                                        <g:else>
                                             ${userSize}&nbsp;
                                             <i class="icon-user"></i>
-                                        </g:link>
+                                        </g:else>
                                     </td>
                                 </tr>
                                 <tr>

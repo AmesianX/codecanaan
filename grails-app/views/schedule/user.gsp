@@ -1,80 +1,103 @@
 <html>
 <head>
-<meta name="layout" content="bootstrap" />
-<title><g:message code="schedule.label" /></title>
+    <title>${schedule?.title}</title>
+    <meta name="layout" content="baseadmin" />
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span3">
-            <g:form action="userUpdate" id="${schedule.id}" method="post">
-                <legend>新增 / Add</legend>
 
-                <p>輸入電子郵件信箱，將一位學生增加到此課程進度。</p>
-                
-                E-mail
-                <g:textField name="username" value="" />
-                <g:submitButton name="actionAddUser" value="${message(code:'default.button.create.label')}" class="btn btn-primary" />
+<div class="main">
+    <div class="container">
+        <div class="row">
 
-            </g:form>
+            <div class="col-md-3">
+                <div class="widget stacked">
+                    <div class="widget-header">
+                        <i class="icon icon-plus-sign"></i>
+                        <h3><g:message code="default.button.add.label" /></h3>
+                    </div>
+                    <div class="widget-content">
+                        <g:form action="userUpdate" id="${schedule.id}" method="post">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="icon-envelope"></i>
+                                </span>
+                                <input class="form-control" type="text" name="username" placeholder="example@gmail.com" />
+                                <span class="input-group-btn">
+                                    <button name="actionAddUser" type="submit" class="btn btn-default">
+                                        ${message(code:'default.button.create.label')}
+                                    </button>
+                                </span>
+                            </div>
+                        </g:form>
+                    </div>
+                </div> <!-- /.widget -->
+            </div> <!-- /.col -->
 
-        </div>
-        <div class="span9 clearlook-wrapper padding-around">
-
-            <div class="margin-below pull-right">
-                <!--返回-->
-                <g:link controller="schedule" action="show" id="${schedule.id}" class="btn">
-                    <i class="icon icon-chevron-left"></i>
-                    <g:message code="default.button.goback.label" />
-                </g:link>
-            </div>
-
-            <g:form action="userAction" id="${schedule.id}" method="post">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th width="30">#</th>
-                            <th><g:message code="user.username.label" /></th>
-                            <th><g:message code="user.fullName.label" /></th>
-                            <th><g:message code="user.email.label" /></th>
-                            <th width="100">身分</th>
-                            <th width="100">建立日期</th>
-                            <th><i class="icon icon-check"></i></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <g:if test="${!userSchedules}">
-                            <tr>
-                                <td colspan="7"><div style="text-align:center"><g:message code="default.empty.description" /></div></td>
-                            </tr>
-                        </g:if>
-                        <g:each in="${userSchedules}" var="link" status="i">
-                            <tr>
-                                <td>${i+1}</td>
-                                <td>${link.user?.username}</td>
-                                <td>${link.user?.fullName}</td>
-                                <td>${link.user?.email}</td>
-                                <td>${link.roleType}</td>
-                                <td>${link.dateCreated?.format('yyyy/MM/dd')}</td>
-                                <td>
-                                    <g:if test="${link.roleType!=codecanaan.ScheduleRoleType.OWNER}">
-                                        <g:checkBox name="selected" value="${link.id}" checked="false" />
+            <div class="col-md-9">
+                <div class="widget widget-table stacked">
+                    <div class="widget-header">
+                        <i class="icon icon-user"></i>
+                        <h3>${schedule?.title}</h3>
+                    </div>
+                    <div class="widget-content">
+                        <g:form action="userAction" id="${schedule.id}" method="post">
+                            <table class="table table-bordered table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th width="40">#</th>
+                                        <th><g:message code="user.username.label" /></th>
+                                        <th><g:message code="user.fullName.label" /></th>
+                                        <th><g:message code="user.email.label" /></th>
+                                        <th width="100">身分</th>
+                                        <th width="100">建立日期</th>
+                                        <th><i class="icon icon-check"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <g:if test="${!userSchedules}">
+                                        <tr>
+                                            <td colspan="7"><div style="text-align:center"><g:message code="default.empty.description" /></div></td>
+                                        </tr>
                                     </g:if>
-                                </td>
-                            </tr>
-                        </g:each>
-                    </tbody>
-                </table>
+                                    <g:each in="${userSchedules}" var="link" status="i">
+                                        <tr>
+                                            <td>${i+1}</td>
+                                            <td>${link.user?.username}</td>
+                                            <td>${link.user?.fullName}</td>
+                                            <td>${link.user?.email}</td>
+                                            <td>${link.roleType}</td>
+                                            <td>${link.dateCreated?.format('yyyy/MM/dd')}</td>
+                                            <td>
+                                                <g:if test="${link.roleType!=codecanaan.ScheduleRoleType.OWNER}">
+                                                    <g:checkBox name="selected" value="${link.id}" checked="false" />
+                                                </g:if>
+                                            </td>
+                                        </tr>
+                                    </g:each>
+                                </tbody>
 
-                <div class="btn-toolbar pull-right">
-                    <button name="delete" type="submit" class="btn btn-danger" onclick="alert('Are you sure???');">
-                        <i class="icon icon-remove"></i>
-                        ${message(code:'default.button.delete.label')}
-                    </button>
-                </div>
-            </g:form>
-        </div>
-    </div>
-</div>
-</body>
-</html>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="7" class="text-right">
+                                            <div class="btn-toolbar">
+                                                <button name="delete" type="submit" class="btn btn-danger" onclick="alert('Are you sure???');">
+                                                    <g:message code="default.button.delete.label" />
+                                                </button>
+
+                                                <g:link action="show" id="${schedule.id}" class="btn btn-default">
+                                                    <g:message code="default.button.cancel.label" />
+                                                </g:link>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
+                        </g:form>
+                    </div>
+                </div> <!-- /.widget -->
+            </div> <!-- /.col -->
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+</div> <!-- /.main -->
