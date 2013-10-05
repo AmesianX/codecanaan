@@ -50,8 +50,27 @@
                         </a>
                         
                         <ul class="dropdown-menu">
-                            <li><a href="./account.html">Account Settings</a></li>
-                            <li><a href="#">Privacy Settings</a></li>
+                            <li>
+                                <g:link controller="user" action="editProfile">
+                                    <!-- Edit Profile -->
+                                    <i class="icon icon-user-md"></i>&nbsp;&nbsp;
+                                    <g:message code="user.action.editProfile.label" />
+                                </g:link>
+                            </li>
+                            <li>
+                                <g:link controller="home" action="client">
+                                    <!-- 客戶端工具 -->
+                                    <i class="icon icon-download"></i>&nbsp;&nbsp;
+                                    <g:message code="default.client.tools.text" />
+                                </g:link>
+                            </li>
+                            <li>
+                                <g:link controller="home" action="step1">
+                                    <!-- Welcome Wizard -->
+                                    <i class="icon icon-download"></i>&nbsp;&nbsp;
+                                    Bootstrap
+                                </g:link>
+                            </li>
                             <li class="divider"></li>
                             <li><a href="#">Help</a></li>
                         </ul>
@@ -65,17 +84,10 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <g:link controller="home" action="client">
-                                    <i class="icon icon-download"></i>
-                                    <%--客戶端工具--%>
-                                    <g:message code="default.client.tools.text" />
-                                </g:link>
-                            </li>
-                            <li>
                                 <g:link controller="user" action="profile">
-                                    <i class="icon icon-user-md"></i>
-                                    <%--個人資料--%>
-                                    <g:message code="default.user.preferences.text" />
+                                    <i class="icon icon-user"></i>&nbsp;&nbsp;
+                                    <!-- User Profile -->
+                                    <g:message code="user.action.profile.label" />
                                 </g:link>
                             </li>
                             <sec:ifAllGranted roles="ROLE_ADMIN">

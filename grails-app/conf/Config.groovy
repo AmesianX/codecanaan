@@ -262,3 +262,9 @@ grails {
     }
 }
 remove this line */
+
+// Twitter, Spring Security Plugin
+//grails.plugins.springsecurity.twitter.key=''
+grails.plugins.springsecurity.twitter.consumerKey='oWtkNaKlatDcEbCW2ik4A'
+grails.plugins.springsecurity.twitter.consumerSecret='p9jyUshum7gEVzhkBIr9END03Zr1aPmcIdk4EdE9M'
+grails.plugins.springsecurity.twitter.domain.classname='codecanaan.TwitterUser'

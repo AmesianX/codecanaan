@@ -22,6 +22,7 @@ class PostController {
 
         [
             type: type,
+            announceCount: Post.countByType(PostType.ANNOUNCE),
             posts: Post.findAllByType(type)
         ]
     }
@@ -36,17 +37,25 @@ class PostController {
         }
         
         if (!post) {
-            post = new Post(params)
+            //post = new Post(params)
         }
         
     	[post: post]
     }
     
+    /**
+     * Create a New Post
+     */
     def create() {
         def post = new Post(params)
-        post.name = "news-${new Date().format('yyyy')}-${new Date().format('MMddHHmmss')}"
 
-        [ post: post ]
+        if (!post.name) {
+            post.name = "post-${new Date().format('yyyy')}-${new Date().format('MMddHHmmss')}"
+        }
+
+        [
+            post: post
+        ]
     }
     
     def save() {

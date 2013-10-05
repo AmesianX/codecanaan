@@ -22,7 +22,7 @@ class HomeController {
             def user = springSecurityService.currentUser
             
             if (!user?.works) {
-                redirect action: 'step2'
+                redirect action: 'step1'
                 return
             }
         }

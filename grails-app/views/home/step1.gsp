@@ -5,43 +5,67 @@
 </head>
 <body>
 
-<div class="container-fluid">
-    <!--Progress Bar-->
-    <g:render template="progress" model="[step: 1]" />
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="widget stacked">
+                    <div class="widget-header">
+                        <i class="icon icon-cog"></i>
+                        <h3>Welcome to CodeCanaan</h3>
+                    </div>
+                    <div class="widget-content" style="background:#f3f3f3 url(/images/welcome-001.png) no-repeat;">
 
-    <div class="row-fluid">
-        <div class="span12">
-            <p class="larger-font textalign-center padding-around margin-around">已經有 <strong>${codecanaan.User.count()+900}</strong> 位使用者註冊成為我們的會員！</p>
-        </div>
-    </div>
+                        <div class="col-md-6">
+                        </div>
 
-    <div class="row-fluid clearlook-wrapper justfont">
-        <div class="span4 padding-leftside">
-            
-            <p>登入後享有會員權利...</p>
-            
-            <ul class="icons">
-                <li>
-                    <i class="icon-ok icon-green"></i>
-                    更多的教材內容
-                </li>
-                <li>
-                    <i class="icon-ok icon-green"></i>
-                    完整的課程功能
-                </li>
-                <li>
-                    <i class="icon-ok icon-green"></i>
-                    個人學習記錄雲端儲存
-                </li>
-            </ul>
-            
-            <p>軟體壹學院目前開放會員使用 <a href="http://facebook.com/" target="_blank">Facebook</a> 帳號直接登入，免除麻煩的註冊手續！</p>
+                        <div class="col-md-6 well">
 
-        </div>
-        <div class="span8 padding-rightside">
-            <g:render template="/login/facebook" />
-        </div>
-    </div>
-</div>
+                            <h3>誠摯歡迎您！</h3>
+
+                            <p>CodeCanaan 致力於建造雲端教室，提供支援<strong>程式實作練習</strong>的教學環境，歡迎體驗我們的學習列車。</p>
+
+                            <p>專業認證題庫限時開放：</p>
+
+                            <ul class="icons-ul">
+                                <li>
+                                    <i class="icon-li icon-ok icon-green"></i>
+                                    TQC+ Java 6 物件導向程式語言
+                                </li>
+                            </ul>
+
+                            <p>請繼續完成以下步驟：</p>
+                                        
+                            <ul class="icons-ul">
+                                <li>
+                                    <i class="icon-li icon-chevron-right icon-gray"></i>
+                                    安裝免費的 Java 軟體
+                                </li>
+                                <li>
+                                    <i class="icon-li icon-chevron-right icon-gray"></i>
+                                    啟動客戶端工具
+                                </li>
+                                <li>
+                                    <i class="icon-li icon-chevron-right icon-gray"></i>
+                                    獲取免費線上課程
+                                </li>
+                            </ul>
+
+                            <p>已經有 <strong>${codecanaan.User.count()+900}</strong> 位使用者註冊成為我們的會員！</p>
+
+                        </div>
+
+                        <div class="padding-around text-center">
+                            <g:link action="step2" class="btn btn-lg btn-primary">
+                                下一個步驟
+                            </g:link>
+                        </div>
+                    </div>
+                </div> <!-- /.widget -->
+            </div> <!-- /.col -->
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+</div> <!-- /.main -->
+
 </body>
 </html>

@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="twitter">
-                        <a href="#" class="btn_2" onclick="alert('Twitter not supported.');">Login with Twitter</a>
+                        <a href="/j_spring_twitter_security_check" class="btn_2" onclick="bootbox.alert('Sorry, Twitter singin under construction.');return false;">Login with Twitter</a>
                     </div>
                     
                 </div>

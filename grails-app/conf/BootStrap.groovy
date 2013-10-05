@@ -16,7 +16,7 @@ class BootStrap {
             def user1 = User.findByUsername('admin')
 
             if (!user1) {
-                user1 = new User(username: 'admin', password: 'admin', enabled: true, works: true).save(failOnError: true, flush: true)
+                user1 = new User(fullName: 'Administrator', email: 'admin@codecanaan.com', username: 'admin', password: 'admin', enabled: true, works: true).save(failOnError: true, flush: true)
                 
                 //join roles
                 UserRole.create(user1, role1)
@@ -33,10 +33,10 @@ class BootStrap {
             
             development {
 
-                def user2 = new User(username: 'student', password: 'student', enabled: true).save(failOnError: true, flush: true)
-                def user3 = new User(username: 'teacher', password: 'teacher', enabled: true).save(failOnError: true, flush: true)
-                def user4 = new User(username: 'guest', password: 'guest', enabled: true).save(failOnError: true, flush: true)
-                def user5 = new User(username: 'author', password: 'author', enabled: true).save(failOnError: true, flush: true)
+                def user2 = new User(fullName: 'Student', email: 'student@codecanaan.com', username: 'student', password: 'student', enabled: true).save(failOnError: true, flush: true)
+                def user3 = new User(fullName: 'Teacher', email: 'teacher@codecanaan.com', username: 'teacher', password: 'teacher', enabled: true).save(failOnError: true, flush: true)
+                def user4 = new User(fullName: 'Guest', email: 'guest@codecanaan.com', username: 'guest', password: 'guest', enabled: true).save(failOnError: true, flush: true)
+                def user5 = new User(fullName: 'Author', email: 'author@codecanaan.com', username: 'author', password: 'author', enabled: true).save(failOnError: true, flush: true)
 
                 //USER, STUDENT
                 UserRole.create(user2, role1)
@@ -55,7 +55,7 @@ class BootStrap {
                 
                 //產生測試使用者
                 (1..100).each {
-                    def userN = new User(username: "user${it}", fullName: "User No.${it}", email: "user${it}@codecanaan.com", password: "password${it}", enabled: true).save(failOnError: true, flush: true)
+                    def userN = new User(fullName: "User No.${it}", email: "user${it}@codecanaan.com", username: "user${it}", password: "password${it}", enabled: true).save(failOnError: true, flush: true)
                     UserRole.create(userN, role1)
                 }
 
@@ -123,15 +123,17 @@ class BootStrap {
                 UserCourse.create(user5, course1, RegType.AUTHOR, true)
 
 
-                //自動產生文章 read rss from google news
+                // Fade Data: Announce posts
+                // 自動產生文章 read rss from google news
                 try {
+                    def rnd = new Random()
                     def url = 'https://news.google.com/news/feeds?pz=1&cf=all&ned=tw&hl=zh-TW&output=rss'
                     def xml = new XmlParser().parse(url)
                     def i = 0
                     xml.channel[0].item.each {
                         item->
                         
-                        new Post(
+                        def p = new Post(
                             name: "post-${i++}",
                             title: item.title[0].value().first(),
                             content: item.description[0].value().first().replaceAll("<(.|\n)*?>", ''),
@@ -139,6 +141,10 @@ class BootStrap {
                             tag: 'tag1, tag2',
                             creator: user1
                         ).save()
+
+                        p.dateCreated = new Date() - rnd.nextInt(50)
+                        p.lastUpdated = new Date() - rnd.nextInt(50)
+                        p.save()
                     }
                 }
                 catch (e) {

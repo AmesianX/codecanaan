@@ -8,14 +8,10 @@ class ScheduleController {
 
     def scheduleService
 
-    def index() {
-        redirect action: 'list'
-    }
-
     /**
      * 列出登入使用者的教學進度
      */
-    def list() {
+    def index() {
         def user = springSecurityService.currentUser
 
         if (!user) {
@@ -57,7 +53,7 @@ class ScheduleController {
 
         if (!schedule) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'schedule.label'), id])
-            redirect action: 'list'
+            redirect action: 'index'
             return
         }
 
@@ -234,7 +230,7 @@ class ScheduleController {
             //error
         }
 
-        redirect action: 'list'
+        redirect action: 'index'
     }
 
     /**
@@ -371,8 +367,14 @@ class ScheduleController {
 
         def stageValues = []
 
-        stageValues << '101學年度下學期'
-        stageValues << '101學年度上學期'
+
+        def currentChineseYear = new Date().year - 11
+
+        stageValues << "${currentChineseYear+1}學年度上學期"
+        stageValues << "${currentChineseYear}學年度下學期"
+        stageValues << "${currentChineseYear}學年度上學期"
+        stageValues << "${currentChineseYear-1}學年度下學期"
+        stageValues << "${currentChineseYear-1}學年度上學期"
         stageValues << '認證研習班'
         
         if (params.save != null) {
@@ -444,6 +446,6 @@ class ScheduleController {
             }
         }
 
-        redirect action: 'list'
+        redirect action: 'index'
     }
 }

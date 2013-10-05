@@ -40,8 +40,8 @@
 
             </div> <!-- /.col -->
 
-            <div class="col-md-9">
-                <div class="widget stacked">
+            <div class="col-md-7">
+                <div class="widget stacked widget-table">
                     <div class="widget-header">
                         <i class="icon icon-book"></i>
                         <h3>
@@ -50,35 +50,10 @@
                         </h3>
                     </div>
                     <div class="widget-content">
-
-                        <sec:ifAnyGranted roles="ROLE_AUTHOR">
-                            <div class="btn-group pull-right">
-                                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    <i class="icon icon-wrench"></i>&nbsp;
-                                    <!--Operations-->
-                                    <g:message code="default.operations.label" />
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="#" id="create-course">
-                                            <i class="icon icon-book"></i>
-                                            <!--新增課程-->
-                                            <g:message code="default.add.label" default="Add {0}" args="[message(code: 'course.label', default: 'Course')]" />
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </sec:ifAnyGranted>
-
-                        <div class="page-header">
-                            <h2>所有課程列表</h2>
-                        </div>
-
                         <table class="table table-bordered table-hover table-striped">
                             <thead>
                                 <tr>
-                                    <th width="30">#</th>
+                                    <th width="40">#</th>
                                     <th><g:message code="course.title.label" /></th>
                                 </tr>
                             </thead>
@@ -95,11 +70,39 @@
                                     </tr>
                                 </g:each>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" align="center">Total: ${courses?.size()?:0}</td>
+                                </tr>
+                            </tfoot>
                         </table>
 
                     </div>
                 </div> <!-- /.widget -->
             </div> <!-- /.col -->
+
+            <div class="col-md-2">
+                <sec:ifAnyGranted roles="ROLE_AUTHOR">
+                    <div class="btn-group">
+                        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon icon-wrench"></i>&nbsp;
+                            <!--Operations-->
+                            <g:message code="default.operations.label" />
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="#" id="create-course">
+                                    <i class="icon icon-book"></i>&nbsp;
+                                    <!--新增課程-->
+                                    <g:message code="default.add.label" default="Add {0}" args="[message(code: 'course.label', default: 'Course')]" />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </sec:ifAnyGranted>
+            </div> <!-- /.col -->
+
         </div> <!-- /.row -->
     </div> <!-- /.container -->
 </div> <!-- /.main -->

@@ -11,56 +11,24 @@
                     <li class="${controllerName=='home'?'active':''}">
                         <g:link url="/">
                             <i class="icon-home"></i>
-                            <span>首頁</span>
+                            <span><g:message code="default.home.label" /></span>
                         </g:link>
                     </li>
 
                     <li class="${['course','lesson','content'].contains(controllerName)?'active':''}">
                         <g:link controller="course">
                             <i class="icon-book"></i>
-                            <span>課程</span>
+                            <span><g:message code="course.label" /></span>
                         </g:link>
                     </li>
                     
-                    <li class="dropdown">                   
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-copy"></i>
-                            <span>Sample Pages</span>
-                            <b class="caret"></b>
-                        </a>        
-                    
-                        <ul class="dropdown-menu">
-                            <li><a href="./pricing.html">Pricing Plans</a></li>
-                            <li><a href="./faq.html">FAQ's</a></li>
-                            <li><a href="./gallery.html">Gallery</a></li>
-                            <li><a href="./reports.html">Reports</a></li>
-                            <li><a href="./account.html">User Account</a></li>
-                        </ul>               
+                    <li class="${['schedule'].contains(controllerName)?'active':''}">
+                        <g:link controller="schedule">
+                            <i class="icon-tasks"></i>
+                            <span><g:message code="schedule.label" /></span>
+                        </g:link>
                     </li>
-                    
-                    <li class="dropdown">                   
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-external-link"></i>
-                            <span>Extra Pages</span>
-                            <b class="caret"></b>
-                        </a>    
-                    
-                        <ul class="dropdown-menu">
-                            <li><a href="./login.html">Login</a></li>
-                            <li><a href="./signup.html">Signup</a></li>
-                            <li><a href="./error.html">Error</a></li>
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" href="#">More options</a>
-                                <ul class="dropdown-menu">
-                                  <li><a tabindex="-1" href="#">Second level</a></li>
 
-                                  <li><a href="#">Second level</a></li>
-                                  <li><a href="#">Second level</a></li>
-                                </ul>
-                              </li>
-                        </ul>                   
-                    </li>
-                
                 </ul>
             </div> <!-- /.subnav-collapse -->
 

@@ -19,7 +19,7 @@
 
                     <div class="widget stacked">
                         <div class="widget-header">
-                            <i class="icon icon-pencil"></i>
+                            <i class="icon icon-cog"></i>
                             <h3>服務條款</h3>
                         </div>
                         <div class="widget-content">
@@ -34,6 +34,13 @@
                                 <button type="submit" class="btn btn-lg btn-primary">
                                     開始使用課程
                                 </button>
+
+                                <br/>
+                                <br/>
+                                <g:link action="step3">
+                                    <i class="icon icon-caret-left"></i>&nbsp;
+                                    返回上一個步驟
+                                </g:link>
                             </div>
                         </div>
                     </div>

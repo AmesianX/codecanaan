@@ -112,8 +112,14 @@ grails.project.dependency.resolution = {
 
         //build ":svn:1.0.2"
       
+        // Spring Security Core Plugin
         compile ":spring-security-core:1.2.7.3"
+
+        // Facebook Authentication for Spring Security Core plugin.
         compile ":spring-security-facebook:0.15"
+
+        // Twitter authentication support for the Spring Security plugin.
+        compile ":spring-security-twitter:0.5.4"
         
         //build ":lesscss-resources:1.3.0.3"
 
@@ -129,6 +135,10 @@ grails.project.dependency.resolution = {
 		compile ":modernizr:2.6.2"
 
         compile ":codenarc:0.19"
+
+        // Grails Avatar Plugin
+        // This plugin provides a taglib for displaying avatars. At the moment we support gravatars (globally-recognized avatars), Twitter avatar profile and Facebook avatar profile.
+        compile ":avatar:0.6.3"
 
 		// Google Chart Plugin
 		// 移除原因：功能不完整且效果不佳

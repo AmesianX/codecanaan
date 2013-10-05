@@ -1,7 +1,7 @@
 package codecanaan
 
 /**
- * 使用者資料模型
+ * User Domain Class
  */
 class User {
 
@@ -98,15 +98,18 @@ class User {
      */
     Date lastUpdated
     
+    /**
+     * Required fields: fullName, email, username, password
+     */
 	static constraints = {
-		fullName nullable: true, size: 2..25
-		email nullable: true, email: true
+        username nullable: false, blank: false, unique: true
+        password nullable: false, blank: false
+		fullName nullable: false, blank: false, size: 2..25
+		email nullable: false, blank: false, email: true
 		description nullable: true, empty: true
-		username blank: false, unique: true
-		password blank: false
-		clientPort range: 1000..65535
-		school nullable: true
-		department nullable: true
+		school nullable: true, blank: true
+		department nullable: true, blank: true
+        clientPort range: 1000..65535
 	}
 
 	static mapping = {

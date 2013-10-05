@@ -1,168 +1,126 @@
 <html>
 <head>
-<meta name="layout" content="bootstrap" />
-<title>修改個人資料</title>
+    <title>修改個人資料</title>
+    <meta name="layout" content="baseadmin" />
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span3">
-            <!--資訊-->
-            <g:if test="${user?.email}">
-                <div class="textalign-center">
-                    <avatar:gravatar email="${user.email}" size="128" title="大頭貼" />
-                    <p><small>Change your avatar at <a href="gravatar.com">gravatar.com</a><br/> We’re using ${user.email}</small></p>
-                </div>
-            </g:if>
-        </div>
-        <div class="span9 clearlook-wrapper padding-around">
-            <g:hasErrors bean="${user}">
-            <ul class="errors" role="alert">
-                <g:eachError bean="${user}" var="error">
-                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                </g:eachError>
-            </ul>
-            </g:hasErrors>
-            <g:form action="profile" method="post" class="form-horizontal">
-                <legend><!--個人資料--><g:message code="user.profile.text" /></legend>
 
-                <g:if test="${fbuser}">
-                    <!--Facebook 帳號-->
-                    <div class="control-group">
-                        <label class="control-label">
-                            <g:message code="user.login.type.facebook.text" />
-                        </label>
-                        <div class="controls">
-                            <span class="help-inline">
-                                <!--連結 Facebook 帳號-->
-                                <a href="http://www.facebook.com/profile.php?id=${fbuser.uid}" target="_blank">
-                                    <avatar:facebook user="${fbuser.uid}" size="50" />
-                                </a>
-                            </span>
-                        </div>
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="widget stacked">
+                    <div class="widget-header">
+                        <i class="icon icon-user"></i>
+                        <h3>Avatar</h3>
                     </div>
-                </g:if>
-                <g:else>
-                    <div class="control-group">
-                        <label class="control-label" for="username">
-                            <g:message code="user.login.type.normal.text" />
-                        </label>
-                        <div class="controls">
-                            <span class="help-inline">${user?.username}</span>
-                        </div>
+                    <div class="widget-content">
+                        <g:if test="${user?.email}">
+                            <div class="textalign-center">
+                                <avatar:gravatar email="${user.email}" size="128" title="大頭貼" id="avatar" />
+                                <p><small>Change your avatar at <a href="gravatar.com">gravatar.com</a><br/> We’re using ${user.email}</small></p>
+                            </div>
+                        </g:if>
                     </div>
-                </g:else>
+                </div> <!-- /.widget -->
+            </div> <!-- /.col -->
 
-                <%--姓名--%>
-                <div class="control-group ${hasErrors(bean: user, field: 'fullName', 'error')} ">
-                    <label class="control-label" for="fullName">
-                        <g:message code="user.fullName.label" />
-                    </label>
-                    <div class="controls">
-                        <g:textField name="fullName" value="${user?.fullName}" class="input input-medium" />
+            <div class="col-md-9">
+                <div class="widget stacked">
+                    <div class="widget-header">
+                        <i class="icon icon-pencil"></i>
+                        <h3>
+                            <!--個人資料-->
+                            <g:message code="user.profile.text" />
+                        </h3>
                     </div>
-                </div>
+                    <div class="widget-content">
 
-                <%--電子郵件--%>
-                <div class="control-group ${hasErrors(bean: user, field: 'email', 'error')} ">
-                    <label class="control-label" for="email">
-                        <g:message code="user.email.label" />
-                    </label>
-                    <div class="controls">
-                        <g:textField name="email" value="${user?.email}" class="input input-xlarge" disabled="" />
-                    </div>
-                </div>
+                        <g:hasErrors bean="${user}">
+                            <ul class="errors" role="alert">
+                                <g:eachError bean="${user}" var="error">
+                                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+                                </g:eachError>
+                            </ul>
+                        </g:hasErrors>
 
-                <%--學校--%>
-                <div class="control-group ${hasErrors(bean: user, field: 'school', 'error')} ">
-                    <label class="control-label" for="school">
-                        <g:message code="user.school.label" />
-                    </label>
-                    <div class="controls">
-                        <g:textField name="school" value="${user?.school}" class="input input-large" />
-                    </div>
-                </div>
-
-                <%--系所--%>
-                <div class="control-group ${hasErrors(bean: user, field: 'department', 'error')} ">
-                    <label class="control-label" for="department">
-                        <g:message code="user.department.label" />
-                    </label>
-                    <div class="controls">
-                        <g:textField name="department" value="${user?.department}" class="input input-large" />
-                    </div>
-                </div>
-
-                <%--個人簡介--%>
-                <div class="control-group ${hasErrors(bean: user, field: 'description', 'error')} ">
-                    <div class="controls">
-                        <ul class="nav nav-tabs">
-                            <li class="active">
-                                <a href="#tab-editor" data-toggle="tab">
-                                    <small><g:message code="user.description.label" /></small>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#tab-preview" data-toggle="tab">
-                                    <small><g:message code="default.preview.text" /></small>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tab-editor">
-                                <div class="wmd-panel wmd-editor">
-                                    <div id="wmd-button-bar"></div>
-                                    <g:textArea name="description" cols="40" rows="20" value="${user?.description}" class="wmd-input" id="wmd-input" />
+                        <div class="col-md-3">
+                            <!-- Account Type -->
+                            <g:if test="${fbuser}">
+                                <!-- Facebook User -->
+                                <div class="textalign-center">
+                                    <!--連結 Facebook 帳號-->
+                                    <a href="http://www.facebook.com/profile.php?id=${fbuser.uid}" target="_blank">
+                                        <avatar:facebook user="${fbuser.uid}" size="50" />
+                                    </a>
+                                    <br/>
+                                    <i class="icon-facebook-sign"></i>&nbsp;
+                                    <g:message code="user.login.type.facebook.text" />
                                 </div>
-                            </div>
-                            <div class="tab-pane" id="tab-preview">
-                                <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
-                            </div>
+                            </g:if>
+                            <g:else>
+                                <!-- Built-in User -->
+                                <div class="control-group">
+                                    <label class="control-label" for="username">
+                                        <g:message code="user.login.type.normal.text" />
+                                    </label>
+                                    <div class="controls">
+                                        <span class="help-inline">${user?.username}</span>
+                                    </div>
+                                </div>
+                            </g:else>
                         </div>
-                    </div>
-                </div>
 
-                <!--客戶端工具連接埠-->
-                <div class="control-group ${hasErrors(bean: user, field: 'clientPort', 'error')} ">
-                    <label class="control-label" for="clientPort">
-                        <g:message code="user.clientPort.label" />
-                    </label>
-                    <div class="controls">
-                        <div class="input-prepend input-append">
-                            <button class="btn value-adjuster" data-element="clientPort" data-interval="-1"><i class="icon icon-minus"></i></button>
-                            <g:textField name="clientPort" value="${user?.clientPort}" class="input span4 textalign-center" data-min="1327" data-max="1347" readonly="" />
-                            <button class="btn value-adjuster" data-element="clientPort" data-interval="1"><i class="icon icon-plus"></i></button>
+                        <div class="col-md-9">
+                            <!-- Full Name -->
+                            <dl class="dl-horizontal">
+                                <dt><g:message code="user.fullName.label" /></dt>
+                                <dd>${user?.fullName}</dd>
+                            </dl>
+
+                            <!-- E-Mail -->
+                            <dl class="dl-horizontal">
+                                <dt><g:message code="user.email.label" /></dt>
+                                <dd>${user?.email}</dd>
+                            </dl>
+
+                            <!-- School -->
+                            <dl class="dl-horizontal">
+                                <dt><g:message code="user.school.label" /></dt>
+                                <dd>${user?.school?:'(empty)'}</dd>
+                            </dl>
+
+                            <!-- Department -->
+                            <dl class="dl-horizontal">
+                                <dt><g:message code="user.department.label" /></dt>
+                                <dd>${user?.department}</dd>
+                            </dl>
+                            
                         </div>
-                    </div>
-                </div>
+                        
+                        <div class="markdown-source">${user?.description}</div>
 
-                <div class="control-group">
-                    <label class="control-label">
-                        <g:message code="user.authorities.label" />
-                    </label>
-                    <div class="controls">
-                        <ul class="icons">
-                            <g:each in="${user.authorities?.collect{it.authority}}" var="authority" status="i">
-                                <li><small>
-                                    <i class="icon-ok"></i>
-                                    ${authority}
-                                </small></li>
-                            </g:each>
-                        </ul>
+                        <hr />
+                        
+                        <!-- Operations -->
+                        <g:link action="editProfile" class="btn btn-default">
+                            <i class="icon icon-pencil"></i>&nbsp;
+                            <g:message code="default.button.edit.label"></g:message>
+                        </g:link>
+                        
                     </div>
-                </div>
-                
-                <!--按鈕區-->
-                <div class="form-actions">
-                    <g:submitButton name="save" value="${message(code: 'default.button.update.label')}" class="btn btn-primary" />
-                    <g:link action="show" id="${user?.id}" class="btn">檢視個人資料</g:link>
-                </div>
-            </g:form>
-        </div>
-    </div>
-</div>
+                </div> <!-- /.widget -->
+            </div> <!-- /.col -->
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+</div> <!-- /.main -->
+
 <r:script>
 $(function() {
+
+    $('#avatar').addClass('img-thumbnail');
+
     $('.value-adjuster').click(function() {
         var interval = parseInt($(this).data('interval'));
         var element = $('#'+$(this).data('element'));

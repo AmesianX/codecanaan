@@ -26,32 +26,36 @@
                     <h3>單元內容</h3>
                 </div>
                 <div class="widget-content">
-                    <ol>
-                        <g:each in="${lesson.contents}" var="content" status="i">
-                            <li>
-                                <g:if test="${records[content]==null}">
-                                    <i class="icon-check-empty"></i>&nbsp;
-                                </g:if>
-                                <g:elseif test="${records[content]?.passed}">
-                                    <i class="icon-check"></i>&nbsp;
-                                </g:elseif>
-                                <g:else>
-                                    <i class="icon-edit"></i>&nbsp;
-                                </g:else>
-                                
-                                <g:link controller="content" action="show" id="${content.id}">
-                                    ${content.title}
-                                </g:link>
+                    <table class="table table-hover">
+                        <tbody>
+                            <g:each in="${lesson.contents}" var="content" status="i">
+                                <tr>
+                                    <td width="40">
+                                        <g:if test="${records[content]==null}">
+                                            <i class="icon-check-empty"></i>
+                                        </g:if>
+                                        <g:elseif test="${records[content]?.passed}">
+                                            <i class="icon-check"></i>
+                                        </g:elseif>
+                                        <g:else>
+                                            <i class="icon-edit"></i>
+                                        </g:else>
+                                    </td>
+                                    <td>
+                                        <g:link controller="content" action="show" id="${content.id}">
+                                            ${content.title}
+                                        </g:link>
+                                    </td>
+                                    <td>
+                                        <!-- Stars -->
+                                        <g:each in="${1..content.level}"><i class="icon icon-star icon-gray"></i></g:each>
+                                    </td>
+                                </tr>
+                            </g:each>
+                        </tbody>
+                    </table>
 
-                                <!-- Stars -->
-                                <g:each in="${1..content.level}"><i class="icon icon-star icon-gray"></i></g:each>
-                            </li>
-                        </g:each>
-                    </ol>
-
-                    <hr/>
-
-                    <p>（狀態圖示：<i class="icon icon-check-empty"></i> 未作答、<i class="icon icon-edit"></i> 尚未完成、<i class="icon icon-check"></i> 已完成）</p>
+                    <p class="text-muted">（狀態圖示：<i class="icon icon-check-empty"></i> 未作答、<i class="icon icon-edit"></i> 尚未完成、<i class="icon icon-check"></i> 已完成）</p>
                 </div>
             </div>
         </div>

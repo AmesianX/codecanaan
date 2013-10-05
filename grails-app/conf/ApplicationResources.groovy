@@ -87,7 +87,8 @@ modules = {
 
     // Twitter Bootstrap
     bootstrap {
-        resource url: 'bootstrap/css/bootstrap.min.css'
+        //resource url: 'bootstrap/css/bootstrap.min.css'
+        resource url: 'bootstrap/css/bootstrap.no-icons.min.css'
         resource url: 'bootstrap/css/bootstrap-theme.min.css'
         resource url: 'bootstrap/js/bootstrap.min.js'
     }
@@ -108,6 +109,19 @@ modules = {
         dependsOn 'baseadmin'
 
         resource url: 'baseadmin/css/pages/signin.css'
+    }
+
+    'baseadmin-reports' {
+        dependsOn 'baseadmin'
+
+        resource url: 'baseadmin/css/pages/reports.css'
+    }
+
+    'baseadmin-faq' {
+        dependsOn 'baseadmin'
+
+        resource url: 'baseadmin/js/plugins/faq/faq.css'
+        resource url: 'baseadmin/js/plugins/faq/faq.js'
     }
    
     bootswatch {
@@ -154,8 +168,8 @@ modules = {
         //    attrs: [rel: 'stylesheet/less', type:'css'],
         //    wrapper: { s -> "<!--[if lte IE 7]>$s<![endif]-->" }
 
-        resource url: 'stylesheets/font-awesome.css'
-        resource url: 'stylesheets/font-awesome-ie7.css',
+        resource url: 'font-awesome/css/font-awesome.css'
+        resource url: 'font-awesome/css/font-awesome-ie7.css',
             wrapper: { s -> "<!--[if lte IE 7]>$s<![endif]-->" }
     }
     

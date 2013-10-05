@@ -14,6 +14,10 @@
 
             <div class="col-md-3">
                 <div class="widget stacked">
+                    <div class="widget-header">
+                        <i class="icon-list"></i>
+                        <h3>Table of Contents</h3>
+                    </div>
                     <div class="widget-content">
                         <%--課程單元列表--%>
                         <g:render template="/course/menu" />

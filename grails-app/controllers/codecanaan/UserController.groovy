@@ -25,22 +25,42 @@ class UserController {
     }
 
     /**
-     * 個人資料
+     * View profile (current signin user)
      */
     @Secured(['ROLE_USER'])
     def profile() {
         def user = springSecurityService.currentUser
         
+        [
+            user: user,
+            fbuser: FacebookUser.findByUser(user)
+        ]
+    }
+
+    /**
+     * 
+     */
+    @Secured(['ROLE_USER'])
+    def editProfile() {
+        def user = springSecurityService.currentUser
+
+        [
+            user: user,
+            fbuser: FacebookUser.findByUser(user)
+        ]
+    }
+
+    @Secured(['ROLE_USER'])
+    def saveProfile() {
+        def user = springSecurityService.currentUser
+
         //儲存異動
         if (params.save) {
             user.properties = params
             user.save(flush: true)
         }
 
-        [
-            user: user,
-            fbuser: FacebookUser.findByUser(user)
-        ]
+        redirect action: 'profile'
     }
 
     /**

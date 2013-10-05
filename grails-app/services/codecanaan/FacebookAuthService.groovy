@@ -46,6 +46,48 @@ class FacebookAuthService {
         log.info("User created: $user for fb user: $token.uid")
     }
 
+    /**
+     * Called when we have a new facebook user, called on first login to create all required
+     * data structures. Replaces .createAppUser and .createRoles methods.
+     *
+     * @param token facebook authentication token
+     */
+    FacebookUser create(FacebookAuthToken token) {
+        log.info("Create domain for facebook user $token.uid")
+
+        //Use Spring Social Facebook to load details for current user from Facebook API
+        Facebook facebook = new FacebookTemplate(token.accessToken.accessToken)
+        FacebookProfile fbProfile = facebook.userOperations().userProfile
+        String email = fbProfile.email
+        String username = fbProfile.username
+        String firstName = fbProfile.firstName
+        String lastName = fbProfile.lastName
+
+        User person = new User(
+                username: username,
+                password: token.accessToken.accessToken, //not really necessary
+                enabled: true,
+                accountExpired:  false,
+                accountLocked: false,
+                passwordExpired: false,
+
+                //fill with data loaded from Facebook API
+                fullName: [firstName, lastName].join(' '),
+                email: email
+        )
+        person.save()
+        UserRole.create(person, Role.findByAuthority('ROLE_USER'))
+        UserRole.create(person, Role.findByAuthority('ROLE_FACEBOOK'))
+        FacebookUser fbUser = new FacebookUser(
+                uid: token.uid,
+                accessToken: token.accessToken.accessToken,
+                accessTokenExpires: token.accessToken.expireAt,
+                user: person
+        )
+        fbUser.save()
+        return fbUser
+    }
+
     /*
     void updateToken(Object facebookUser, FacebookAuthToken token) {
         log.error "--- debug start ---"
