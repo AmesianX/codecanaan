@@ -256,8 +256,8 @@
         $('#cmdSave').click(function() {
 
             // 顯示儲存中
-            $('.visible-while-save-progress').show();
-            $('.hidden-while-save-progress').hide();
+            $('i.xx-show-spinner-save').removeClass('icon-save').addClass('icon-spin icon-spinner');
+            $('i.xx-show-spinner-file').removeClass('icon-file').addClass('icon-spin icon-spinner');
 
             // 上傳記錄
             fnSaveRecord({
@@ -265,8 +265,8 @@
             }, function() {
 
                 // 上傳成功就解除狀態顯示
-                $('.visible-while-save-progress').hide();
-                $('.hidden-while-save-progress').show();
+                $('i.xx-show-spinner-save').removeClass('icon-spin icon-spinner').addClass('icon-save');
+                $('i.xx-show-spinner-file').removeClass('icon-spin icon-spinner').addClass('icon-file');
             });
             
             return false;

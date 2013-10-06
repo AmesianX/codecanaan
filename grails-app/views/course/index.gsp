@@ -39,7 +39,7 @@
 
             </div> <!-- /.col -->
 
-            <div class="col-md-7">
+            <div class="col-md-9">
                 <div class="widget stacked widget-table">
                     <div class="widget-header">
                         <i class="icon icon-book"></i>
@@ -59,7 +59,9 @@
                             <tbody>
                                <g:if test="${!courses}">
                                     <tr>
-                                        <td colspan="3"><div style="text-align:center"><g:message code="default.empty.description" /></div></td>
+                                        <td colspan="3" class="text-center">
+                                            <g:message code="default.empty.label" />
+                                        </td>
                                     </tr>
                                 </g:if>
                                 <g:each in="${courses}" var="course" status="i">
@@ -70,38 +72,21 @@
                                 </g:each>
                             </tbody>
                             <tfoot>
-                                <tr>
-                                    <td colspan="3" align="center">Total: ${courses?.size()?:0}</td>
-                                </tr>
+                                <sec:ifAnyGranted roles="ROLE_AUTHOR">
+                                    <tr>
+                                        <td colspan="3" class="text-right">
+                                            <a href="#" id="create-course">
+                                                <i class="icon icon-plus"></i>&nbsp;
+                                                <g:message code="default.button.create.label" />
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </sec:ifAnyGranted>
                             </tfoot>
                         </table>
-
                     </div>
                 </div> <!-- /.widget -->
             </div> <!-- /.col -->
-
-            <div class="col-md-2">
-                <sec:ifAnyGranted roles="ROLE_AUTHOR">
-                    <div class="btn-group">
-                        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon icon-wrench"></i>&nbsp;
-                            <!--Operations-->
-                            <g:message code="default.operations.label" />
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="#" id="create-course">
-                                    <i class="icon icon-book"></i>&nbsp;
-                                    <!--新增課程-->
-                                    <g:message code="default.add.label" default="Add {0}" args="[message(code: 'course.label', default: 'Course')]" />
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </sec:ifAnyGranted>
-            </div> <!-- /.col -->
-
         </div> <!-- /.row -->
     </div> <!-- /.container -->
 </div> <!-- /.main -->

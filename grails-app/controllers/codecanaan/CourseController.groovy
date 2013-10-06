@@ -71,20 +71,23 @@ class CourseController {
                     uc.regInfo = "register for open course using ${serialCode}"
                     uc.regType = RegType.USER
                     uc.save flush: true
+
+                    flash.message = "已註冊課程：${c.title}（開放式課程）"
+                    flash.messageType = 'success'
+                }
+                else {
+                    flash.message = "請勿重複加入已註冊過的課程。"
+                    flash.messageType = 'info'
                 }
 
-                flash.message = "已註冊課程：${c.title}（開放式課程）"
                 redirect action: 'index'
                 return
             }
         }
 
-
         // 尋找課程兌換券
 
-        def coupon = Coupon.findBySerialCode(params.serialCode)
-
-        def msg = message(code: 'course.registration.invalid.message')
+        def coupon = Coupon.findBySerialCode(serialCode)
 
         if (coupon) {
             if (coupon.valid && !coupon.registered) {
@@ -95,11 +98,16 @@ class CourseController {
                 //建立使用者與課程連結
                 if (coupon.course) {
                     def link = UserCourse.findOrCreateByUserAndCourse(user, coupon.course)
-                    link.regInfo = "register with coupon ${coupon.serialCode}"
+                    link.regInfo = "register serial code: [${coupon.serialCode}]"
                     link.regType = RegType.USER
                     
                     if (link.save(flush: true)) {
-                        msg = message(code: 'course.registration.valid.message')
+                        flash.message = message(code: 'course.registration.valid.message')
+                        flash.messageType = 'success'
+                    }
+                    else {
+                        flash.message = message(code: 'course.registration.invalid.message')
+                        flash.messageType = 'warning'
                     }
                 }
 
@@ -112,10 +120,12 @@ class CourseController {
                 }
             }
         }
-
-        flash.message = msg
-
-        redirect(action: 'index')
+        else {
+            flash.message = "Invalid serial code [${serialCode}]."
+            flash.messageType = 'danger'
+        }
+        
+        redirect action: 'index'
     }
 
     /**
@@ -343,11 +353,13 @@ class CourseController {
                     }
                 }
                 else {
-                    flash.message = "無法找到使用者，請重新輸入一次。"
+                    flash.message = "無法找到使用者「${params.email}」，請重新輸入一次。"
+                    flash.messageType = 'warning'
                 }
             }
             else {
-                flash.message = "請輸入正確的電子郵件信箱。"
+                flash.message = "Invalid E-Mail address."
+                flash.messageType = "warning"
             }
         }
         else if (params.delete != null) {

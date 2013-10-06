@@ -33,7 +33,7 @@
 
                             <div class="form-group">
                                 <label class="col-md-3" for="title">
-                                    名稱
+                                    <g:message code="schedule.title.label" />
                                 </label>
                                 <div class="col-md-9">
                                     <g:textField name="title" value="${schedule.title}" placeholder="填寫學習進度名稱" class="form-control" />
@@ -43,7 +43,7 @@
 
                             <div class="form-group">
                                 <label class="col-md-3">
-                                    期別
+                                    <g:message code="schedule.stage.label" />
                                 </label>
                                 <div class="col-lg-9">
                                     <g:radioGroup name="stage" labels="${stageValues}" values="${stageValues}" value="${schedule.stage}">

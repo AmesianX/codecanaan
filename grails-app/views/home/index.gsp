@@ -12,7 +12,7 @@
 <div class="main">
     <div class="container">
 
-    <%--Slider--%>
+    <!-- Slider -->
     <div class="slider-wrapper">
         <div id="da-slider" class="da-slider justfont">
             <div class="da-slide">
@@ -42,8 +42,14 @@
             </nav>
         </div>
     </div>
-    <r:script>$('#da-slider').cslider({autoplay:true,bgincrement:0});</r:script>
-    <%--end:Slider--%>
+    <r:script>
+    $(function() {
+        $('#da-slider').cslider({
+            autoplay: true, bgincrement: 0
+        });
+    });
+    </r:script>
+    <!-- Slider/end -->
 
     <div class="row">
         

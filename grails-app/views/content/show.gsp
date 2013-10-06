@@ -45,7 +45,7 @@
     </div> <!-- /.container -->
 </div> <!-- /.main -->
 
-<!-- JavaScript -->
+<!-- Hidden Fields -->
 <g:hiddenField name="__ajax_save_record_url" value="${createLink(controller: 'content', action: 'ajaxSaveRecord', id: content?.id)}" />
 <g:hiddenField name="__ajax_biwascheme_url" value="${createLink(controller: 'content', action: 'biwascheme')}" />
 <g:hiddenField name="__ajax_savetemp_url" value="${createLink(controller: 'content', action: 'ajaxSaveTemp')}" />

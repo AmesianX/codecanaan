@@ -3,11 +3,15 @@ def __bundleName = 'codecanaan'
 modules = {
 
 	overrides {
-        /*
-		jquery {
+        
+		
+        jquery {
 			// Overriding jquery bundle name
-			//defaultBundle __bundleName
+            defaultBundle 'jquery'
+            resource id: 'js', disposition: 'defer'
 		}
+        
+        /*
 		bootstrap {
 			//defaultBundle __bundleName
 		}
@@ -21,10 +25,30 @@ modules = {
 	}
 
     // jQuery
+    /*
     jquery {
         defaultBundle 'jquery'
 
         resource url: 'jquery/jquery-1.10.2.min.js'
+    }
+    */
+
+    'jquery-core' {
+        dependsOn 'jquery'
+        defaultBundle 'jquery'
+
+        resource url: 'jquery-plugins/jquery-migrate-1.2.1.min.js'
+    }
+
+    'jquery-plugins' {
+        dependsOn 'jquery, jquery-core'
+        defaultBundle 'jquery'
+        
+        resource url: 'jquery-plugins/jquery.textarea.js'
+        resource url: 'jquery-plugins/jquery.jfontsize.js'
+        resource url: 'jquery-plugins/jquery.cookie.js'
+        resource url: 'jquery-plugins/jquery.masonry.js'
+        resource url: 'jquery-plugins/jquery.lazyload.min.js'
     }
 
     // Flot is a pure JavaScript plotting library for jQuery,
@@ -32,6 +56,8 @@ modules = {
     // http://www.flotcharts.org/
     'jquery-flot' {
         dependsOn 'jquery'
+        
+        //defaultBundle 'jquery-plugins'
 
         resource url: 'baseadmin/js/plugins/flot/jquery.flot.js'
         resource url: 'baseadmin/js/plugins/flot/jquery.flot.pie.js'
@@ -48,11 +74,14 @@ modules = {
         resource url: 'jquery-ui/themes/ui-lightness/jquery-ui.min.css'
     }
 
-    // Using jQuery File Upload Plug-in
+    // jQuery File Upload Plug-in
+    // http://blueimp.github.io/jQuery-File-Upload/index.html
+    // File Upload widget with multiple file selection, drag and drop support,
+    // progress bar, validation and preview images, audio and video for jQuery.
     'jquery-fileupload' {
         dependsOn 'jquery'
 
-        //defaultBundle 'jquery'
+        //defaultBundle 'jquery-plugins'
 		//defaultBundle __bundleName
         
         resource url: 'jquery-fileupload/css/jquery.fileupload-ui.css'
@@ -67,26 +96,26 @@ modules = {
     
     'jquery-cslider' {
         dependsOn 'jquery'
+        //defaultBundle 'jquery-plugins'
         
         resource url: 'jquery-cslider/parallax-slider.css'
         resource url: 'jquery-cslider/jquery.cslider.js'
         resource url: 'jquery-cslider/slider.js'
     }
-    
-    'jquery-plugins' {
+
+    /*    
+    'jquery-migrate' {
         dependsOn 'jquery'
         defaultBundle 'jquery'
-        
+
         resource url: 'jquery-plugins/jquery-migrate-1.2.1.min.js'
-        resource url: 'jquery-plugins/jquery.textarea.js'
-        resource url: 'jquery-plugins/jquery.jfontsize.js'
-        resource url: 'jquery-plugins/jquery.cookie.js'
-        resource url: 'jquery-plugins/jquery.masonry.js'
-        resource url: 'jquery-plugins/jquery.lazyload.min.js'
     }
+    */
 
     // Twitter Bootstrap
     bootstrap {
+        dependsOn 'jquery, jquery-core'
+
         //resource url: 'bootstrap/css/bootstrap.min.css'
         resource url: 'bootstrap/css/bootstrap.no-icons.min.css'
         resource url: 'bootstrap/css/bootstrap-theme.min.css'
@@ -95,14 +124,14 @@ modules = {
 
     // Base Aadmin 3.0
     baseadmin {
-        dependsOn 'bootstrap,jquery,font-awesome'
+        dependsOn 'bootstrap, font-awesome'
 
         resource url: 'baseadmin/css/base-admin-3.css'
         resource url: 'baseadmin/css/base-admin-3-responsive.css'
         resource url: 'baseadmin/css/pages/dashboard.css'
         resource url: 'baseadmin/css/custom.css'
 
-        resource url: 'baseadmin/js/Application.js'
+        //resource url: 'baseadmin/js/Application.js'
     }
 
     'baseadmin-signin' {

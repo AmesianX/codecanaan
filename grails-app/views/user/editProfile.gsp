@@ -165,6 +165,9 @@
 
 <r:script>
 $(function() {
+
+    $('#avatar').addClass('img-thumbnail');
+    
     $('.value-adjuster').click(function() {
         var interval = parseInt($(this).data('interval'));
         var element = $('#'+$(this).data('element'));

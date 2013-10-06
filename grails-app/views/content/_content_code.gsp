@@ -34,8 +34,7 @@
         </div>
         <div class="btn-group">
             <a href="#" id="cmdSave" class="btn btn-default">
-                <span class="hide visible-while-save-progress"><i class="icon icon-spinner icon-spin"></i><br/></span>
-                <span class="hidden-while-save-progress"><i class="icon icon-save"></i><br/></span>
+                <i class="icon-save xx-show-spinner-save"></i><br/>
                 儲存上傳
             </a>
             <a href="#" id="cmdUndo" class="btn btn-default"><i class="icon icon-undo"></i><br/>復原動作</a>
@@ -45,11 +44,13 @@
     </div>
 
     <ul class="nav nav-tabs" id="editorTab">
-        <li class="active"><a href="#tab-editor" data-toggle="tab">
-            <span class="hide visible-while-save-progress"><i class="icon icon-spinner icon-spin"></i></span>
-            <span class="hidden-while-save-progress"><i class="icon icon-file"></i></span>
-            ${content.sourcePath}
-        </a></li>
+        <li class="active">
+            <a href="#tab-editor" data-toggle="tab">
+                <i class="icon-file xx-show-spinner-file"></i>
+                &nbsp;
+                ${content.sourcePath}
+            </a>
+        </li>
         <li><a href="#tab-output" data-toggle="tab">執行結果</a></li>
         <li><a href="#tab-stdoutput" data-toggle="tab">標準輸出</a></li>
         <g:if test="${authoring}">

@@ -25,6 +25,7 @@
                 <g:checkBox name="isOpenCourse" value="true" checked="${isOpenCourse}" />&nbsp;
                 開放式課程
             </label>
+            <span class="help-block">表示任何人皆可免費存取此課程內容</span>
         </div>
     </div>
 

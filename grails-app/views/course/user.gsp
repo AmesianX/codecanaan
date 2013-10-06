@@ -21,11 +21,13 @@
                                 <span class="input-group-addon">
                                     <i class="icon-envelope"></i>
                                 </span>
-                                <input class="form-control" type="text" name="email" placeholder="example@gmail.com" />
+
+                                <input class="form-control" type="text" name="email" placeholder="example@gmail.com" style="font-size:.75em" />
 
                                 <span class="input-group-btn">
                                     <button name="create" type="submit" class="btn btn-default">
-                                        ${message(code:'default.button.create.label')}
+                                        <i class="icon-plus"></i>
+                                        <!--${message(code:'default.button.create.label')}-->
                                     </button>
                                 </span>
                             </div>

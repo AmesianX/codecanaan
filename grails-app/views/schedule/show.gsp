@@ -31,7 +31,9 @@
                             <tbody>
                                <g:if test="${!scheduleLessons}">
                                     <tr>
-                                        <td colspan="6"><div style="text-align:center"><g:message code="default.empty.label" /></div></td>
+                                        <td colspan="6" class="text-center">
+                                            <g:message code="default.empty.label" />
+                                        </td>
                                     </tr>
                                 </g:if>
                                 <g:each in="${scheduleLessons}" var="link" status="i">
@@ -114,6 +116,14 @@
                         <table class="table">
                             <tbody>
                                 <tr>
+                                    <th width="100"><g:message code="schedule.title.label" /></th>
+                                    <td>${schedule.title}</td>
+                                </tr>
+                                <tr>
+                                    <th><g:message code="schedule.stage.label" /></th>
+                                    <td>${schedule.stage}</td>
+                                </tr>
+                                <tr>
                                     <th><g:message code="schedule.name.label" /></th>
                                     <td>${schedule.name}</td>
                                 </tr>
@@ -129,6 +139,7 @@
                                     </th>
                                     <td>${schedule.department}</td>
                                 </tr>
+
                                 <tr>
                                     <th>
                                         <g:message code="schedule.user.count.text" />
@@ -151,34 +162,17 @@
                                         <g:message code="default.dateCreated.label" />
                                     </th>
                                     <td>
-                                        <g:formatDate type="DATE" date="${schedule.dateCreated}" />
+                                        <g:formatDate type="date" style="SHORT" date="${schedule.dateCreated}" />
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
 
                         <g:if test="${editable}">
-                            <!--功能清單-->
-                            <div class="btn-group pull-right">
-                                <g:link action="edit" id="${schedule.id}" class="btn btn-default">
-                                    <i class="icon icon-edit"></i>&nbsp;
-                                    <g:message code="default.button.modify.label" />
-                                </g:link>
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <g:link controller="schedule" action="delete" id="${schedule.id}" onclick="return confirm('Are you sure???')">
-                                            <i class="icon icon-remove"></i>&nbsp;
-                                            <g:message code="default.button.remove.label" />
-                                        </g:link>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <br />
-                            <br />
+                            <g:link action="edit" id="${schedule.id}" class="btn btn-default pull-right">
+                                <i class="icon icon-edit"></i>&nbsp;
+                                <g:message code="default.button.modify.label" />
+                            </g:link>
                         </g:if>
 
                     </div>

@@ -1,165 +1,111 @@
 <html>
 <head>
-<meta name="layout" content="bootstrap" />
-<title><g:message code="schedule.label" /></title>
+    <title><g:message code="schedule.label" /></title>
+    <meta name="layout" content="baseadmin" />
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="span12 clearlook-wrapper padding-around">
 
-            <div class="pull-right">
-                <g:link action="show" id="${schedule.id}" class="btn">
-                    <!--返回-->
-                    <i class="icon icon-chevron-left"></i>
-                    <g:message code="default.button.goback.label" />
-                </g:link>
-            </div>
-            
-            <div class="page-header">
-                <h1>
-                    <i class="icon icon-tasks"></i>
-                    ${schedule?.title}
-                    <small><g:message code="schedule.label" default="Schedule" /></small>
-                </h1>
-            </div>
-
-            <g:form action="update" id="${schedule.id}" method="post" class="form-horizontal">
-
-                <div class="control-group">
-                    <label class="control-label" for="title">
-                        <g:message code="schedule.title.label" />
-                    </label>
-                    <div class="controls">
-                        <g:textField name="title" value="${schedule.title}" class="input input-xlarge" />
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="widget stacked">
+                    <div class="widget-header">
+                        <i class="icon icon-edit"></i>
+                        <h3><g:message code="default.edit.label" args="[message(code: 'schedule.label')]" /></h3>
                     </div>
-                </div>
+                    <div class="widget-content">
 
-                <div class="control-group">
-                    <label class="control-label" for="name">
-                        <g:message code="schedule.name.label" />
-                    </label>
-                    <div class="controls">
-                        <g:textField name="name" value="${schedule.name}" class="input input-medium" />
+                        <!-- Show Errors -->
+                        <g:hasErrors bean="${schedule}">
+                        <div class="alert alert-warning">
+                            <ul class="errors" role="alert">
+                            <g:eachError bean="${schedule}" var="error">
+                                <li><g:message error="${error}" /></li>
+                            </g:eachError>
+                            </ul>
+                        </div>
+                        </g:hasErrors>
+
+                        <g:form action="update" id="${schedule.id}" class="form-horizontal" role="form">
+
+                            <!-- Title -->
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="title">
+                                    <g:message code="schedule.title.label" />
+                                </label>
+                                <div class="col-md-8">
+                                    <g:textField name="title" value="${schedule.title}" class="form-control" />
+                                </div>
+                            </div>
+
+                            <!-- Name -->
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="name">
+                                    <g:message code="schedule.name.label" />
+                                </label>
+                                <div class="col-md-8">
+                                    <g:textField name="name" value="${schedule.name}" class="form-control" />
+                                </div>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="password">
+                                    <g:message code="schedule.password.label" />
+                                </label>
+                                <div class="col-md-8">
+                                    <g:passwordField name="password" value="${schedule.password}" class="form-control" />
+                                </div>
+                            </div>
+                            
+                            <!-- School -->
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="school">
+                                    <g:message code="schedule.school.label" />
+                                </label>
+                                <div class="col-md-8">
+                                    <g:textField name="school" value="${schedule?.school}" class="form-control" />
+                                </div>
+                            </div>
+
+                            <!-- Department -->
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="department">
+                                    <g:message code="schedule.department.label" />
+                                </label>
+                                <div class="col-md-8">
+                                    <g:textField name="department" value="${schedule?.department}" class="form-control" />
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-8">
+                                    <!-- Submit -->
+                                    <g:submitButton name="actionUpdate" value="${message(code:'default.button.update.label')}" class="btn btn-primary" />
+
+                                    <!-- Cancel -->
+                                    <g:link action="show" id="${schedule.id}" class="btn btn-default">
+                                        <g:message code="default.button.cancel.label" />
+                                    </g:link>
+
+                                    <!-- Delete -->
+                                    <g:link action="delete" id="${schedule.id}" class="btn btn-danger pull-right">
+                                        <i class="icon icon-remove"></i>&nbsp;
+                                        <g:message code="default.button.remove.label" />
+                                    </g:link>
+                                </div>
+                            </div>
+                        </g:form>
+
                     </div>
-                </div>
+                </div> <!-- /.widget -->
+            </div> <!-- /.col -->
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+</div> <!-- /.main -->
 
-                <div class="control-group">
-                    <label class="control-label" for="password">
-                        <g:message code="schedule.password.label" />
-                    </label>
-                    <div class="controls">
-                        <g:passwordField name="password" value="${schedule.password}" class="input input-medium" />
-                    </div>
-                </div>
-                
-                <%--學校--%>
-                <div class="control-group ${hasErrors(bean: schedule, field: 'school', 'error')} ">
-                    <label class="control-label" for="school">
-                        <g:message code="schedule.school.label" />
-                    </label>
-                    <div class="controls">
-                        <g:textField name="school" value="${schedule?.school}" class="input input-large" />
-                    </div>
-                </div>
-
-                <%--系所--%>
-                <div class="control-group ${hasErrors(bean: schedule, field: 'department', 'error')} ">
-                    <label class="control-label" for="department">
-                        <g:message code="schedule.department.label" />
-                    </label>
-                    <div class="controls">
-                        <g:textField name="department" value="${schedule?.department}" class="input input-large" />
-                    </div>
-                </div>
-
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th width="30">#</th>
-                            <th><g:message code="lesson.title.label" /></th>
-                            <th width="100"><g:message code="scheduleLesson.begin.label" /></th>
-                            <th width="100"><g:message code="scheduleLesson.end.label" /></th>
-                            <th width="100"><g:message code="scheduleLesson.deadline.label" /></th>
-                            <th width="30" align="center"><i class="icon icon-check"></i></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                       <g:if test="${!scheduleLessons}">
-                            <tr>
-                                <td colspan="6"><div style="text-align:center"><g:message code="default.empty.label" /></div></td>
-                            </tr>
-                        </g:if>
-                        <g:each in="${scheduleLessons}" var="link" status="i">
-                            <tr>
-                                <td>${i+1}</td>
-                                <td>
-                                    ${link.lesson?.title}
-                                    <div class="muted"><small>${link.lesson?.course?.title}</small></div>
-                                    <g:hiddenField name="linkId" value="${link.id}" />
-                                </td>
-                                <td>
-                                    <div class="input-append date datepicker" data-date="${link.begin?.format('yyyy/MM/dd')}" data-date-format="yyyy/mm/dd">
-                                        <input name="beginDate" class="span2" size="16" type="text" value="${link.begin?.format('yyyy/MM/dd')}" style="width:6em;font-size:9pt">
-                                        <span class="add-on"><i class="icon-th"></i></span>
-                                    </div>
-                                    <div class="input-append bootstrap-timepicker-component">
-                                        <input name="beginTime" type="text" class="timepicker-default input-small" value="${link.begin?.format('HH:mm:ss')}" style="width:5em;font-size:9pt">
-                                        <span class="add-on"><i class="icon-time"></i></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="input-append date datepicker" data-date="${link.end?.format('yyyy/MM/dd')}" data-date-format="yyyy/mm/dd">
-                                        <input name="endDate" class="span2" size="16" type="text" value="${link.end?.format('yyyy/MM/dd')}" style="width:6em;font-size:9pt">
-                                        <span class="add-on"><i class="icon-th"></i></span>
-                                    </div>
-                                    <div class="input-append bootstrap-timepicker-component">
-                                        <input name="endTime" type="text" class="timepicker-default input-small" value="${link.end?.format('HH:mm:ss')}" style="width:6em;font-size:9pt">
-                                        <span class="add-on"><i class="icon-time"></i></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="input-append date datepicker" data-date="${link.deadline?.format('yyyy/MM/dd')}" data-date-format="yyyy/mm/dd">
-                                        <input name="deadlineDate" class="span2" size="16" type="text" value="${link.deadline?.format('yyyy/MM/dd')}" style="width:6em;font-size:9pt">
-                                        <span class="add-on"><i class="icon-th"></i></span>
-                                    </div>
-                                    <div class="input-append bootstrap-timepicker-component">
-                                        <input name="deadlineTime" type="text" class="timepicker-default input-small" value="${link.deadline?.format('HH:mm:ss')}" style="width:6em;font-size:9pt">
-                                        <span class="add-on"><i class="icon-time"></i></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <g:checkBox name="itemId" value="${link.id}" checked="false" />
-                                </td>
-                            </tr>
-                        </g:each>
-                    </tbody>
-                </table>
-
-                <div class="form-actions">
-                    <!--更新-->
-                    <g:submitButton name="actionUpdate" value="${message(code:'default.button.update.label')}" class="btn btn-primary" />
-
-                    <g:link action="show" id="${schedule.id}" class="btn"><g:message code="default.button.cancel.label" /></g:link>
-
-                    <!--刪除已選-->
-                    <g:submitButton name="actionDelete" value="${message(code:'default.button.delete.selected.label')}" class="btn btn-danger pull-right" onclick="return confirm('Are you sure???')" />
-                </div>
-            </g:form>
-        </div>
-    </div>
-</div>
-<r:script>
-(function() {
-    $('.datepicker').datepicker();
-    $('.timepicker-default').timepicker({
-        minuteStep: 5,
-        template: 'dropdown',
-        showSeconds: true,
-        showMeridian: false,
-        defaultTime: 'value'
-    });
-})();
-</r:script>
 </body>
 </html>

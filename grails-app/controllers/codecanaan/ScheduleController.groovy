@@ -1,6 +1,7 @@
 package codecanaan
 
 import grails.plugins.springsecurity.Secured
+import grails.transaction.Transactional
 
 class ScheduleController {
 
@@ -125,9 +126,39 @@ class ScheduleController {
 
         def schedule = Schedule.get(id)
 
-        def scheduleLessons = ScheduleLesson.findAllBySchedule(schedule)
+        // Not exists.
+        if (!schedule) {
+            response.sendError 404
+            return
+        }
 
-        [schedule: schedule, scheduleLessons: scheduleLessons]
+        [
+            schedule: schedule
+        ]
+    }
+
+    /**
+     * 資料維護處理
+     */
+    @Secured(['ROLE_TEACHER'])
+    @Transactional
+    def update(Schedule schedule) {
+
+        if (schedule == null) {
+            response.sendError 404
+            return
+        }
+
+        if (schedule.hasErrors()) {
+            respond schedule.errors, view: 'edit'
+            return
+        }
+
+        schedule.save flush: true
+
+        redirect ${propertyName}
+
+        //redirect action: 'show', id: schedule.id
     }
 
     /**
@@ -210,103 +241,34 @@ class ScheduleController {
     }
 
     /**
-     * 資料維護處理
-     */
-    @Secured(['ROLE_TEACHER'])
-    def update(Long id) {
-
-        def schedule = Schedule.get(id)
-
-        def itemIdList = params.list('itemId')
-
-        if (params.actionDelete && itemIdList) {
-            itemIdList.each {
-                itemId->
-
-                def link = ScheduleLesson.get(itemId)
-                link.delete(flush: true)
-            }
-        }
-
-        if (params.actionUpdate) {
-
-            //更新基本資料
-            schedule.properties = params
-            schedule.save(flush: true)
-
-            //更新課程單元連結
-            def linkIdList = params.list('linkId')
-
-            def beginDate = params.list('beginDate')
-            def beginTime = params.list('beginTime')
-
-            def endDate = params.list('endDate')
-            def endTime = params.list('endTime')
-
-            def deadlineDate = params.list('deadlineDate')
-            def deadlineTime = params.list('deadlineTime')
-
-            int i = 0;
-            linkIdList.each {
-                linkId ->
-
-                def link = ScheduleLesson.get(linkId)
-
-                try {
-                    link.begin = Date.parse('yyyy/MM/dd HH:mm:ss', "${beginDate[i]} ${beginTime[i]}")
-                }
-                catch (e) { /* nothing */ }
-
-                try {
-                    link.end = Date.parse('yyyy/MM/dd HH:mm:ss', "${endDate[i]} ${endTime[i]}")
-                }
-                catch (e) { /* nothing */ }
-
-                try {
-                    link.deadline = Date.parse('yyyy/MM/dd HH:mm:ss', "${deadlineDate[i]} ${deadlineTime[i]}")
-                }
-                catch (e) { /* nothing */ }
-
-                link.save(flush: true)
-
-                i++
-            }
-        }
-        
-        redirect(action: 'show', id: schedule.id)
-    }
-
-    /**
      * 刪除學習進度
      */
     @Secured(['ROLE_TEACHER'])
     def delete(Long id) {
         def user = springSecurityService.currentUser
 
-        if (!user) {
-            redirect(url: '/')
-            return
-        }
-
         def schedule = Schedule.get(id)
 
-        //先移除使用者與進度的連結
-        UserSchedule.findAllBySchedule(schedule).each {
-            link ->
-            link.delete(flush: true)
-        }
+        if (schedule) {
 
-        //再移除單元連結
-        ScheduleLesson.findAllBySchedule(schedule).each {
-            link ->
-            link.delete(flush: true)
-        }
+            // 先移除使用者與進度的連結
+            UserSchedule.findAllBySchedule(schedule).each {
+                link ->
+                link.delete(flush: true)
+            }
 
-        try {
-            schedule.delete(flush: true)
-        }
-        catch (e) {
-            //error
+            // 再移除單元連結
+            ScheduleLesson.findAllBySchedule(schedule).each {
+                link ->
+                link.delete(flush: true)
+            }
+
+            try {
+                schedule.delete(flush: true)
+            }
+            catch (e) {
+                //error
+            }
         }
 
         redirect action: 'index'

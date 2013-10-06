@@ -1,9 +1,7 @@
-<%@ page import="codecanaan.Course" %>
 <html>
 <head>
-    <title><g:message code="default.list.label" args="[entityName]" /></title>
+    <title><g:message code="schedule.label" /></title>
     <meta name="layout" content="baseadmin" />
-    <g:set var="entityName" value="${message(code: 'course.label', default: 'Course')}" />
 </head>
 <body>
 
@@ -42,7 +40,7 @@
                 </div> <!-- /.widget -->
             </div> <!-- /.col -->
 
-            <div class="col-md-7">
+            <div class="col-md-9">
 
                 <div class="widget stacked widget-table">
                     <div class="widget-header">
@@ -65,6 +63,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <g:if test="${!schedules}">
+                                    <tr>
+                                        <td colspan="3" class="text-center">
+                                            <g:message code="default.empty.label" />
+                                        </td>
+                                    </tr>
+                                </g:if>
                                 <g:each in="${schedules}" var="schedule" status="i">
                                     <tr>
                                         <td>${i+1}</td>
@@ -80,37 +85,21 @@
                                 </g:each>
                             </tbody>
                             <tfoot>
-                                <tr>
-                                    <td colspan="3" align="center">Total: ${schedules?.size()?:0}</td>
-                                </tr>
+                                <sec:ifAnyGranted roles="ROLE_TEACHER">
+                                    <tr>
+                                        <td colspan="3" class="text-right">
+                                            <g:link action="create">
+                                                <i class="icon icon-plus"></i>&nbsp;
+                                                <g:message code="default.button.create.label" />
+                                            </g:link>
+                                        </td>
+                                    </tr>
+                                </sec:ifAnyGranted>
                             </tfoot>
                         </table>
                     </div>
                 </div> <!-- /.widget -->
             </div> <!-- /.col -->
-
-
-            <div class="col-md-2">
-                <!-- Operations drop-down menu, teacher permission required -->
-                <sec:ifAnyGranted roles="ROLE_TEACHER">
-                    <div class="btn-group">
-                        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon icon-wrench"></i>&nbsp;
-                            <g:message code="default.operations.label" />
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <g:link controller="schedule" action="create">
-                                    <i class="icon icon-group"></i>&nbsp;
-                                    <g:message code="default.add.label" default="Add {0}" args="[message(code: 'schedule.label', default: 'Schedule')]" />
-                                </g:link>
-                            </li>
-                        </ul>
-                    </div>
-                </sec:ifAnyGranted>
-            </div> <!-- /.col -->
-
         </div> <!-- /.row -->
     </div> <!-- /.container -->
 </div> <!-- /.main -->

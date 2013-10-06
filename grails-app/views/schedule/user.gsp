@@ -21,10 +21,10 @@
                                 <span class="input-group-addon">
                                     <i class="icon-envelope"></i>
                                 </span>
-                                <input class="form-control" type="text" name="username" placeholder="example@gmail.com" />
+                                <input class="form-control" type="text" name="username" placeholder="example@gmail.com" style="font-size:.75em" />
                                 <span class="input-group-btn">
                                     <button name="actionAddUser" type="submit" class="btn btn-default">
-                                        ${message(code:'default.button.create.label')}
+                                        <i class="icon-plus"></i>
                                     </button>
                                 </span>
                             </div>
@@ -62,7 +62,10 @@
                                     <g:each in="${userSchedules}" var="link" status="i">
                                         <tr>
                                             <td>${i+1}</td>
-                                            <td>${link.user?.username}</td>
+                                            <td>
+                                                <i class="icon-user"></i>&nbsp;
+                                                ${link.user?.username}
+                                            </td>
                                             <td>${link.user?.fullName}</td>
                                             <td>${link.user?.email}</td>
                                             <td>${link.roleType}</td>

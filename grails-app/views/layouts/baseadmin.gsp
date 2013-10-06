@@ -16,6 +16,8 @@
         <link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}" />
         <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}" />
 
+        <g:setProvider library="jquery"/>
+        <g:javascript library="jquery" />
         <r:require modules="baseadmin, modernizr, common, compass"/>
 
         <!--Required Resources-->
@@ -31,7 +33,7 @@
     </head>
 <body>
 
-<%--Navigation Header--%>
+<!-- Navigation Header -->
 <g:applyLayout name="_inc_navbar" />
 
 <g:if test="${pageProperty(name:'meta.display.subnavbar')!='disable'}">
@@ -46,10 +48,20 @@
     <br />
 </g:else>
 
-<%--Main Content--%>
+<!-- Show Flash Messages -->
+<g:if test="${flash.message}">
+    <div class="container">
+        <div class="alert alert-${flash.messageType?:'info'}" role="status">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            ${flash.message}
+        </div>
+    </div>
+</g:if>
+
+<!-- Main Content -->
 <g:layoutBody/>
 
-<%--Footer Content--%>
+<!-- Footer Content -->
 <g:if test="${pageProperty(name:'meta.display.footer')=='enable'}">
     <g:applyLayout name="_inc_footer" />
 </g:if>
@@ -59,7 +71,7 @@
     </div>
 </g:else>
 
-<%--Deferred Resources(JavaScript)--%>
+<!-- Deferred Resources(JavaScript) -->
 <r:layoutResources />
 
 </body>

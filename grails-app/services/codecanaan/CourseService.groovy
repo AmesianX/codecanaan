@@ -21,11 +21,7 @@ class CourseService {
 
         course.name = "course-${Course.count()+1}"
         course.title = "填寫課程標題名稱"
-        course.description = """請撰寫此課程的介紹（以下格式僅供參考）。
-
-## 課程子標題 ##
-
-請編寫一段文字內容介紹此課程。
+        course.description = """請編寫一段文字內容介紹此課程。
 
 * 說明教學目標
 * 訂定教學大綱

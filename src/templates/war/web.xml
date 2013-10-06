@@ -56,6 +56,10 @@
         <servlet-name>grails</servlet-name>
         <servlet-class>org.codehaus.groovy.grails.web.servlet.GrailsDispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
+        <init-param>
+            <param-name>dispatchOptionsRequest</param-name>
+            <param-value>true</param-value>
+        </init-param>
     </servlet>
 
     <!-- The Groovy Server Pages servlet -->
@@ -70,8 +74,8 @@
     </servlet-mapping>
 
     <session-config>
-        <!-- 200 minutes (1hr * 3 + 20min) -->
-        <session-timeout>200</session-timeout>
+        <!-- 30 minutes -->
+        <session-timeout>30</session-timeout>
     </session-config>
 
     <welcome-file-list>
@@ -84,23 +88,10 @@
         <welcome-file>index.gsp</welcome-file>
     </welcome-file-list>
 
-    <jsp-config>
-        <taglib>
-            <taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>
-            <taglib-location>/WEB-INF/tld/c.tld</taglib-location>
-        </taglib>
-        <taglib>
-            <taglib-uri>http://java.sun.com/jsp/jstl/fmt</taglib-uri>
-            <taglib-location>/WEB-INF/tld/fmt.tld</taglib-location>
-        </taglib>
-        <taglib>
-            <taglib-uri>http://www.springframework.org/tags</taglib-uri>
-            <taglib-location>/WEB-INF/tld/spring.tld</taglib-location>
-        </taglib>
-        <taglib>
-            <taglib-uri>http://grails.codehaus.org/tags</taglib-uri>
-            <taglib-location>/WEB-INF/tld/grails.tld</taglib-location>
-        </taglib>
-    </jsp-config>
+    <!--Mime Mapping-->
+    <mime-mapping> 
+        <extension>woff</extension>
+        <mime-type>application/font-woff</mime-type> 
+    </mime-mapping>
 
 </web-app>

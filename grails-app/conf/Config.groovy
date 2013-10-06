@@ -36,7 +36,7 @@ grails.mime.types = [
     rss:           'application/rss+xml',
     text:          'text/plain',
     xml:           ['text/xml', 'application/xml'],
-    woff:          'font/x-woff',
+    woff:          ['application/font-woff', 'application/x-font-woff', 'font/x-woff'],
     ttf:           'font/ttf',
     eot:           'font/eot',
     otf:           'font/opentype'
@@ -145,6 +145,9 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+// Set jQuery as default javascript library
+grails.views.javascript.library = "jquery"
 
 // LessCSS Compiller
 //grails.lesscss.resources.compress = true
