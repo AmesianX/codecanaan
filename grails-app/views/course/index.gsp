@@ -67,7 +67,13 @@
                                 <g:each in="${courses}" var="course" status="i">
                                     <tr>
                                         <td>${i+1}</td>
-                                        <td><g:link controller="course" action="show" id="${course.id}">${course.title}</g:link></td>
+                                        <td>
+                                            <g:link action="show" id="${course.id}">
+                                            <div>
+                                                ${course.title}
+                                            </div>
+                                            </g:link>
+                                        </td>
                                     </tr>
                                 </g:each>
                             </tbody>

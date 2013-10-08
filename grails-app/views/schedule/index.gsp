@@ -75,7 +75,9 @@
                                         <td>${i+1}</td>
                                         <td>
                                             <g:link controller="schedule" action="show" id="${schedule.id}">
+                                            <div>
                                                 ${schedule.title}
+                                            </div>
                                             </g:link>
                                         </td>
                                         <td>

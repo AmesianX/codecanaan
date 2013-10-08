@@ -104,6 +104,7 @@ class AdminController {
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'user.label'), "${user.fullName}(${user.username})"])
+
         redirect action: 'userList'
     }
 
@@ -121,8 +122,10 @@ class AdminController {
             return
         }
 
-    	flash.message = message(code: 'default.created.message', args: [message(code: 'user.label'), user.id])
-        redirect action: 'userAdd'
+    	flash.message = message(code: 'default.created.message', args: [message(code: 'user.label'), user.username])
+        flash.messageType = 'success'
+
+        redirect action: 'userList'
     }
 
     /**

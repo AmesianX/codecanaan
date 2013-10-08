@@ -26,7 +26,6 @@ class UserCourse {
      */
     RegType regType = RegType.GUEST
 
-
     /**
      * 建立日期
      */

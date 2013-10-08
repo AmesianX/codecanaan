@@ -56,7 +56,11 @@
                                             </div>
 
                                             <g:if test="${today >= link.begin && today <= link.end}">
-                                                <g:link controller="lesson" action="show" id="${link.lesson.id}">${link.lesson?.title}</g:link>
+                                                <g:link controller="lesson" action="show" id="${link.lesson.id}">
+                                                <div>
+                                                    ${link.lesson?.title}
+                                                </div>
+                                                </g:link>
                                             </g:if>
                                             <g:else>
                                                 ${link.lesson?.title}
@@ -147,8 +151,10 @@
                                     <td>
                                         <g:if test="${editable}">
                                             <g:link action="user" id="${schedule.id}">
+                                            <div>
                                                 ${userSize}&nbsp;
                                                 <i class="icon-user"></i>
+                                            </div>
                                             </g:link>
                                         </g:if>
                                         <g:else>

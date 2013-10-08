@@ -113,6 +113,7 @@ modules = {
     */
 
     // Twitter Bootstrap
+    /*
     bootstrap {
         dependsOn 'jquery, jquery-core'
 
@@ -121,6 +122,7 @@ modules = {
         resource url: 'bootstrap/css/bootstrap-theme.min.css'
         resource url: 'bootstrap/js/bootstrap.min.js'
     }
+    */
 
     // Base Aadmin 3.0
     baseadmin {

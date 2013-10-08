@@ -100,7 +100,7 @@ grails.project.dependency.resolution = {
         compile ":mail:1.0.1"
 
         // Twitter Bootstrap
-        //compile ":twitter-bootstrap:3.0.0"
+        compile ":twitter-bootstrap:3.0.0"
 
         // Font Awesome
         //compile ":font-awesome-resources:3.2.1.3"

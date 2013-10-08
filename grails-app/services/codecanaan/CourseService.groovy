@@ -45,11 +45,7 @@ class CourseService {
         lesson.priority = seq
         lesson.name = "lesson-${seq+1}"
         lesson.title = "填寫單元標題"
-        lesson.description = """請撰寫此單元的介紹（以下格式僅供參考）。
-
-## 單元子標題 ##
-
-請編寫一段文字內容介紹此單元。
+        lesson.description = """請編寫一段文字內容介紹此單元。
 
 * 說明教學目標
 * 訂定教學大綱
