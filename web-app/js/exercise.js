@@ -154,6 +154,8 @@
         return passed;
     }
 
+    //console.log(editors);
+
     if (editors && editors['sourceEdit']) {
         //學生練習模式
     
@@ -170,7 +172,7 @@
 
                 var __href = $(this).attr('href') + '?_t=' + new Date().getTime();
 
-                //先上傳程式碼再執行
+                // 先上傳程式碼再執行
                 fnSaveRecord({
                     sourceType: sourceType,
                     sourcePath: sourcePath,
@@ -244,7 +246,7 @@
                             passed: false,
                             sourceCode: sourceCode
                         });
-                        bootbox.alert('錯誤！請先啟動客戶端工具。');
+                        bootbox.alert('<h3>未執行客戶端工具</h3><p>請先啟動<a href="/client" target="_blank">客戶端工具</a>。</p>');
                     } 
                 });
             }
@@ -382,7 +384,7 @@
                         }
                     },
                     error: function(data) {
-                        bootbox.alert("錯誤！請先啟動客戶端工具。");
+                        bootbox.alert('<h3>未執行客戶端工具</h3><p>請先啟動<a href="/client" target="_blank">客戶端工具</a>。</p>');
                     }
                 });
             }

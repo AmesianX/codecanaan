@@ -137,6 +137,8 @@ modules = {
         resource url: 'baseadmin/css/pages/dashboard.css'
         resource url: 'baseadmin/css/custom.css'
 
+        resource url: 'js/baseadmin.js'
+
         //resource url: 'baseadmin/js/Application.js'
     }
 
@@ -228,9 +230,11 @@ modules = {
         resource url: 'biwascheme/biwascheme.min.js'
     }
 
+    // Common JavaScript Library
     common {
         dependsOn 'jquery, jquery-ui, jquery-plugins, codemirror, pagedown, bootstrap-ext, baseadmin'
-        //defaultBundle 'common'
+        
+        defaultBundle 'common'
         //defaultBundle __bundleName
 
         resource url: 'js/common.js'
@@ -240,6 +244,7 @@ modules = {
     exercise {
         dependsOn 'jquery, common'
 
+        defaultBundle 'common'
         //defaultBundle __bundleName
         
         resource url: 'js/exercise.js'

@@ -65,7 +65,7 @@
                                 </g:link>
                             </li>
                             <li>
-                                <g:link controller="home" action="client">
+                                <g:link controller="home" action="client" class="link-client-tools">
                                     <!-- 客戶端工具 -->
                                     <i class="icon icon-download"></i>&nbsp;
                                     <g:message code="default.client.tools.text" />

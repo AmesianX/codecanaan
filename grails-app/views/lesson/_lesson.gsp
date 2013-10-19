@@ -43,7 +43,7 @@
                                     </td>
                                     <td>
                                         <g:link controller="content" action="show" id="${content.id}">
-                                            ${content.title}
+                                            <div>${content.title}</div>
                                         </g:link>
                                     </td>
                                     <td>
