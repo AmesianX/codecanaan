@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
 
-        <meta charset="utf-8">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-        <title><g:layoutTitle default="CodeCanaan"/> - CodeCanaan</title>
+    <title><g:layoutTitle default="CodeCanaan"/> - CodeCanaan</title>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
-        <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}" />
-        <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}" />
+    <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}" />
+    <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}" />
 
-        <g:setProvider library="jquery"/>
-        <g:javascript library="jquery" />
-        <r:require modules="baseadmin, modernizr, common, compass"/>
+    <g:setProvider library="jquery"/>
+    <g:javascript library="jquery" />
+    <r:require modules="baseadmin, modernizr, common, compass"/>
 
-        <!--Required Resources-->
-        <g:layoutHead/>
-        <r:layoutResources />
+    <!--Required Resources-->
+    <g:layoutHead/>
+    <r:layoutResources />
 
-        <!--Justfont Chinese WebFont-->
-        <g:justfont />
+    <!--Justfont Chinese WebFont-->
+    <g:justfont />
 
-        <!--Google Analytics-->
-        <google:analytics />
+    <!--Google Analytics-->
+    <google:analytics />
 
-    </head>
+</head>
 <body>
 
 <!-- Navigation Header -->

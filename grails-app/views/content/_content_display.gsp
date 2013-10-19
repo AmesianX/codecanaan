@@ -1,7 +1,10 @@
 <g:if test="${content.description}">
     <!-- 內容 -->
     <div class="tab-pane active" id="tab1">
-        <div class="markdown-source">${content.description?.encodeAsHTML()}</div>
+        <!-- Justfont -->
+        <div class="justfont">
+            <div class="markdown-source">${content.description?.encodeAsHTML()}</div>
+        </div>
     </div>
 </g:if>
 

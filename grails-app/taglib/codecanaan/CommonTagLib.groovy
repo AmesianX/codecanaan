@@ -48,4 +48,23 @@ class CommonTagLib {
             }
         }
     }
+
+    /**
+     * Display Human Readable File Size Number
+     */
+    def prettyFileSize = { attr, body ->
+        if (attr.size) {
+            def size = attr.size
+
+            if (size >= 1024*1024) {
+                out << "${(int)size/1024/1024} MB"
+            }
+            else if (size >= 1024) {
+                out << "${(int)size/1024} KB"
+            }
+            else {
+                out << "${size} bytes"
+            }
+        }
+    }
 }

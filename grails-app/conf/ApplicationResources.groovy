@@ -10,14 +10,17 @@ modules = {
             defaultBundle 'jquery'
             resource id: 'js', disposition: 'defer'
 		}
+
+        modernizr {
+            defaultBundle 'jquery'
+            resource id: 'js', disposition: 'defer'
+        }
         
         /*
 		bootstrap {
 			//defaultBundle __bundleName
 		}
-		modernizr {
-			//defaultBundle __bundleName
-		}
+		
         */
         /*'font-awesome' {
             dependsOn 'bootstrap'
@@ -49,6 +52,7 @@ modules = {
         resource url: 'jquery-plugins/jquery.cookie.js'
         resource url: 'jquery-plugins/jquery.masonry.js'
         resource url: 'jquery-plugins/jquery.lazyload.min.js'
+        //resource url: 'jquery-plugins/jquery.selectText.min.js'
     }
 
     // Flot is a pure JavaScript plotting library for jQuery,

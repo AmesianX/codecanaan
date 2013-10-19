@@ -25,17 +25,23 @@
                     <div class="widget-content">
 
                         <g:form controller="lesson" action="sortUpdate" id="${lesson.id}" method="post">
-                            <ul id="sortable" class="nav nav-pills nav-stacked">
-                                <g:each in="${lesson.contents}" var="content" status="i">
-                                    <li>
-                                        <a href="#" style="cursor:move">
-                                            <i class="icon icon-sort"></i>&nbsp;
-                                            ${content.title}
-                                            <g:hiddenField name="priority" value="${content.id}" />
-                                        </a>
-                                    </li>
-                                </g:each>
-                            </ul>
+
+                            <g:if test="${lesson.contents}">
+                                <ul id="sortable" class="nav nav-pills nav-stacked">
+                                    <g:each in="${lesson.contents}" var="content" status="i">
+                                        <li>
+                                            <a href="#" style="cursor:move">
+                                                <i class="icon icon-sort"></i>&nbsp;
+                                                ${content.title}
+                                                <g:hiddenField name="priority" value="${content.id}" />
+                                            </a>
+                                        </li>
+                                    </g:each>
+                                </ul>
+                            </g:if>
+                            <g:else>
+                                <p class="text-muted"><g:message code="default.empty.label" /></p>
+                            </g:else>
 
                             <hr />
 

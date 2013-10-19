@@ -20,33 +20,46 @@
                     </div> <!-- /.widget-header -->
                     <div class="widget-content">
 
-                        <div class="col-md-4">
-                            <r:img dir="images" file="deco-001.png" />
-                        </div> <!-- /.col -->
+                        <div class="row">
 
-                        <div class="col-md-8">
+                            <div class="col-md-4">
+                                <r:img dir="images" file="deco-001.png" />
+                            </div> <!-- /.col-md-4 -->
 
-                            <div class="page-header">
-                                <h3>客戶端工具</h3>
-                            </div>
+                            <div class="col-md-8">
 
-                            <p>軟體壹學院需要在您的電腦上執行「客戶端工具」程式，此程式用於幫助您建立整合開發環境（IDE），以支援程式碼的自動化編譯與測試。當您不需要使用「客戶端工具」時，可以隨時將它關閉。</p>
+                                <div class="x-client-executed" style="display:none">
+                                    <div class="page-header">
+                                        <h3>
+                                            <i class="icon icon-ok icon-green"></i>&nbsp;
+                                            已經執行客戶端工具
+                                        </h3>
+                                    </div>
+                                </div>
+                                
+                                <div class="x-client-not-executed" style="display:none">
+                                    <div class="page-header">
+                                        <h3>
+                                            <i class="icon icon-warning-sign icon-gray"></i>&nbsp;
+                                            請執行客戶端工具
+                                        </h3>
+                                    </div>
+                                </div>
 
-                            <p>執行「客戶端工具」的方法有下列兩種：</p>
+                                <p>軟體壹學院需要在您的電腦上執行「客戶端工具」程式，此程式用於幫助您建立整合開發環境（IDE），以支援程式碼的自動化編譯與測試。當您不需要使用「客戶端工具」時，可以隨時將它關閉。</p>
 
-                            <ol>
-                                <li>Java Web Start（推薦）</li>
-                                <li>下載應用程式的壓縮檔</li>
-                            </ol>
+                                <p>執行「客戶端工具」的方法有下列兩種：</p>
 
-                            <p>建議您先嘗試使用 Java Web Start 啟動方式。</p>
+                                <ol>
+                                    <li>Java Web Start（推薦）</li>
+                                    <li>下載應用程式的壓縮檔</li>
+                                </ol>
 
-                        </div> <!-- /.col -->
+                                <p>建議您先嘗試使用 Java Web Start 啟動方式。</p>
 
-                        <p class="lead text-center x-show-if-clienttools-started" style="display:none">
-                            <i class="icon icon-ok icon-green"></i>&nbsp;&nbsp;
-                            客戶端工具已經啟動！
-                        </p>
+                            </div> <!-- /.col-md-8 -->
+
+                        </div>
 
                         <div class="padding-around text-center">
                             <g:link action="step4" class="btn btn-lg btn-primary">
@@ -229,10 +242,12 @@
             timeout: 30*1000,
             success: function(data) {
                 if (data && data.result && data.result.status=='success') {
-                    $('.x-show-if-clienttools-started').show();
+                    $('.x-client-executed').show();
+                    $('.x-client-not-executed').hide();
                 }
             },
             error: function(data) {
+                $('.x-client-not-executed').show();
                 setTimeout(pingClient, 5000);
             }
         });

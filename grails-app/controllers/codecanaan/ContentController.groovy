@@ -269,16 +269,16 @@ class ContentController {
         def content = Content.get(id)
         
         if (!content) {
+            log.error "Access denied: ${request.forwardURI}"
             response.sendError 404
             return
         }
 
         def file = params.file
 
-        log.info "request.format = ${request.format}"
-        log.info "response.format = ${response.format}"
-        log.info "request.forwardURI = ${request.forwardURI}"
-
+        log.debug "request.format = ${request.format}"
+        log.debug "response.format = ${response.format}"
+        log.debug "request.forwardURI = ${request.forwardURI}"
 
         /*
         if (response.format == 'all') {
@@ -300,14 +300,15 @@ class ContentController {
         def obj_path = "attachment/${content.lesson?.course?.id}/${content.lesson?.id}/${content.id}/${file}"
         
         try {
-            log.info "Try to get ${obj_path}"
+            log.info "Fetching S3 object \"${obj_path}\""
             def object = s3Service.getObject(obj_path)
             response.outputStream << object.dataInputStream
         }
         catch (e) {
-            log.error "Could not read ${file} from s3 object ${obj_path}"
-            e.printStackTrace()
+            log.error "Could not fetch S3 object \"${obj_path}\""
+            //e.printStackTrace()
             response.sendError 404
+            return
         }
     }
     
@@ -334,20 +335,16 @@ class ContentController {
      */
     def attachmentSave(Long id) {
         def content = Content.get(id)
-        
-        if (!content) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'content.label', default: 'Content'), id])
-            redirect(controller: 'course')
-            return
-        }
-        
-        params.files.each {
-            i,file->
-            
-            if (!file.isEmpty()) {
-                //儲存已上傳的檔案
-                log.info "Process file ${file.originalFilename} upload to ${content}."
-                s3Service.saveObject "attachment/${content.lesson?.course?.id}/${content.lesson?.id}/${content.id}/${file.originalFilename}", file.contentType, file.inputStream, file.size
+
+        if (content) {
+            params.files.each {
+                i,file->
+                
+                if (!file.isEmpty()) {
+                    //儲存已上傳的檔案
+                    log.info "Process file ${file.originalFilename} upload to ${content}."
+                    s3Service.saveObject "attachment/${content.lesson?.course?.id}/${content.lesson?.id}/${content.id}/${file.originalFilename}", file.contentType, file.inputStream, file.size
+                }
             }
         }
         
