@@ -80,7 +80,8 @@
      * @param msg 報表內容
      */
     var fnShowResult = function(msg) {
-        var m = $('<div class="modal hide fade" tabindex="-1" role="dialog" />');
+        /*
+        var m = $('<div class="modal fade" tabindex="-1" role="dialog" />');
         
         m.append('<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h2>程式執行結果</h2></div>');
         m.append($('<div class="modal-body"></div>').append(msg));
@@ -88,7 +89,7 @@
         m.append('<div class="modal-footer"><small style="padding-right:20px">按「ESC」關閉視窗</small><button class="btn" data-dismiss="modal" aria-hidden="true">關閉</button></div>');
     
         // 產生 Model 物件
-        m.modal({
+        $(m).modal({
             show: false
         });
 	
@@ -104,6 +105,10 @@
 
         // 顯示報表
 		$(m).modal('show');
+        */
+
+        //console.log(msg.html());
+        bootbox.alert(msg.html());
     };
     
     /**

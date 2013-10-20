@@ -108,7 +108,9 @@ modules = {
         
         resource url: 'jquery-cslider/parallax-slider.css'
         resource url: 'jquery-cslider/jquery.cslider.js'
-        resource url: 'jquery-cslider/slider.js'
+
+        // This is a fake file, actually it's a modernizr js file
+        //resource url: 'jquery-cslider/slider.js'
     }
 
     /*    
