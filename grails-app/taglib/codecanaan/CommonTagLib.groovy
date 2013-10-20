@@ -67,4 +67,26 @@ class CommonTagLib {
             }
         }
     }
+
+    def ELLIPSIS = '...'
+
+    /**
+     * Truncating(Shorten) Text
+     */ 
+    def truncate = { attrs, body ->
+        def maxLength = attrs.maxlength
+        if (maxLength == null || !maxLength.isInteger() || maxLength.toInteger() <= 0) {
+            throw new Exception("The attribute 'maxlength' must an integer greater than 3. Provided value: $maxLength")
+        } else {
+            maxLength = maxLength.toInteger()
+        }
+        if (maxLength <= ELLIPSIS.size()) {
+            throw new Exception("The attribute 'maxlength' must be greater than 3. Provided value: $maxLength")
+        }
+        if (body().length() > maxLength) {
+            out << /<abbr title="${body().encodeAsHTML()}">${body()[0..maxLength - (ELLIPSIS.size() + 1)].encodeAsHTML()}$ELLIPSIS<\/abbr>/
+        } else {
+            out << body().encodeAsHTML()
+        }
+    }
 }

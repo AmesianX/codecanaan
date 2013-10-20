@@ -27,6 +27,10 @@ modules = {
         }*/
 	}
 
+    'grails-errors-style' {
+        resource url: 'css/errors.css'
+    }
+
     // jQuery
     /*
     jquery {
