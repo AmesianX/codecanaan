@@ -75,38 +75,51 @@
                             <!-- Full Name -->
                             <dl class="dl-horizontal">
                                 <dt><g:message code="user.fullName.label" /></dt>
-                                <dd>${user?.fullName}</dd>
+                                <dd>
+                                    ${user?.fullName}
+                                </dd>
                             </dl>
 
                             <!-- E-Mail -->
                             <dl class="dl-horizontal">
                                 <dt><g:message code="user.email.label" /></dt>
-                                <dd>${user?.email}</dd>
+                                <dd>
+                                    ${user?.email}&nbsp;&nbsp;
+                                    (<g:link action="passwd"><g:message code="user.action.passwd.label" /></g:link>)
+                                </dd>
                             </dl>
 
                             <!-- School -->
                             <dl class="dl-horizontal">
                                 <dt><g:message code="user.school.label" /></dt>
-                                <dd>${user?.school?:'(empty)'}</dd>
+                                <dd>${user?.school?:'<span class="text-muted">(empty)</span>'}</dd>
                             </dl>
 
                             <!-- Department -->
                             <dl class="dl-horizontal">
                                 <dt><g:message code="user.department.label" /></dt>
-                                <dd>${user?.department}</dd>
+                                <dd>${user?.department?:'<span class="text-muted">(empty)</span>'}</dd>
                             </dl>
                             
                         </div>
                         
-                        <div class="markdown-source">${user?.description}</div>
+                        <div class="col-md-3">
+                            <!-- empty block -->
+                        </div>
+                        
+                        <div class="col-md-9 well">
+                            <div class="markdown-source">${user?.description?:'尚未填寫說明檔'}</div>
+                        </div>
 
                         <hr />
                         
                         <!-- Operations -->
-                        <g:link action="editProfile" class="btn btn-default">
-                            <i class="icon icon-pencil"></i>&nbsp;
-                            <g:message code="default.button.edit.label"></g:message>
-                        </g:link>
+                        <div class="text-right">
+                            <g:link action="editProfile" class="btn btn-default">
+                                <i class="icon icon-pencil"></i>&nbsp;
+                                <g:message code="default.button.modify.label"></g:message>
+                            </g:link>
+                        </div>
                         
                     </div>
                 </div> <!-- /.widget -->
@@ -119,7 +132,7 @@
 <r:script>
 $(function() {
 
-    $('#avatar').addClass('img-thumbnail');
+    $('.avatar').addClass('img-thumbnail');
 
     $('.value-adjuster').click(function() {
         var interval = parseInt($(this).data('interval'));

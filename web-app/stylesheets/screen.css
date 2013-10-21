@@ -118,8 +118,8 @@ label.required { font-weight: bold; }
 
 span.required-mark { font-weight: bold; color: red; }
 
-/* 附件區 */
-iframe#attachment-frame { width: 95%; height: 360px; border: none; }
+/* File Attachments (iFrame) */
+iframe#attachment-frame { width: 100%; height: 360px; border: none; }
 
 .wmd-preview, .wmd-input { height: 360px; }
 

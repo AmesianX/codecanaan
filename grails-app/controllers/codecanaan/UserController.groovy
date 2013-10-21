@@ -8,6 +8,12 @@ class UserController {
     def springSecurityService
     def s3Service
 
+    /*
+    UserController() {
+        log.error "Construct UserController"
+    }
+    */
+
     /**
      * 顯示使用者個人資料
      */
@@ -19,9 +25,12 @@ class UserController {
             return
         }
 
-        def editable = springSecurityService.currentUser==user
+        
 
-        [user: user, editable: editable]
+        [
+            user: user,
+            totalComplete: Record.countByUser(user)
+        ]
     }
 
     /**
@@ -59,6 +68,43 @@ class UserController {
             user.properties = params
             user.save(flush: true)
         }
+
+        redirect action: 'profile'
+    }
+
+    /**
+     * Change Password
+     */
+    @Secured(['ROLE_USER'])
+    def passwd() {
+        def user = springSecurityService.currentUser
+
+        [
+            user: user
+        ]
+    }
+
+    /**
+     * Save New Password
+     */
+    @Secured(['ROLE_USER'])
+    def savePasswd() {
+        def user = springSecurityService.currentUser
+
+        if (params.save) {
+            user.password = params.password
+
+            if (user.hasErrors()) {
+                respond user.errors, view: 'passwd'
+                return
+            }
+
+            user.save(flush: true)
+
+            flash.messageType = 'success'
+            flash.message = 'Password changed.'
+        }
+
 
         redirect action: 'profile'
     }

@@ -43,6 +43,7 @@
                                     </g:eachError>
                                 </ul>
                             </g:hasErrors>
+                            
                             <g:form action="saveProfile" method="post" role="form">
 
                                 <!-- Name -->

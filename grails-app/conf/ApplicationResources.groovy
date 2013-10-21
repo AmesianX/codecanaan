@@ -10,19 +10,26 @@ modules = {
             defaultBundle 'jquery'
             resource id: 'js', disposition: 'defer'
 		}
+
+        modernizr {
+            defaultBundle 'jquery'
+            resource id: 'js', disposition: 'defer'
+        }
         
         /*
 		bootstrap {
 			//defaultBundle __bundleName
 		}
-		modernizr {
-			//defaultBundle __bundleName
-		}
+		
         */
         /*'font-awesome' {
             dependsOn 'bootstrap'
         }*/
 	}
+
+    'grails-errors-style' {
+        resource url: 'css/errors.css'
+    }
 
     // jQuery
     /*
@@ -49,6 +56,7 @@ modules = {
         resource url: 'jquery-plugins/jquery.cookie.js'
         resource url: 'jquery-plugins/jquery.masonry.js'
         resource url: 'jquery-plugins/jquery.lazyload.min.js'
+        //resource url: 'jquery-plugins/jquery.selectText.min.js'
     }
 
     // Flot is a pure JavaScript plotting library for jQuery,
@@ -100,7 +108,9 @@ modules = {
         
         resource url: 'jquery-cslider/parallax-slider.css'
         resource url: 'jquery-cslider/jquery.cslider.js'
-        resource url: 'jquery-cslider/slider.js'
+
+        // This is a fake file, actually it's a modernizr js file
+        //resource url: 'jquery-cslider/slider.js'
     }
 
     /*    
@@ -132,6 +142,8 @@ modules = {
         resource url: 'baseadmin/css/base-admin-3-responsive.css'
         resource url: 'baseadmin/css/pages/dashboard.css'
         resource url: 'baseadmin/css/custom.css'
+
+        resource url: 'js/baseadmin.js'
 
         //resource url: 'baseadmin/js/Application.js'
     }
@@ -224,9 +236,11 @@ modules = {
         resource url: 'biwascheme/biwascheme.min.js'
     }
 
+    // Common JavaScript Library
     common {
         dependsOn 'jquery, jquery-ui, jquery-plugins, codemirror, pagedown, bootstrap-ext, baseadmin'
-        //defaultBundle 'common'
+        
+        defaultBundle 'common'
         //defaultBundle __bundleName
 
         resource url: 'js/common.js'
@@ -236,6 +250,7 @@ modules = {
     exercise {
         dependsOn 'jquery, common'
 
+        defaultBundle 'common'
         //defaultBundle __bundleName
         
         resource url: 'js/exercise.js'

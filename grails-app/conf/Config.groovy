@@ -110,7 +110,7 @@ environments {
         //grails.serverURL = "http://dev.codecanaan.com:8080"
 
 		// Using baseurl feature to enable CDN deployment
-		grails.resources.mappers.baseurl.enabled = true
+		grails.resources.mappers.baseurl.enabled = false
 		//grails.resources.mappers.baseurl.enabled = false
 		grails.resources.mappers.baseurl.default = "http://static.codecanaan.com/static"
 		//This not works

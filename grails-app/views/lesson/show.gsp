@@ -19,7 +19,7 @@
                         <h3>Table of Contents</h3>
                     </div>
                     <div class="widget-content">
-                        <%--課程單元列表--%>
+                        <!-- [Course / Lesson] Table of Contents -->
                         <g:render template="/course/menu" />
                     </div>
                 </div> <!-- /.widget -->

@@ -27,7 +27,7 @@
     <!--實作練習-->
     <div class="form-group">
         <div class="btn-group">
-            <a href="${createLink(controller:'content',action:'source',id:content?.id,params: [file: "${content.sourcePath}"])}" id="cmdPlay" class="btn btn-success">
+            <a href="${createLink(controller:'content',action:'source',id:content?.id,params: [file: "${content.sourcePath}"])}" id="cmdPlay" class="btn btn-success" target="_blank">
                 <i class="icon icon-play"></i><br/>
                 執行測試
             </a>

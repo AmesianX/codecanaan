@@ -99,6 +99,8 @@ class ScheduleController {
         def today = new Date()
 
         [
+            schedule: scheduleLesson.schedule,
+            lesson: scheduleLesson.lesson,
             scheduleLesson: scheduleLesson,
             content: Content.get(params.content?.id)
         ]

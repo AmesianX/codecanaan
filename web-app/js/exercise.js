@@ -80,7 +80,8 @@
      * @param msg 報表內容
      */
     var fnShowResult = function(msg) {
-        var m = $('<div class="modal hide fade" tabindex="-1" role="dialog" />');
+        /*
+        var m = $('<div class="modal fade" tabindex="-1" role="dialog" />');
         
         m.append('<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h2>程式執行結果</h2></div>');
         m.append($('<div class="modal-body"></div>').append(msg));
@@ -88,7 +89,7 @@
         m.append('<div class="modal-footer"><small style="padding-right:20px">按「ESC」關閉視窗</small><button class="btn" data-dismiss="modal" aria-hidden="true">關閉</button></div>');
     
         // 產生 Model 物件
-        m.modal({
+        $(m).modal({
             show: false
         });
 	
@@ -104,6 +105,10 @@
 
         // 顯示報表
 		$(m).modal('show');
+        */
+
+        //console.log(msg.html());
+        bootbox.alert(msg.html());
     };
     
     /**
@@ -154,6 +159,8 @@
         return passed;
     }
 
+    //console.log(editors);
+
     if (editors && editors['sourceEdit']) {
         //學生練習模式
     
@@ -170,7 +177,7 @@
 
                 var __href = $(this).attr('href') + '?_t=' + new Date().getTime();
 
-                //先上傳程式碼再執行
+                // 先上傳程式碼再執行
                 fnSaveRecord({
                     sourceType: sourceType,
                     sourcePath: sourcePath,
@@ -244,7 +251,7 @@
                             passed: false,
                             sourceCode: sourceCode
                         });
-                        bootbox.alert('錯誤！請先啟動客戶端工具。');
+                        bootbox.alert('<h3>未執行客戶端工具</h3><p>請先啟動<a href="/client" target="_blank">客戶端工具</a>。</p>');
                     } 
                 });
             }
@@ -382,7 +389,7 @@
                         }
                     },
                     error: function(data) {
-                        bootbox.alert("錯誤！請先啟動客戶端工具。");
+                        bootbox.alert('<h3>未執行客戶端工具</h3><p>請先啟動<a href="/client" target="_blank">客戶端工具</a>。</p>');
                     }
                 });
             }

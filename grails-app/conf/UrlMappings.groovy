@@ -1,16 +1,16 @@
 class UrlMappings {
 
-	static mappings = {
-		"/$controller/$action?/$id?"{
-			constraints {
-				// apply constraints here
-			}
-		}
+    static mappings = {
+        "/$controller/$action?/$id?"{
+            constraints {
+                // apply constraints here
+            }
+        }
 
-		'/' (controller: 'home')
-		//"/"(view:"/index")
-		
-		"500" (view: '/error500')
+        '/' (controller: 'home')
+        //"/"(view:"/index")
+        
+        "500" (view: '/error500')
         //"500" (controller: 'error', action: 'serverError')
         
         "404" (controller: 'error', action: 'notFound')
@@ -22,73 +22,89 @@ class UrlMappings {
             }
         }
 
-		"/user/$id?" {
-			controller = "user"
-			action = "show"
-			constraints {
-				id(matches:/\d+/)
-			}
-		}
-
-		"/client/$section?" {
-		    controller = "home"
-		    action = "client"
-		    constraints {
+        "/user/$id?" {
+            controller = "user"
+            action = "show"
+            constraints {
+                id (matches:/\d+/)
             }
         }
 
-		"/course/$id?" {
-			controller = "course"
-			action = "show"
-			constraints {
-				id(matches:/\d+/)
-			}
-		}
-
-		"/lesson/$id?" {
-			controller = "lesson"
-			action = "show"
-			constraints {
-				id(matches:/\d+/)
-			}
-		}
-
-		"/content/$id?" {
-			controller = "content"
-			action = "show"
-			constraints {
-				id(matches:/\d+/)
-			}
-		}
-		
-		"/content/$id/files/$file" {
-		    controller = "content"
-		    action = "attachment"
-		    constraints {
-		        id(matches:/\d+/)
-		    }
-		}
-
-		"/content/$id/src/$file" {
-		    controller = "content"
-		    action = "source"
-		    constraints {
-		        id(matches:/\d+/)
+        "/client/$section?" {
+            controller = "home"
+            action = "client"
+            constraints {
             }
         }
-		
-		"/page/$name" {
-			controller = "post"
-			action = "show"
-			constraints {
-			}
-		}
 
-		"/webstart.jnlp" {
-			controller = "webstart"
-			action = "launcher"
-			constraints {
-			}
-		}
-	}
+        "/course/$id?" {
+            controller = "course"
+            action = "show"
+            constraints {
+                id (matches:/\d+/)
+            }
+        }
+
+        "/lesson/$id?" {
+            controller = "lesson"
+            action = "show"
+            constraints {
+                id (matches:/\d+/)
+            }
+        }
+
+        "/content/$id?" {
+            controller = "content"
+            action = "show"
+            constraints {
+                id (matches:/\d+/)
+            }
+        }
+        
+        "/content/$id/files/**" {
+            controller     = "content"
+            action         = "attachment"
+            constraints {
+                id matches: /\d+/
+            }
+        }
+
+        "/content/$id/files/$file" {
+            controller     = "content"
+            action         = "attachment"
+            constraints {
+                id matches: /\d+/
+            }
+        }
+
+        "/content/$id/src/**" {
+            controller = "content"
+            action = "source"
+            constraints {
+                id matches: /\d+/
+            }
+        }
+
+        "/content/$id/src/$file" {
+            controller = "content"
+            action = "source"
+            constraints {
+                id matches: /\d+/
+            }
+        }
+        
+        "/page/$name" {
+            controller = "post"
+            action = "show"
+            constraints {
+            }
+        }
+
+        "/webstart.jnlp" {
+            controller = "webstart"
+            action = "launcher"
+            constraints {
+            }
+        }
+    }
 }
