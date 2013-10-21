@@ -2,7 +2,7 @@
 <head>
     <title>Client</title>
     <meta name="layout" content="baseadmin"/>
-    <r:require modules="deployJava" />
+    <r:require modules="deployJava, baseadmin-faq" />
 </head>
 <body>
 
@@ -17,20 +17,26 @@
                             <li class="disabled"><a href="#">客戶端工具</a></li>
                             <li>
                                 <g:link action="client">
-                                    <i class="icon icon-chevron-right"></i>
+                                    <i class="icon-chevron-right"></i>
                                     執行
                                 </g:link>
                             </li>
                             <li>
                                 <g:link action="client" params="[section: 'compatible']">
-                                    <i class="icon icon-chevron-right"></i>
+                                    <i class="icon-chevron-right"></i>
                                     相容性檢查
                                 </g:link>
                             </li>
                             <li>
                                 <g:link action="client" params="[section: 'versions']">
-                                    <i class="icon icon-chevron-right"></i>
+                                    <i class="icon-chevron-right"></i>
                                     軟體版本
+                                </g:link>
+                            </li>
+                            <li>
+                                <g:link action="client" params="[section: 'faq']">
+                                    <i class="icon-chevron-right"></i>
+                                    常見問題
                                 </g:link>
                             </li>
                         </ul>

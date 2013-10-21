@@ -144,9 +144,8 @@
                                         顯示或隱藏圖片
                                     </button>
                                 </li>
-                            </ol>
-
-                        </div>
+                            </ol> <!-- /.faq-list -->
+                        </div> <!-- /.col -->
                     </div>
                 </div> <!-- /.widget -->
 

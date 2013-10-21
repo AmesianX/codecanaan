@@ -23,6 +23,7 @@
         <div class="col-md-6">
             <div class="widget stacked">
                 <div class="widget-header">
+                    <i class="icon-file"></i>
                     <h3>單元內容</h3>
                 </div>
                 <div class="widget-content">
@@ -43,7 +44,7 @@
                                     </td>
                                     <td>
                                         <g:link controller="content" action="show" id="${content.id}">
-                                            ${content.title}
+                                            <div>${content.title}</div>
                                         </g:link>
                                     </td>
                                     <td>
@@ -64,6 +65,7 @@
 
             <div class="widget stacked">
                 <div class="widget-header">
+                    <i class="icon-bar-chart"></i>
                     <h3>學習進度</h3>
                 </div>
                 <div class="widget-content">
