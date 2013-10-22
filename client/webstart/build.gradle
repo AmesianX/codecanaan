@@ -33,6 +33,18 @@ def defaultEncoding = 'UTF-8'
 [compileGroovy, compileTestGroovy]*.options*.encoding = defaultEncoding
 [compileGroovy, compileTestGroovy]*.groovyOptions*.encoding = defaultEncoding
 
+fatJar {
+    manifest {
+        attributes  'Implementation-Title'      : 'ClientTools',
+                    'Implementation-Version'    : '0.0.1',
+                    'Main-Class'        : 'com.codecanaan.ScriptLoader',
+                    'Permissions'       : 'all-permissions',
+                    //'Codebase'          : 'http://dev.codecanaan.com:8080/webstart',
+                    'Codebase'          : 'http://assets0.codecanaan.com/webstart',
+                    'Application-Name'  : 'ClientTools'
+    }
+}
+
 // Package Fat Jar
 /*
 jar {

@@ -33,8 +33,8 @@ def isWindows = osname.toLowerCase().startsWith('windows')
 def isMac = osname.toLowerCase().startsWith('mac')
 def isLinux = osname.toLowerCase().startsWith('linux')
 
-def clientMode = System.properties['core.client.mode']
-def examUrl = System.properties['core.exam.url']
+def clientMode = System.properties['javaws.core.client.mode']
+def examUrl = System.properties['javaws.core.exam.url']
 
 def env = [:]   //Map
 def envp = []   //List
@@ -158,7 +158,7 @@ catch(e) {
 }
 
 //download toolkits.zip
-def toolkitsUrl = System.properties['core.toolkits.url'].toURL()
+def toolkitsUrl = System.properties['javaws.core.toolkits.url'].toURL()
 
 //create temp dir
 def tempfile = File.createTempFile('temp', '.dump')
@@ -176,8 +176,8 @@ ant.unzip(src: toolkits, dest: tempdir, overwrite: 'true') {
     //mapper(type: 'flatten')
 }
 
-def httpOrigin = System.properties['core.http.origin']?System.properties['core.http.origin']:'*'
-def clientPort = System.properties['core.client.port']?new Integer(System.properties['core.client.port']):1337
+def httpOrigin = System.properties['javaws.core.http.origin']?System.properties['javaws.core.http.origin']:'*'
+def clientPort = System.properties['javaws.core.client.port']?new Integer(System.properties['javaws.core.client.port']):1337
 
 
 //Swing UI Look And Feel
