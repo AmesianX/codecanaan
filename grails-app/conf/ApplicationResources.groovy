@@ -7,13 +7,13 @@ modules = {
 		
         jquery {
 			// Overriding jquery bundle name
-            defaultBundle 'jquery'
-            resource id: 'js', disposition: 'defer'
+            //defaultBundle 'jquery'
+            //resource id: 'js', disposition: 'defer'
 		}
 
         modernizr {
-            defaultBundle 'jquery'
-            resource id: 'js', disposition: 'defer'
+            //defaultBundle 'jquery'
+            //resource id: 'js', disposition: 'defer'
         }
         
         /*
@@ -40,16 +40,24 @@ modules = {
     }
     */
 
+    /*
     'jquery-core' {
         dependsOn 'jquery'
-        defaultBundle 'jquery'
+        //defaultBundle 'jquery'
 
         resource url: 'jquery-plugins/jquery-migrate-1.2.1.min.js'
     }
+    */
+
+    'jquery-migrate' {
+        dependsOn 'jquery'
+
+        resource url: 'jquery-plugins/jquery-migrate-1.2.1.js'
+    }
 
     'jquery-plugins' {
-        dependsOn 'jquery, jquery-core'
-        defaultBundle 'jquery'
+        dependsOn 'jquery'
+        //defaultBundle 'jquery'
         
         resource url: 'jquery-plugins/jquery.textarea.js'
         resource url: 'jquery-plugins/jquery.jfontsize.js'
@@ -63,8 +71,8 @@ modules = {
     // with a focus on simple usage, attractive looks and interactive features.
     // http://www.flotcharts.org/
     'jquery-flot' {
-        dependsOn 'jquery'
-        
+        dependsOn 'jquery, jquery-plugins'
+        //defaultBundle 'jquery'
         //defaultBundle 'jquery-plugins'
 
         resource url: 'baseadmin/js/plugins/flot/jquery.flot.js'
@@ -76,6 +84,7 @@ modules = {
 
     'jquery-ui' {
         dependsOn 'jquery'
+        //defaultBundle 'jquery'
 
         // jQuery UI with Lightness theme
         resource url: 'jquery-ui/js/jquery-ui.min.js'
@@ -87,7 +96,8 @@ modules = {
     // File Upload widget with multiple file selection, drag and drop support,
     // progress bar, validation and preview images, audio and video for jQuery.
     'jquery-fileupload' {
-        dependsOn 'jquery'
+        dependsOn 'jquery, jquery-plugins'
+        //defaultBundle 'jquery'
 
         //defaultBundle 'jquery-plugins'
 		//defaultBundle __bundleName
@@ -103,7 +113,8 @@ modules = {
     }
     
     'jquery-cslider' {
-        dependsOn 'jquery'
+        dependsOn 'jquery, jquery-plugins'
+        //defaultBundle 'jquery'
         //defaultBundle 'jquery-plugins'
         
         resource url: 'jquery-cslider/parallax-slider.css'
@@ -113,19 +124,10 @@ modules = {
         //resource url: 'jquery-cslider/slider.js'
     }
 
-    /*    
-    'jquery-migrate' {
-        dependsOn 'jquery'
-        defaultBundle 'jquery'
-
-        resource url: 'jquery-plugins/jquery-migrate-1.2.1.min.js'
-    }
-    */
-
     // Twitter Bootstrap
     /*
     bootstrap {
-        dependsOn 'jquery, jquery-core'
+        dependsOn 'jquery'
 
         //resource url: 'bootstrap/css/bootstrap.min.css'
         resource url: 'bootstrap/css/bootstrap.no-icons.min.css'
@@ -238,7 +240,7 @@ modules = {
 
     // Common JavaScript Library
     common {
-        dependsOn 'jquery, jquery-ui, jquery-plugins, codemirror, pagedown, bootstrap-ext, baseadmin'
+        dependsOn 'jquery, jquery-migrate, jquery-ui, jquery-plugins, codemirror, pagedown, bootstrap-ext, baseadmin'
         
         defaultBundle 'common'
         //defaultBundle __bundleName

@@ -12,7 +12,7 @@
     <r:layoutResources />
 
     <!--Justfont Chinese WebFont-->
-    <g:justfont />
+    <%--<g:justfont />--%>
 
     <!--Google Analytics-->
     <google:analytics />

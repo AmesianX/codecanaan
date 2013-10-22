@@ -43,10 +43,8 @@
         </div>
     </div>
     <r:script>
-    $(document).ready(function() {
-        $('#da-slider').cslider({
-            autoplay: true, bgincrement: 0
-        });
+    $('#da-slider').cslider({
+        autoplay: true, bgincrement: 0
     });
     </r:script>
     <!-- Slider/end -->
