@@ -33,7 +33,10 @@
                 </div> <!-- /.widget -->
 
                 <div class="well">
-                    <h4>Extra Info</h4>
+                    <h4>
+                        <i class="icon-lightbulb"></i>&nbsp;
+                        如何取得課程序號？
+                    </h4>
                     <p>如果您想加入新課程，但沒有課程序號，請先向授課教師索取。</p>
                 </div>
 

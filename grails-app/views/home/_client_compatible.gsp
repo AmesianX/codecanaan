@@ -54,7 +54,7 @@
 
 <r:script>
 (function() {
-    $('#jre-version').html(deployJava.versionCheck('1.6+')?'<font color="green">Installed</a>':'<font color="red">Missing</font>'+'<br/><strong>'+deployJava.getJREs()+'</strong>');
-    $('#jws-version').html(deployJava.isWebStartInstalled('1.6')?'<font color="green">Installed</a>':'<font color="red">Missing</font>');
+    $('#jre-version').html(deployJava.versionCheck('1.6+')?'<font color="green">Installed</a>':'<span class="text-warning">Missing</span>'+'<br/><strong>'+deployJava.getJREs()+'</strong>');
+    $('#jws-version').html(deployJava.isWebStartInstalled('1.6')?'<font color="green">Installed</a>':'<span class="text-warning">Missing</span>');
 })();
 </r:script>
