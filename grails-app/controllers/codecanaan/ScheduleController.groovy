@@ -107,12 +107,66 @@ class ScheduleController {
     }
 
     /**
-     * 報表
+     * Schedule Progress Report
      */
     @Secured(['ROLE_USER'])
-    def report(Long id) {
-        def scheduleLesson = ScheduleLesson.get(id)
+    def report(Schedule schedule) {
+
+        if (!schedule) {
+            response.sendError 404
+            return
+        }
+        
+        //println ScheduleLesson.findAllBySchedule(schedule)
+
+        def scheduleLessons = ScheduleLesson.findAllBySchedule(schedule)
+
+        def users = UserSchedule.findAllBySchedule(schedule)*.user
+        def lessons = scheduleLessons*.lesson
+
+        def recTable = [:]
+
+        users.each { user->
+
+            lessons.each { lesson->
+
+                def passNum = 0
+
+                lesson.contents.each { content->
+                    
+                    def rec = Record.findByUserAndContent(user, content)    
+
+                    if (rec?.passed) {
+                        passNum++
+                    }
+                }
+                
+                recTable["${user.id}-${lesson.id}"] = passNum
+            }
+            
+        }
+
+        [
+            schedule: schedule,
+            scheduleLessons: scheduleLessons,
+            recTable: recTable,
+            users: users
+        ]
+    }
+
+    /**
+     * Lesson 報表
+     */
+    @Secured(['ROLE_USER'])
+    def lessonReport(ScheduleLesson scheduleLesson) {
+
+        if (!scheduleLesson) {
+            response.sendError 404
+            return
+        }
+        
         def schedule = scheduleLesson.schedule
+
         [
             schedule: schedule,
             users: UserSchedule.findAllBySchedule(schedule)*.user,

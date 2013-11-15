@@ -1,11 +1,14 @@
 key:
 	keytool -genkey -alias mykey -validity 1095
 
-deploy:
+jar:
 	gradle fatJar
 	mkdir -p lib
 	cp -f build/libs/*.jar lib
 	gradle clean
+
+deploy:
+	cp lib/ClientTools.jar ../../web-app/webstart
 
 sign:
 	read -p "password? " storepass; \

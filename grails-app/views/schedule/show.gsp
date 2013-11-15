@@ -49,7 +49,7 @@
                                                 </schedule:answerAvailable>
 
                                                 <sec:ifAllGranted roles="ROLE_TEACHER">
-                                                    <g:link action="report" id="${link.id}" class="btn btn-default">
+                                                    <g:link action="lessonReport" id="${link.id}" class="btn btn-default">
                                                         報表
                                                     </g:link>
                                                 </sec:ifAllGranted>
@@ -93,10 +93,21 @@
                                                 <i class="icon-plus"></i>&nbsp;
                                                 <g:message code="default.button.add.label" />
                                             </g:link>
+                                            
+                                            <!-- Seperate -->
                                             <span class="text-muted">&nbsp;|&nbsp;</span>
+                                            
                                             <g:link action="modify" id="${schedule.id}">
                                                 <i class="icon-pencil"></i>&nbsp;
                                                 <g:message code="default.button.modify.label" />
+                                            </g:link>
+
+                                            <!-- Seperate -->
+                                            <span class="text-muted">&nbsp;|&nbsp;</span>
+
+                                            <g:link action="report" id="${schedule.id}">
+                                                <i class="icon-bar-chart"></i>&nbsp;
+                                                Report
                                             </g:link>
 
                                         </td>

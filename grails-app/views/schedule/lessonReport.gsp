@@ -24,24 +24,21 @@
                             ${schedule.title}
                         </g:link>
                     </li>
-                    <li class="active">Learning Progress Report</li>
+                    <li class="active">${lesson.title}</li>
                 </ol>
 
                 <div class="widget widget-table stacked">
                     <div class="widget-header">
                         <i class="icon icon-pencil"></i>
-                        <h3>${schedule.title}</h3>
+                        <h3>${lesson.title}</h3>
                     </div>
                     <div class="widget-content">
+
                         <table class="table table-bordered table-strped table-hover">
                             <thead>
                                 <tr>
                                     <th width="150">學員</th>
-                                    <g:each in="${scheduleLessons*.lesson}" var="lesson" status="j">
-                                        <td>
-                                            ${lesson.title}
-                                        </td>
-                                    </g:each>
+                                    <th width="*">進度</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,11 +47,11 @@
                                         <td>
                                             ${user.fullName}
                                         </td>
-                                        <g:each in="${scheduleLessons*.lesson}" var="lesson" status="j">
-                                            <td>
-                                                ${recTable["${user.id}-${lesson.id}"]}
-                                            </td>
-                                        </g:each>
+                                        <td>
+                                            <g:each in="${lesson.contents}" var="content" status="j">
+                                                <img src="${createLink(controller:'content', action:'light', id:content.id, params: [uid: user.id])}" alt="狀態" />
+                                            </g:each>
+                                        </td>
                                     </tr>
                                 </g:each>
                             </tbody>

@@ -28,13 +28,13 @@ public class ScriptLoader
 		ScriptLoader loader = new ScriptLoader();
 		
 		try {
-			if ("groovy".equals(System.getProperty("core.script.type"))) {
-				loader.loadGroovy(System.getProperty("core.script.url"));
+			if ("groovy".equals(System.getProperty("javaws.core.script.type"))) {
+				loader.loadGroovy(System.getProperty("javaws.core.script.url"));
 			}
 			else {
 				loader.load(
-					System.getProperty("core.script.type"),
-					System.getProperty("core.script.url")
+					System.getProperty("javaws.core.script.type"),
+					System.getProperty("javaws.core.script.url")
 				);
 			}
 		}
