@@ -4,6 +4,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder
 
 class UserRole implements Serializable {
 
+    private static final long serialVersionUID = 1
+
 	User user
 	Role role
 
@@ -23,10 +25,12 @@ class UserRole implements Serializable {
 		builder.toHashCode()
 	}
 
-	static UserRole get(long userId, long roleId) {
-		find 'from UserRole where user.id=:userId and role.id=:roleId',
-			[userId: userId, roleId: roleId]
-	}
+    static UserRole get(long userId, long roleId) {
+        UserRole.where {
+            user == User.load(userId) &&
+                    role == Role.load(roleId)
+        }.get()
+    }
 
     /**
      * 建立使用者與角色群組關聯
@@ -40,26 +44,37 @@ class UserRole implements Serializable {
 	    ur.save(flush: flush)
 	}
 
-	static boolean remove(User user, Role role, boolean flush = false) {
-		UserRole instance = UserRole.findByUserAndRole(user, role)
-		if (!instance) {
-			return false
-		}
+    // Auto-generated UserRole
+    /*
+    static UserRole create(User user, Role role, boolean flush = false) {
+        new UserRole(user: user, role: role).save(flush: flush, insert: true)
+    }
+    */
 
-		instance.delete(flush: flush)
-		true
-	}
+    static boolean remove(User u, Role r, boolean flush = false) {
 
-	static void removeAll(User user) {
-		executeUpdate 'DELETE FROM UserRole WHERE user=:user', [user: user]
-	}
+        int rowCount = UserRole.where {
+            user == User.load(u.id) &&
+                    role == Role.load(r.id)
+        }.deleteAll()
 
-	static void removeAll(Role role) {
-		executeUpdate 'DELETE FROM UserRole WHERE role=:role', [role: role]
-	}
+        rowCount > 0
+    }
 
-	static mapping = {
-		id composite: ['role', 'user']
-		version false
-	}
+    static void removeAll(User u) {
+        UserRole.where {
+            user == User.load(u.id)
+        }.deleteAll()
+    }
+
+    static void removeAll(Role r) {
+        UserRole.where {
+            role == Role.load(r.id)
+        }.deleteAll()
+    }
+
+    static mapping = {
+        id composite: ['role', 'user']
+        version false
+    }
 }

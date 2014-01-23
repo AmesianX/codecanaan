@@ -1,4 +1,4 @@
-grails.servlet.version = "2.5" // Change depending on target container compliance (2.5 or 3.0)
+grails.servlet.version = "3.0" // Change depending on target container compliance (2.5 or 3.0)
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
@@ -58,6 +58,8 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
+
+        mavenRepo "http://repo.spring.io/milestone/"
     }
 
     dependencies {
@@ -66,9 +68,12 @@ grails.project.dependency.resolution = {
         runtime 'mysql:mysql-connector-java:5.1.24'
 
         // Due to spring-web conflict, require include manually to solve problems
-        compile 'org.springframework:spring-web:3.2.4.RELEASE'
-        compile 'org.springframework.social:spring-social-core:1.0.3.RELEASE'
-        compile 'org.springframework.social:spring-social-facebook:1.0.3.RELEASE'
+        //compile 'org.springframework:spring-web:3.2.4.RELEASE'
+        compile (
+                'org.springframework.social:spring-social-core:1.0.3.RELEASE',
+                'org.springframework.social:spring-social-facebook:1.0.3.RELEASE') {
+            transitive = false
+        }
 
         // JetS3t Amazon S3
         runtime 'net.java.dev.jets3t:jets3t:0.9.0'
@@ -80,16 +85,16 @@ grails.project.dependency.resolution = {
 
     plugins {
         // plugins for the build system only
-        build ":tomcat:7.0.42"
+        build ":tomcat:7.0.50"
 
         // plugins for the compile step
-        compile ":scaffolding:2.0.0"
+        compile ":scaffolding:2.0.1"
         compile ':cache:1.1.1'
 
         // plugins needed at runtime but not for compilation
-        runtime ":hibernate:3.6.10.1" // or ":hibernate4:4.1.11.1"
-        runtime ":database-migration:1.3.6"
-        runtime ":jquery:1.10.2"
+        runtime ":hibernate:3.6.10.7" // or ":hibernate4:4.1.11.1"
+        runtime ":database-migration:1.3.8"
+        runtime ":jquery:1.10.2.2"
         runtime ":resources:1.2.1"
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0.1"
@@ -97,10 +102,10 @@ grails.project.dependency.resolution = {
         //runtime ":yui-minify-resources:0.1.5"
 
         // Mail Support
-        compile ":mail:1.0.1"
+//        compile ":mail:1.0.1"
 
         // Twitter Bootstrap
-        compile ":twitter-bootstrap:3.0.0"
+//        compile ":twitter-bootstrap:3.0.3"
 
         // Font Awesome
         //compile ":font-awesome-resources:3.2.1.3"
@@ -113,13 +118,13 @@ grails.project.dependency.resolution = {
         //build ":svn:1.0.2"
       
         // Spring Security Core Plugin
-        compile ":spring-security-core:1.2.7.3"
+        compile ":spring-security-core:2.0-RC2"
 
         // Facebook Authentication for Spring Security Core plugin.
-        compile ":spring-security-facebook:0.15"
+        compile ":spring-security-facebook:0.15.2-CORE2"
 
         // Twitter authentication support for the Spring Security plugin.
-        compile ":spring-security-twitter:0.5.4"
+        compile ":spring-security-twitter:0.6"
         
         //build ":lesscss-resources:1.3.0.3"
 
@@ -132,9 +137,9 @@ grails.project.dependency.resolution = {
 
         compile ":browser-detection:0.4.3"
 
-		compile ":modernizr:2.6.2"
+		compile ":modernizr:2.7.1.1"
 
-        compile ":codenarc:0.19"
+        compile ":codenarc:0.20"
 
         // Grails Avatar Plugin
         // This plugin provides a taglib for displaying avatars. At the moment we support gravatars (globally-recognized avatars), Twitter avatar profile and Facebook avatar profile.
@@ -143,5 +148,7 @@ grails.project.dependency.resolution = {
 		// Google Chart Plugin
 		// 移除原因：功能不完整且效果不佳
 		//compile ":google-chart:0.5.2"
+
+        runtime ":cors:1.1.4"
     }
 }

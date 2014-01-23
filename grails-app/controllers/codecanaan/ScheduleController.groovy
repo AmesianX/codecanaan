@@ -1,6 +1,6 @@
 package codecanaan
 
-import grails.plugins.springsecurity.Secured
+import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
 class ScheduleController {

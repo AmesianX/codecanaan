@@ -1,6 +1,6 @@
 package codecanaan
 
-import grails.plugins.springsecurity.Secured
+import grails.plugin.springsecurity.annotation.Secured
 import org.codehaus.groovy.grails.web.mapping.LinkGenerator
 
 @Secured(['ROLE_ADMIN'])

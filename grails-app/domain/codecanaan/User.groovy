@@ -53,7 +53,7 @@ class User {
 	/**
 	 * 帳號是否啟用
 	 */
-	boolean enabled
+	boolean enabled = true
 	
 	/**
 	 * 帳號過期
@@ -97,7 +97,9 @@ class User {
      * 資料更新日期
      */
     Date lastUpdated
-    
+
+    static transients = ['springSecurityService']
+
     /**
      * Required fields: fullName, email, username, password
      */

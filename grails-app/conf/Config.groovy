@@ -185,12 +185,21 @@ avatarPlugin {
 //--------------- SpringSecurity ------------------------
 
 // Added by the Spring Security Core plugin:
-grails.plugins.springsecurity.userLookup.userDomainClassName = 'codecanaan.User'
-grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'codecanaan.UserRole'
-grails.plugins.springsecurity.authority.className = 'codecanaan.Role'
-
-grails.plugins.springsecurity.useSwitchUserFilter = true
-grails.plugins.springsecurity.controllerAnnotations.staticRules = [
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'codecanaan.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'codecanaan.UserRole'
+grails.plugin.springsecurity.authority.className = 'codecanaan.Role'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+        '/':                              ['permitAll'],
+        '/index':                         ['permitAll'],
+        '/index.gsp':                     ['permitAll'],
+        '/**/js/**':                      ['permitAll'],
+        '/**/css/**':                     ['permitAll'],
+        '/**/images/**':                  ['permitAll'],
+        '/**/favicon.ico':                ['permitAll']
+]
+grails.plugin.springsecurity.useSwitchUserFilter = true
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
    '/j_spring_security_switch_user': ['ROLE_ADMIN']
 ]
 
@@ -208,13 +217,22 @@ grails.plugins.springsecurity.rememberMe.alwaysRemember = true
 grails.plugins.springsecurity.rememberMe.persistent = true
 grails.plugins.springsecurity.rememberMe.persistentToken.domainClassName = 'codecanaan.PersistentLogin'
 
-//SpringSecurity Facebook
-grails.plugins.springsecurity.facebook.permissions='email,user_about_me'
-grails.plugins.springsecurity.facebook.filter.type='redirect'
-grails.plugins.springsecurity.facebook.domain.classname='codecanaan.FacebookUser'
-grails.plugins.springsecurity.facebook.appId='--appid--'
-grails.plugins.springsecurity.facebook.secret='--secret--'
+//-------------- SpringSecurity Facebook Plugin ------------------------------------------------------------------------
+grails.plugins.springsecurity.facebook.filter.processUrl = '/j_spring_security_facebook_check'
+grails.plugins.springsecurity.facebook.filter.type = 'redirect'
+grails.plugins.springsecurity.facebook.permissions = 'email,user_about_me'
+grails.plugins.springsecurity.facebook.domain.classname = 'codecanaan.FacebookUser'
+grails.plugins.springsecurity.facebook.appId = '--appid--'
+grails.plugins.springsecurity.facebook.secret = '--secret--'
 
+/*
+grails.plugins.springsecurity.facebook.domain.classname='FacebookUser'
+grails.plugins.springsecurity.facebook.appId='null'
+grails.plugins.springsecurity.facebook.secret='null'
+*/
+
+
+//-------------- Amazon Web Services -----------------------------------------------------------------------------------
 aws {
     //domain="s3.amazonaws.com"
     domain="s3.amazonaws.com"
