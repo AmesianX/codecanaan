@@ -1,7 +1,4 @@
 package codecanaan
-
-import codecanaan.User
-
 /**
  * Facebook 帳號資料
  */

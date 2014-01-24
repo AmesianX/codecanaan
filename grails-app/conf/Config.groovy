@@ -185,7 +185,7 @@ avatarPlugin {
 //--------------- SpringSecurity ------------------------
 
 // Added by the Spring Security Core plugin:
-// Added by the Spring Security Core plugin:
+//grails.plugin.springsecurity.password.algorithm='bcrypt'
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'codecanaan.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'codecanaan.UserRole'
 grails.plugin.springsecurity.authority.className = 'codecanaan.Role'
@@ -198,10 +198,14 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/**/images/**':                  ['permitAll'],
         '/**/favicon.ico':                ['permitAll']
 ]
+grails.plugin.springsecurity.rejectIfNoRule = false
+grails.plugin.springsecurity.fii.rejectPublicInvocations = false
+/*
 grails.plugin.springsecurity.useSwitchUserFilter = true
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
    '/j_spring_security_switch_user': ['ROLE_ADMIN']
 ]
+*/
 
 //RememberMe Filters
 /*
@@ -213,18 +217,19 @@ grails.plugins.springsecurity.rememberMe.key='xyzApp'
 grails.plugins.springsecurity.rememberMe.useSecureCookie=false
 grails.plugins.springsecurity.rememberMe.persistent=false
 */
-grails.plugins.springsecurity.rememberMe.alwaysRemember = true
-grails.plugins.springsecurity.rememberMe.persistent = true
-grails.plugins.springsecurity.rememberMe.persistentToken.domainClassName = 'codecanaan.PersistentLogin'
+grails.plugin.springsecurity.rememberMe.alwaysRemember = true
+grails.plugin.springsecurity.rememberMe.persistent = true
+grails.plugin.springsecurity.rememberMe.persistentToken.domainClassName = 'codecanaan.PersistentLogin'
 
 //-------------- SpringSecurity Facebook Plugin ------------------------------------------------------------------------
+/*
 grails.plugins.springsecurity.facebook.filter.processUrl = '/j_spring_security_facebook_check'
 grails.plugins.springsecurity.facebook.filter.type = 'redirect'
 grails.plugins.springsecurity.facebook.permissions = 'email,user_about_me'
-grails.plugins.springsecurity.facebook.domain.classname = 'codecanaan.FacebookUser'
+grails.plugins.springsecurity.facebook.domain.classname = 'FacebookUser'
 grails.plugins.springsecurity.facebook.appId = '--appid--'
 grails.plugins.springsecurity.facebook.secret = '--secret--'
-
+*/
 /*
 grails.plugins.springsecurity.facebook.domain.classname='FacebookUser'
 grails.plugins.springsecurity.facebook.appId='null'
@@ -286,6 +291,8 @@ remove this line */
 
 // Twitter, Spring Security Plugin
 //grails.plugins.springsecurity.twitter.key=''
+/*
 grails.plugins.springsecurity.twitter.consumerKey='oWtkNaKlatDcEbCW2ik4A'
 grails.plugins.springsecurity.twitter.consumerSecret='p9jyUshum7gEVzhkBIr9END03Zr1aPmcIdk4EdE9M'
-grails.plugins.springsecurity.twitter.domain.classname='codecanaan.TwitterUser'
+grails.plugins.springsecurity.twitter.domain.classname='TwitterUser'
+*/

@@ -3,10 +3,6 @@ package codecanaan
 import grails.gsp.PageRenderer
 
 import com.the6hours.grails.springsecurity.facebook.FacebookAuthToken
-import org.springframework.security.core.authority.GrantedAuthorityImpl
-import org.springframework.security.core.GrantedAuthority
-
-import org.springframework.social.facebook.*
 import org.springframework.social.facebook.api.impl.*
 import org.springframework.social.facebook.api.*
 

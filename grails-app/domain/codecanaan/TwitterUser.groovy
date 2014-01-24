@@ -1,7 +1,5 @@
 package codecanaan
 
-import codecanaan.User
-
 class TwitterUser {
 
     Long twitterId

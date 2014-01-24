@@ -1,7 +1,6 @@
 package codecanaan
 
 import grails.plugin.springsecurity.annotation.Secured
-import org.springframework.dao.DataIntegrityViolationException
 
 class UserController {
 
@@ -41,8 +40,7 @@ class UserController {
         def user = springSecurityService.currentUser
         
         [
-            user: user,
-            fbuser: FacebookUser.findByUser(user)
+            user: user
         ]
     }
 

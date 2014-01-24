@@ -12,11 +12,11 @@ grails.project.fork = [
     //  compile: [maxMemory: 256, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
 
     // configure settings for the test-app JVM, uses the daemon by default
-    test: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
+    test: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, daemon: true],
     // configure settings for the run-app JVM
-    run: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
+    run: [maxMemory: 1024, minMemory: 1024, debug: false, maxPerm: 256, forkReserve: false],
     // configure settings for the run-war JVM
-    war: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
+    war: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve: false],
     // configure settings for the Console UI JVM
     console: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256]
 ]
@@ -69,11 +69,13 @@ grails.project.dependency.resolution = {
 
         // Due to spring-web conflict, require include manually to solve problems
         //compile 'org.springframework:spring-web:3.2.4.RELEASE'
+        /*
         compile (
                 'org.springframework.social:spring-social-core:1.0.3.RELEASE',
                 'org.springframework.social:spring-social-facebook:1.0.3.RELEASE') {
             transitive = false
         }
+        */
 
         // JetS3t Amazon S3
         runtime 'net.java.dev.jets3t:jets3t:0.9.0'
@@ -102,10 +104,10 @@ grails.project.dependency.resolution = {
         //runtime ":yui-minify-resources:0.1.5"
 
         // Mail Support
-//        compile ":mail:1.0.1"
+        compile ":mail:1.0.1"
 
         // Twitter Bootstrap
-//        compile ":twitter-bootstrap:3.0.3"
+        compile ":twitter-bootstrap:3.0.3"
 
         // Font Awesome
         //compile ":font-awesome-resources:3.2.1.3"
@@ -121,10 +123,10 @@ grails.project.dependency.resolution = {
         compile ":spring-security-core:2.0-RC2"
 
         // Facebook Authentication for Spring Security Core plugin.
-        compile ":spring-security-facebook:0.15.2-CORE2"
+        //compile ":spring-security-facebook:0.15.2-CORE2"
 
         // Twitter authentication support for the Spring Security plugin.
-        compile ":spring-security-twitter:0.6"
+        //compile ":spring-security-twitter:0.6"
         
         //build ":lesscss-resources:1.3.0.3"
 

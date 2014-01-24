@@ -17,7 +17,7 @@
                     <div class="widget-content">
                         <g:if test="${user?.email}">
                             <div class="textalign-center">
-                                <avatar:gravatar email="${user.email}" size="128" title="大頭貼" />
+                                <avatar:gravatar email="${user.email}" size="128" title="大頭貼" id="avatar" />
                                 <p><small>Change your avatar at <a href="gravatar.com">gravatar.com</a><br/> We’re using ${user.email}</small></p>
                             </div>
                         </g:if>
