@@ -222,20 +222,17 @@ grails.plugin.springsecurity.rememberMe.persistent = true
 grails.plugin.springsecurity.rememberMe.persistentToken.domainClassName = 'codecanaan.PersistentLogin'
 
 //-------------- SpringSecurity Facebook Plugin ------------------------------------------------------------------------
-/*
-grails.plugins.springsecurity.facebook.filter.processUrl = '/j_spring_security_facebook_check'
-grails.plugins.springsecurity.facebook.filter.type = 'redirect'
-grails.plugins.springsecurity.facebook.permissions = 'email,user_about_me'
-grails.plugins.springsecurity.facebook.domain.classname = 'FacebookUser'
-grails.plugins.springsecurity.facebook.appId = '--appid--'
-grails.plugins.springsecurity.facebook.secret = '--secret--'
-*/
+grails.plugin.springsecurity.facebook.filter.processUrl = '/j_spring_security_facebook_check'
+grails.plugin.springsecurity.facebook.filter.type = 'redirect'
+grails.plugin.springsecurity.facebook.permissions = 'email,user_about_me'
+grails.plugin.springsecurity.facebook.domain.classname = 'codecanaan.FacebookUser'
+grails.plugin.springsecurity.facebook.appId = '--appid--'
+grails.plugin.springsecurity.facebook.secret = '--secret--'
 /*
 grails.plugins.springsecurity.facebook.domain.classname='FacebookUser'
 grails.plugins.springsecurity.facebook.appId='null'
 grails.plugins.springsecurity.facebook.secret='null'
 */
-
 
 //-------------- Amazon Web Services -----------------------------------------------------------------------------------
 aws {

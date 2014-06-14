@@ -69,13 +69,11 @@ grails.project.dependency.resolution = {
 
         // Due to spring-web conflict, require include manually to solve problems
         //compile 'org.springframework:spring-web:3.2.4.RELEASE'
-        /*
         compile (
-                'org.springframework.social:spring-social-core:1.0.3.RELEASE',
-                'org.springframework.social:spring-social-facebook:1.0.3.RELEASE') {
+                'org.springframework.social:spring-social-core:1.1.0.RELEASE',
+                'org.springframework.social:spring-social-facebook:1.1.1.RELEASE') {
             transitive = false
         }
-        */
 
         // JetS3t Amazon S3
         runtime 'net.java.dev.jets3t:jets3t:0.9.0'
@@ -83,21 +81,23 @@ grails.project.dependency.resolution = {
         compile 'commons-codec:commons-codec:1.8'
 
         //test 'com.googlecode.jmockit:jmockit:1.0'
+
+        compile 'com.fasterxml.jackson.core:jackson-databind:2.3.3'
     }
 
     plugins {
         // plugins for the build system only
-        build ":tomcat:7.0.50"
+        build ":tomcat:7.0.53"
 
         // plugins for the compile step
-        compile ":scaffolding:2.0.1"
-        compile ':cache:1.1.1'
+        compile ":scaffolding:2.0.3"
+        compile ':cache:1.1.2'
 
         // plugins needed at runtime but not for compilation
-        runtime ":hibernate:3.6.10.7" // or ":hibernate4:4.1.11.1"
-        runtime ":database-migration:1.3.8"
-        runtime ":jquery:1.10.2.2"
-        runtime ":resources:1.2.1"
+        runtime ":hibernate:3.6.10.15" // or ":hibernate4:4.1.11.1"
+        runtime ":database-migration:1.4.0"
+        runtime ":jquery:1.11.1"
+        runtime ":resources:1.2.7"
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0.1"
         //runtime ":cached-resources:1.1"
@@ -120,19 +120,19 @@ grails.project.dependency.resolution = {
         //build ":svn:1.0.2"
       
         // Spring Security Core Plugin
-        compile ":spring-security-core:2.0-RC2"
+        compile ":spring-security-core:2.0-SNAPSHOT"
 
         // Facebook Authentication for Spring Security Core plugin.
-        //compile ":spring-security-facebook:0.15.2-CORE2"
+        compile ":spring-security-facebook:0.15.2-CORE2"
 
         // Twitter authentication support for the Spring Security plugin.
-        //compile ":spring-security-twitter:0.6"
+        compile ":spring-security-twitter:0.6"
         
         //build ":lesscss-resources:1.3.0.3"
 
         //runtime ":database-migration:1.1"
 
-        compile ':cache:1.0.1'
+        //compile ':cache:1.0.1'
        
         //fix for cached-resources
         compile ":cache-headers:1.1.5"
@@ -141,7 +141,7 @@ grails.project.dependency.resolution = {
 
 		compile ":modernizr:2.7.1.1"
 
-        compile ":codenarc:0.20"
+        // compile ":codenarc:0.20"
 
         // Grails Avatar Plugin
         // This plugin provides a taglib for displaying avatars. At the moment we support gravatars (globally-recognized avatars), Twitter avatar profile and Facebook avatar profile.
@@ -151,6 +151,6 @@ grails.project.dependency.resolution = {
 		// 移除原因：功能不完整且效果不佳
 		//compile ":google-chart:0.5.2"
 
-        runtime ":cors:1.1.4"
+        runtime ":cors:1.1.6"
     }
 }
