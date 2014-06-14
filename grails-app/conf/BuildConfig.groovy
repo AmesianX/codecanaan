@@ -111,6 +111,7 @@ grails.project.dependency.resolution = {
 
         // Font Awesome
         //compile ":font-awesome-resources:3.2.1.3"
+        //compile ":font-awesome-resources:4.0.3.1"
 
         // Google Closure Compiler plugin for Grails
         // This plugin compiles/optimizes your javascript resources with the Google Closure Compiler.

@@ -20,6 +20,8 @@
     <g:javascript library="jquery" />
     <r:require modules="baseadmin, modernizr, common, compass"/>
 
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet"/>
+
     <!--Required Resources-->
     <g:layoutHead/>
     <r:layoutResources />

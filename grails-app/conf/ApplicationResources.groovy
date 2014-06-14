@@ -138,7 +138,7 @@ modules = {
 
     // Base Aadmin 3.0
     baseadmin {
-        dependsOn 'bootstrap, font-awesome'
+        dependsOn 'bootstrap'
 
         resource url: 'baseadmin/css/base-admin-3.css'
         resource url: 'baseadmin/css/base-admin-3-responsive.css'
@@ -203,6 +203,7 @@ modules = {
         resource url: 'bootstrap-ext/bootstrap-lightbox.js'
     }
     
+    /*
     'font-awesome' {
         dependsOn 'bootstrap'
 
@@ -217,6 +218,7 @@ modules = {
         resource url: 'font-awesome/css/font-awesome-ie7.css',
             wrapper: { s -> "<!--[if lte IE 7]>$s<![endif]-->" }
     }
+    */
     
     compass {
         dependsOn 'bootswatch'
