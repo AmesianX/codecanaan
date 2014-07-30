@@ -35,11 +35,11 @@ grails.mime.types = [
     multipartForm: 'multipart/form-data',
     rss:           'application/rss+xml',
     text:          'text/plain',
-    xml:           ['text/xml', 'application/xml'],
-    woff:          ['application/font-woff', 'application/x-font-woff', 'font/x-woff'],
-    ttf:           'font/ttf',
-    eot:           'font/eot',
-    otf:           'font/opentype'
+    xml:           ['text/xml', 'application/xml']//,
+    //woff:          ['application/font-woff', 'application/x-font-woff', 'font/x-woff'],
+    //ttf:           'font/ttf',
+    //eot:           'font/eot',
+    //otf:           'font/opentype'
 ]
 
 // URL Mapping Cache Max Size, defaults to 5000
@@ -47,7 +47,7 @@ grails.mime.types = [
 
 // What URL patterns should be processed by the resources plugin
 //grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*', '*.js', '*.css', '*.zip']
-grails.resources.adhoc.patterns = ["/images/*", "*.css", "*.js"]
+grails.resources.adhoc.patterns = ["/images/*", "*.css", "*.js", "*.woff", "*.ttf", "*.eot", "*.otf"]
 
 // Perhaps some reason we want to prevent bundling on CSS files: for "less"
 grails.resources.bundle.excludes = ['**/*.less']
@@ -196,7 +196,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/**/js/**':                      ['permitAll'],
         '/**/css/**':                     ['permitAll'],
         '/**/images/**':                  ['permitAll'],
-        '/**/favicon.ico':                ['permitAll']
+        '/**/favicon.ico':                ['permitAll'],
+        '/**/font-awesome/**':            ['permitAll']
 ]
 grails.plugin.springsecurity.rejectIfNoRule = false
 grails.plugin.springsecurity.fii.rejectPublicInvocations = false

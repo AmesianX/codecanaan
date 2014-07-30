@@ -155,7 +155,8 @@ class ContentController {
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'content.label', default: 'Content'), id])
             redirect(controller: 'lesson', action: 'show', id: content.lesson?.id)
         }
-        catch (DataIntegrityViolationException e) {
+        catch (e) {//FIXME DataIntegrityViolationException
+
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'content.label', default: 'Content'), id])
             redirect(action: 'show', id: content.id)
         }
